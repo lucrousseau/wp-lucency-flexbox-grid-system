@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "lucidity-flexbox-grid-system/row",
+  "version": "1.0.0",
+  "title": "Row for flexbox grid system",
+  "category": "design",
+  "icon": "row",
+  "description": "Container for flexbox grid system",
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "textdomain": "lucidity-flexbox-grid-system",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}

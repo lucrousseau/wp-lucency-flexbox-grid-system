@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "lucidity-flexbox-grid-system/container",
+	"version": "1.0.0",
+	"title": "Container for flexbox grid system",
+	"category": "design",
+	"icon": "star",
+	"description": "Container for flexbox grid system",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "lucidity-flexbox-grid-system",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js",
+	"attributes": {
+		"tag": {
+			"type": "string",
+			"default": "section"
+		},
+		"background": {
+			"type": "object",
+			"default": {}
+		},
+		"style": {
+			"type": "object",
+			"default": {}
+		}
+	}
+}
