@@ -25,9 +25,13 @@
       "type": "object",
       "default": {}
     },
-    "style": {
+    "marginPadding": {
       "type": "object",
       "default": {}
+    },
+    "columns": {
+      "type": "number",
+      "default": 1
     }
   }
 }

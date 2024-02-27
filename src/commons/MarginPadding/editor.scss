@@ -1,0 +1,27 @@
+.setMarginPadding {
+	h2 {
+		display: flex;
+		align-items: center;
+		padding-top: 1em;
+		padding-bottom: 1em;
+		svg {
+			width: auto;
+			height: 1em;
+			cursor: pointer;
+			margin-left: auto;
+		}
+	}
+	h2,
+	hr {
+		margin: 0;
+	}
+	&__row {
+		gap: 0.5em;
+		display: flex;
+		margin-bottom: 1.5em;
+	}
+	&__col {
+		flex: 1;
+		display: flex;
+	}
+}
