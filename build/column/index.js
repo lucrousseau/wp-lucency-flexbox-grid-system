@@ -57,6 +57,57 @@ const BREAKPOINTS = {
 
 /***/ }),
 
+/***/ "./src/column/createColumnsSettings.js":
+/*!*********************************************!*\
+  !*** ./src/column/createColumnsSettings.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ createColumnsSettings)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _abstracts_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../abstracts/constants */ "./src/abstracts/constants.js");
+
+
+
+
+function createColumnsSettings({
+  sizes,
+  handleSizeChange
+}) {
+  return Object.entries(_abstracts_constants__WEBPACK_IMPORTED_MODULE_3__.BREAKPOINTS).reduce((acc, [size]) => {
+    var _sizes$size;
+    const title = `${(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(size.toUpperCase(), "lucidity-flexbox-grid-system")}${size !== "full" ? `, ${_abstracts_constants__WEBPACK_IMPORTED_MODULE_3__.BREAKPOINTS[size]}px` : ""}`;
+    const content = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Columns Eidth", "lucidity-flexbox-grid-system"),
+      min: 0,
+      max: _abstracts_constants__WEBPACK_IMPORTED_MODULE_3__.COLUMNS,
+      value: (_sizes$size = sizes?.[size]) !== null && _sizes$size !== void 0 ? _sizes$size : 0,
+      onChange: value => handleSizeChange({
+        size,
+        sizes,
+        value
+      }),
+      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Leave at 0 for auto width", "lucidity-flexbox-grid-system")
+    });
+    acc[size] = {
+      title,
+      content
+    };
+    return acc;
+  }, {});
+}
+
+/***/ }),
+
 /***/ "./src/column/edit.js":
 /*!****************************!*\
   !*** ./src/column/edit.js ***!
@@ -80,9 +131,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _abstracts_constants__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../abstracts/constants */ "./src/abstracts/constants.js");
-/* harmony import */ var _commons_Collapsible__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../commons/Collapsible */ "./src/commons/Collapsible/index.js");
-/* harmony import */ var _responsiveColumnSizes_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./responsiveColumnSizes.js */ "./src/column/responsiveColumnSizes.js");
+/* harmony import */ var _commons_Collapsible__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../commons/Collapsible */ "./src/commons/Collapsible/index.js");
+/* harmony import */ var _responsiveColumnSizes_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./responsiveColumnSizes.js */ "./src/column/responsiveColumnSizes.js");
+/* harmony import */ var _createColumnsSettings_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./createColumnsSettings.js */ "./src/column/createColumnsSettings.js");
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./editor.scss */ "./src/column/editor.scss");
 
 
@@ -109,7 +160,7 @@ function Edit({
     hasInnerBlocks: select("core/block-editor").getBlockCount(clientId) > 0
   }));
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)({
-    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("col", (0,_responsiveColumnSizes_js__WEBPACK_IMPORTED_MODULE_8__["default"])({
+    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("col", (0,_responsiveColumnSizes_js__WEBPACK_IMPORTED_MODULE_7__["default"])({
       sizes
     }))
   });
@@ -129,37 +180,13 @@ function Edit({
       sizes: updatedColumnSize
     });
   };
-  const createItems = ({
-    sizes,
-    handleSizeChange
-  }) => Object.entries(_abstracts_constants__WEBPACK_IMPORTED_MODULE_6__.BREAKPOINTS).reduce((acc, [size]) => {
-    var _sizes$size;
-    const title = `${(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)(size.toUpperCase(), "lucidity-flexbox-grid-system")}${size !== "full" ? `, ${_abstracts_constants__WEBPACK_IMPORTED_MODULE_6__.BREAKPOINTS[size]}px` : ""}`;
-    const content = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.RangeControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Columns Eidth", "lucidity-flexbox-grid-system"),
-      min: 0,
-      max: _abstracts_constants__WEBPACK_IMPORTED_MODULE_6__.COLUMNS,
-      value: (_sizes$size = sizes?.[size]) !== null && _sizes$size !== void 0 ? _sizes$size : 0,
-      onChange: value => handleSizeChange({
-        size,
-        sizes,
-        value
-      }),
-      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Leave at 0 for auto width", "lucidity-flexbox-grid-system")
-    });
-    acc[size] = {
-      title,
-      content
-    };
-    return acc;
-  }, {});
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Column Settings")
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Notice, {
     status: "warning",
     isDismissible: true
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Comulative column width for sleected breakpoints should not exceed 12 or row will break in another line", "lucidity-flexbox-grid-system")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_commons_Collapsible__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    items: createItems({
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Comulative column width for sleected breakpoints should not exceed 12 or row will break in another line", "lucidity-flexbox-grid-system")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_commons_Collapsible__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    items: (0,_createColumnsSettings_js__WEBPACK_IMPORTED_MODULE_8__["default"])({
       sizes,
       handleSizeChange
     }),
@@ -257,12 +284,11 @@ function save({
     sizes
   } = attributes;
   const style = {};
-  const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
+  const innerBlocksProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useInnerBlocksProps.save({
     className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("col", (0,_responsiveColumnSizes_js__WEBPACK_IMPORTED_MODULE_3__["default"])({
       sizes
     }))
   });
-  const innerBlocksProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useInnerBlocksProps.save(blockProps);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...innerBlocksProps,
     style: style

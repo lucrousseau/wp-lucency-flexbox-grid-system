@@ -8,13 +8,11 @@ import {
 	InspectorControls,
 } from "@wordpress/block-editor";
 
-import { PanelBody, Notice, RangeControl } from "@wordpress/components";
-
-import { COLUMNS, BREAKPOINTS } from "../abstracts/constants";
+import { PanelBody, Notice } from "@wordpress/components";
 
 import Collapsible from "../commons/Collapsible";
-
 import responsiveColumnSizes from "./responsiveColumnSizes.js";
+import createColumnsSettings from "./createColumnsSettings.js";
 
 import "./editor.scss";
 
@@ -46,27 +44,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		setAttributes({ sizes: updatedColumnSize });
 	};
 
-	const createItems = ({ sizes, handleSizeChange }) =>
-		Object.entries(BREAKPOINTS).reduce((acc, [size]) => {
-			const title = `${__(size.toUpperCase(), "lucidity-flexbox-grid-system")}${
-				size !== "full" ? `, ${BREAKPOINTS[size]}px` : ""
-			}`;
-
-			const content = (
-				<RangeControl
-					label={__("Columns Eidth", "lucidity-flexbox-grid-system")}
-					min={0}
-					max={COLUMNS}
-					value={sizes?.[size] ?? 0}
-					onChange={(value) => handleSizeChange({ size, sizes, value })}
-					help={__("Leave at 0 for auto width", "lucidity-flexbox-grid-system")}
-				/>
-			);
-
-			acc[size] = { title, content };
-			return acc;
-		}, {});
-
 	return (
 		<>
 			<InspectorControls>
@@ -78,7 +55,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						)}
 					</Notice>
 					<Collapsible
-						items={createItems({ sizes, handleSizeChange })}
+						items={createColumnsSettings({ sizes, handleSizeChange })}
 						initialOpenPanel={"full"}
 					/>
 				</PanelBody>

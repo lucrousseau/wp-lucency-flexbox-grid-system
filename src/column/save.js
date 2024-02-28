@@ -1,6 +1,6 @@
 import classnames from "classnames";
 
-import { useBlockProps, useInnerBlocksProps } from "@wordpress/block-editor";
+import { useInnerBlocksProps } from "@wordpress/block-editor";
 
 import responsiveColumnSizes from "./responsiveColumnSizes.js";
 
@@ -9,11 +9,9 @@ export default function save({ attributes }) {
 
 	const style = {};
 
-	const blockProps = useBlockProps.save({
+	const innerBlocksProps = useInnerBlocksProps.save({
 		className: classnames("col", responsiveColumnSizes({ sizes })),
 	});
-
-	const innerBlocksProps = useInnerBlocksProps.save(blockProps);
 
 	return <div {...innerBlocksProps} style={style} />;
 }
