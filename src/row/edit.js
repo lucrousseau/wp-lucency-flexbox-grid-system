@@ -71,6 +71,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const savedContentRef = useRef({});
 
 	const onColumnsChange = (newColumns) => {
+		if (newColumns < 1 || newColumns > COLUMNS) {
+			console.error(`The number of columns must be between 1 and ${COLUMNS}.`);
+			return;
+		}
+
 		const updatedInnerBlocks = [...innerBlocks];
 		const currentCount = updatedInnerBlocks.length;
 		const difference = newColumns - currentCount;

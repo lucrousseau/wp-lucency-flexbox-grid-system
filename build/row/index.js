@@ -288,6 +288,10 @@ function Edit({
   const innerBlocks = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => select("core/block-editor").getBlocks(clientId), [clientId]);
   const savedContentRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)({});
   const onColumnsChange = newColumns => {
+    if (newColumns < 1 || newColumns > _abstracts_constants__WEBPACK_IMPORTED_MODULE_8__.COLUMNS) {
+      console.error(`The number of columns must be between 1 and ${_abstracts_constants__WEBPACK_IMPORTED_MODULE_8__.COLUMNS}.`);
+      return;
+    }
     const updatedInnerBlocks = [...innerBlocks];
     const currentCount = updatedInnerBlocks.length;
     const difference = newColumns - currentCount;
