@@ -277,38 +277,22 @@ function Edit({
   const innerBlocks = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => select("core/block-editor").getBlocks(clientId), [clientId]);
 
   // Initialize savedContent with useRef
-  const savedContent = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)(new Map()).current;
-  console.log("init", savedContent, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)(new Map()));
+  const savedContentRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)({});
   const onColumnsChange = newColumns => {
-    let updatedInnerBlocks = [...innerBlocks];
+    const updatedInnerBlocks = [...innerBlocks];
     const currentCount = updatedInnerBlocks.length;
     const difference = newColumns - currentCount;
     if (difference < 0) {
-      const blocksToRemove = updatedInnerBlocks.slice(newColumns);
-      blocksToRemove.forEach(block => {
-        savedContent.set(block.clientId, block);
-        console.log("Here save", {
-          savedContent,
-          block,
-          clientId: block.clientId
-        });
+      updatedInnerBlocks.slice(newColumns).forEach((block, index) => {
+        savedContentRef.current[newColumns + index] = block;
       });
+      updatedInnerBlocks.length = newColumns;
     }
-    updatedInnerBlocks = difference > 0 ? updatedInnerBlocks : updatedInnerBlocks.slice(0, newColumns);
     for (let i = currentCount; i < newColumns; i++) {
       let newBlock;
-      const savedBlockEntry = savedContent.entries().next().value;
-      console.log("here restaure", {
-        savedBlockEntry,
-        savedContent,
-        currentCount,
-        difference,
-        i
-      });
-      if (savedBlockEntry) {
-        const [clientId, block] = savedBlockEntry;
-        newBlock = block;
-        savedContent.delete(clientId);
+      if (savedContentRef.current[i]) {
+        newBlock = savedContentRef.current[i];
+        delete savedContentRef.current[i]; // Remove from savedContent after restoring
       } else {
         newBlock = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_4__.createBlock)("lucidity-flexbox-grid-system/column");
       }
