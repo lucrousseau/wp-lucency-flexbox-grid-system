@@ -126,13 +126,10 @@ function MarginPadding({
       marginPadding: updatedMarginPadding
     });
   };
-  const handleClick = size => {
-    setOpenPanel(size);
-  };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Margin & Padding")
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("setMarginPadding")
+    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("lucidity-flexbox-grid-system__collapsible")
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("em", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("All units are in REM and use sizes for all breakpoints", "lucidity-flexbox-grid-system"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("hr", null), Object.entries(marginPaddingObject).map(([size, props]) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     key: size
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
@@ -144,18 +141,18 @@ function MarginPadding({
     fill: "currentColor",
     d: "M240 64c0-8.8-7.2-16-16-16s-16 7.2-16 16V240H32c-8.8 0-16 7.2-16 16s7.2 16 16 16H208V448c0 8.8 7.2 16 16 16s16-7.2 16-16V272H416c8.8 0 16-7.2 16-16s-7.2-16-16-16H240V64z"
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "setMarginPadding__collapsible",
+    className: "lucidity-flexbox-grid-system__collapsible__panel",
     style: openPanel !== size ? {
       display: "none"
     } : null
   }, Object.entries(props).map(([prop, directions]) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     key: `${prop}-${size}`
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)(prop.toUpperCase(), "lucidity-flexbox-grid-system")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "setMarginPadding__row"
+    className: "lucidity-flexbox-grid-system__collapsible__row"
   }, Object.entries(directions).map(([direction, value]) => {
     var _marginPadding$size$p;
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "setMarginPadding__col",
+      className: "lucidity-flexbox-grid-system__collapsible__col",
       key: `${prop}-${size}-${direction}`
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalNumberControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)(direction.toUpperCase(), "lucidity-flexbox-grid-system"),

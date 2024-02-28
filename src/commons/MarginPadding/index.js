@@ -42,13 +42,9 @@ export function MarginPadding({ marginPadding = {}, setAttributes }) {
 		setAttributes({ marginPadding: updatedMarginPadding });
 	};
 
-	const handleClick = (size) => {
-		setOpenPanel(size);
-	};
-
 	return (
 		<PanelBody title={__("Margin & Padding")}>
-			<div className={classnames("setMarginPadding")}>
+			<div className={classnames("lucidity-flexbox-grid-system__collapsible")}>
 				<p>
 					<em>
 						{__(
@@ -74,7 +70,7 @@ export function MarginPadding({ marginPadding = {}, setAttributes }) {
 							)}
 						</h2>
 						<div
-							className="setMarginPadding__collapsible"
+							className="lucidity-flexbox-grid-system__collapsible__panel"
 							style={openPanel !== size ? { display: "none" } : null}
 						>
 							{Object.entries(props).map(([prop, directions]) => (
@@ -82,11 +78,11 @@ export function MarginPadding({ marginPadding = {}, setAttributes }) {
 									<h3>
 										{__(prop.toUpperCase(), "lucidity-flexbox-grid-system")}
 									</h3>
-									<div className="setMarginPadding__row">
+									<div className="lucidity-flexbox-grid-system__collapsible__row">
 										{Object.entries(directions).map(([direction, value]) => {
 											return (
 												<div
-													className="setMarginPadding__col"
+													className="lucidity-flexbox-grid-system__collapsible__col"
 													key={`${prop}-${size}-${direction}`}
 												>
 													<NumberControl
