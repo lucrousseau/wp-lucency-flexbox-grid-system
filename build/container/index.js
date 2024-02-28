@@ -267,8 +267,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _commons_MarginPadding__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../commons/MarginPadding */ "./src/commons/MarginPadding/index.js");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./editor.scss */ "./src/container/editor.scss");
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../helpers */ "./src/helpers/index.js");
+/* harmony import */ var _commons_MarginPadding__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../commons/MarginPadding */ "./src/commons/MarginPadding/index.js");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./editor.scss */ "./src/container/editor.scss");
+
 
 
 
@@ -287,10 +289,8 @@ function Edit({
     marginPadding
   } = attributes;
   const Tag = tag;
-  let style = {};
-  style = (0,_commons_MarginPadding__WEBPACK_IMPORTED_MODULE_5__.updateStyleWithMarginPadding)({
-    marginPadding,
-    style
+  const style = (0,_commons_MarginPadding__WEBPACK_IMPORTED_MODULE_6__.updateStyleWithMarginPadding)({
+    marginPadding
   });
   const {
     hasInnerBlocks
@@ -301,22 +301,22 @@ function Edit({
     className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("container")
   });
   const innerBlocksProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useInnerBlocksProps)(blockProps, {
+    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("container__content"),
     renderAppender: !hasInnerBlocks ? () => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InnerBlocks.ButtonBlockAppender, null) : null
   });
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_commons_MarginPadding__WEBPACK_IMPORTED_MODULE_5__.MarginPadding, {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_commons_MarginPadding__WEBPACK_IMPORTED_MODULE_6__.MarginPadding, {
     marginPadding: marginPadding,
     setAttributes: setAttributes
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Tag, {
     ...blockProps,
     style: style
-  }, background && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, !(0,_helpers__WEBPACK_IMPORTED_MODULE_5__.isEmpty)(background) && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "container__background"
   }, background.src && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: background.src,
     alt: ""
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    ...innerBlocksProps,
-    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(innerBlocksProps.className, "container__content")
+    ...innerBlocksProps
   })));
 }
 
@@ -368,37 +368,60 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../helpers */ "./src/helpers/index.js");
+/* harmony import */ var _commons_MarginPadding__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../commons/MarginPadding */ "./src/commons/MarginPadding/index.js");
+
+
 
 
 
 function save({
   attributes
 }) {
-  if (true) return null;
   const {
     tag,
     background,
     marginPadding
   } = attributes;
   const Tag = tag;
-  const style = {};
+  const style = (0,_commons_MarginPadding__WEBPACK_IMPORTED_MODULE_4__.updateStyleWithMarginPadding)({
+    marginPadding
+  });
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
     className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("container")
   });
-  const innerBlocksProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useInnerBlocksProps.save(blockProps);
+  const innerBlocksProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useInnerBlocksProps.save({
+    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("container__content")
+  });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Tag, {
     ...blockProps,
     style: style
-  }, background && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, !(0,_helpers__WEBPACK_IMPORTED_MODULE_3__.isEmpty)(background) && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "container__background"
   }, background.src && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: background.src,
     alt: ""
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    ...innerBlocksProps,
-    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(innerBlocksProps.className, "container__content")
+    ...innerBlocksProps
   }));
 }
+
+/***/ }),
+
+/***/ "./src/helpers/index.js":
+/*!******************************!*\
+  !*** ./src/helpers/index.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   isEmpty: () => (/* binding */ isEmpty)
+/* harmony export */ });
+const isEmpty = obj => {
+  return Object.keys(obj).length === 0;
+};
 
 /***/ }),
 

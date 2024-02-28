@@ -14,19 +14,21 @@ import { COLUMNS, BREAKPOINTS } from "../abstracts/constants";
 
 import Collapsible from "../commons/Collapsible";
 
+import responsiveColumnSizes from "./responsiveColumnSizes.js";
+
 import "./editor.scss";
 
 export default function Edit({ attributes, setAttributes, clientId }) {
 	const { sizes } = attributes;
 
-	let style = {};
+	const style = {};
 
 	const { hasInnerBlocks } = useSelect((select) => ({
 		hasInnerBlocks: select("core/block-editor").getBlockCount(clientId) > 0,
 	}));
 
 	const blockProps = useBlockProps({
-		className: classnames("col"),
+		className: classnames("col", responsiveColumnSizes({ sizes })),
 	});
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {

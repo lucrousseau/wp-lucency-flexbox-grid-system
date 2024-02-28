@@ -8,6 +8,8 @@ import {
 	InspectorControls,
 } from "@wordpress/block-editor";
 
+import { isEmpty } from "../helpers";
+
 import {
 	MarginPadding,
 	updateStyleWithMarginPadding,
@@ -19,8 +21,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const { tag, background, marginPadding } = attributes;
 	const Tag = tag;
 
-	let style = {};
-	style = updateStyleWithMarginPadding({ marginPadding, style });
+	const style = updateStyleWithMarginPadding({ marginPadding });
 
 	const { hasInnerBlocks } = useSelect((select) => ({
 		hasInnerBlocks: select("core/block-editor").getBlockCount(clientId) > 0,
@@ -31,6 +32,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	});
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
+		className: classnames("container__content"),
 		renderAppender: !hasInnerBlocks
 			? () => <InnerBlocks.ButtonBlockAppender />
 			: null,
@@ -45,20 +47,12 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 				/>
 			</InspectorControls>
 			<Tag {...blockProps} style={style}>
-				{background && (
+				{!isEmpty(background) && (
 					<div className="container__background">
 						{background.src && <img src={background.src} alt="" />}
 					</div>
 				)}
-				<div
-					{...{
-						...innerBlocksProps,
-						className: classnames(
-							innerBlocksProps.className,
-							"container__content",
-						),
-					}}
-				/>
+				<div {...innerBlocksProps} />
 			</Tag>
 		</>
 	);

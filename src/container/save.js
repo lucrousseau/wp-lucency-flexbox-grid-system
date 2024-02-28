@@ -2,34 +2,29 @@ import classnames from "classnames";
 
 import { useBlockProps, useInnerBlocksProps } from "@wordpress/block-editor";
 
-export default function save({ attributes }) {
-	if (1 === 1) return null;
+import { isEmpty } from "../helpers";
+import { updateStyleWithMarginPadding } from "../commons/MarginPadding";
 
+export default function save({ attributes }) {
 	const { tag, background, marginPadding } = attributes;
 	const Tag = tag;
 
-	const style = {};
+	const style = updateStyleWithMarginPadding({ marginPadding });
 
 	const blockProps = useBlockProps.save({ className: classnames("container") });
 
-	const innerBlocksProps = useInnerBlocksProps.save(blockProps);
+	const innerBlocksProps = useInnerBlocksProps.save({
+		className: classnames("container__content"),
+	});
 
 	return (
 		<Tag {...blockProps} style={style}>
-			{background && (
+			{!isEmpty(background) && (
 				<div className="container__background">
 					{background.src && <img src={background.src} alt="" />}
 				</div>
 			)}
-			<div
-				{...{
-					...innerBlocksProps,
-					className: classnames(
-						innerBlocksProps.className,
-						"container__content",
-					),
-				}}
-			/>
+			<div {...innerBlocksProps} />
 		</Tag>
 	);
 }

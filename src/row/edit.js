@@ -48,8 +48,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		}
 	}, [columns, hasInnerBlocks, innerBlocksCount]);
 
-	let style = {};
-	style = updateStyleWithMarginPadding({ marginPadding, style });
+	const style = updateStyleWithMarginPadding({ marginPadding });
 
 	const blockProps = useBlockProps({
 		className: classnames("row"),
