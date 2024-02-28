@@ -5,7 +5,6 @@
 	"version": "1.0.0",
 	"title": "Row for flexbox grid system",
 	"category": "design",
-	"icon": "row",
 	"description": "Container for flexbox grid system",
 	"example": {},
 	"supports": {
@@ -15,5 +14,19 @@
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
-	"viewScript": "file:./view.js"
+	"viewScript": "file:./view.js",
+	"attributes": {
+		"tag": {
+			"type": "string",
+			"default": "div"
+		},
+		"columns": {
+			"type": "number",
+			"default": 1
+		},
+		"marginPadding": {
+			"type": "object",
+			"default": {}
+		}
+	}
 }

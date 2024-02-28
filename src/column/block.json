@@ -1,14 +1,15 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "lucidity-flexbox-grid-system/grid",
+	"name": "lucidity-flexbox-grid-system/column",
 	"version": "1.0.0",
-	"title": "Grid for flexbox grid system",
+	"title": "Column for flexbox grid system",
 	"category": "design",
-	"description": "Grid for flexbox grid system",
+	"description": "Column for flexbox grid system",
 	"example": {},
 	"supports": {
-		"html": false
+		"html": false,
+		"inserter": false
 	},
 	"textdomain": "lucidity-flexbox-grid-system",
 	"editorScript": "file:./index.js",

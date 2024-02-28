@@ -5,7 +5,6 @@
   "version": "1.0.0",
   "title": "Container for flexbox grid system",
   "category": "design",
-  "icon": "star",
   "description": "Container for flexbox grid system",
   "example": {},
   "supports": {
@@ -28,10 +27,6 @@
     "marginPadding": {
       "type": "object",
       "default": {}
-    },
-    "columns": {
-      "type": "number",
-      "default": 1
     }
   }
 }

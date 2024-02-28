@@ -1,4 +1,34 @@
+/*!**************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/commons/MarginPadding/editor.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************/
+.setMarginPadding h2 {
+  display: flex;
+  align-items: center;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+.setMarginPadding h2 svg {
+  width: auto;
+  height: 1em;
+  cursor: pointer;
+  margin-left: auto;
+}
+.setMarginPadding h2,
+.setMarginPadding hr {
+  margin: 0;
+}
+.setMarginPadding__row {
+  gap: 0.5em;
+  display: flex;
+  margin-bottom: 1.5em;
+}
+.setMarginPadding__col {
+  flex: 1;
+  display: flex;
+}
 /*!********************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/row/editor.scss ***!
   \********************************************************************************************************************************************************************************************************************************************/
 
+
+/*# sourceMappingURL=index.css.map*/

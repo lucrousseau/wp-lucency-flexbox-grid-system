@@ -8,26 +8,21 @@ import {
 	InspectorControls,
 } from "@wordpress/block-editor";
 
-import {
-	MarginPadding,
-	updateStyleWithMarginPadding,
-} from "../commons/MarginPadding";
+import { PanelBody } from "@wordpress/components";
 
 import "./editor.scss";
 
 export default function Edit({ attributes, setAttributes, clientId }) {
-	const { tag, background, marginPadding } = attributes;
-	const Tag = tag;
+	const {} = attributes;
 
 	let style = {};
-	style = updateStyleWithMarginPadding({ marginPadding, style });
 
 	const { hasInnerBlocks } = useSelect((select) => ({
 		hasInnerBlocks: select("core/block-editor").getBlockCount(clientId) > 0,
 	}));
 
 	const blockProps = useBlockProps({
-		className: classnames("container"),
+		className: classnames("col"),
 	});
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
@@ -39,27 +34,9 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	return (
 		<>
 			<InspectorControls>
-				<MarginPadding
-					marginPadding={marginPadding}
-					setAttributes={setAttributes}
-				/>
+				<PanelBody title={__("Row Settings")}>{"..."}</PanelBody>
 			</InspectorControls>
-			<Tag {...blockProps} style={style}>
-				{background && (
-					<div className="container__background">
-						{background.src && <img src={background.src} alt="" />}
-					</div>
-				)}
-				<div
-					{...{
-						...innerBlocksProps,
-						className: classnames(
-							innerBlocksProps.className,
-							"container__content",
-						),
-					}}
-				/>
-			</Tag>
+			<div {...innerBlocksProps} style={style}></div>
 		</>
 	);
 }
