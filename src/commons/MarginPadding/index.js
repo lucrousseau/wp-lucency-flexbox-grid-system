@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import classnames from "classnames";
 import { __ } from "@wordpress/i18n";
 
 import {
@@ -9,11 +7,11 @@ import {
 
 import { BREAKPOINTS } from "../../abstracts/constants";
 
+import Collapsible from "../Collapsible";
+
 import "./editor.scss";
 
 export function MarginPadding({ marginPadding = {}, setAttributes }) {
-	const [openPanel, setOpenPanel] = useState("full");
-
 	const marginPaddingObject = (() => {
 		const directions = ["top", "bottom", "left", "right"];
 		const obj = {};
@@ -42,80 +40,68 @@ export function MarginPadding({ marginPadding = {}, setAttributes }) {
 		setAttributes({ marginPadding: updatedMarginPadding });
 	};
 
+	const createItems = ({
+		marginPaddingObject,
+		marginPadding,
+		handleMarginPaddingChange,
+	}) =>
+		Object.entries(marginPaddingObject).reduce((acc, [size, props]) => {
+			const title = `${__(size.toUpperCase(), "lucidity-flexbox-grid-system")}${
+				size !== "full" ? `, ${BREAKPOINTS[size]}px` : ""
+			}`;
+
+			const content = Object.entries(props).map(([prop, directions]) => (
+				<div key={`${prop}-${size}`}>
+					<h3>{__(prop.toUpperCase(), "lucidity-flexbox-grid-system")}</h3>
+					<div className="row">
+						{Object.entries(directions).map(([direction, value]) => (
+							<div className="col" key={`${prop}-${size}-${direction}`}>
+								<NumberControl
+									label={__(
+										direction.toUpperCase(),
+										"lucidity-flexbox-grid-system",
+									)}
+									value={marginPadding?.[size]?.[prop]?.[direction] ?? null}
+									onChange={(value) =>
+										handleMarginPaddingChange({
+											size,
+											prop,
+											direction,
+											value,
+										})
+									}
+									step={0.1}
+									isShiftStepEnabled={true}
+									shiftStep={10}
+								/>
+							</div>
+						))}
+					</div>
+				</div>
+			));
+
+			acc[size] = { title, content };
+			return acc;
+		}, {});
+
 	return (
 		<PanelBody title={__("Margin & Padding")}>
-			<div className={classnames("lucidity-flexbox-grid-system__collapsible")}>
-				<p>
-					<em>
-						{__(
-							"All units are in REM and use sizes for all breakpoints",
-							"lucidity-flexbox-grid-system",
-						)}
-					</em>
-				</p>
-				<hr />
-				{Object.entries(marginPaddingObject).map(([size, props]) => (
-					<div key={size}>
-						<h2 onClick={() => setOpenPanel(size)}>
-							{`${__(size.toUpperCase(), "lucidity-flexbox-grid-system")}${
-								size !== "full" ? `, ${BREAKPOINTS[size]}px` : ""
-							}`}
-							{openPanel !== size && (
-								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-									<path
-										fill="currentColor"
-										d="M240 64c0-8.8-7.2-16-16-16s-16 7.2-16 16V240H32c-8.8 0-16 7.2-16 16s7.2 16 16 16H208V448c0 8.8 7.2 16 16 16s16-7.2 16-16V272H416c8.8 0 16-7.2 16-16s-7.2-16-16-16H240V64z"
-									/>
-								</svg>
-							)}
-						</h2>
-						<div
-							className="lucidity-flexbox-grid-system__collapsible__panel"
-							style={openPanel !== size ? { display: "none" } : null}
-						>
-							{Object.entries(props).map(([prop, directions]) => (
-								<div key={`${prop}-${size}`}>
-									<h3>
-										{__(prop.toUpperCase(), "lucidity-flexbox-grid-system")}
-									</h3>
-									<div className="lucidity-flexbox-grid-system__collapsible__row">
-										{Object.entries(directions).map(([direction, value]) => {
-											return (
-												<div
-													className="lucidity-flexbox-grid-system__collapsible__col"
-													key={`${prop}-${size}-${direction}`}
-												>
-													<NumberControl
-														label={__(
-															direction.toUpperCase(),
-															"lucidity-flexbox-grid-system",
-														)}
-														value={
-															marginPadding?.[size]?.[prop]?.[direction] ?? null
-														}
-														onChange={(value) => {
-															handleMarginPaddingChange({
-																size,
-																prop,
-																direction,
-																value,
-															});
-														}}
-														step={0.1}
-														isShiftStepEnabled={true}
-														shiftStep={10}
-													/>
-												</div>
-											);
-										})}
-									</div>
-								</div>
-							))}
-						</div>
-						<hr />
-					</div>
-				))}
-			</div>
+			<p>
+				<em>
+					{__(
+						"All units are in REM and use sizes for all breakpoints",
+						"lucidity-flexbox-grid-system",
+					)}
+				</em>
+			</p>
+			<Collapsible
+				items={createItems({
+					marginPaddingObject,
+					marginPadding,
+					handleMarginPaddingChange,
+				})}
+				initialOpenPanel={"full"}
+			/>
 		</PanelBody>
 	);
 }
