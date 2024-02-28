@@ -248,22 +248,33 @@ function Edit({
     columns
   } = attributes;
   const Tag = tag;
+  const [showNotice, setShowNotice] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+  const {
+    hasInnerBlocks,
+    innerBlocksCount
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => {
+    const count = select("core/block-editor").getBlockCount(clientId);
+    return {
+      hasInnerBlocks: count > 0,
+      innerBlocksCount: count
+    };
+  });
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
     if (!hasInnerBlocks && columns === 1) {
       const initialBlock = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_4__.createBlock)("lucidity-flexbox-grid-system/column");
       replaceInnerBlocks(clientId, [initialBlock], false);
     }
-  }, []);
+    if (innerBlocksCount > _abstracts_constants__WEBPACK_IMPORTED_MODULE_8__.COLUMNS) {
+      setShowNotice(true);
+    } else {
+      setShowNotice(false);
+    }
+  }, [columns, hasInnerBlocks, innerBlocksCount]);
   let style = {};
   style = (0,_commons_MarginPadding__WEBPACK_IMPORTED_MODULE_9__.updateStyleWithMarginPadding)({
     marginPadding,
     style
   });
-  const {
-    hasInnerBlocks
-  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => ({
-    hasInnerBlocks: select("core/block-editor").getBlockCount(clientId) > 0
-  }));
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.useBlockProps)({
     className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("row")
   });
@@ -275,8 +286,6 @@ function Edit({
     replaceInnerBlocks
   } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useDispatch)("core/block-editor");
   const innerBlocks = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => select("core/block-editor").getBlocks(clientId), [clientId]);
-
-  // Initialize savedContent with useRef
   const savedContentRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)({});
   const onColumnsChange = newColumns => {
     const updatedInnerBlocks = [...innerBlocks];
@@ -292,7 +301,7 @@ function Edit({
       let newBlock;
       if (savedContentRef.current[i]) {
         newBlock = savedContentRef.current[i];
-        delete savedContentRef.current[i]; // Remove from savedContent after restoring
+        delete savedContentRef.current[i];
       } else {
         newBlock = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_4__.createBlock)("lucidity-flexbox-grid-system/column");
       }
@@ -314,7 +323,10 @@ function Edit({
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_commons_MarginPadding__WEBPACK_IMPORTED_MODULE_9__.MarginPadding, {
     marginPadding: marginPadding,
     setAttributes: setAttributes
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Tag, {
+  })), showNotice && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Notice, {
+    status: "error",
+    isDismissible: false
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)("This block is intended to be used with 12 columns. Having more can lead to unexpected results.", "lucidity-flexbox-grid-system")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Tag, {
     ...innerBlocksProps,
     style: style
   }));

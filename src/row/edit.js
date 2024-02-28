@@ -1,6 +1,6 @@
-import { useRef, useEffect } from "@wordpress/element";
+import { useRef, useEffect, useState } from "@wordpress/element";
 import classnames from "classnames";
-import { useDispatch, useSelect } from "@wordpress/data";
+import { useDispatch, useSelect, select } from "@wordpress/data";
 import { createBlock } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
 import {
@@ -10,7 +10,7 @@ import {
 	InspectorControls,
 } from "@wordpress/block-editor";
 
-import { PanelBody, RangeControl } from "@wordpress/components";
+import { PanelBody, Notice, RangeControl } from "@wordpress/components";
 
 import { COLUMNS } from "../abstracts/constants";
 
@@ -24,20 +24,32 @@ import "./editor.scss";
 export default function Edit({ attributes, setAttributes, clientId }) {
 	const { tag, marginPadding, columns } = attributes;
 	const Tag = tag;
+	const [showNotice, setShowNotice] = useState(false);
+
+	const { hasInnerBlocks, innerBlocksCount } = useSelect((select) => {
+		const count = select("core/block-editor").getBlockCount(clientId);
+
+		return {
+			hasInnerBlocks: count > 0,
+			innerBlocksCount: count,
+		};
+	});
 
 	useEffect(() => {
 		if (!hasInnerBlocks && columns === 1) {
 			const initialBlock = createBlock("lucidity-flexbox-grid-system/column");
 			replaceInnerBlocks(clientId, [initialBlock], false);
 		}
-	}, []);
+
+		if (innerBlocksCount > COLUMNS) {
+			setShowNotice(true);
+		} else {
+			setShowNotice(false);
+		}
+	}, [columns, hasInnerBlocks, innerBlocksCount]);
 
 	let style = {};
 	style = updateStyleWithMarginPadding({ marginPadding, style });
-
-	const { hasInnerBlocks } = useSelect((select) => ({
-		hasInnerBlocks: select("core/block-editor").getBlockCount(clientId) > 0,
-	}));
 
 	const blockProps = useBlockProps({
 		className: classnames("row"),
@@ -56,7 +68,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		[clientId],
 	);
 
-	// Initialize savedContent with useRef
 	const savedContentRef = useRef({});
 
 	const onColumnsChange = (newColumns) => {
@@ -76,7 +87,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 			if (savedContentRef.current[i]) {
 				newBlock = savedContentRef.current[i];
-				delete savedContentRef.current[i]; // Remove from savedContent after restoring
+				delete savedContentRef.current[i];
 			} else {
 				newBlock = createBlock("lucidity-flexbox-grid-system/column");
 			}
@@ -108,6 +119,14 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					setAttributes={setAttributes}
 				/>
 			</InspectorControls>
+			{showNotice && (
+				<Notice status="error" isDismissible={false}>
+					{__(
+						"This block is intended to be used with 12 columns. Having more can lead to unexpected results.",
+						"lucidity-flexbox-grid-system",
+					)}
+				</Notice>
+			)}
 			<Tag {...innerBlocksProps} style={style}></Tag>
 		</>
 	);
