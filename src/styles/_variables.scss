@@ -1,0 +1,26 @@
+// Define grid system and breakpoints
+$columns: 12;
+
+$xxl: 1400px;
+$xl: 1200px;
+$lg: 992px;
+$md: 768px;
+$sm: 576px;
+$xs: 480px;
+
+// Common breakpoints for the grid generation
+$breakpoints: (
+	"full": 999999,
+	"xxl": $xxl,
+	"xl": $xl,
+	"lg": $lg,
+	"md": $md,
+	"sm": $sm,
+	"xs": $xs,
+);
+
+// Root variables for the grid
+:root {
+	--columns: var(--set-columns, #{$columns});
+	--gap: calc(var(--set-gap, 30) * 1px);
+}

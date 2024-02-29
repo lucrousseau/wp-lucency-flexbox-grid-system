@@ -11,7 +11,10 @@ import Collapsible from "../Collapsible";
 
 import "./editor.scss";
 
-export function MarginPadding({ marginPadding = {}, setAttributes }) {
+export function AlignementsMarginPadding({
+	marginPadding = {},
+	setAttributes,
+}) {
 	const marginPaddingObject = (() => {
 		const directions = ["top", "bottom", "left", "right"];
 		const obj = {};
@@ -25,7 +28,7 @@ export function MarginPadding({ marginPadding = {}, setAttributes }) {
 		return obj;
 	})();
 
-	const handleMarginPaddingChange = ({ size, prop, direction, value }) => {
+	const handleChange = ({ size, prop, direction, value }) => {
 		const updatedMarginPadding = {
 			...marginPadding,
 			[size]: {
@@ -40,11 +43,7 @@ export function MarginPadding({ marginPadding = {}, setAttributes }) {
 		setAttributes({ marginPadding: updatedMarginPadding });
 	};
 
-	const createItems = ({
-		marginPaddingObject,
-		marginPadding,
-		handleMarginPaddingChange,
-	}) =>
+	const createItems = ({ marginPaddingObject, marginPadding, handleChange }) =>
 		Object.entries(marginPaddingObject).reduce((acc, [size, props]) => {
 			const title = `${__(size.toUpperCase(), "lucidity-flexbox-grid-system")}${
 				size !== "full" ? `, ${BREAKPOINTS[size]}px` : ""
@@ -52,9 +51,14 @@ export function MarginPadding({ marginPadding = {}, setAttributes }) {
 
 			const content = Object.entries(props).map(([prop, directions]) => (
 				<div key={`${prop}-${size}`}>
+					<h3>{"Alignements"}</h3>
+					<div className="row" style={{ "--gap": "0.25em" }}>
+						<div className="col col--8">AAA</div>
+						<div className="col">BBB</div>
+					</div>
 					<h3>{__(prop.toUpperCase(), "lucidity-flexbox-grid-system")}</h3>
-					<div className="row">
-						{Object.entries(directions).map(([direction, value]) => (
+					<div className="row" style={{ "--gap": "0.25em" }}>
+						{Object.keys(directions).map((direction) => (
 							<div className="col" key={`${prop}-${size}-${direction}`}>
 								<NumberControl
 									label={__(
@@ -63,7 +67,7 @@ export function MarginPadding({ marginPadding = {}, setAttributes }) {
 									)}
 									value={marginPadding?.[size]?.[prop]?.[direction] ?? null}
 									onChange={(value) =>
-										handleMarginPaddingChange({
+										handleChange({
 											size,
 											prop,
 											direction,
@@ -98,7 +102,7 @@ export function MarginPadding({ marginPadding = {}, setAttributes }) {
 				items={createItems({
 					marginPaddingObject,
 					marginPadding,
-					handleMarginPaddingChange,
+					handleChange,
 				})}
 				initialOpenPanel={"full"}
 			/>
@@ -106,7 +110,7 @@ export function MarginPadding({ marginPadding = {}, setAttributes }) {
 	);
 }
 
-export function updateStyleWithMarginPadding({ marginPadding, style = {} }) {
+export function updateStyles({ marginPadding, style = {} }) {
 	let newStyle = { ...style };
 
 	Object.entries(marginPadding ?? {}).forEach(([size, props]) => {

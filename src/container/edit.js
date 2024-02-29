@@ -8,20 +8,18 @@ import {
 	InspectorControls,
 } from "@wordpress/block-editor";
 
-import { isEmpty } from "../helpers";
-
 import {
-	MarginPadding,
-	updateStyleWithMarginPadding,
-} from "../commons/MarginPadding";
+	AlignementsMarginPadding,
+	updateStyles,
+} from "../commons/AlignementsMarginPadding";
 
 import "./editor.scss";
 
 export default function Edit({ attributes, setAttributes, clientId }) {
-	const { tag, background, marginPadding } = attributes;
+	const { tag, marginPadding } = attributes;
 	const Tag = tag;
 
-	const style = updateStyleWithMarginPadding({ marginPadding });
+	const style = updateStyles({ marginPadding });
 
 	const { hasInnerBlocks } = useSelect((select) => ({
 		hasInnerBlocks: select("core/block-editor").getBlockCount(clientId) > 0,
@@ -32,7 +30,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	});
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
-		className: classnames("container__content"),
 		renderAppender: !hasInnerBlocks
 			? () => <InnerBlocks.ButtonBlockAppender />
 			: null,
@@ -41,19 +38,12 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	return (
 		<>
 			<InspectorControls>
-				<MarginPadding
+				<AlignementsMarginPadding
 					marginPadding={marginPadding}
 					setAttributes={setAttributes}
 				/>
 			</InspectorControls>
-			<Tag {...blockProps} style={style}>
-				{!isEmpty(background) && (
-					<div className="container__background">
-						{background.src && <img src={background.src} alt="" />}
-					</div>
-				)}
-				<div {...innerBlocksProps} />
-			</Tag>
+			<Tag {...innerBlocksProps} style={style} />
 		</>
 	);
 }

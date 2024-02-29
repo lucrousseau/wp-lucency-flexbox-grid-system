@@ -15,9 +15,9 @@ import { PanelBody, Notice, RangeControl } from "@wordpress/components";
 import { COLUMNS } from "../abstracts/constants";
 
 import {
-	MarginPadding,
-	updateStyleWithMarginPadding,
-} from "../commons/MarginPadding";
+	AlignementsMarginPadding,
+	updateStyles,
+} from "../commons/AlignementsMarginPadding";
 
 import "./editor.scss";
 
@@ -48,7 +48,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		}
 	}, [columns, hasInnerBlocks, innerBlocksCount]);
 
-	const style = updateStyleWithMarginPadding({ marginPadding });
+	const style = updateStyles({ marginPadding });
 
 	const blockProps = useBlockProps({
 		className: classnames("row"),
@@ -118,7 +118,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						onChange={onColumnsChange}
 					/>
 				</PanelBody>
-				<MarginPadding
+				<AlignementsMarginPadding
 					marginPadding={marginPadding}
 					setAttributes={setAttributes}
 				/>

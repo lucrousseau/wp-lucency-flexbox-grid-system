@@ -1,0 +1,12 @@
+.row {
+	> .block-list-appender {
+		flex: 1;
+		width: 100%;
+	}
+	> .col {
+		> .block-list-appender {
+			flex: 1;
+			width: 100%;
+		}
+	}
+}

@@ -10,6 +10,7 @@
 	"supports": {
 		"html": false
 	},
+	"parent": [null],
 	"textdomain": "lucidity-flexbox-grid-system",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
@@ -20,13 +21,18 @@
 			"type": "string",
 			"default": "section"
 		},
-		"background": {
-			"type": "object",
-			"default": {}
-		},
 		"marginPadding": {
 			"type": "object",
-			"default": {}
+			"default": {
+				"full": {
+					"padding": {
+						"top": 4,
+						"bottom": 4,
+						"left": 2,
+						"right": 2
+					}
+				}
+			}
 		}
 	}
 }
