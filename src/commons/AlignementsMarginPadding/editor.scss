@@ -1,0 +1,30 @@
+.AlignementsMarginPadding {
+	&__radio {
+		$w: 2em;
+		label {
+			width: $w;
+			height: $w;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border: 1px solid #000;
+			border-radius: 0.25em;
+			svg {
+				width: 50%;
+				height: auto;
+				display: inline-block;
+				color: #000;
+			}
+			input {
+				inset: 0;
+				position: absolute;
+			}
+		}
+		&--checked {
+			label {
+				background-color: red;
+				border-color: yellow;
+			}
+		}
+	}
+}

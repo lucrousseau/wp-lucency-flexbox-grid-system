@@ -29,7 +29,29 @@
 /*!*************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/commons/AlignementsMarginPadding/editor.scss ***!
   \*************************************************************************************************************************************************************************************************************************************************************************/
-
+.AlignementsMarginPadding__radio label {
+  width: 2em;
+  height: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #000;
+  border-radius: 0.25em;
+}
+.AlignementsMarginPadding__radio label svg {
+  width: 50%;
+  height: auto;
+  display: inline-block;
+  color: #000;
+}
+.AlignementsMarginPadding__radio label input {
+  inset: 0;
+  position: absolute;
+}
+.AlignementsMarginPadding__radio--checked label {
+  background-color: red;
+  border-color: yellow;
+}
 /*!**************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/container/editor.scss ***!
   \**************************************************************************************************************************************************************************************************************************************************/
