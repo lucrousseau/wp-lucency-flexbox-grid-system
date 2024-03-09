@@ -5,7 +5,7 @@ import { BREAKPOINTS } from "../../abstracts/constants";
 import renderControl from "./renderControls";
 
 export default function createCollapsibleItems({
-	marginPadding,
+	stylesClasses,
 	setAttributes,
 }) {
 	const marginPaddingObject = Object.fromEntries(
@@ -14,17 +14,17 @@ export default function createCollapsibleItems({
 
 	const handleChange = ({ size, prop, value, key }) => {
 		const updatedMarginPadding = {
-			...marginPadding,
+			...stylesClasses,
 			[size]: {
-				...marginPadding[size],
+				...stylesClasses[size],
 				[key]: {
-					...marginPadding[size]?.[key],
+					...stylesClasses[size]?.[key],
 					...(value !== null ? { [prop]: value } : {}),
 				},
 			},
 		};
 
-		setAttributes({ marginPadding: updatedMarginPadding });
+		setAttributes({ stylesClasses: updatedMarginPadding });
 	};
 
 	const createCollapsibleItemsContentAlignements = ({ size }) => {
@@ -99,7 +99,7 @@ export default function createCollapsibleItems({
 			<>
 				{controls.map(({ options, label, prop }) =>
 					renderControl({
-						marginPadding,
+						stylesClasses,
 						options,
 						label,
 						prop,
@@ -135,7 +135,7 @@ export default function createCollapsibleItems({
 			<>
 				{controls.map(({ label, prop }) =>
 					renderControl({
-						marginPadding,
+						stylesClasses,
 						label,
 						prop,
 						size,
@@ -174,7 +174,7 @@ export default function createCollapsibleItems({
 			<>
 				{controls.map(({ options, label, prop }) =>
 					renderControl({
-						marginPadding,
+						stylesClasses,
 						label,
 						prop,
 						size,

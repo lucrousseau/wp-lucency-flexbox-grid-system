@@ -5,13 +5,13 @@ import { useBlockProps, useInnerBlocksProps } from "@wordpress/block-editor";
 import { updateStyles, updateClasses } from "../commons/StylesClassesPanel";
 
 export default function save({ attributes }) {
-	const { tag, marginPadding } = attributes;
+	const { tag, stylesClasses } = attributes;
 	const Tag = tag;
 
-	const style = updateStyles({ marginPadding });
+	const style = updateStyles({ stylesClasses });
 
 	const blockProps = useBlockProps.save({
-		className: updateClasses({ marginPadding }, classnames("row")),
+		className: updateClasses({ stylesClasses }, classnames("row")),
 	});
 
 	const innerBlocksProps = useInnerBlocksProps.save(blockProps);

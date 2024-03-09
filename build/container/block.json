@@ -23,7 +23,7 @@
       "type": "string",
       "default": "section"
     },
-    "marginPadding": {
+    "stylesClasses": {
       "type": "object",
       "default": {
         "full": {

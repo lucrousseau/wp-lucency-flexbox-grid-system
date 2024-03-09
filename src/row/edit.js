@@ -21,7 +21,7 @@ import StylesClassesPanel, {
 import "./editor.scss";
 
 export default function Edit({ attributes, setAttributes, clientId }) {
-	const { tag, marginPadding, columns } = attributes;
+	const { tag, stylesClasses, columns } = attributes;
 	const Tag = tag;
 	const [showNotice, setShowNotice] = useState(false);
 
@@ -30,10 +30,10 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		return count > 0;
 	});
 
-	const style = updateStyles({ marginPadding });
+	const style = updateStyles({ stylesClasses });
 
 	const blockProps = useBlockProps({
-		className: updateClasses({ marginPadding }, classnames("row")),
+		className: updateClasses({ stylesClasses }, classnames("row")),
 	});
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
@@ -55,7 +55,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					/>
 				</PanelBody>
 				<StylesClassesPanel
-					marginPadding={marginPadding}
+					stylesClasses={stylesClasses}
 					setAttributes={setAttributes}
 				/>
 			</InspectorControls>

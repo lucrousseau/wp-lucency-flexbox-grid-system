@@ -16,17 +16,17 @@ import StylesClassesPanel, {
 import "./editor.scss";
 
 export default function Edit({ attributes, setAttributes, clientId }) {
-	const { tag, marginPadding } = attributes;
+	const { tag, stylesClasses } = attributes;
 	const Tag = tag;
 
-	const style = updateStyles({ marginPadding });
+	const style = updateStyles({ stylesClasses });
 
 	const { hasInnerBlocks } = useSelect((select) => ({
 		hasInnerBlocks: select("core/block-editor").getBlockCount(clientId) > 0,
 	}));
 
 	const blockProps = useBlockProps({
-		className: updateClasses({ marginPadding }, classnames("container")),
+		className: updateClasses({ stylesClasses }, classnames("container")),
 	});
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
@@ -39,7 +39,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		<>
 			<InspectorControls>
 				<StylesClassesPanel
-					marginPadding={marginPadding}
+					stylesClasses={stylesClasses}
 					setAttributes={setAttributes}
 				/>
 			</InspectorControls>

@@ -4,7 +4,7 @@ import {
 } from "@wordpress/components";
 
 export default function renderControl({
-	marginPadding,
+	stylesClasses,
 	options,
 	label,
 	prop,
@@ -15,7 +15,7 @@ export default function renderControl({
 		<div className="col col--6">
 			<SelectControl
 				label={label}
-				value={marginPadding?.[size]?.classes?.[prop]}
+				value={stylesClasses?.[size]?.classes?.[prop]}
 				options={[...[{ label: "", value: null }], ...options]}
 				onChange={(value) =>
 					handleChange({
@@ -34,7 +34,7 @@ export default function renderControl({
 		<div className="col col--3">
 			<NumberControl
 				label={label}
-				value={marginPadding?.[size]?.variables?.[prop] ?? null}
+				value={stylesClasses?.[size]?.variables?.[prop] ?? null}
 				onChange={(value) =>
 					handleChange({
 						size,

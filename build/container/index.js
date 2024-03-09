@@ -134,7 +134,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function createCollapsibleItems({
-  marginPadding,
+  stylesClasses,
   setAttributes
 }) {
   const marginPaddingObject = Object.fromEntries(Object.keys(_abstracts_constants__WEBPACK_IMPORTED_MODULE_2__.BREAKPOINTS).map(size => [size, {}]));
@@ -145,11 +145,11 @@ function createCollapsibleItems({
     key
   }) => {
     const updatedMarginPadding = {
-      ...marginPadding,
+      ...stylesClasses,
       [size]: {
-        ...marginPadding[size],
+        ...stylesClasses[size],
         [key]: {
-          ...marginPadding[size]?.[key],
+          ...stylesClasses[size]?.[key],
           ...(value !== null ? {
             [prop]: value
           } : {})
@@ -157,7 +157,7 @@ function createCollapsibleItems({
       }
     };
     setAttributes({
-      marginPadding: updatedMarginPadding
+      stylesClasses: updatedMarginPadding
     });
   };
   const createCollapsibleItemsContentAlignements = ({
@@ -277,7 +277,7 @@ function createCollapsibleItems({
       label,
       prop
     }) => (0,_renderControls__WEBPACK_IMPORTED_MODULE_3__["default"])({
-      marginPadding,
+      stylesClasses,
       options,
       label,
       prop,
@@ -305,7 +305,7 @@ function createCollapsibleItems({
       label,
       prop
     }) => (0,_renderControls__WEBPACK_IMPORTED_MODULE_3__["default"])({
-      marginPadding,
+      stylesClasses,
       label,
       prop,
       size,
@@ -337,7 +337,7 @@ function createCollapsibleItems({
       label,
       prop
     }) => (0,_renderControls__WEBPACK_IMPORTED_MODULE_3__["default"])({
-      marginPadding,
+      stylesClasses,
       label,
       prop,
       size,
@@ -428,11 +428,11 @@ __webpack_require__.r(__webpack_exports__);
 
 function processStylesClasses({
   key,
-  marginPadding,
+  stylesClasses,
   processEntry
 }) {
   let result = {};
-  Object.entries(marginPadding !== null && marginPadding !== void 0 ? marginPadding : {}).forEach(([size, props]) => {
+  Object.entries(stylesClasses !== null && stylesClasses !== void 0 ? stylesClasses : {}).forEach(([size, props]) => {
     var _props$key;
     Object.entries((_props$key = props?.[key]) !== null && _props$key !== void 0 ? _props$key : {}).forEach(([prop, value]) => {
       if (value !== undefined && value !== null) {
@@ -444,13 +444,13 @@ function processStylesClasses({
   return result;
 }
 function updateStyles({
-  marginPadding,
+  stylesClasses,
   style = {}
 }) {
   const key = "variables";
   let processed = processStylesClasses({
     key,
-    marginPadding,
+    stylesClasses,
     processEntry: (result, prefix, prop, value) => {
       result[`--${prefix}${prop}`] = `${value}rem`;
     }
@@ -461,13 +461,13 @@ function updateStyles({
   };
 }
 function updateClasses({
-  marginPadding,
+  stylesClasses,
   classes = {}
 }) {
   const key = "classes";
   let processed = processStylesClasses({
     key,
-    marginPadding,
+    stylesClasses,
     processEntry: (result, prefix, prop, value) => {
       result[`${prefix}${prop}-${value}`] = true;
     }
@@ -478,14 +478,14 @@ function updateClasses({
   });
 }
 function StylesClassesPanel({
-  marginPadding = {},
+  stylesClasses = {},
   setAttributes
 }) {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Margin & Padding")
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("em", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("All units are in REM and use sizes for all breakpoints", "lucidity-flexbox-grid-system"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Collapsible__WEBPACK_IMPORTED_MODULE_3__["default"], {
     items: (0,_createCollapsibleItems__WEBPACK_IMPORTED_MODULE_4__["default"])({
-      marginPadding,
+      stylesClasses,
       setAttributes
     }),
     initialOpenPanel: "full"
@@ -512,7 +512,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function renderControl({
-  marginPadding,
+  stylesClasses,
   options,
   label,
   prop,
@@ -523,7 +523,7 @@ function renderControl({
     className: "col col--6"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
     label: label,
-    value: marginPadding?.[size]?.classes?.[prop],
+    value: stylesClasses?.[size]?.classes?.[prop],
     options: [...[{
       label: "",
       value: null
@@ -537,12 +537,12 @@ function renderControl({
     __nextHasNoMarginBottom: true
   }));
   const renderNumberControl = () => {
-    var _marginPadding$size$v;
+    var _stylesClasses$size$v;
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "col col--3"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
       label: label,
-      value: (_marginPadding$size$v = marginPadding?.[size]?.variables?.[prop]) !== null && _marginPadding$size$v !== void 0 ? _marginPadding$size$v : null,
+      value: (_stylesClasses$size$v = stylesClasses?.[size]?.variables?.[prop]) !== null && _stylesClasses$size$v !== void 0 ? _stylesClasses$size$v : null,
       onChange: value => handleChange({
         size,
         prop,
@@ -596,11 +596,11 @@ function Edit({
 }) {
   const {
     tag,
-    marginPadding
+    stylesClasses
   } = attributes;
   const Tag = tag;
   const style = (0,_commons_StylesClassesPanel__WEBPACK_IMPORTED_MODULE_5__.updateStyles)({
-    marginPadding
+    stylesClasses
   });
   const {
     hasInnerBlocks
@@ -609,14 +609,14 @@ function Edit({
   }));
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)({
     className: (0,_commons_StylesClassesPanel__WEBPACK_IMPORTED_MODULE_5__.updateClasses)({
-      marginPadding
+      stylesClasses
     }, classnames__WEBPACK_IMPORTED_MODULE_1___default()("container"))
   });
   const innerBlocksProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useInnerBlocksProps)(blockProps, {
     renderAppender: !hasInnerBlocks ? () => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InnerBlocks.ButtonBlockAppender, null) : null
   });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_commons_StylesClassesPanel__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    marginPadding: marginPadding,
+    stylesClasses: stylesClasses,
     setAttributes: setAttributes
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Tag, {
     ...innerBlocksProps,
@@ -682,15 +682,15 @@ function save({
 }) {
   const {
     tag,
-    marginPadding
+    stylesClasses
   } = attributes;
   const Tag = tag;
   const style = (0,_commons_StylesClassesPanel__WEBPACK_IMPORTED_MODULE_3__.updateStyles)({
-    marginPadding
+    stylesClasses
   });
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
     className: (0,_commons_StylesClassesPanel__WEBPACK_IMPORTED_MODULE_3__.updateClasses)({
-      marginPadding
+      stylesClasses
     }, classnames__WEBPACK_IMPORTED_MODULE_1___default()("container"))
   });
   const innerBlocksProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useInnerBlocksProps.save(blockProps);
@@ -935,7 +935,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"lucidity-flexbox-grid-system/container","version":"1.0.0","title":"Container for flexbox grid system","category":"design","description":"Container for flexbox grid system","example":{},"supports":{"html":false},"parent":[null],"textdomain":"lucidity-flexbox-grid-system","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"tag":{"type":"string","default":"section"},"marginPadding":{"type":"object","default":{"full":{"variables":{"padding-top":4,"padding-right":2,"padding-bottom":4,"padding-left":2}}}}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"lucidity-flexbox-grid-system/container","version":"1.0.0","title":"Container for flexbox grid system","category":"design","description":"Container for flexbox grid system","example":{},"supports":{"html":false},"parent":[null],"textdomain":"lucidity-flexbox-grid-system","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"tag":{"type":"string","default":"section"},"stylesClasses":{"type":"object","default":{"full":{"variables":{"padding-top":4,"padding-right":2,"padding-bottom":4,"padding-left":2}}}}}}');
 
 /***/ })
 

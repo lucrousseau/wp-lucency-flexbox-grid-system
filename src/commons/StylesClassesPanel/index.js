@@ -10,10 +10,10 @@ import "./editor.scss";
 
 import classnames from "classnames";
 
-function processStylesClasses({ key, marginPadding, processEntry }) {
+function processStylesClasses({ key, stylesClasses, processEntry }) {
 	let result = {};
 
-	Object.entries(marginPadding ?? {}).forEach(([size, props]) => {
+	Object.entries(stylesClasses ?? {}).forEach(([size, props]) => {
 		Object.entries(props?.[key] ?? {}).forEach(([prop, value]) => {
 			if (value !== undefined && value !== null) {
 				const prefix = size === "full" ? "" : `${size}-`;
@@ -26,12 +26,12 @@ function processStylesClasses({ key, marginPadding, processEntry }) {
 	return result;
 }
 
-export function updateStyles({ marginPadding, style = {} }) {
+export function updateStyles({ stylesClasses, style = {} }) {
 	const key = "variables";
 
 	let processed = processStylesClasses({
 		key,
-		marginPadding,
+		stylesClasses,
 		processEntry: (result, prefix, prop, value) => {
 			result[`--${prefix}${prop}`] = `${value}rem`;
 		},
@@ -40,12 +40,12 @@ export function updateStyles({ marginPadding, style = {} }) {
 	return { ...style, ...processed };
 }
 
-export function updateClasses({ marginPadding, classes = {} }) {
+export function updateClasses({ stylesClasses, classes = {} }) {
 	const key = "classes";
 
 	let processed = processStylesClasses({
 		key,
-		marginPadding,
+		stylesClasses,
 		processEntry: (result, prefix, prop, value) => {
 			result[`${prefix}${prop}-${value}`] = true;
 		},
@@ -55,7 +55,7 @@ export function updateClasses({ marginPadding, classes = {} }) {
 }
 
 export default function StylesClassesPanel({
-	marginPadding = {},
+	stylesClasses = {},
 	setAttributes,
 }) {
 	return (
@@ -69,7 +69,7 @@ export default function StylesClassesPanel({
 				</em>
 			</p>
 			<Collapsible
-				items={createCollapsibleItems({ marginPadding, setAttributes })}
+				items={createCollapsibleItems({ stylesClasses, setAttributes })}
 				initialOpenPanel={"full"}
 			/>
 		</PanelBody>
