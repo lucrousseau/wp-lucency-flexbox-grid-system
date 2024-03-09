@@ -106,7 +106,9 @@ function AlignementsMarginPadding({
         ...marginPadding[size],
         [type]: {
           ...marginPadding[size]?.[type],
-          [prop]: value
+          ...(value !== null ? {
+            [prop]: value
+          } : {})
         }
       }
     };
