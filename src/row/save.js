@@ -2,7 +2,7 @@ import classnames from "classnames";
 
 import { useBlockProps, useInnerBlocksProps } from "@wordpress/block-editor";
 
-import { updateStyles } from "../commons/AlignementsMarginPadding";
+import { updateStyles, updateClasses } from "../commons/StylesClassesPanel";
 
 export default function save({ attributes }) {
 	const { tag, marginPadding } = attributes;
@@ -10,7 +10,9 @@ export default function save({ attributes }) {
 
 	const style = updateStyles({ marginPadding });
 
-	const blockProps = useBlockProps.save({ className: classnames("row") });
+	const blockProps = useBlockProps.save({
+		className: updateClasses({ marginPadding }, classnames("row")),
+	});
 
 	const innerBlocksProps = useInnerBlocksProps.save(blockProps);
 
