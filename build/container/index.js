@@ -333,7 +333,6 @@ function createCollapsibleItems({
       size
     }];
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, controls.map(({
-      options,
       label,
       prop
     }) => (0,_renderControls__WEBPACK_IMPORTED_MODULE_3__["default"])({

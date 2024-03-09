@@ -172,7 +172,7 @@ export default function createCollapsibleItems({
 
 		return (
 			<>
-				{controls.map(({ options, label, prop }) =>
+				{controls.map(({ label, prop }) =>
 					renderControl({
 						stylesClasses,
 						label,
