@@ -26,12 +26,10 @@
 			"default": {
 				"full": {
 					"variables": {
-						"padding": {
-							"top": 4,
-							"bottom": 4,
-							"left": 2,
-							"right": 2
-						}
+						"padding-top": 4,
+						"padding-right": 2,
+						"padding-bottom": 4,
+						"padding-left": 2
 					}
 				}
 			}

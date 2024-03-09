@@ -11,6 +11,7 @@ import {
 import {
 	AlignementsMarginPadding,
 	updateStyles,
+	updateClasses,
 } from "../commons/AlignementsMarginPadding";
 
 import "./editor.scss";
@@ -26,7 +27,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	}));
 
 	const blockProps = useBlockProps({
-		className: classnames("container"),
+		className: updateClasses({ marginPadding }, classnames("container")),
 	});
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {

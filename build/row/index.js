@@ -67,6 +67,7 @@ const BREAKPOINTS = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   AlignementsMarginPadding: () => (/* binding */ AlignementsMarginPadding),
+/* harmony export */   updateClasses: () => (/* binding */ updateClasses),
 /* harmony export */   updateStyles: () => (/* binding */ updateStyles)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
@@ -92,17 +93,9 @@ function AlignementsMarginPadding({
   setAttributes
 }) {
   const marginPaddingObject = (() => {
-    const directions = ["top", "bottom", "left", "right"];
     const obj = {};
     Object.keys(_abstracts_constants__WEBPACK_IMPORTED_MODULE_4__.BREAKPOINTS).map(size => {
-      obj[size] = {
-        margin: {},
-        padding: {}
-      };
-      directions.forEach(direction => {
-        obj[size].margin[direction] = null;
-        obj[size].padding[direction] = null;
-      });
+      obj[size] = {};
     });
     return obj;
   })();
@@ -114,15 +107,12 @@ function AlignementsMarginPadding({
       direction
     } = props;
     const updateVariables = () => {
-      var _marginPadding$size$v, _marginPadding$size$v2, _marginPadding$size$v3;
+      var _marginPadding$size$v, _marginPadding$size$v2;
       return {
         ...((_marginPadding$size$v = marginPadding[size]?.variables) !== null && _marginPadding$size$v !== void 0 ? _marginPadding$size$v : {}),
         variables: {
           ...((_marginPadding$size$v2 = marginPadding[size]?.variables) !== null && _marginPadding$size$v2 !== void 0 ? _marginPadding$size$v2 : {}),
-          [prop]: {
-            ...((_marginPadding$size$v3 = marginPadding[size]?.variables?.[prop]) !== null && _marginPadding$size$v3 !== void 0 ? _marginPadding$size$v3 : {}),
-            [direction]: value
-          }
+          [prop]: value
         }
       };
     };
@@ -143,17 +133,11 @@ function AlignementsMarginPadding({
         ...(direction ? updateVariables() : updateClasses())
       }
     };
-    if (value === null && !direction) {
-      delete updatedAttributes[size].classes[prop];
-      if (Object.keys(updatedAttributes[size].classes).length === 0) {
-        delete updatedAttributes[size].classes;
-      }
-    }
     setAttributes({
       marginPadding: updatedAttributes
     });
   };
-  const renderRadioGroup = props => {
+  const renderSelectControl = props => {
     const {
       options,
       label,
@@ -178,6 +162,29 @@ function AlignementsMarginPadding({
       __nextHasNoMarginBottom: true
     })));
   };
+  const renderNumberControl = props => {
+    var _marginPadding$size$v3;
+    const {
+      label,
+      prop,
+      size
+    } = props;
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "col col--3"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalNumberControl, {
+      label: label,
+      value: (_marginPadding$size$v3 = marginPadding?.[size]?.variables?.[prop]) !== null && _marginPadding$size$v3 !== void 0 ? _marginPadding$size$v3 : null,
+      onChange: value => handleChange({
+        size,
+        prop,
+        value,
+        direction: true
+      }),
+      step: 0.1,
+      isShiftStepEnabled: true,
+      shiftStep: 10
+    }));
+  };
   const createItems = ({
     marginPaddingObject,
     marginPadding,
@@ -191,7 +198,7 @@ function AlignementsMarginPadding({
       style: {
         "--gap": "0.25em"
       }
-    }, renderRadioGroup({
+    }, renderSelectControl({
       options: [{
         label: "left",
         value: "left"
@@ -208,7 +215,7 @@ function AlignementsMarginPadding({
       label: "Text Align",
       prop: "text-align",
       size
-    }), renderRadioGroup({
+    }), renderSelectControl({
       options: [{
         label: "flex-start",
         value: "flex-start"
@@ -231,7 +238,7 @@ function AlignementsMarginPadding({
       label: "Justify Content",
       prop: "justify-content",
       size
-    }), renderRadioGroup({
+    }), renderSelectControl({
       options: [{
         label: "flex-start",
         value: "flex-start"
@@ -251,7 +258,7 @@ function AlignementsMarginPadding({
       label: "Align Items",
       prop: "align-items",
       size
-    }), renderRadioGroup({
+    }), renderSelectControl({
       options: [{
         label: "flex-start",
         value: "flex-start"
@@ -274,7 +281,7 @@ function AlignementsMarginPadding({
       label: "Align Content",
       prop: "align-content",
       size
-    }), renderRadioGroup({
+    }), renderSelectControl({
       options: [{
         label: "row",
         value: "row"
@@ -291,7 +298,7 @@ function AlignementsMarginPadding({
       label: "Flex Direction",
       prop: "flex-direction",
       size
-    }), renderRadioGroup({
+    }), renderSelectControl({
       options: [{
         label: "nowrap",
         value: "nowrap"
@@ -305,32 +312,49 @@ function AlignementsMarginPadding({
       label: "Flex Wrap",
       prop: "flex-wrap",
       size
-    })), Object.entries(props).map(([prop, directions]) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      key: `${prop}-${size}`
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(prop.toUpperCase(), "lucidity-flexbox-grid-system")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Margins", "lucidity-flexbox-grid-system")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "row",
       style: {
         "--gap": "0.25em"
       }
-    }, Object.keys(directions).map(direction => {
-      var _marginPadding$size$v4;
-      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: "col",
-        key: `${prop}-${size}-${direction}`
-      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalNumberControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(direction.toUpperCase(), "lucidity-flexbox-grid-system"),
-        value: (_marginPadding$size$v4 = marginPadding?.[size]?.variables?.[prop]?.[direction]) !== null && _marginPadding$size$v4 !== void 0 ? _marginPadding$size$v4 : null,
-        onChange: value => handleChange({
-          size,
-          prop,
-          direction,
-          value
-        }),
-        step: 0.1,
-        isShiftStepEnabled: true,
-        shiftStep: 10
-      }));
-    })))));
+    }, renderNumberControl({
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Top", "lucidity-flexbox-grid-system"),
+      prop: "margin-top",
+      size
+    }), renderNumberControl({
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Bottom", "lucidity-flexbox-grid-system"),
+      prop: "margin-bottom",
+      size
+    }), renderNumberControl({
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Left", "lucidity-flexbox-grid-system"),
+      prop: "margin-left",
+      size
+    }), renderNumberControl({
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Right", "lucidity-flexbox-grid-system"),
+      prop: "margin-right",
+      size
+    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Paddings", "lucidity-flexbox-grid-system")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "row",
+      style: {
+        "--gap": "0.25em"
+      }
+    }, renderNumberControl({
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Top", "lucidity-flexbox-grid-system"),
+      prop: "padding-top",
+      size
+    }), renderNumberControl({
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Bottom", "lucidity-flexbox-grid-system"),
+      prop: "padding-bottom",
+      size
+    }), renderNumberControl({
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Left", "lucidity-flexbox-grid-system"),
+      prop: "padding-left",
+      size
+    }), renderNumberControl({
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Right", "lucidity-flexbox-grid-system"),
+      prop: "padding-right",
+      size
+    })));
     acc[size] = {
       title,
       content
@@ -356,16 +380,33 @@ function updateStyles({
     ...style
   };
   Object.entries(marginPadding !== null && marginPadding !== void 0 ? marginPadding : {}).forEach(([size, props]) => {
-    Object.entries(props !== null && props !== void 0 ? props : {}).forEach(([prop, directions]) => {
-      Object.entries(directions !== null && directions !== void 0 ? directions : {}).forEach(([direction, value]) => {
-        if (value !== undefined && value !== null) {
-          const prefix = size === "full" ? "" : `-${size}`;
-          newStyle[`--${prop}${prefix}-${direction}`] = `${value}rem`;
-        }
-      });
+    var _props$variables;
+    Object.entries((_props$variables = props?.variables) !== null && _props$variables !== void 0 ? _props$variables : {}).forEach(([prop, value]) => {
+      if (value !== undefined && value !== null) {
+        const prefix = size === "full" ? "" : `${size}-`;
+        newStyle[`--${prefix}${prop}`] = `${value}rem`;
+      }
     });
   });
   return newStyle;
+}
+function updateClasses({
+  marginPadding,
+  classes = {}
+}) {
+  let newClasses = {
+    ...classes
+  };
+  Object.entries(marginPadding !== null && marginPadding !== void 0 ? marginPadding : {}).forEach(([size, props]) => {
+    var _props$classes;
+    Object.entries((_props$classes = props?.classes) !== null && _props$classes !== void 0 ? _props$classes : {}).forEach(([prop, value]) => {
+      if (value !== undefined && value !== null) {
+        const prefix = size === "full" ? "" : `${size}-`;
+        newClasses[`${prefix}${prop}-${value}`] = true;
+      }
+    });
+  });
+  return classnames__WEBPACK_IMPORTED_MODULE_2___default()(newClasses);
 }
 
 /***/ }),
