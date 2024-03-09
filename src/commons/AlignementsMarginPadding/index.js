@@ -32,20 +32,21 @@ export function AlignementsMarginPadding({
 	const handleChange = (props) => {
 		const { size, prop, value, direction } = props;
 
-		const updateDirectionalProp = () => ({
-			[prop]: {
-				...(marginPadding[size] && marginPadding[size][prop]
-					? marginPadding[size][prop]
-					: {}),
-				[direction]: value,
+		const updateVariables = () => ({
+			...(marginPadding[size]?.variables ?? {}),
+			variables: {
+				...(marginPadding[size]?.variables ?? {}),
+				[prop]: {
+					...(marginPadding[size]?.variables?.[prop] ?? {}),
+					[direction]: value,
+				},
 			},
 		});
 
-		const updateGeneralProp = () => ({
+		const updateClasses = () => ({
+			...(marginPadding[size]?.classes ?? {}),
 			classes: {
-				...(marginPadding[size] && marginPadding[size].classes
-					? marginPadding[size].classes
-					: {}),
+				...(marginPadding[size]?.classes ?? {}),
 				[prop]: value,
 			},
 		});
@@ -54,7 +55,7 @@ export function AlignementsMarginPadding({
 			...marginPadding,
 			[size]: {
 				...marginPadding[size],
-				...(direction ? updateDirectionalProp() : updateGeneralProp()),
+				...(direction ? updateVariables() : updateClasses()),
 			},
 		};
 
@@ -185,7 +186,10 @@ export function AlignementsMarginPadding({
 												direction.toUpperCase(),
 												"lucidity-flexbox-grid-system",
 											)}
-											value={marginPadding?.[size]?.[prop]?.[direction] ?? null}
+											value={
+												marginPadding?.[size]?.variables?.[prop]?.[direction] ??
+												null
+											}
 											onChange={(value) =>
 												handleChange({
 													size,

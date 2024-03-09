@@ -113,23 +113,34 @@ function AlignementsMarginPadding({
       value,
       direction
     } = props;
-    const updateDirectionalProp = () => ({
-      [prop]: {
-        ...(marginPadding[size] && marginPadding[size][prop] ? marginPadding[size][prop] : {}),
-        [direction]: value
-      }
-    });
-    const updateGeneralProp = () => ({
-      classes: {
-        ...(marginPadding[size] && marginPadding[size].classes ? marginPadding[size].classes : {}),
-        [prop]: value
-      }
-    });
+    const updateVariables = () => {
+      var _marginPadding$size$v, _marginPadding$size$v2, _marginPadding$size$v3;
+      return {
+        ...((_marginPadding$size$v = marginPadding[size]?.variables) !== null && _marginPadding$size$v !== void 0 ? _marginPadding$size$v : {}),
+        variables: {
+          ...((_marginPadding$size$v2 = marginPadding[size]?.variables) !== null && _marginPadding$size$v2 !== void 0 ? _marginPadding$size$v2 : {}),
+          [prop]: {
+            ...((_marginPadding$size$v3 = marginPadding[size]?.variables?.[prop]) !== null && _marginPadding$size$v3 !== void 0 ? _marginPadding$size$v3 : {}),
+            [direction]: value
+          }
+        }
+      };
+    };
+    const updateClasses = () => {
+      var _marginPadding$size$c, _marginPadding$size$c2;
+      return {
+        ...((_marginPadding$size$c = marginPadding[size]?.classes) !== null && _marginPadding$size$c !== void 0 ? _marginPadding$size$c : {}),
+        classes: {
+          ...((_marginPadding$size$c2 = marginPadding[size]?.classes) !== null && _marginPadding$size$c2 !== void 0 ? _marginPadding$size$c2 : {}),
+          [prop]: value
+        }
+      };
+    };
     let updatedAttributes = {
       ...marginPadding,
       [size]: {
         ...marginPadding[size],
-        ...(direction ? updateDirectionalProp() : updateGeneralProp())
+        ...(direction ? updateVariables() : updateClasses())
       }
     };
     if (value === null && !direction) {
@@ -302,13 +313,13 @@ function AlignementsMarginPadding({
         "--gap": "0.25em"
       }
     }, Object.keys(directions).map(direction => {
-      var _marginPadding$size$p;
+      var _marginPadding$size$v4;
       return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
         className: "col",
         key: `${prop}-${size}-${direction}`
       }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalNumberControl, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(direction.toUpperCase(), "lucidity-flexbox-grid-system"),
-        value: (_marginPadding$size$p = marginPadding?.[size]?.[prop]?.[direction]) !== null && _marginPadding$size$p !== void 0 ? _marginPadding$size$p : null,
+        value: (_marginPadding$size$v4 = marginPadding?.[size]?.variables?.[prop]?.[direction]) !== null && _marginPadding$size$v4 !== void 0 ? _marginPadding$size$v4 : null,
         onChange: value => handleChange({
           size,
           prop,
@@ -786,7 +797,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"lucidity-flexbox-grid-system/container","version":"1.0.0","title":"Container for flexbox grid system","category":"design","description":"Container for flexbox grid system","example":{},"supports":{"html":false},"parent":[null],"textdomain":"lucidity-flexbox-grid-system","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"tag":{"type":"string","default":"section"},"marginPadding":{"type":"object","default":{"full":{"padding":{"top":4,"bottom":4,"left":2,"right":2}}}}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"lucidity-flexbox-grid-system/container","version":"1.0.0","title":"Container for flexbox grid system","category":"design","description":"Container for flexbox grid system","example":{},"supports":{"html":false},"parent":[null],"textdomain":"lucidity-flexbox-grid-system","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"tag":{"type":"string","default":"section"},"marginPadding":{"type":"object","default":{"full":{"variables":{"padding":{"top":4,"bottom":4,"left":2,"right":2}}}}}}}');
 
 /***/ })
 
