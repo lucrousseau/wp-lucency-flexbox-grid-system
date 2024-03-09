@@ -57,55 +57,44 @@ const BREAKPOINTS = {
 
 /***/ }),
 
-/***/ "./src/commons/AlignementsMarginPadding/index.js":
-/*!*******************************************************!*\
-  !*** ./src/commons/AlignementsMarginPadding/index.js ***!
-  \*******************************************************/
+/***/ "./src/commons/AlignementsMarginPadding/createCollapsibleItems.js":
+/*!************************************************************************!*\
+  !*** ./src/commons/AlignementsMarginPadding/createCollapsibleItems.js ***!
+  \************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   AlignementsMarginPadding: () => (/* binding */ AlignementsMarginPadding),
-/* harmony export */   updateClasses: () => (/* binding */ updateClasses),
-/* harmony export */   updateStyles: () => (/* binding */ updateStyles)
+/* harmony export */   "default": () => (/* binding */ createCollapsibleItems)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _abstracts_constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../abstracts/constants */ "./src/abstracts/constants.js");
-/* harmony import */ var _Collapsible__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Collapsible */ "./src/commons/Collapsible/index.js");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./editor.scss */ "./src/commons/AlignementsMarginPadding/editor.scss");
+/* harmony import */ var _abstracts_constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../abstracts/constants */ "./src/abstracts/constants.js");
+/* harmony import */ var _renderControls__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./renderControls */ "./src/commons/AlignementsMarginPadding/renderControls.js");
 
 
 
 
-
-
-
-function AlignementsMarginPadding({
-  marginPadding = {},
+function createCollapsibleItems({
+  marginPadding,
   setAttributes
 }) {
-  const marginPaddingObject = Object.fromEntries(Object.keys(_abstracts_constants__WEBPACK_IMPORTED_MODULE_4__.BREAKPOINTS).map(size => [size, {}]));
-  const handleChange = props => {
-    const {
-      size,
-      prop,
-      value,
-      type = "variables"
-    } = props;
+  const marginPaddingObject = Object.fromEntries(Object.keys(_abstracts_constants__WEBPACK_IMPORTED_MODULE_2__.BREAKPOINTS).map(size => [size, {}]));
+  const handleChange = ({
+    size,
+    prop,
+    value,
+    key
+  }) => {
     const updatedMarginPadding = {
       ...marginPadding,
       [size]: {
         ...marginPadding[size],
-        [type]: {
-          ...marginPadding[size]?.[type],
+        [key]: {
+          ...marginPadding[size]?.[key],
           ...(value !== null ? {
             [prop]: value
           } : {})
@@ -116,210 +105,190 @@ function AlignementsMarginPadding({
       marginPadding: updatedMarginPadding
     });
   };
-  const renderSelectControl = props => {
-    const {
+  const createCollapsibleItemsContentAlignements = ({
+    size
+  }) => {
+    const controls = [{
+      options: [{
+        label: "left",
+        value: "left"
+      }, {
+        label: "center",
+        value: "center"
+      }, {
+        label: "right",
+        value: "right"
+      }, {
+        label: "justify",
+        value: "justify"
+      }],
+      label: "Text Align",
+      prop: "text-align"
+    }, {
+      options: [{
+        label: "flex-start",
+        value: "flex-start"
+      }, {
+        label: "flex-end",
+        value: "flex-end"
+      }, {
+        label: "center",
+        value: "center"
+      }, {
+        label: "space-between",
+        value: "space-between"
+      }, {
+        label: "space-around",
+        value: "space-around"
+      }, {
+        label: "space-evenly",
+        value: "space-evenly"
+      }],
+      label: "Justify Content",
+      prop: "justify-content"
+    }, {
+      options: [{
+        label: "flex-start",
+        value: "flex-start"
+      }, {
+        label: "flex-end",
+        value: "flex-end"
+      }, {
+        label: "center",
+        value: "center"
+      }, {
+        label: "baseline",
+        value: "baseline"
+      }, {
+        label: "stretch",
+        value: "stretch"
+      }],
+      label: "Align Items",
+      prop: "align-items"
+    }, {
+      options: [{
+        label: "flex-start",
+        value: "flex-start"
+      }, {
+        label: "flex-end",
+        value: "flex-end"
+      }, {
+        label: "center",
+        value: "center"
+      }, {
+        label: "space-between",
+        value: "space-between"
+      }, {
+        label: "space-around",
+        value: "space-around"
+      }, {
+        label: "stretch",
+        value: "stretch"
+      }],
+      label: "Align Content",
+      prop: "align-content"
+    }, {
+      options: [{
+        label: "row",
+        value: "row"
+      }, {
+        label: "row-reverse",
+        value: "row-reverse"
+      }, {
+        label: "column",
+        value: "column"
+      }, {
+        label: "column-reverse",
+        value: "column-reverse"
+      }],
+      label: "Flex Direction",
+      prop: "flex-direction"
+    }, {
+      options: [{
+        label: "nowrap",
+        value: "nowrap"
+      }, {
+        label: "wrap",
+        value: "wrap"
+      }, {
+        label: "wrap-reverse",
+        value: "wrap-reverse"
+      }],
+      label: "Flex Wrap",
+      prop: "flex-wrap"
+    }];
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, controls.map(({
+      options,
+      label,
+      prop
+    }) => (0,_renderControls__WEBPACK_IMPORTED_MODULE_3__["default"])({
+      marginPadding,
       options,
       label,
       prop,
-      size
-    } = props;
-    const setOptions = [...[{
-      label: "",
-      value: null
-    }], ...options];
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "col col--6"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
-      label: label,
-      value: marginPadding?.[size]?.classes?.[prop],
-      options: setOptions,
-      onChange: value => handleChange({
-        size,
-        prop,
-        value,
-        type: "classes"
-      }),
-      __nextHasNoMarginBottom: true
+      size,
+      handleChange
     })));
   };
-  const renderNumberControl = props => {
-    var _marginPadding$size$v;
-    const {
-      label,
-      prop,
-      size
-    } = props;
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "col col--3"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalNumberControl, {
-      label: label,
-      value: (_marginPadding$size$v = marginPadding?.[size]?.variables?.[prop]) !== null && _marginPadding$size$v !== void 0 ? _marginPadding$size$v : null,
-      onChange: value => handleChange({
-        size,
-        prop,
-        value,
-        type: "variables"
-      }),
-      step: 0.1,
-      isShiftStepEnabled: true,
-      shiftStep: 10
-    }));
-  };
-  const createCollapsibleItemsContentAlignements = ({
-    size
-  }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, renderSelectControl({
-    options: [{
-      label: "left",
-      value: "left"
-    }, {
-      label: "center",
-      value: "center"
-    }, {
-      label: "right",
-      value: "right"
-    }, {
-      label: "justify",
-      value: "justify"
-    }],
-    label: "Text Align",
-    prop: "text-align",
-    size
-  }), renderSelectControl({
-    options: [{
-      label: "flex-start",
-      value: "flex-start"
-    }, {
-      label: "flex-end",
-      value: "flex-end"
-    }, {
-      label: "center",
-      value: "center"
-    }, {
-      label: "space-between",
-      value: "space-between"
-    }, {
-      label: "space-around",
-      value: "space-around"
-    }, {
-      label: "space-evenly",
-      value: "space-evenly"
-    }],
-    label: "Justify Content",
-    prop: "justify-content",
-    size
-  }), renderSelectControl({
-    options: [{
-      label: "flex-start",
-      value: "flex-start"
-    }, {
-      label: "flex-end",
-      value: "flex-end"
-    }, {
-      label: "center",
-      value: "center"
-    }, {
-      label: "baseline",
-      value: "baseline"
-    }, {
-      label: "stretch",
-      value: "stretch"
-    }],
-    label: "Align Items",
-    prop: "align-items",
-    size
-  }), renderSelectControl({
-    options: [{
-      label: "flex-start",
-      value: "flex-start"
-    }, {
-      label: "flex-end",
-      value: "flex-end"
-    }, {
-      label: "center",
-      value: "center"
-    }, {
-      label: "space-between",
-      value: "space-between"
-    }, {
-      label: "space-around",
-      value: "space-around"
-    }, {
-      label: "stretch",
-      value: "stretch"
-    }],
-    label: "Align Content",
-    prop: "align-content",
-    size
-  }), renderSelectControl({
-    options: [{
-      label: "row",
-      value: "row"
-    }, {
-      label: "row-reverse",
-      value: "row-reverse"
-    }, {
-      label: "column",
-      value: "column"
-    }, {
-      label: "column-reverse",
-      value: "column-reverse"
-    }],
-    label: "Flex Direction",
-    prop: "flex-direction",
-    size
-  }), renderSelectControl({
-    options: [{
-      label: "nowrap",
-      value: "nowrap"
-    }, {
-      label: "wrap",
-      value: "wrap"
-    }, {
-      label: "wrap-reverse",
-      value: "wrap-reverse"
-    }],
-    label: "Flex Wrap",
-    prop: "flex-wrap",
-    size
-  }));
   const createCollapsibleItemsContentMargins = ({
     size
-  }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, renderNumberControl({
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Top", "lucidity-flexbox-grid-system"),
-    prop: "margin-top",
-    size
-  }), renderNumberControl({
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Bottom", "lucidity-flexbox-grid-system"),
-    prop: "margin-bottom",
-    size
-  }), renderNumberControl({
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Left", "lucidity-flexbox-grid-system"),
-    prop: "margin-left",
-    size
-  }), renderNumberControl({
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Right", "lucidity-flexbox-grid-system"),
-    prop: "margin-right",
-    size
-  }));
+  }) => {
+    const controls = [{
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Top", "lucidity-flexbox-grid-system"),
+      prop: "margin-top"
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Bottom", "lucidity-flexbox-grid-system"),
+      prop: "margin-bottom"
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Left", "lucidity-flexbox-grid-system"),
+      prop: "margin-left"
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Right", "lucidity-flexbox-grid-system"),
+      prop: "margin-right"
+    }];
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, controls.map(({
+      label,
+      prop
+    }) => (0,_renderControls__WEBPACK_IMPORTED_MODULE_3__["default"])({
+      marginPadding,
+      label,
+      prop,
+      size,
+      handleChange
+    })));
+  };
   const createCollapsibleItemsContentPaddings = ({
     size
-  }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, renderNumberControl({
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Top", "lucidity-flexbox-grid-system"),
-    prop: "padding-top",
-    size
-  }), renderNumberControl({
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Bottom", "lucidity-flexbox-grid-system"),
-    prop: "padding-bottom",
-    size
-  }), renderNumberControl({
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Left", "lucidity-flexbox-grid-system"),
-    prop: "padding-left",
-    size
-  }), renderNumberControl({
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Right", "lucidity-flexbox-grid-system"),
-    prop: "padding-right",
-    size
-  }));
+  }) => {
+    const controls = [{
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Top", "lucidity-flexbox-grid-system"),
+      prop: "padding-top",
+      size
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Bottom", "lucidity-flexbox-grid-system"),
+      prop: "padding-bottom",
+      size
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Left", "lucidity-flexbox-grid-system"),
+      prop: "padding-left",
+      size
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Right", "lucidity-flexbox-grid-system"),
+      prop: "padding-right",
+      size
+    }];
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, controls.map(({
+      options,
+      label,
+      prop
+    }) => (0,_renderControls__WEBPACK_IMPORTED_MODULE_3__["default"])({
+      marginPadding,
+      label,
+      prop,
+      size,
+      handleChange
+    })));
+  };
   const createCollapsibleItemsContent = ({
     title,
     size,
@@ -344,8 +313,8 @@ function AlignementsMarginPadding({
       size: size
     })));
   };
-  const createCollapsibleItems = () => Object.keys(marginPaddingObject).reduce((collapsibleItems, size) => {
-    const title = `${(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(size.toUpperCase(), "lucidity-flexbox-grid-system")}${size !== "full" ? `, ${_abstracts_constants__WEBPACK_IMPORTED_MODULE_4__.BREAKPOINTS[size]}px` : ""}`;
+  return Object.keys(marginPaddingObject).reduce((collapsibleItems, size) => {
+    const title = `${(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(size.toUpperCase(), "lucidity-flexbox-grid-system")}${size !== "full" ? `, ${_abstracts_constants__WEBPACK_IMPORTED_MODULE_2__.BREAKPOINTS[size]}px` : ""}`;
     const content = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "AlignementsMarginPadding"
     }, createCollapsibleItemsContent({
@@ -367,10 +336,52 @@ function AlignementsMarginPadding({
     };
     return collapsibleItems;
   }, {});
+}
+
+/***/ }),
+
+/***/ "./src/commons/AlignementsMarginPadding/index.js":
+/*!*******************************************************!*\
+  !*** ./src/commons/AlignementsMarginPadding/index.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   AlignementsMarginPadding: () => (/* binding */ AlignementsMarginPadding),
+/* harmony export */   updateClasses: () => (/* binding */ updateClasses),
+/* harmony export */   updateStyles: () => (/* binding */ updateStyles)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Collapsible__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Collapsible */ "./src/commons/Collapsible/index.js");
+/* harmony import */ var _createCollapsibleItems__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./createCollapsibleItems */ "./src/commons/AlignementsMarginPadding/createCollapsibleItems.js");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./editor.scss */ "./src/commons/AlignementsMarginPadding/editor.scss");
+
+
+
+
+
+
+
+function AlignementsMarginPadding({
+  marginPadding = {},
+  setAttributes
+}) {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Margin & Padding")
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("em", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("All units are in REM and use sizes for all breakpoints", "lucidity-flexbox-grid-system"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Collapsible__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    items: createCollapsibleItems(),
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("em", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("All units are in REM and use sizes for all breakpoints", "lucidity-flexbox-grid-system"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Collapsible__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    items: (0,_createCollapsibleItems__WEBPACK_IMPORTED_MODULE_5__["default"])({
+      marginPadding,
+      setAttributes
+    }),
     initialOpenPanel: "full"
   }));
 }
@@ -409,6 +420,71 @@ function updateClasses({
     });
   });
   return classnames__WEBPACK_IMPORTED_MODULE_2___default()(newClasses);
+}
+
+/***/ }),
+
+/***/ "./src/commons/AlignementsMarginPadding/renderControls.js":
+/*!****************************************************************!*\
+  !*** ./src/commons/AlignementsMarginPadding/renderControls.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ renderControl)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function renderControl({
+  marginPadding,
+  options,
+  label,
+  prop,
+  size,
+  handleChange
+}) {
+  const renderSelectControl = () => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "col col--6"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
+    label: label,
+    value: marginPadding?.[size]?.classes?.[prop],
+    options: [...[{
+      label: "",
+      value: null
+    }], ...options],
+    onChange: value => handleChange({
+      size,
+      prop,
+      value,
+      key: "classes"
+    }),
+    __nextHasNoMarginBottom: true
+  }));
+  const renderNumberControl = () => {
+    var _marginPadding$size$v;
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "col col--3"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
+      label: label,
+      value: (_marginPadding$size$v = marginPadding?.[size]?.variables?.[prop]) !== null && _marginPadding$size$v !== void 0 ? _marginPadding$size$v : null,
+      onChange: value => handleChange({
+        size,
+        prop,
+        value,
+        key: "variables"
+      }),
+      step: 0.1,
+      isShiftStepEnabled: true,
+      shiftStep: 10
+    }));
+  };
+  return options ? renderSelectControl() : renderNumberControl();
 }
 
 /***/ }),
