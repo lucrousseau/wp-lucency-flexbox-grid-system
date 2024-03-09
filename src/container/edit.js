@@ -8,12 +8,10 @@ import {
 	InspectorControls,
 } from "@wordpress/block-editor";
 
-import AlignementsMarginPadding from "../commons/AlignementsMarginPadding";
-
-import {
+import StylesClassesPanel, {
 	updateStyles,
 	updateClasses,
-} from "../commons/AlignementsMarginPadding/stylesClasses";
+} from "../commons/StylesClassesPanel";
 
 import "./editor.scss";
 
@@ -40,7 +38,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	return (
 		<>
 			<InspectorControls>
-				<AlignementsMarginPadding
+				<StylesClassesPanel
 					marginPadding={marginPadding}
 					setAttributes={setAttributes}
 				/>
