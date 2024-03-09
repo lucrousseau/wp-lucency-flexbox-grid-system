@@ -24,6 +24,16 @@ export default function createCollapsibleItems({
 			},
 		};
 
+		if (!value) {
+			delete updatedStylesClasses[size][key];
+		}
+
+		if (Object.keys(updatedStylesClasses[size]).length === 0) {
+			delete updatedStylesClasses[size];
+		}
+
+		console.log(value, !!value, { updatedStylesClasses });
+
 		setAttributes({ stylesClasses: updatedStylesClasses });
 	};
 
