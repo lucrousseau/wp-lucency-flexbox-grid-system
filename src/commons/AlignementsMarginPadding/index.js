@@ -2,30 +2,9 @@ import { __ } from "@wordpress/i18n";
 import classnames from "classnames";
 import {
 	PanelBody,
+	SelectControl,
 	__experimentalNumberControl as NumberControl,
 } from "@wordpress/components";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-	faAlignLeft,
-	faAlignCenter,
-	faAlignRight,
-	faAlignJustify,
-	faObjectsAlignLeft,
-	faObjectsAlignCenterHorizontal,
-	faObjectsAlignRight,
-	faDistributeSpacingHorizontal,
-	faObjectsAlignTop,
-	faObjectsAlignCenterVertical,
-	faObjectsAlignBottom,
-	faDistributeSpacingVertical,
-	faArrowRight,
-	faArrowDown,
-	faArrowLeftToLine,
-	faArrowRightToLine,
-	faBackward,
-	faForward,
-} from "@fortawesome/pro-solid-svg-icons";
 
 import { BREAKPOINTS } from "../../abstracts/constants";
 
@@ -50,70 +29,69 @@ export function AlignementsMarginPadding({
 		return obj;
 	})();
 
-	const handleChange = ({ group, value, size, prop, direction }) => {
-		let updatedMarginPadding = {};
+	const handleChange = (props) => {
+		const { size, prop, value, direction } = props;
 
-		if (group) {
-			updatedMarginPadding = {
-				...marginPadding,
-				[group]: value,
-			};
+		const updateDirectionalProp = () => ({
+			[prop]: {
+				...(marginPadding[size] && marginPadding[size][prop]
+					? marginPadding[size][prop]
+					: {}),
+				[direction]: value,
+			},
+		});
 
-			if (value === null) delete updatedMarginPadding[group];
-		} else {
-			updatedMarginPadding = {
-				...marginPadding,
-				[size]: {
-					...marginPadding[size],
-					[prop]: {
-						...(marginPadding[size] ? marginPadding[size][prop] : {}),
-						[direction]: value,
-					},
-				},
-			};
+		const updateGeneralProp = () => ({
+			classes: {
+				...(marginPadding[size] && marginPadding[size].classes
+					? marginPadding[size].classes
+					: {}),
+				[prop]: value,
+			},
+		});
+
+		let updatedAttributes = {
+			...marginPadding,
+			[size]: {
+				...marginPadding[size],
+				...(direction ? updateDirectionalProp() : updateGeneralProp()),
+			},
+		};
+
+		if (value === null && !direction) {
+			delete updatedAttributes[size].classes[prop];
+			if (Object.keys(updatedAttributes[size].classes).length === 0) {
+				delete updatedAttributes[size].classes;
+			}
 		}
 
-		setAttributes({ marginPadding: updatedMarginPadding });
+		setAttributes({ marginPadding: updatedAttributes });
 	};
 
-	const renderRadioGroup = ({ options, group }) => (
-		<div className="col col--6">
-			<h3>{__(group)}</h3>
-			<div className="row" style={{ "--gap": "0.25em" }}>
-				{options.map(({ icon, value }) => {
-					const id = `${group}-${value}`;
-					const checked = marginPadding[group] === value;
+	const renderRadioGroup = (props) => {
+		const { options, label, prop, size } = props;
+		const setOptions = [...[{ label: "", value: null }], ...options];
 
-					return (
-						<div
-							className={classnames("AlignementsMarginPadding__radio", {
-								[`AlignementsMarginPadding__radio--checked`]: checked,
-							})}
-							key={value}
-						>
-							<label htmlFor={id}>
-								<input
-									type="radio"
-									id={id}
-									name={group}
-									value={value}
-									checked={checked}
-									onClick={(v) => {
-										handleChange({
-											group,
-											value:
-												v.target.value !== marginPadding[group] ? value : null,
-										});
-									}}
-								/>
-								<FontAwesomeIcon icon={icon} />
-							</label>
-						</div>
-					);
-				})}
-			</div>
-		</div>
-	);
+		return (
+			<>
+				<div className="col col--6">
+					<SelectControl
+						label={label}
+						value={marginPadding?.[size]?.classes?.[prop]}
+						options={setOptions}
+						onChange={(value) =>
+							handleChange({
+								size,
+								prop,
+								value,
+							})
+						}
+						__nextHasNoMarginBottom
+					/>
+				</div>
+			</>
+		);
+	};
 
 	const createItems = ({ marginPaddingObject, marginPadding, handleChange }) =>
 		Object.entries(marginPaddingObject).reduce((acc, [size, props]) => {
@@ -127,75 +105,73 @@ export function AlignementsMarginPadding({
 					<div className="row" style={{ "--gap": "0.25em" }}>
 						{renderRadioGroup({
 							options: [
-								{ icon: faAlignLeft, value: "left" },
-								{ icon: faAlignCenter, value: "center" },
-								{ icon: faAlignRight, value: "right" },
-								{ icon: faAlignJustify, value: "justify" },
+								{ label: "left", value: "left" },
+								{ label: "center", value: "center" },
+								{ label: "right", value: "right" },
+								{ label: "justify", value: "justify" },
 							],
-							group: "Text",
-							prop: "align",
+							label: "Text Align",
+							prop: "text-align",
+							size,
 						})}
 						{renderRadioGroup({
 							options: [
-								{ icon: faObjectsAlignLeft, value: "faObjectsAlignLeft" },
-								{
-									icon: faObjectsAlignCenterHorizontal,
-									value: "faObjectsAlignCenterHorizontal",
-								},
-								{ icon: faObjectsAlignRight, value: "faObjectsAlignRight" },
-								{
-									icon: faDistributeSpacingHorizontal,
-									value: "faDistributeSpacingHorizontal",
-								},
+								{ label: "flex-start", value: "flex-start" },
+								{ label: "flex-end", value: "flex-end" },
+								{ label: "center", value: "center" },
+								{ label: "space-between", value: "space-between" },
+								{ label: "space-around", value: "space-around" },
+								{ label: "space-evenly", value: "space-evenly" },
 							],
-							group: "Horizontal",
+							label: "Justify Content",
 							prop: "justify-content",
+							size,
 						})}
 						{renderRadioGroup({
 							options: [
-								{ icon: faObjectsAlignTop, value: "faObjectsAlignTop" },
-								{
-									icon: faObjectsAlignCenterVertical,
-									value: "faObjectsAlignCenterVertical",
-								},
-								{ icon: faObjectsAlignBottom, value: "faObjectsAlignBottom" },
-								{
-									icon: faDistributeSpacingVertical,
-									value: "faDistributeSpacingVertical",
-								},
+								{ label: "flex-start", value: "flex-start" },
+								{ label: "flex-end", value: "flex-end" },
+								{ label: "center", value: "center" },
+								{ label: "baseline", value: "baseline" },
+								{ label: "stretch", value: "stretch" },
 							],
-							group: "Vertical",
+							label: "Align Items",
+							prop: "align-items",
+							size,
+						})}
+						{renderRadioGroup({
+							options: [
+								{ label: "flex-start", value: "flex-start" },
+								{ label: "flex-end", value: "flex-end" },
+								{ label: "center", value: "center" },
+								{ label: "space-between", value: "space-between" },
+								{ label: "space-around", value: "space-around" },
+								{ label: "stretch", value: "stretch" },
+							],
+							label: "Align Content",
 							prop: "align-content",
+							size,
 						})}
 						{renderRadioGroup({
 							options: [
-								{ icon: faArrowRight, value: "faArrowRight" },
-								{
-									icon: faArrowDown,
-									value: "faArrowDown",
-								},
+								{ label: "row", value: "row" },
+								{ label: "row-reverse", value: "row-reverse" },
+								{ label: "column", value: "column" },
+								{ label: "column-reverse", value: "column-reverse" },
 							],
-							group: "Direction",
+							label: "Flex Direction",
 							prop: "flex-direction",
+							size,
 						})}
 						{renderRadioGroup({
 							options: [
-								{ icon: faArrowLeftToLine, value: "faArrowLeftToLine" },
-								{
-									icon: faArrowRightToLine,
-									value: "faArrowRightToLine",
-								},
+								{ label: "nowrap", value: "nowrap" },
+								{ label: "wrap", value: "wrap" },
+								{ label: "wrap-reverse", value: "wrap-reverse" },
 							],
-							group: "Pull",
-							prop: "margin",
-						})}
-						{renderRadioGroup({
-							options: [
-								{ icon: faBackward, value: "faBackward" },
-								{ icon: faForward, value: "faForward" },
-							],
-							group: "Reverse",
-							prop: "flex-direction",
+							label: "Flex Wrap",
+							prop: "flex-wrap",
+							size,
 						})}
 					</div>
 					{Object.entries(props).map(([prop, directions]) => (
