@@ -26,7 +26,7 @@ function processStylesClasses({ key, stylesClasses, processEntry }) {
 	return result;
 }
 
-export function updateStyles({ stylesClasses, style = {} }) {
+export function updateStyles({ stylesClasses }, style = {}) {
 	const key = "variables";
 
 	let processed = processStylesClasses({
@@ -40,7 +40,7 @@ export function updateStyles({ stylesClasses, style = {} }) {
 	return { ...style, ...processed };
 }
 
-export function updateClasses({ stylesClasses, classes = {} }) {
+export function updateClasses({ stylesClasses }, classes = null) {
 	const key = "classes";
 
 	let processed = processStylesClasses({
@@ -51,7 +51,7 @@ export function updateClasses({ stylesClasses, classes = {} }) {
 		},
 	});
 
-	return classnames({ ...classes, ...processed });
+	return classnames(classes, { ...processed });
 }
 
 export default function StylesClassesPanel({

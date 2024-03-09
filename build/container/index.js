@@ -137,14 +137,14 @@ function createCollapsibleItems({
   stylesClasses,
   setAttributes
 }) {
-  const marginPaddingObject = Object.fromEntries(Object.keys(_abstracts_constants__WEBPACK_IMPORTED_MODULE_2__.BREAKPOINTS).map(size => [size, {}]));
+  const stylesClassesObject = Object.fromEntries(Object.keys(_abstracts_constants__WEBPACK_IMPORTED_MODULE_2__.BREAKPOINTS).map(size => [size, {}]));
   const handleChange = ({
     size,
     prop,
     value,
     key
   }) => {
-    const updatedMarginPadding = {
+    const updatedStylesClasses = {
       ...stylesClasses,
       [size]: {
         ...stylesClasses[size],
@@ -157,7 +157,7 @@ function createCollapsibleItems({
       }
     };
     setAttributes({
-      stylesClasses: updatedMarginPadding
+      stylesClasses: updatedStylesClasses
     });
   };
   const createCollapsibleItemsContentAlignements = ({
@@ -367,10 +367,10 @@ function createCollapsibleItems({
       size: size
     })));
   };
-  return Object.keys(marginPaddingObject).reduce((collapsibleItems, size) => {
+  return Object.keys(stylesClassesObject).reduce((collapsibleItems, size) => {
     const title = `${(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(size.toUpperCase(), "lucidity-flexbox-grid-system")}${size !== "full" ? `, ${_abstracts_constants__WEBPACK_IMPORTED_MODULE_2__.BREAKPOINTS[size]}px` : ""}`;
     const content = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "AlignementsMarginPadding"
+      className: "stylesClassesPanel"
     }, createCollapsibleItemsContent({
       title: "Alignments",
       fn: "createCollapsibleItemsContentAlignements",
@@ -443,9 +443,8 @@ function processStylesClasses({
   return result;
 }
 function updateStyles({
-  stylesClasses,
-  style = {}
-}) {
+  stylesClasses
+}, style = {}) {
   const key = "variables";
   let processed = processStylesClasses({
     key,
@@ -460,9 +459,8 @@ function updateStyles({
   };
 }
 function updateClasses({
-  stylesClasses,
-  classes = {}
-}) {
+  stylesClasses
+}, classes = null) {
   const key = "classes";
   let processed = processStylesClasses({
     key,
@@ -471,8 +469,7 @@ function updateClasses({
       result[`${prefix}${prop}-${value}`] = true;
     }
   });
-  return classnames__WEBPACK_IMPORTED_MODULE_6___default()({
-    ...classes,
+  return classnames__WEBPACK_IMPORTED_MODULE_6___default()(classes, {
     ...processed
   });
 }

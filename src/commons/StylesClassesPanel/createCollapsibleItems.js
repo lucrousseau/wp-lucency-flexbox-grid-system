@@ -8,12 +8,12 @@ export default function createCollapsibleItems({
 	stylesClasses,
 	setAttributes,
 }) {
-	const marginPaddingObject = Object.fromEntries(
+	const stylesClassesObject = Object.fromEntries(
 		Object.keys(BREAKPOINTS).map((size) => [size, {}]),
 	);
 
 	const handleChange = ({ size, prop, value, key }) => {
-		const updatedMarginPadding = {
+		const updatedStylesClasses = {
 			...stylesClasses,
 			[size]: {
 				...stylesClasses[size],
@@ -24,7 +24,7 @@ export default function createCollapsibleItems({
 			},
 		};
 
-		setAttributes({ stylesClasses: updatedMarginPadding });
+		setAttributes({ stylesClasses: updatedStylesClasses });
 	};
 
 	const createCollapsibleItemsContentAlignements = ({ size }) => {
@@ -209,13 +209,13 @@ export default function createCollapsibleItems({
 		);
 	};
 
-	return Object.keys(marginPaddingObject).reduce((collapsibleItems, size) => {
+	return Object.keys(stylesClassesObject).reduce((collapsibleItems, size) => {
 		const title = `${__(size.toUpperCase(), "lucidity-flexbox-grid-system")}${
 			size !== "full" ? `, ${BREAKPOINTS[size]}px` : ""
 		}`;
 
 		const content = (
-			<div className="AlignementsMarginPadding">
+			<div className="stylesClassesPanel">
 				{createCollapsibleItemsContent({
 					title: "Alignments",
 					fn: "createCollapsibleItemsContentAlignements",
