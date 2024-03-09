@@ -92,49 +92,26 @@ function AlignementsMarginPadding({
   marginPadding = {},
   setAttributes
 }) {
-  const marginPaddingObject = (() => {
-    const obj = {};
-    Object.keys(_abstracts_constants__WEBPACK_IMPORTED_MODULE_4__.BREAKPOINTS).map(size => {
-      obj[size] = {};
-    });
-    return obj;
-  })();
+  const marginPaddingObject = Object.fromEntries(Object.keys(_abstracts_constants__WEBPACK_IMPORTED_MODULE_4__.BREAKPOINTS).map(size => [size, {}]));
   const handleChange = props => {
     const {
       size,
       prop,
       value,
-      direction
+      type = "variables"
     } = props;
-    const updateVariables = () => {
-      var _marginPadding$size$v, _marginPadding$size$v2;
-      return {
-        ...((_marginPadding$size$v = marginPadding[size]?.variables) !== null && _marginPadding$size$v !== void 0 ? _marginPadding$size$v : {}),
-        variables: {
-          ...((_marginPadding$size$v2 = marginPadding[size]?.variables) !== null && _marginPadding$size$v2 !== void 0 ? _marginPadding$size$v2 : {}),
-          [prop]: value
-        }
-      };
-    };
-    const updateClasses = () => {
-      var _marginPadding$size$c, _marginPadding$size$c2;
-      return {
-        ...((_marginPadding$size$c = marginPadding[size]?.classes) !== null && _marginPadding$size$c !== void 0 ? _marginPadding$size$c : {}),
-        classes: {
-          ...((_marginPadding$size$c2 = marginPadding[size]?.classes) !== null && _marginPadding$size$c2 !== void 0 ? _marginPadding$size$c2 : {}),
-          [prop]: value
-        }
-      };
-    };
-    let updatedAttributes = {
+    const updatedMarginPadding = {
       ...marginPadding,
       [size]: {
         ...marginPadding[size],
-        ...(direction ? updateVariables() : updateClasses())
+        [type]: {
+          ...marginPadding[size]?.[type],
+          [prop]: value
+        }
       }
     };
     setAttributes({
-      marginPadding: updatedAttributes
+      marginPadding: updatedMarginPadding
     });
   };
   const renderSelectControl = props => {
@@ -157,13 +134,14 @@ function AlignementsMarginPadding({
       onChange: value => handleChange({
         size,
         prop,
-        value
+        value,
+        type: "classes"
       }),
       __nextHasNoMarginBottom: true
     })));
   };
   const renderNumberControl = props => {
-    var _marginPadding$size$v3;
+    var _marginPadding$size$v;
     const {
       label,
       prop,
@@ -173,12 +151,12 @@ function AlignementsMarginPadding({
       className: "col col--3"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalNumberControl, {
       label: label,
-      value: (_marginPadding$size$v3 = marginPadding?.[size]?.variables?.[prop]) !== null && _marginPadding$size$v3 !== void 0 ? _marginPadding$size$v3 : null,
+      value: (_marginPadding$size$v = marginPadding?.[size]?.variables?.[prop]) !== null && _marginPadding$size$v !== void 0 ? _marginPadding$size$v : null,
       onChange: value => handleChange({
         size,
         prop,
         value,
-        direction: true
+        type: "variables"
       }),
       step: 0.1,
       isShiftStepEnabled: true,
@@ -193,7 +171,7 @@ function AlignementsMarginPadding({
     const title = `${(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(size.toUpperCase(), "lucidity-flexbox-grid-system")}${size !== "full" ? `, ${_abstracts_constants__WEBPACK_IMPORTED_MODULE_4__.BREAKPOINTS[size]}px` : ""}`;
     const content = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "AlignementsMarginPadding"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", null, "Alignements"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Alignements"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "row",
       style: {
         "--gap": "0.25em"

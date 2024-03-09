@@ -16,44 +16,25 @@ export function AlignementsMarginPadding({
 	marginPadding = {},
 	setAttributes,
 }) {
-	const marginPaddingObject = (() => {
-		const obj = {};
-
-		Object.keys(BREAKPOINTS).map((size) => {
-			obj[size] = {};
-		});
-
-		return obj;
-	})();
+	const marginPaddingObject = Object.fromEntries(
+		Object.keys(BREAKPOINTS).map((size) => [size, {}]),
+	);
 
 	const handleChange = (props) => {
-		const { size, prop, value, direction } = props;
+		const { size, prop, value, type = "variables" } = props;
 
-		const updateVariables = () => ({
-			...(marginPadding[size]?.variables ?? {}),
-			variables: {
-				...(marginPadding[size]?.variables ?? {}),
-				[prop]: value,
-			},
-		});
-
-		const updateClasses = () => ({
-			...(marginPadding[size]?.classes ?? {}),
-			classes: {
-				...(marginPadding[size]?.classes ?? {}),
-				[prop]: value,
-			},
-		});
-
-		let updatedAttributes = {
+		const updatedMarginPadding = {
 			...marginPadding,
 			[size]: {
 				...marginPadding[size],
-				...(direction ? updateVariables() : updateClasses()),
+				[type]: {
+					...marginPadding[size]?.[type],
+					[prop]: value,
+				},
 			},
 		};
 
-		setAttributes({ marginPadding: updatedAttributes });
+		setAttributes({ marginPadding: updatedMarginPadding });
 	};
 
 	const renderSelectControl = (props) => {
@@ -72,6 +53,7 @@ export function AlignementsMarginPadding({
 								size,
 								prop,
 								value,
+								type: "classes",
 							})
 						}
 						__nextHasNoMarginBottom
@@ -94,7 +76,7 @@ export function AlignementsMarginPadding({
 							size,
 							prop,
 							value,
-							direction: true,
+							type: "variables",
 						})
 					}
 					step={0.1}
@@ -113,7 +95,7 @@ export function AlignementsMarginPadding({
 
 			const content = (
 				<div className="AlignementsMarginPadding">
-					<h3>{"Alignements"}</h3>
+					<h2>{"Alignements"}</h2>
 					<div className="row" style={{ "--gap": "0.25em" }}>
 						{renderSelectControl({
 							options: [
