@@ -163,190 +163,212 @@ function AlignementsMarginPadding({
       shiftStep: 10
     }));
   };
-  const createItems = ({
-    marginPaddingObject,
-    marginPadding,
-    handleChange
-  }) => Object.entries(marginPaddingObject).reduce((acc, [size, props]) => {
+  const createCollapsibleItemsContentAlignements = ({
+    size
+  }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, renderSelectControl({
+    options: [{
+      label: "left",
+      value: "left"
+    }, {
+      label: "center",
+      value: "center"
+    }, {
+      label: "right",
+      value: "right"
+    }, {
+      label: "justify",
+      value: "justify"
+    }],
+    label: "Text Align",
+    prop: "text-align",
+    size
+  }), renderSelectControl({
+    options: [{
+      label: "flex-start",
+      value: "flex-start"
+    }, {
+      label: "flex-end",
+      value: "flex-end"
+    }, {
+      label: "center",
+      value: "center"
+    }, {
+      label: "space-between",
+      value: "space-between"
+    }, {
+      label: "space-around",
+      value: "space-around"
+    }, {
+      label: "space-evenly",
+      value: "space-evenly"
+    }],
+    label: "Justify Content",
+    prop: "justify-content",
+    size
+  }), renderSelectControl({
+    options: [{
+      label: "flex-start",
+      value: "flex-start"
+    }, {
+      label: "flex-end",
+      value: "flex-end"
+    }, {
+      label: "center",
+      value: "center"
+    }, {
+      label: "baseline",
+      value: "baseline"
+    }, {
+      label: "stretch",
+      value: "stretch"
+    }],
+    label: "Align Items",
+    prop: "align-items",
+    size
+  }), renderSelectControl({
+    options: [{
+      label: "flex-start",
+      value: "flex-start"
+    }, {
+      label: "flex-end",
+      value: "flex-end"
+    }, {
+      label: "center",
+      value: "center"
+    }, {
+      label: "space-between",
+      value: "space-between"
+    }, {
+      label: "space-around",
+      value: "space-around"
+    }, {
+      label: "stretch",
+      value: "stretch"
+    }],
+    label: "Align Content",
+    prop: "align-content",
+    size
+  }), renderSelectControl({
+    options: [{
+      label: "row",
+      value: "row"
+    }, {
+      label: "row-reverse",
+      value: "row-reverse"
+    }, {
+      label: "column",
+      value: "column"
+    }, {
+      label: "column-reverse",
+      value: "column-reverse"
+    }],
+    label: "Flex Direction",
+    prop: "flex-direction",
+    size
+  }), renderSelectControl({
+    options: [{
+      label: "nowrap",
+      value: "nowrap"
+    }, {
+      label: "wrap",
+      value: "wrap"
+    }, {
+      label: "wrap-reverse",
+      value: "wrap-reverse"
+    }],
+    label: "Flex Wrap",
+    prop: "flex-wrap",
+    size
+  }));
+  const createCollapsibleItemsContentMargins = ({
+    size
+  }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, renderNumberControl({
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Top", "lucidity-flexbox-grid-system"),
+    prop: "margin-top",
+    size
+  }), renderNumberControl({
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Bottom", "lucidity-flexbox-grid-system"),
+    prop: "margin-bottom",
+    size
+  }), renderNumberControl({
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Left", "lucidity-flexbox-grid-system"),
+    prop: "margin-left",
+    size
+  }), renderNumberControl({
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Right", "lucidity-flexbox-grid-system"),
+    prop: "margin-right",
+    size
+  }));
+  const createCollapsibleItemsContentPaddings = ({
+    size
+  }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, renderNumberControl({
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Top", "lucidity-flexbox-grid-system"),
+    prop: "padding-top",
+    size
+  }), renderNumberControl({
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Bottom", "lucidity-flexbox-grid-system"),
+    prop: "padding-bottom",
+    size
+  }), renderNumberControl({
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Left", "lucidity-flexbox-grid-system"),
+    prop: "padding-left",
+    size
+  }), renderNumberControl({
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Right", "lucidity-flexbox-grid-system"),
+    prop: "padding-right",
+    size
+  }));
+  const createCollapsibleItemsContent = ({
+    title,
+    size,
+    fn
+  }) => {
+    const functionMap = {
+      createCollapsibleItemsContentAlignements,
+      createCollapsibleItemsContentMargins,
+      createCollapsibleItemsContentPaddings
+    };
+    const ContentFunction = functionMap[fn];
+    if (!ContentFunction) {
+      console.error(`No function found for type: ${fn}`);
+      return null;
+    }
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, title), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "row",
+      style: {
+        "--gap": "0.25em"
+      }
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(ContentFunction, {
+      size: size
+    })));
+  };
+  const createCollapsibleItems = () => Object.keys(marginPaddingObject).reduce((collapsibleItems, size) => {
     const title = `${(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(size.toUpperCase(), "lucidity-flexbox-grid-system")}${size !== "full" ? `, ${_abstracts_constants__WEBPACK_IMPORTED_MODULE_4__.BREAKPOINTS[size]}px` : ""}`;
     const content = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "AlignementsMarginPadding"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Alignements"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "row",
-      style: {
-        "--gap": "0.25em"
-      }
-    }, renderSelectControl({
-      options: [{
-        label: "left",
-        value: "left"
-      }, {
-        label: "center",
-        value: "center"
-      }, {
-        label: "right",
-        value: "right"
-      }, {
-        label: "justify",
-        value: "justify"
-      }],
-      label: "Text Align",
-      prop: "text-align",
+    }, createCollapsibleItemsContent({
+      title: "Alignments",
+      fn: "createCollapsibleItemsContentAlignements",
       size
-    }), renderSelectControl({
-      options: [{
-        label: "flex-start",
-        value: "flex-start"
-      }, {
-        label: "flex-end",
-        value: "flex-end"
-      }, {
-        label: "center",
-        value: "center"
-      }, {
-        label: "space-between",
-        value: "space-between"
-      }, {
-        label: "space-around",
-        value: "space-around"
-      }, {
-        label: "space-evenly",
-        value: "space-evenly"
-      }],
-      label: "Justify Content",
-      prop: "justify-content",
+    }), createCollapsibleItemsContent({
+      title: "Margins",
+      fn: "createCollapsibleItemsContentMargins",
       size
-    }), renderSelectControl({
-      options: [{
-        label: "flex-start",
-        value: "flex-start"
-      }, {
-        label: "flex-end",
-        value: "flex-end"
-      }, {
-        label: "center",
-        value: "center"
-      }, {
-        label: "baseline",
-        value: "baseline"
-      }, {
-        label: "stretch",
-        value: "stretch"
-      }],
-      label: "Align Items",
-      prop: "align-items",
+    }), createCollapsibleItemsContent({
+      title: "Paddings",
+      fn: "createCollapsibleItemsContentPaddings",
       size
-    }), renderSelectControl({
-      options: [{
-        label: "flex-start",
-        value: "flex-start"
-      }, {
-        label: "flex-end",
-        value: "flex-end"
-      }, {
-        label: "center",
-        value: "center"
-      }, {
-        label: "space-between",
-        value: "space-between"
-      }, {
-        label: "space-around",
-        value: "space-around"
-      }, {
-        label: "stretch",
-        value: "stretch"
-      }],
-      label: "Align Content",
-      prop: "align-content",
-      size
-    }), renderSelectControl({
-      options: [{
-        label: "row",
-        value: "row"
-      }, {
-        label: "row-reverse",
-        value: "row-reverse"
-      }, {
-        label: "column",
-        value: "column"
-      }, {
-        label: "column-reverse",
-        value: "column-reverse"
-      }],
-      label: "Flex Direction",
-      prop: "flex-direction",
-      size
-    }), renderSelectControl({
-      options: [{
-        label: "nowrap",
-        value: "nowrap"
-      }, {
-        label: "wrap",
-        value: "wrap"
-      }, {
-        label: "wrap-reverse",
-        value: "wrap-reverse"
-      }],
-      label: "Flex Wrap",
-      prop: "flex-wrap",
-      size
-    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Margins", "lucidity-flexbox-grid-system")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "row",
-      style: {
-        "--gap": "0.25em"
-      }
-    }, renderNumberControl({
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Top", "lucidity-flexbox-grid-system"),
-      prop: "margin-top",
-      size
-    }), renderNumberControl({
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Bottom", "lucidity-flexbox-grid-system"),
-      prop: "margin-bottom",
-      size
-    }), renderNumberControl({
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Left", "lucidity-flexbox-grid-system"),
-      prop: "margin-left",
-      size
-    }), renderNumberControl({
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Right", "lucidity-flexbox-grid-system"),
-      prop: "margin-right",
-      size
-    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Paddings", "lucidity-flexbox-grid-system")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "row",
-      style: {
-        "--gap": "0.25em"
-      }
-    }, renderNumberControl({
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Top", "lucidity-flexbox-grid-system"),
-      prop: "padding-top",
-      size
-    }), renderNumberControl({
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Bottom", "lucidity-flexbox-grid-system"),
-      prop: "padding-bottom",
-      size
-    }), renderNumberControl({
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Left", "lucidity-flexbox-grid-system"),
-      prop: "padding-left",
-      size
-    }), renderNumberControl({
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Right", "lucidity-flexbox-grid-system"),
-      prop: "padding-right",
-      size
-    })));
-    acc[size] = {
+    }));
+    collapsibleItems[size] = {
       title,
       content
     };
-    return acc;
+    return collapsibleItems;
   }, {});
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Margin & Padding")
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("em", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("All units are in REM and use sizes for all breakpoints", "lucidity-flexbox-grid-system"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Collapsible__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    items: createItems({
-      marginPaddingObject,
-      marginPadding,
-      handleChange
-    }),
+    items: createCollapsibleItems(),
     initialOpenPanel: "full"
   }));
 }
