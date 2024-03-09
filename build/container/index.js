@@ -349,22 +349,17 @@ function createCollapsibleItems({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   AlignementsMarginPadding: () => (/* binding */ AlignementsMarginPadding),
-/* harmony export */   updateClasses: () => (/* binding */ updateClasses),
-/* harmony export */   updateStyles: () => (/* binding */ updateStyles)
+/* harmony export */   "default": () => (/* binding */ AlignementsMarginPadding)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _Collapsible__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Collapsible */ "./src/commons/Collapsible/index.js");
-/* harmony import */ var _createCollapsibleItems__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./createCollapsibleItems */ "./src/commons/AlignementsMarginPadding/createCollapsibleItems.js");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./editor.scss */ "./src/commons/AlignementsMarginPadding/editor.scss");
-
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Collapsible__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Collapsible */ "./src/commons/Collapsible/index.js");
+/* harmony import */ var _createCollapsibleItems__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./createCollapsibleItems */ "./src/commons/AlignementsMarginPadding/createCollapsibleItems.js");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editor.scss */ "./src/commons/AlignementsMarginPadding/editor.scss");
 
 
 
@@ -375,51 +370,15 @@ function AlignementsMarginPadding({
   marginPadding = {},
   setAttributes
 }) {
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Margin & Padding")
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("em", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("All units are in REM and use sizes for all breakpoints", "lucidity-flexbox-grid-system"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Collapsible__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    items: (0,_createCollapsibleItems__WEBPACK_IMPORTED_MODULE_5__["default"])({
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("em", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("All units are in REM and use sizes for all breakpoints", "lucidity-flexbox-grid-system"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Collapsible__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    items: (0,_createCollapsibleItems__WEBPACK_IMPORTED_MODULE_4__["default"])({
       marginPadding,
       setAttributes
     }),
     initialOpenPanel: "full"
   }));
-}
-function updateStyles({
-  marginPadding,
-  style = {}
-}) {
-  let newStyle = {
-    ...style
-  };
-  Object.entries(marginPadding !== null && marginPadding !== void 0 ? marginPadding : {}).forEach(([size, props]) => {
-    var _props$variables;
-    Object.entries((_props$variables = props?.variables) !== null && _props$variables !== void 0 ? _props$variables : {}).forEach(([prop, value]) => {
-      if (value !== undefined && value !== null) {
-        const prefix = size === "full" ? "" : `${size}-`;
-        newStyle[`--${prefix}${prop}`] = `${value}rem`;
-      }
-    });
-  });
-  return newStyle;
-}
-function updateClasses({
-  marginPadding,
-  classes = {}
-}) {
-  let newClasses = {
-    ...classes
-  };
-  Object.entries(marginPadding !== null && marginPadding !== void 0 ? marginPadding : {}).forEach(([size, props]) => {
-    var _props$classes;
-    Object.entries((_props$classes = props?.classes) !== null && _props$classes !== void 0 ? _props$classes : {}).forEach(([prop, value]) => {
-      if (value !== undefined && value !== null) {
-        const prefix = size === "full" ? "" : `${size}-`;
-        newClasses[`${prefix}${prop}-${value}`] = true;
-      }
-    });
-  });
-  return classnames__WEBPACK_IMPORTED_MODULE_2___default()(newClasses);
 }
 
 /***/ }),
@@ -485,6 +444,75 @@ function renderControl({
     }));
   };
   return options ? renderSelectControl() : renderNumberControl();
+}
+
+/***/ }),
+
+/***/ "./src/commons/AlignementsMarginPadding/stylesClasses.js":
+/*!***************************************************************!*\
+  !*** ./src/commons/AlignementsMarginPadding/stylesClasses.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   updateClasses: () => (/* binding */ updateClasses),
+/* harmony export */   updateStyles: () => (/* binding */ updateStyles)
+/* harmony export */ });
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);
+
+function processStylesClasses({
+  key,
+  marginPadding,
+  processEntry
+}) {
+  let result = {};
+  Object.entries(marginPadding !== null && marginPadding !== void 0 ? marginPadding : {}).forEach(([size, props]) => {
+    var _props$key;
+    Object.entries((_props$key = props?.[key]) !== null && _props$key !== void 0 ? _props$key : {}).forEach(([prop, value]) => {
+      if (value !== undefined && value !== null) {
+        const prefix = size === "full" ? "" : `${size}-`;
+        processEntry(result, prefix, prop, value);
+      }
+    });
+  });
+  return result;
+}
+function updateStyles({
+  marginPadding,
+  style = {}
+}) {
+  const key = "variables";
+  let processed = processStylesClasses({
+    key,
+    marginPadding,
+    processEntry: (result, prefix, prop, value) => {
+      result[`--${prefix}${prop}`] = `${value}rem`;
+    }
+  });
+  return {
+    ...style,
+    ...processed
+  };
+}
+function updateClasses({
+  marginPadding,
+  classes = {}
+}) {
+  const key = "classes";
+  let processed = processStylesClasses({
+    key,
+    marginPadding,
+    processEntry: (result, prefix, prop, value) => {
+      result[`${prefix}${prop}-${value}`] = true;
+    }
+  });
+  return classnames__WEBPACK_IMPORTED_MODULE_0___default()({
+    ...classes,
+    ...processed
+  });
 }
 
 /***/ }),
@@ -566,7 +594,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _commons_AlignementsMarginPadding__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../commons/AlignementsMarginPadding */ "./src/commons/AlignementsMarginPadding/index.js");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./editor.scss */ "./src/container/editor.scss");
+/* harmony import */ var _commons_AlignementsMarginPadding_stylesClasses__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../commons/AlignementsMarginPadding/stylesClasses */ "./src/commons/AlignementsMarginPadding/stylesClasses.js");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./editor.scss */ "./src/container/editor.scss");
+
 
 
 
@@ -584,7 +614,7 @@ function Edit({
     marginPadding
   } = attributes;
   const Tag = tag;
-  const style = (0,_commons_AlignementsMarginPadding__WEBPACK_IMPORTED_MODULE_5__.updateStyles)({
+  const style = (0,_commons_AlignementsMarginPadding_stylesClasses__WEBPACK_IMPORTED_MODULE_6__.updateStyles)({
     marginPadding
   });
   const {
@@ -593,14 +623,14 @@ function Edit({
     hasInnerBlocks: select("core/block-editor").getBlockCount(clientId) > 0
   }));
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)({
-    className: (0,_commons_AlignementsMarginPadding__WEBPACK_IMPORTED_MODULE_5__.updateClasses)({
+    className: (0,_commons_AlignementsMarginPadding_stylesClasses__WEBPACK_IMPORTED_MODULE_6__.updateClasses)({
       marginPadding
     }, classnames__WEBPACK_IMPORTED_MODULE_1___default()("container"))
   });
   const innerBlocksProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useInnerBlocksProps)(blockProps, {
     renderAppender: !hasInnerBlocks ? () => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InnerBlocks.ButtonBlockAppender, null) : null
   });
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_commons_AlignementsMarginPadding__WEBPACK_IMPORTED_MODULE_5__.AlignementsMarginPadding, {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_commons_AlignementsMarginPadding__WEBPACK_IMPORTED_MODULE_5__["default"], {
     marginPadding: marginPadding,
     setAttributes: setAttributes
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Tag, {
@@ -657,7 +687,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _commons_AlignementsMarginPadding__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../commons/AlignementsMarginPadding */ "./src/commons/AlignementsMarginPadding/index.js");
+/* harmony import */ var _commons_AlignementsMarginPadding_stylesClasses__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../commons/AlignementsMarginPadding/stylesClasses */ "./src/commons/AlignementsMarginPadding/stylesClasses.js");
 
 
 
@@ -670,11 +700,11 @@ function save({
     marginPadding
   } = attributes;
   const Tag = tag;
-  const style = (0,_commons_AlignementsMarginPadding__WEBPACK_IMPORTED_MODULE_3__.updateStyles)({
+  const style = (0,_commons_AlignementsMarginPadding_stylesClasses__WEBPACK_IMPORTED_MODULE_3__.updateStyles)({
     marginPadding
   });
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
-    className: (0,_commons_AlignementsMarginPadding__WEBPACK_IMPORTED_MODULE_3__.updateClasses)({
+    className: (0,_commons_AlignementsMarginPadding_stylesClasses__WEBPACK_IMPORTED_MODULE_3__.updateClasses)({
       marginPadding
     }, classnames__WEBPACK_IMPORTED_MODULE_1___default()("container"))
   });

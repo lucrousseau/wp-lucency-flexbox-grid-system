@@ -8,11 +8,12 @@ import {
 	InspectorControls,
 } from "@wordpress/block-editor";
 
+import AlignementsMarginPadding from "../commons/AlignementsMarginPadding";
+
 import {
-	AlignementsMarginPadding,
 	updateStyles,
 	updateClasses,
-} from "../commons/AlignementsMarginPadding";
+} from "../commons/AlignementsMarginPadding/stylesClasses";
 
 import "./editor.scss";
 

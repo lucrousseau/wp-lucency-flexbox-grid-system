@@ -14,10 +14,12 @@ import { PanelBody, Notice, RangeControl } from "@wordpress/components";
 
 import { COLUMNS } from "../abstracts/constants";
 
+import AlignementsMarginPadding from "../commons/AlignementsMarginPadding";
+
 import {
-	AlignementsMarginPadding,
 	updateStyles,
-} from "../commons/AlignementsMarginPadding";
+	updateClasses,
+} from "../commons/AlignementsMarginPadding/stylesClasses";
 
 import "./editor.scss";
 
