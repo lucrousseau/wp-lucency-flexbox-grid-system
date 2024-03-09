@@ -85,7 +85,7 @@ function Collapsible({
 }) {
   const [openPanel, setOpenPanel] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(initialOpenPanel);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("lucidity-flexbox-grid-system__collapsible")
+    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("lucency__collapsible")
   }, Object.entries(items).map(([item, props]) => {
     const {
       title,
@@ -102,7 +102,7 @@ function Collapsible({
       fill: "currentColor",
       d: "M240 64c0-8.8-7.2-16-16-16s-16 7.2-16 16V240H32c-8.8 0-16 7.2-16 16s7.2 16 16 16H208V448c0 8.8 7.2 16 16 16s16-7.2 16-16V272H416c8.8 0 16-7.2 16-16s-7.2-16-16-16H240V64z"
     }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "lucidity-flexbox-grid-system__collapsible__panel",
+      className: "lucency__collapsible__panel",
       style: openPanel !== item ? {
         display: "none"
       } : null
@@ -298,16 +298,16 @@ function createCollapsibleItems({
     size
   }) => {
     const controls = [{
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Top", "lucidity-flexbox-grid-system"),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Top", "lucency"),
       prop: "margin-top"
     }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Bottom", "lucidity-flexbox-grid-system"),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Bottom", "lucency"),
       prop: "margin-bottom"
     }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Left", "lucidity-flexbox-grid-system"),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Left", "lucency"),
       prop: "margin-left"
     }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Right", "lucidity-flexbox-grid-system"),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Right", "lucency"),
       prop: "margin-right"
     }];
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, controls.map(({
@@ -325,19 +325,19 @@ function createCollapsibleItems({
     size
   }) => {
     const controls = [{
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Top", "lucidity-flexbox-grid-system"),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Top", "lucency"),
       prop: "padding-top",
       size
     }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Bottom", "lucidity-flexbox-grid-system"),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Bottom", "lucency"),
       prop: "padding-bottom",
       size
     }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Left", "lucidity-flexbox-grid-system"),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Left", "lucency"),
       prop: "padding-left",
       size
     }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Right", "lucidity-flexbox-grid-system"),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Right", "lucency"),
       prop: "padding-right",
       size
     }];
@@ -377,7 +377,7 @@ function createCollapsibleItems({
     })));
   };
   return Object.keys(stylesClassesObject).reduce((collapsibleItems, size) => {
-    const title = `${(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(size.toUpperCase(), "lucidity-flexbox-grid-system")}${size !== "full" ? `, ${_abstracts_constants__WEBPACK_IMPORTED_MODULE_2__.BREAKPOINTS[size]}px` : ""}`;
+    const title = `${(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(size.toUpperCase(), "lucency")}${size !== "full" ? `, ${_abstracts_constants__WEBPACK_IMPORTED_MODULE_2__.BREAKPOINTS[size]}px` : ""}`;
     const content = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "stylesClassesPanel"
     }, createCollapsibleItemsContent({
@@ -488,7 +488,7 @@ function StylesClassesPanel({
 }) {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Margin & Padding")
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("em", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("All units are in REM and use sizes for all breakpoints", "lucidity-flexbox-grid-system"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Collapsible__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("em", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("All units are in REM and use sizes for all breakpoints", "lucency"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Collapsible__WEBPACK_IMPORTED_MODULE_3__["default"], {
     items: (0,_createCollapsibleItems__WEBPACK_IMPORTED_MODULE_4__["default"])({
       stylesClasses,
       setAttributes
@@ -613,7 +613,7 @@ function ColumnsLength({
   });
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
     if (!hasInnerBlocks && columns === 1) {
-      const initialBlock = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.createBlock)("lucidity-flexbox-grid-system/column");
+      const initialBlock = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.createBlock)("lucency-grid/column");
       replaceInnerBlocks(clientId, [initialBlock], false);
     }
     if (innerBlocksCount > _abstracts_constants__WEBPACK_IMPORTED_MODULE_6__.COLUMNS) {
@@ -647,7 +647,7 @@ function ColumnsLength({
         newBlock = savedContentRef.current[i];
         delete savedContentRef.current[i];
       } else {
-        newBlock = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.createBlock)("lucidity-flexbox-grid-system/column");
+        newBlock = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.createBlock)("lucency-grid/column");
       }
       updatedInnerBlocks.push(newBlock);
     }
@@ -657,7 +657,7 @@ function ColumnsLength({
     });
   };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.RangeControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Number of Columns in the Row", "lucidity-flexbox-grid-system"),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Number of Columns in the Row", "lucency"),
     min: 1,
     max: _abstracts_constants__WEBPACK_IMPORTED_MODULE_6__.COLUMNS,
     value: columns,
@@ -727,10 +727,10 @@ function Edit({
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps)({
     className: (0,_commons_StylesClassesPanel__WEBPACK_IMPORTED_MODULE_8__.updateClasses)({
       stylesClasses
-    }, classnames__WEBPACK_IMPORTED_MODULE_2___default()("row"))
+    }, classnames__WEBPACK_IMPORTED_MODULE_2___default()("lucency", "row"))
   });
   const innerBlocksProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useInnerBlocksProps)(blockProps, {
-    allowedBlocks: ["lucidity-flexbox-grid-system/column"],
+    allowedBlocks: ["lucency-grid/column"],
     renderAppender: !hasInnerBlocks ? () => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InnerBlocks.ButtonBlockAppender, null) : null
   });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
@@ -746,7 +746,7 @@ function Edit({
   })), showNotice && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Notice, {
     status: "error",
     isDismissible: false
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("This block is intended to be used with 12 columns. Having more can lead to unexpected results.", "lucidity-flexbox-grid-system")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Tag, {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("This block is intended to be used with 12 columns. Having more can lead to unexpected results.", "lucency")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Tag, {
     ...innerBlocksProps,
     style: style
   }));
@@ -819,7 +819,7 @@ function save({
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
     className: (0,_commons_StylesClassesPanel__WEBPACK_IMPORTED_MODULE_3__.updateClasses)({
       stylesClasses
-    }, classnames__WEBPACK_IMPORTED_MODULE_1___default()("row"))
+    }, classnames__WEBPACK_IMPORTED_MODULE_1___default()("lucency", "row"))
   });
   const innerBlocksProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useInnerBlocksProps.save(blockProps);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Tag, {
@@ -1063,7 +1063,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"lucidity-flexbox-grid-system/row","version":"1.0.0","title":"Row for flexbox grid system","category":"design","description":"Container for flexbox grid system","example":{},"supports":{"html":false},"textdomain":"lucidity-flexbox-grid-system","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"tag":{"type":"string","default":"div"},"columns":{"type":"number","default":1},"stylesClasses":{"type":"object","default":{}}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"lucency-grid/row","version":"1.0.0","title":"Row for flexbox grid system","category":"design","description":"Container for flexbox grid system","example":{},"supports":{"html":false},"textdomain":"lucency","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"tag":{"type":"string","default":"div"},"columns":{"type":"number","default":1},"stylesClasses":{"type":"object","default":{}}}}');
 
 /***/ })
 
@@ -1218,7 +1218,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/tru
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
 /******/ 		
-/******/ 		var chunkLoadingGlobal = globalThis["webpackChunklucidity_flexbox_grid_system"] = globalThis["webpackChunklucidity_flexbox_grid_system"] || [];
+/******/ 		var chunkLoadingGlobal = globalThis["webpackChunklucency"] = globalThis["webpackChunklucency"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();

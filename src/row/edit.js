@@ -33,11 +33,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const style = updateStyles({ stylesClasses });
 
 	const blockProps = useBlockProps({
-		className: updateClasses({ stylesClasses }, classnames("row")),
+		className: updateClasses({ stylesClasses }, classnames("lucency", "row")),
 	});
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
-		allowedBlocks: ["lucidity-flexbox-grid-system/column"],
+		allowedBlocks: ["lucency-grid/column"],
 		renderAppender: !hasInnerBlocks
 			? () => <InnerBlocks.ButtonBlockAppender />
 			: null,
@@ -63,7 +63,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 				<Notice status="error" isDismissible={false}>
 					{__(
 						"This block is intended to be used with 12 columns. Having more can lead to unexpected results.",
-						"lucidity-flexbox-grid-system",
+						"lucency",
 					)}
 				</Notice>
 			)}

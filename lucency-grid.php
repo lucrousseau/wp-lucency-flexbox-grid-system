@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Lucidity Flexbox & Grid System
+ * Plugin Name: Lucency Grid
  * Description: Example block scaffolded with Create Block tool.
  * Requires at least: 6.4
  * Requires PHP: 8.2
@@ -8,14 +8,14 @@
  * Author: Luc Rousseau
  * License: GPL-2.0-or-later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: lucidity-flexbox-grid-system
+ * Text Domain: lucency
 */
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-function lucidityFlexboxGridSystemIinit() {
+function LucencyGridIinit() {
     $blocks_dir = __DIR__ . '/build/';
     $block_folders = array_filter(glob($blocks_dir . '*'), 'is_dir');
 
@@ -24,4 +24,4 @@ function lucidityFlexboxGridSystemIinit() {
     }
 }
 
-add_action( 'init', 'lucidityFlexboxGridSystemIinit' );
+add_action( 'init', 'LucencyGridIinit' );

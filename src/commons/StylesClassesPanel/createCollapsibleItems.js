@@ -124,19 +124,19 @@ export default function createCollapsibleItems({
 	const createCollapsibleItemsContentMargins = ({ size }) => {
 		const controls = [
 			{
-				label: __("Top", "lucidity-flexbox-grid-system"),
+				label: __("Top", "lucency"),
 				prop: "margin-top",
 			},
 			{
-				label: __("Bottom", "lucidity-flexbox-grid-system"),
+				label: __("Bottom", "lucency"),
 				prop: "margin-bottom",
 			},
 			{
-				label: __("Left", "lucidity-flexbox-grid-system"),
+				label: __("Left", "lucency"),
 				prop: "margin-left",
 			},
 			{
-				label: __("Right", "lucidity-flexbox-grid-system"),
+				label: __("Right", "lucency"),
 				prop: "margin-right",
 			},
 		];
@@ -159,22 +159,22 @@ export default function createCollapsibleItems({
 	const createCollapsibleItemsContentPaddings = ({ size }) => {
 		const controls = [
 			{
-				label: __("Top", "lucidity-flexbox-grid-system"),
+				label: __("Top", "lucency"),
 				prop: "padding-top",
 				size,
 			},
 			{
-				label: __("Bottom", "lucidity-flexbox-grid-system"),
+				label: __("Bottom", "lucency"),
 				prop: "padding-bottom",
 				size,
 			},
 			{
-				label: __("Left", "lucidity-flexbox-grid-system"),
+				label: __("Left", "lucency"),
 				prop: "padding-left",
 				size,
 			},
 			{
-				label: __("Right", "lucidity-flexbox-grid-system"),
+				label: __("Right", "lucency"),
 				prop: "padding-right",
 				size,
 			},
@@ -220,7 +220,7 @@ export default function createCollapsibleItems({
 	};
 
 	return Object.keys(stylesClassesObject).reduce((collapsibleItems, size) => {
-		const title = `${__(size.toUpperCase(), "lucidity-flexbox-grid-system")}${
+		const title = `${__(size.toUpperCase(), "lucency")}${
 			size !== "full" ? `, ${BREAKPOINTS[size]}px` : ""
 		}`;
 

@@ -85,9 +85,9 @@ function createColumnsSettings({
 }) {
   return Object.entries(_abstracts_constants__WEBPACK_IMPORTED_MODULE_3__.BREAKPOINTS).reduce((acc, [size]) => {
     var _sizes$size;
-    const title = `${(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(size.toUpperCase(), "lucidity-flexbox-grid-system")}${size !== "full" ? `, ${_abstracts_constants__WEBPACK_IMPORTED_MODULE_3__.BREAKPOINTS[size]}px` : ""}`;
+    const title = `${(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(size.toUpperCase(), "lucency")}${size !== "full" ? `, ${_abstracts_constants__WEBPACK_IMPORTED_MODULE_3__.BREAKPOINTS[size]}px` : ""}`;
     const content = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Columns Eidth", "lucidity-flexbox-grid-system"),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Columns Eidth", "lucency"),
       min: 0,
       max: _abstracts_constants__WEBPACK_IMPORTED_MODULE_3__.COLUMNS,
       value: (_sizes$size = sizes?.[size]) !== null && _sizes$size !== void 0 ? _sizes$size : 0,
@@ -96,7 +96,7 @@ function createColumnsSettings({
         sizes,
         value
       }),
-      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Leave at 0 for auto width", "lucidity-flexbox-grid-system")
+      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Leave at 0 for auto width", "lucency")
     });
     acc[size] = {
       title,
@@ -185,7 +185,7 @@ function Edit({
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Notice, {
     status: "warning",
     isDismissible: true
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Comulative column width for sleected breakpoints should not exceed 12 or row will break in another line", "lucidity-flexbox-grid-system")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_commons_Collapsible__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Comulative column width for sleected breakpoints should not exceed 12 or row will break in another line", "lucency")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_commons_Collapsible__WEBPACK_IMPORTED_MODULE_6__["default"], {
     items: (0,_createColumnsSettings_js__WEBPACK_IMPORTED_MODULE_8__["default"])({
       sizes,
       handleSizeChange
@@ -325,7 +325,7 @@ function Collapsible({
 }) {
   const [openPanel, setOpenPanel] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(initialOpenPanel);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("lucidity-flexbox-grid-system__collapsible")
+    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("lucency__collapsible")
   }, Object.entries(items).map(([item, props]) => {
     const {
       title,
@@ -342,7 +342,7 @@ function Collapsible({
       fill: "currentColor",
       d: "M240 64c0-8.8-7.2-16-16-16s-16 7.2-16 16V240H32c-8.8 0-16 7.2-16 16s7.2 16 16 16H208V448c0 8.8 7.2 16 16 16s16-7.2 16-16V272H416c8.8 0 16-7.2 16-16s-7.2-16-16-16H240V64z"
     }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "lucidity-flexbox-grid-system__collapsible__panel",
+      className: "lucency__collapsible__panel",
       style: openPanel !== item ? {
         display: "none"
       } : null
@@ -572,7 +572,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"lucidity-flexbox-grid-system/column","version":"1.0.0","title":"Column for flexbox grid system","category":"design","description":"Column for flexbox grid system","example":{},"supports":{"html":false,"inserter":false},"parent":["lucidity-flexbox-grid-system/row"],"textdomain":"lucidity-flexbox-grid-system","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"sizes":{"type":"object","default":{}}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"lucency-grid/column","version":"1.0.0","title":"Column for flexbox grid system","category":"design","description":"Column for flexbox grid system","example":{},"supports":{"html":false,"inserter":false},"parent":["lucency-grid/row"],"textdomain":"lucency","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"sizes":{"type":"object","default":{}}}}');
 
 /***/ })
 
@@ -727,7 +727,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/tru
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
 /******/ 		
-/******/ 		var chunkLoadingGlobal = globalThis["webpackChunklucidity_flexbox_grid_system"] = globalThis["webpackChunklucidity_flexbox_grid_system"] || [];
+/******/ 		var chunkLoadingGlobal = globalThis["webpackChunklucency"] = globalThis["webpackChunklucency"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();

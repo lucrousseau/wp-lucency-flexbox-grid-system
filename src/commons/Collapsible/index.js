@@ -8,7 +8,7 @@ export default function Collapsible({ items = {}, initialOpenPanel = "" }) {
 	const [openPanel, setOpenPanel] = useState(initialOpenPanel);
 
 	return (
-		<div className={classnames("lucidity-flexbox-grid-system__collapsible")}>
+		<div className={classnames("lucency__collapsible")}>
 			{Object.entries(items).map(([item, props]) => {
 				const { title, content } = props;
 
@@ -26,7 +26,7 @@ export default function Collapsible({ items = {}, initialOpenPanel = "" }) {
 							)}
 						</h2>
 						<div
-							className="lucidity-flexbox-grid-system__collapsible__panel"
+							className="lucency__collapsible__panel"
 							style={openPanel !== item ? { display: "none" } : null}
 						>
 							{content}

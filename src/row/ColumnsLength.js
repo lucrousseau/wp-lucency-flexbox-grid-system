@@ -24,7 +24,7 @@ export default function ColumnsLength({
 
 	useEffect(() => {
 		if (!hasInnerBlocks && columns === 1) {
-			const initialBlock = createBlock("lucidity-flexbox-grid-system/column");
+			const initialBlock = createBlock("lucency-grid/column");
 			replaceInnerBlocks(clientId, [initialBlock], false);
 		}
 
@@ -67,7 +67,7 @@ export default function ColumnsLength({
 				newBlock = savedContentRef.current[i];
 				delete savedContentRef.current[i];
 			} else {
-				newBlock = createBlock("lucidity-flexbox-grid-system/column");
+				newBlock = createBlock("lucency-grid/column");
 			}
 
 			updatedInnerBlocks.push(newBlock);
@@ -79,7 +79,7 @@ export default function ColumnsLength({
 
 	return (
 		<RangeControl
-			label={__("Number of Columns in the Row", "lucidity-flexbox-grid-system")}
+			label={__("Number of Columns in the Row", "lucency")}
 			min={1}
 			max={COLUMNS}
 			value={columns}

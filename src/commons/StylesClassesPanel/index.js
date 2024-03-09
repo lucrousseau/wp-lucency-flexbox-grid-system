@@ -64,7 +64,7 @@ export default function StylesClassesPanel({
 				<em>
 					{__(
 						"All units are in REM and use sizes for all breakpoints",
-						"lucidity-flexbox-grid-system",
+						"lucency",
 					)}
 				</em>
 			</p>

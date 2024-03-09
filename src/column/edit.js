@@ -51,7 +51,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					<Notice status="warning" isDismissible={true}>
 						{__(
 							"Comulative column width for sleected breakpoints should not exceed 12 or row will break in another line",
-							"lucidity-flexbox-grid-system",
+							"lucency",
 						)}
 					</Notice>
 					<Collapsible
