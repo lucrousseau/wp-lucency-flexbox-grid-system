@@ -69,24 +69,24 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	const savedContentRef = useRef({});
 
-	const onColumnsChange = (newColumns) => {
-		if (newColumns < 1 || newColumns > COLUMNS) {
+	const onColumnsLengthChange = (value) => {
+		if (value < 1 || value > COLUMNS) {
 			console.error(`The number of columns must be between 1 and ${COLUMNS}.`);
 			return;
 		}
 
 		const updatedInnerBlocks = [...innerBlocks];
 		const currentCount = updatedInnerBlocks.length;
-		const difference = newColumns - currentCount;
+		const difference = value - currentCount;
 
 		if (difference < 0) {
-			updatedInnerBlocks.slice(newColumns).forEach((block, index) => {
-				savedContentRef.current[newColumns + index] = block;
+			updatedInnerBlocks.slice(value).forEach((block, index) => {
+				savedContentRef.current[value + index] = block;
 			});
-			updatedInnerBlocks.length = newColumns;
+			updatedInnerBlocks.length = value;
 		}
 
-		for (let i = currentCount; i < newColumns; i++) {
+		for (let i = currentCount; i < value; i++) {
 			let newBlock;
 
 			if (savedContentRef.current[i]) {
@@ -100,7 +100,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		}
 
 		replaceInnerBlocks(clientId, updatedInnerBlocks, false);
-		setAttributes({ columns: newColumns });
+		setAttributes({ columns: value });
 	};
 
 	return (
@@ -115,7 +115,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						min={1}
 						max={COLUMNS}
 						value={columns}
-						onChange={onColumnsChange}
+						onChange={(value) => onColumnsLengthChange(value)}
 					/>
 				</PanelBody>
 				<StylesClassesPanel

@@ -650,21 +650,21 @@ function Edit({
   } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useDispatch)("core/block-editor");
   const innerBlocks = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => select("core/block-editor").getBlocks(clientId), [clientId]);
   const savedContentRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)({});
-  const onColumnsChange = newColumns => {
-    if (newColumns < 1 || newColumns > _abstracts_constants__WEBPACK_IMPORTED_MODULE_8__.COLUMNS) {
+  const onColumnsLengthChange = value => {
+    if (value < 1 || value > _abstracts_constants__WEBPACK_IMPORTED_MODULE_8__.COLUMNS) {
       console.error(`The number of columns must be between 1 and ${_abstracts_constants__WEBPACK_IMPORTED_MODULE_8__.COLUMNS}.`);
       return;
     }
     const updatedInnerBlocks = [...innerBlocks];
     const currentCount = updatedInnerBlocks.length;
-    const difference = newColumns - currentCount;
+    const difference = value - currentCount;
     if (difference < 0) {
-      updatedInnerBlocks.slice(newColumns).forEach((block, index) => {
-        savedContentRef.current[newColumns + index] = block;
+      updatedInnerBlocks.slice(value).forEach((block, index) => {
+        savedContentRef.current[value + index] = block;
       });
-      updatedInnerBlocks.length = newColumns;
+      updatedInnerBlocks.length = value;
     }
-    for (let i = currentCount; i < newColumns; i++) {
+    for (let i = currentCount; i < value; i++) {
       let newBlock;
       if (savedContentRef.current[i]) {
         newBlock = savedContentRef.current[i];
@@ -676,7 +676,7 @@ function Edit({
     }
     replaceInnerBlocks(clientId, updatedInnerBlocks, false);
     setAttributes({
-      columns: newColumns
+      columns: value
     });
   };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
@@ -686,7 +686,7 @@ function Edit({
     min: 1,
     max: _abstracts_constants__WEBPACK_IMPORTED_MODULE_8__.COLUMNS,
     value: columns,
-    onChange: onColumnsChange
+    onChange: value => onColumnsLengthChange(value)
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_commons_StylesClassesPanel__WEBPACK_IMPORTED_MODULE_9__["default"], {
     marginPadding: marginPadding,
     setAttributes: setAttributes
