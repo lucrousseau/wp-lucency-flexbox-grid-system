@@ -69,7 +69,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	const savedContentRef = useRef({});
 
-	const onColumnsLengthChange = (value) => {
+	const onColumnsLengthChange = ({ value }) => {
 		if (value < 1 || value > COLUMNS) {
 			console.error(`The number of columns must be between 1 and ${COLUMNS}.`);
 			return;
@@ -115,7 +115,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						min={1}
 						max={COLUMNS}
 						value={columns}
-						onChange={(value) => onColumnsLengthChange(value)}
+						onChange={(value) => onColumnsLengthChange({ value })}
 					/>
 				</PanelBody>
 				<StylesClassesPanel

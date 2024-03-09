@@ -650,7 +650,9 @@ function Edit({
   } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useDispatch)("core/block-editor");
   const innerBlocks = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => select("core/block-editor").getBlocks(clientId), [clientId]);
   const savedContentRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)({});
-  const onColumnsLengthChange = value => {
+  const onColumnsLengthChange = ({
+    value
+  }) => {
     if (value < 1 || value > _abstracts_constants__WEBPACK_IMPORTED_MODULE_8__.COLUMNS) {
       console.error(`The number of columns must be between 1 and ${_abstracts_constants__WEBPACK_IMPORTED_MODULE_8__.COLUMNS}.`);
       return;
@@ -686,7 +688,9 @@ function Edit({
     min: 1,
     max: _abstracts_constants__WEBPACK_IMPORTED_MODULE_8__.COLUMNS,
     value: columns,
-    onChange: value => onColumnsLengthChange(value)
+    onChange: value => onColumnsLengthChange({
+      value
+    })
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_commons_StylesClassesPanel__WEBPACK_IMPORTED_MODULE_9__["default"], {
     marginPadding: marginPadding,
     setAttributes: setAttributes
