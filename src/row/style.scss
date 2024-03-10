@@ -74,6 +74,7 @@ $breakpoints: (
 			--get-#{$property}-#{$direction}: var(--#{$property}-#{$direction}, 0);
 
 			$value: var(--get-#{$property}-#{$direction}, 0);
+
 			$values: append($values, $value, space);
 		}
 
@@ -82,43 +83,27 @@ $breakpoints: (
 
 	@each $prefix, $breakpoint in $breakpoints {
 		@include respondTo($prefix) {
-			content: "current prefix : #{$prefix} ";
-
 			$previousPrefix: findPreviousBreakepoint($prefix);
 
-			--get-#{$prefix}-margin-top: var(
-				--#{$prefix}-margin-top,
-				var(--get-#{$previousPrefix}margin-top)
-			);
-			--get-#{$prefix}-margin-right: var(
-				--#{$prefix}-margin-right,
-				var(--get-#{$previousPrefix}margin-right)
-			);
-			--get-#{$prefix}-margin-bottom: var(
-				--#{$prefix}-margin-bottom,
-				var(--get-#{$previousPrefix}margin-bottom)
-			);
-			--get-#{$prefix}-margin-left: var(
-				--#{$prefix}-margin-left,
-				var(--get-#{$previousPrefix}margin-left)
-			);
+			@each $property in $all-properties {
+				$values: ();
 
-			margin: var(
-					--get-#{$prefix}-margin-top,
-					var(--get-#{$previousPrefix}margin-top)
-				)
-				var(
-					--get-#{$prefix}-margin-right,
-					var(--get-#{$previousPrefix}margin-right)
-				)
-				var(
-					--get-#{$prefix}-margin-bottom,
-					var(--get-#{$previousPrefix}margin-bottom)
-				)
-				var(
-					--get-#{$prefix}-margin-left,
-					var(--get-#{$previousPrefix}margin-left)
-				);
+				@each $direction in $all-directions {
+					--get-#{$prefix}-#{$property}-#{$direction}: var(
+						--#{$prefix}-#{$property}-#{$direction},
+						var(--get-#{$previousPrefix}#{$property}-#{$direction})
+					);
+
+					$value: var(
+						--get-#{$prefix}-#{$property}-#{$direction},
+						var(--get-#{$previousPrefix}#{$property}-#{$direction})
+					);
+
+					$values: append($values, $value, space);
+				}
+
+				#{$property}: $values;
+			}
 		}
 	}
 

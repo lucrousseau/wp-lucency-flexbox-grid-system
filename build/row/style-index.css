@@ -17,7 +17,23 @@
 }
 @media (max-width: 1400px) {
   .row {
-    content: "current prefix : xxl ";
+    --get-xxl-padding-top: var(
+    	--xxl-padding-top,
+    	var(--get-padding-top)
+    );
+    --get-xxl-padding-right: var(
+    	--xxl-padding-right,
+    	var(--get-padding-right)
+    );
+    --get-xxl-padding-bottom: var(
+    	--xxl-padding-bottom,
+    	var(--get-padding-bottom)
+    );
+    --get-xxl-padding-left: var(
+    	--xxl-padding-left,
+    	var(--get-padding-left)
+    );
+    padding: var(--get-xxl-padding-top, var(--get-padding-top)) var(--get-xxl-padding-right, var(--get-padding-right)) var(--get-xxl-padding-bottom, var(--get-padding-bottom)) var(--get-xxl-padding-left, var(--get-padding-left));
     --get-xxl-margin-top: var(
     	--xxl-margin-top,
     	var(--get-margin-top)
@@ -39,7 +55,23 @@
 }
 @media (max-width: 1200px) {
   .row {
-    content: "current prefix : xl ";
+    --get-xl-padding-top: var(
+    	--xl-padding-top,
+    	var(--get-xxl-padding-top)
+    );
+    --get-xl-padding-right: var(
+    	--xl-padding-right,
+    	var(--get-xxl-padding-right)
+    );
+    --get-xl-padding-bottom: var(
+    	--xl-padding-bottom,
+    	var(--get-xxl-padding-bottom)
+    );
+    --get-xl-padding-left: var(
+    	--xl-padding-left,
+    	var(--get-xxl-padding-left)
+    );
+    padding: var(--get-xl-padding-top, var(--get-xxl-padding-top)) var(--get-xl-padding-right, var(--get-xxl-padding-right)) var(--get-xl-padding-bottom, var(--get-xxl-padding-bottom)) var(--get-xl-padding-left, var(--get-xxl-padding-left));
     --get-xl-margin-top: var(
     	--xl-margin-top,
     	var(--get-xxl-margin-top)
@@ -61,7 +93,23 @@
 }
 @media (max-width: 992px) {
   .row {
-    content: "current prefix : lg ";
+    --get-lg-padding-top: var(
+    	--lg-padding-top,
+    	var(--get-xl-padding-top)
+    );
+    --get-lg-padding-right: var(
+    	--lg-padding-right,
+    	var(--get-xl-padding-right)
+    );
+    --get-lg-padding-bottom: var(
+    	--lg-padding-bottom,
+    	var(--get-xl-padding-bottom)
+    );
+    --get-lg-padding-left: var(
+    	--lg-padding-left,
+    	var(--get-xl-padding-left)
+    );
+    padding: var(--get-lg-padding-top, var(--get-xl-padding-top)) var(--get-lg-padding-right, var(--get-xl-padding-right)) var(--get-lg-padding-bottom, var(--get-xl-padding-bottom)) var(--get-lg-padding-left, var(--get-xl-padding-left));
     --get-lg-margin-top: var(
     	--lg-margin-top,
     	var(--get-xl-margin-top)
@@ -83,7 +131,23 @@
 }
 @media (max-width: 768px) {
   .row {
-    content: "current prefix : md ";
+    --get-md-padding-top: var(
+    	--md-padding-top,
+    	var(--get-lg-padding-top)
+    );
+    --get-md-padding-right: var(
+    	--md-padding-right,
+    	var(--get-lg-padding-right)
+    );
+    --get-md-padding-bottom: var(
+    	--md-padding-bottom,
+    	var(--get-lg-padding-bottom)
+    );
+    --get-md-padding-left: var(
+    	--md-padding-left,
+    	var(--get-lg-padding-left)
+    );
+    padding: var(--get-md-padding-top, var(--get-lg-padding-top)) var(--get-md-padding-right, var(--get-lg-padding-right)) var(--get-md-padding-bottom, var(--get-lg-padding-bottom)) var(--get-md-padding-left, var(--get-lg-padding-left));
     --get-md-margin-top: var(
     	--md-margin-top,
     	var(--get-lg-margin-top)
@@ -105,7 +169,23 @@
 }
 @media (max-width: 576px) {
   .row {
-    content: "current prefix : sm ";
+    --get-sm-padding-top: var(
+    	--sm-padding-top,
+    	var(--get-md-padding-top)
+    );
+    --get-sm-padding-right: var(
+    	--sm-padding-right,
+    	var(--get-md-padding-right)
+    );
+    --get-sm-padding-bottom: var(
+    	--sm-padding-bottom,
+    	var(--get-md-padding-bottom)
+    );
+    --get-sm-padding-left: var(
+    	--sm-padding-left,
+    	var(--get-md-padding-left)
+    );
+    padding: var(--get-sm-padding-top, var(--get-md-padding-top)) var(--get-sm-padding-right, var(--get-md-padding-right)) var(--get-sm-padding-bottom, var(--get-md-padding-bottom)) var(--get-sm-padding-left, var(--get-md-padding-left));
     --get-sm-margin-top: var(
     	--sm-margin-top,
     	var(--get-md-margin-top)
@@ -127,7 +207,23 @@
 }
 @media (max-width: 480px) {
   .row {
-    content: "current prefix : xs ";
+    --get-xs-padding-top: var(
+    	--xs-padding-top,
+    	var(--get-sm-padding-top)
+    );
+    --get-xs-padding-right: var(
+    	--xs-padding-right,
+    	var(--get-sm-padding-right)
+    );
+    --get-xs-padding-bottom: var(
+    	--xs-padding-bottom,
+    	var(--get-sm-padding-bottom)
+    );
+    --get-xs-padding-left: var(
+    	--xs-padding-left,
+    	var(--get-sm-padding-left)
+    );
+    padding: var(--get-xs-padding-top, var(--get-sm-padding-top)) var(--get-xs-padding-right, var(--get-sm-padding-right)) var(--get-xs-padding-bottom, var(--get-sm-padding-bottom)) var(--get-xs-padding-left, var(--get-sm-padding-left));
     --get-xs-margin-top: var(
     	--xs-margin-top,
     	var(--get-sm-margin-top)
