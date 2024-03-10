@@ -4,11 +4,16 @@
 .row {
   display: flex;
   flex-wrap: wrap;
+  --get-padding-top: var(--padding-top, 0);
+  --get-padding-right: var(--padding-right, 0);
+  --get-padding-bottom: var(--padding-bottom, 0);
+  --get-padding-left: var(--padding-left, 0);
+  padding: var(--get-padding-top, 0) var(--get-padding-right, 0) var(--get-padding-bottom, 0) var(--get-padding-left, 0);
   --get-margin-top: var(--margin-top, 0);
   --get-margin-right: var(--margin-right, 0);
   --get-margin-bottom: var(--margin-bottom, 0);
   --get-margin-left: var(--margin-left, 0);
-  margin: var(--get-margin-top, 0 var(--get-margin-right, 0) var(--get-margin-bottom, 0)) var(--get-margin-left, 0);
+  margin: var(--get-margin-top, 0) var(--get-margin-right, 0) var(--get-margin-bottom, 0) var(--get-margin-left, 0);
 }
 @media (max-width: 1400px) {
   .row {

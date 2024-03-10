@@ -64,20 +64,26 @@ $breakpoints: (
 	display: flex;
 	flex-wrap: wrap;
 
-	--get-margin-top: var(--margin-top, 0);
-	--get-margin-right: var(--margin-right, 0);
-	--get-margin-bottom: var(--margin-bottom, 0);
-	--get-margin-left: var(--margin-left, 0);
+	$all-directions: (top, right, bottom, left);
+	$all-properties: ("padding", "margin");
 
-	margin: var(
-			--get-margin-top,
-			0 var(--get-margin-right, 0) var(--get-margin-bottom, 0)
-		)
-		var(--get-margin-left, 0);
+	@each $property in $all-properties {
+		$values: ();
+
+		@each $direction in $all-directions {
+			--get-#{$property}-#{$direction}: var(--#{$property}-#{$direction}, 0);
+
+			$value: var(--get-#{$property}-#{$direction}, 0);
+			$values: append($values, $value, space);
+		}
+
+		#{$property}: $values;
+	}
 
 	@each $prefix, $breakpoint in $breakpoints {
 		@include respondTo($prefix) {
 			content: "current prefix : #{$prefix} ";
+
 			$previousPrefix: findPreviousBreakepoint($prefix);
 
 			--get-#{$prefix}-margin-top: var(
