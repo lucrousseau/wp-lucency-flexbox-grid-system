@@ -1,136 +1,133 @@
 @use "sass:math";
 
-@import "../styles/variables";
-@import "../styles/mixins";
-@import "../styles/commons";
+$columns: 12;
 
-@mixin colWidth($prefix: null, $size) {
+$xxl: 1400px;
+$xl: 1200px;
+$lg: 992px;
+$md: 768px;
+$sm: 576px;
+$xs: 480px;
+
+$breakpoints: (
+	xxl: $xxl,
+	xl: $xl,
+	lg: $lg,
+	md: $md,
+	sm: $sm,
+	xs: $xs,
+);
+
+@mixin respondTo($breakpoint) {
+	@if map-has-key($breakpoints, $breakpoint) {
+		@media (max-width: map-get($breakpoints, $breakpoint)) {
+			@content;
+		}
+	} @else {
+		@warn "Unknown breakpoint: #{$breakpoint}.";
+	}
+}
+
+@function findPreviousBreakepoint($prefix, $return: "prefix") {
+	$previousPrefix: null;
+	$previousBreakpoint: null;
+
+	@each $currentPrefix, $currentBreakpoint in $breakpoints {
+		@if $currentPrefix == $prefix and $previousPrefix != null {
+			@if $return == "prefix" {
+				@return getPrefix($previousPrefix);
+			} @else {
+				@return $previousBreakpoint;
+			}
+		}
+
+		$previousPrefix: $currentPrefix;
+		$previousBreakpoint: $currentBreakpoint;
+	}
+
+	@return null;
+}
+@function getPrefix($prefix: "") {
+	@return if($prefix == "", $prefix, "#{$prefix}-");
+}
+
+@mixin colwidth($size, $prefix: "") {
 	$prefix: getPrefix($prefix);
 
-	&--#{$prefix}#{$size} {
-		flex: 0 0
-			calc(
-				((100% / #{$columns}) * #{$size}) -
-					(var(--gap) * #{1 - math.div(1, $columns) * $size})
-			);
+	&.col--#{$prefix}#{$size} {
+		flex: 0 0 (math.div(100%, $columns) * $size);
+		max-width: (math.div(100%, $columns) * $size);
 	}
 }
 
 .row {
-	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
-	gap: var(--gap);
-	flex-direction: row;
 
-	// Generate responsive classes for columns
+	--get-margin-top: var(--margin-top, 0);
+	--get-margin-right: var(--margin-right, 0);
+	--get-margin-bottom: var(--margin-bottom, 0);
+	--get-margin-left: var(--margin-left, 0);
+
+	margin: var(
+			--get-margin-top,
+			0 var(--get-margin-right, 0) var(--get-margin-bottom, 0)
+		)
+		var(--get-margin-left, 0);
+
 	@each $prefix, $breakpoint in $breakpoints {
-		$prefix: getPrefix($prefix);
+		@include respondTo($prefix) {
+			content: "current prefix : #{$prefix} ";
+			$previousPrefix: findPreviousBreakepoint($prefix);
 
-		@if $prefix == "" {
-			&--nowrap {
-				flex-wrap: nowrap;
-			}
-			&--column {
-				flex-direction: column;
-			}
-			&--inline {
-				display: inline-flex;
-			}
-			&--reverse {
-				flex-direction: row-reverse;
-			}
-		} @else {
-			@media screen and (max-width: $breakpoint) {
-				&--#{$prefix}nowrap {
-					flex-wrap: nowrap;
-				}
-				&--#{$prefix}column {
-					flex-direction: column;
-				}
-				&--#{$prefix}inline {
-					display: inline-flex;
-				}
-				&--#{$prefix}reverse {
-					flex-direction: row-reverse;
-				}
-			}
+			--get-#{$prefix}-margin-top: var(
+				--#{$prefix}-margin-top,
+				var(--get-#{$previousPrefix}margin-top)
+			);
+			--get-#{$prefix}-margin-right: var(
+				--#{$prefix}-margin-right,
+				var(--get-#{$previousPrefix}margin-right)
+			);
+			--get-#{$prefix}-margin-bottom: var(
+				--#{$prefix}-margin-bottom,
+				var(--get-#{$previousPrefix}margin-bottom)
+			);
+			--get-#{$prefix}-margin-left: var(
+				--#{$prefix}-margin-left,
+				var(--get-#{$previousPrefix}margin-left)
+			);
+
+			margin: var(
+					--get-#{$prefix}-margin-top,
+					var(--get-#{$previousPrefix}margin-top)
+				)
+				var(
+					--get-#{$prefix}-margin-right,
+					var(--get-#{$previousPrefix}margin-right)
+				)
+				var(
+					--get-#{$prefix}-margin-bottom,
+					var(--get-#{$previousPrefix}margin-bottom)
+				)
+				var(
+					--get-#{$prefix}-margin-left,
+					var(--get-#{$previousPrefix}margin-left)
+				);
 		}
 	}
 
 	> .col {
 		flex: 1;
-		display: flex;
-		box-sizing: border-box;
-		flex-direction: column;
+		position: relative;
 
-		background-color: aqua;
-
-		@each $prefix, $breakpoint in $breakpoints {
-			$prefix: getPrefix($prefix);
-
-			@if $prefix == "" {
-				// Vertical alignment for Flexbox
-				&--top {
-					align-self: flex-start;
-				}
-				&--middle {
-					align-self: center;
-				}
-				&--bottom {
-					align-self: flex-end;
-				}
-
-				// Pull-right and pull-left for Flexbox
-				&--pull-right,
-				&--pull-left {
-					flex: none;
-				}
-				&--pull-right {
-					margin-left: auto;
-				}
-				&--pull-left {
-					margin-right: auto;
-				}
-			} @else {
-				@media screen and (max-width: $breakpoint) {
-					// Vertical alignment for Flexbox
-					&--#{$prefix}top {
-						align-self: flex-start;
-					}
-					&--#{$prefix}middle {
-						align-self: center;
-					}
-					&--#{$prefix}bottom {
-						align-self: flex-end;
-					}
-
-					// Pull-right and pull-left for Flexbox
-					&--#{$prefix}pull-right,
-					&--#{$prefix}pull-left {
-						flex: none;
-					}
-					&--#{$prefix}pull-right {
-						margin-left: auto;
-					}
-					&--#{$prefix}pull-left {
-						margin-right: auto;
-					}
-				}
-			}
+		@for $i from 1 through $columns {
+			@include colwidth($i);
 		}
 
-		// Generate responsive classes for columns
 		@each $prefix, $breakpoint in $breakpoints {
-			@if $prefix == "full" {
-				@for $size from 1 through $columns {
-					@include colWidth($prefix, $size);
-				}
-			} @else {
-				@media screen and (max-width: $breakpoint) {
-					@for $size from 1 through $columns {
-						@include colWidth($prefix, $size);
-					}
+			@for $i from 1 through $columns {
+				@include respondTo($prefix) {
+					@include colwidth($i, $prefix);
 				}
 			}
 		}
