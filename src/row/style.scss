@@ -15,6 +15,7 @@ $xs: 480px;
 }
 
 $breakpoints: (
+	full: 999999,
 	xxl: $xxl,
 	xl: $xl,
 	lg: $lg,
@@ -25,8 +26,12 @@ $breakpoints: (
 
 @mixin respondTo($breakpoint) {
 	@if map-has-key($breakpoints, $breakpoint) {
-		@media (max-width: map-get($breakpoints, $breakpoint)) {
+		@if $breakpoint == "full" {
 			@content;
+		} @else {
+			@media (max-width: map-get($breakpoints, $breakpoint)) {
+				@content;
+			}
 		}
 	} @else {
 		@warn "Unknown breakpoint: #{$breakpoint}.";
@@ -36,6 +41,10 @@ $breakpoints: (
 @function findPreviousBreakepoint($prefix, $return: "prefix") {
 	$previousPrefix: null;
 	$previousBreakpoint: null;
+
+	@if $prefix == "full" {
+		@return null;
+	}
 
 	@each $currentPrefix, $currentBreakpoint in $breakpoints {
 		@if $currentPrefix == $prefix and $previousPrefix != null {
@@ -53,7 +62,7 @@ $breakpoints: (
 	@return null;
 }
 @function getPrefix($prefix: "") {
-	@return if($prefix == "", $prefix, "#{$prefix}-");
+	@return if($prefix == "" or $prefix == "full", "", "#{$prefix}-");
 }
 
 @mixin colwidth($size, $prefix: "") {
@@ -89,19 +98,6 @@ $breakpoints: (
 			left,
 		),
 	);
-
-	@each $property, $directions in $marginPadding {
-		$values: ();
-
-		@each $direction in $directions {
-			--get-#{$property}-#{$direction}: var(--#{$property}-#{$direction}, 0);
-
-			$value: var(--get-#{$property}-#{$direction}, 0);
-			$values: append($values, $value, space);
-		}
-
-		#{$property}: $values;
-	}
 
 	$flexProperties: (
 		"flex": (
@@ -169,12 +165,13 @@ $breakpoints: (
 
 	@each $prefix, $breakpoint in $breakpoints {
 		@include respondTo($prefix) {
+			$prefix: getPrefix($prefix);
 			@each $key, $value in $flexProperties {
 				$prop: map-get($value, prop);
 				$values: map-get($value, values);
 
 				@each $valueKey, $actualValue in $values {
-					&--#{$prefix}-#{$key}-#{$valueKey} {
+					&--#{$prefix}#{$key}-#{$valueKey} {
 						#{$prop}: $actualValue;
 					}
 				}
@@ -185,21 +182,27 @@ $breakpoints: (
 	@each $prefix, $breakpoint in $breakpoints {
 		@include respondTo($prefix) {
 			$previousPrefix: findPreviousBreakepoint($prefix);
+			$prefix: getPrefix($prefix);
 
 			@each $property, $directions in $marginPadding {
 				$values: ();
 
 				@each $direction in $directions {
-					--get-#{$prefix}-#{$property}-#{$direction}: var(
-						--#{$prefix}-#{$property}-#{$direction},
+					$previousBreakpoint: if(
+						$prefix == "",
+						0,
 						var(--get-#{$previousPrefix}#{$property}-#{$direction})
+					);
+
+					--get-#{$prefix}#{$property}-#{$direction}: var(
+						--#{$prefix}#{$property}-#{$direction},
+						#{$previousBreakpoint}
 					);
 
 					$value: var(
-						--get-#{$prefix}-#{$property}-#{$direction},
-						var(--get-#{$previousPrefix}#{$property}-#{$direction})
+						--get-#{$prefix}#{$property}-#{$direction},
+						#{$previousBreakpoint}
 					);
-
 					$values: append($values, $value, space);
 				}
 
