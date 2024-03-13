@@ -9,6 +9,11 @@ $md: 768px;
 $sm: 576px;
 $xs: 480px;
 
+:root {
+	--gap: 1em;
+	--columns: #{$columns};
+}
+
 $breakpoints: (
 	xxl: $xxl,
 	xl: $xl,
@@ -55,40 +60,136 @@ $breakpoints: (
 	$prefix: getPrefix($prefix);
 
 	&.col--#{$prefix}#{$size} {
-		flex: 0 0 (math.div(100%, $columns) * $size);
-		max-width: (math.div(100%, $columns) * $size);
+		$calc: calc(
+			((100% / #{$columns}) * #{$size}) -
+				(var(--gap) * #{1 - math.div(1, $columns) * $size})
+		);
+
+		flex: 0 0 $calc;
+		max-width: $calc;
 	}
 }
 
 .row {
 	display: flex;
 	flex-wrap: wrap;
+	gap: var(--gap);
 
-	$all-directions: (top, right, bottom, left);
-	$all-properties: ("padding", "margin");
+	$marginPadding: (
+		"margin": (
+			top,
+			right,
+			bottom,
+			left,
+		),
+		"padding": (
+			top,
+			right,
+			bottom,
+			left,
+		),
+	);
 
-	@each $property in $all-properties {
+	@each $property, $directions in $marginPadding {
 		$values: ();
 
-		@each $direction in $all-directions {
+		@each $direction in $directions {
 			--get-#{$property}-#{$direction}: var(--#{$property}-#{$direction}, 0);
 
 			$value: var(--get-#{$property}-#{$direction}, 0);
-
 			$values: append($values, $value, space);
 		}
 
 		#{$property}: $values;
 	}
 
+	$flexProperties: (
+		"flex": (
+			"prop": "display",
+			"values": (
+				("", "flex"),
+				("inline", "inline-flex"),
+			),
+		),
+		"direction": (
+			"prop": "flex-direction",
+			"values": (
+				("row", "row"),
+				("row-reverse", "row-reverse"),
+				("column", "column"),
+				("column-reverse", "column-reverse"),
+			),
+		),
+		"flex-wrap": (
+			"prop": "flex-wrap",
+			"values": (
+				("", "wrap"),
+				("wrap-reverse", "wrap-reverse"),
+				("nowrap", "nowrap"),
+			),
+		),
+		"justify": (
+			"prop": "justify-content",
+			"values": (
+				("normal", "normal"),
+				("start", "flex-start"),
+				("end", "flex-end"),
+				("center", "center"),
+				("between", "space-between"),
+				("around", "space-around"),
+				("evenly", "space-evenly"),
+				("stretch", "stretch"),
+			),
+		),
+		"items": (
+			"prop": "align-items",
+			"values": (
+				("start", "flex-start"),
+				("end", "flex-end"),
+				("center", "center"),
+				("baseline", "baseline"),
+				("stretch", "stretch"),
+			),
+		),
+		"content": (
+			"prop": "align-content",
+			"values": (
+				("normal" "normal"),
+				("center", "center"),
+				("flex-start", "flex-start"),
+				("flex-end", "flex-end"),
+				("space-between", "space-between"),
+				("space-around", "space-around"),
+				("space-evenly", "space-evenly"),
+				("baseline", "baseline"),
+				("stretch", "stretch"),
+			),
+		),
+	);
+
+	@each $prefix, $breakpoint in $breakpoints {
+		@include respondTo($prefix) {
+			@each $key, $value in $flexProperties {
+				$prop: map-get($value, prop);
+				$values: map-get($value, values);
+
+				@each $valueKey, $actualValue in $values {
+					&--#{$prefix}-#{$key}-#{$valueKey} {
+						#{$prop}: $actualValue;
+					}
+				}
+			}
+		}
+	}
+
 	@each $prefix, $breakpoint in $breakpoints {
 		@include respondTo($prefix) {
 			$previousPrefix: findPreviousBreakepoint($prefix);
 
-			@each $property in $all-properties {
+			@each $property, $directions in $marginPadding {
 				$values: ();
 
-				@each $direction in $all-directions {
+				@each $direction in $directions {
 					--get-#{$prefix}-#{$property}-#{$direction}: var(
 						--#{$prefix}-#{$property}-#{$direction},
 						var(--get-#{$previousPrefix}#{$property}-#{$direction})
@@ -110,6 +211,10 @@ $breakpoints: (
 	> .col {
 		flex: 1;
 		position: relative;
+
+		/*
+		align-self: auto | flex-start | flex-end | center | baseline | stretch
+		*/
 
 		@for $i from 1 through $columns {
 			@include colwidth($i);
