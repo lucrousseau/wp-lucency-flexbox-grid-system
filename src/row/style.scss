@@ -93,7 +93,7 @@ $breakpoints: (
 						$valueKey: "-#{$valueKey}";
 					}
 
-					&--#{$prefix}#{$key}#{$valueKey} {
+					.#{$prefix}#{$key}#{$valueKey} {
 						#{$prop}: $actualValue;
 					}
 				}
@@ -141,72 +141,6 @@ $breakpoints: (
 	flex-wrap: wrap;
 	gap: var(--gap);
 
-	@include addClasses(
-		(
-			"flex": (
-				"prop": "display",
-				"values": (
-					("", "flex"),
-					("inline", "inline-flex"),
-				),
-			),
-			"direction": (
-				"prop": "flex-direction",
-				"values": (
-					("row", "row"),
-					("row-reverse", "row-reverse"),
-					("column", "column"),
-					("column-reverse", "column-reverse"),
-				),
-			),
-			"flex-wrap": (
-				"prop": "flex-wrap",
-				"values": (
-					("", "wrap"),
-					("wrap-reverse", "wrap-reverse"),
-					("nowrap", "nowrap"),
-				),
-			),
-			"justify": (
-				"prop": "justify-content",
-				"values": (
-					("normal", "normal"),
-					("start", "flex-start"),
-					("end", "flex-end"),
-					("center", "center"),
-					("between", "space-between"),
-					("around", "space-around"),
-					("evenly", "space-evenly"),
-					("stretch", "stretch"),
-				),
-			),
-			"items": (
-				"prop": "align-items",
-				"values": (
-					("start", "flex-start"),
-					("end", "flex-end"),
-					("center", "center"),
-					("baseline", "baseline"),
-					("stretch", "stretch"),
-				),
-			),
-			"content": (
-				"prop": "align-content",
-				"values": (
-					("normal" "normal"),
-					("center", "center"),
-					("flex-start", "flex-start"),
-					("flex-end", "flex-end"),
-					("space-between", "space-between"),
-					("space-around", "space-around"),
-					("space-evenly", "space-evenly"),
-					("baseline", "baseline"),
-					("stretch", "stretch"),
-				),
-			),
-		)
-	);
-
 	@include directions(
 		(
 			"margin": (
@@ -223,32 +157,116 @@ $breakpoints: (
 			),
 		)
 	);
+}
 
-	> .col {
-		flex: 1;
-		position: relative;
+@include addClasses(
+	(
+		"flex": (
+			"prop": "display",
+			"values": (
+				("", "flex"),
+				("inline", "inline-flex"),
+			),
+		),
+		"direction": (
+			"prop": "flex-direction",
+			"values": (
+				("row", "row"),
+				("row-reverse", "row-reverse"),
+				("column", "column"),
+				("column-reverse", "column-reverse"),
+			),
+		),
+		"flex-wrap": (
+			"prop": "flex-wrap",
+			"values": (
+				("", "wrap"),
+				("wrap-reverse", "wrap-reverse"),
+				("nowrap", "nowrap"),
+			),
+		),
+		"justify": (
+			"prop": "justify-content",
+			"values": (
+				("normal", "normal"),
+				("start", "flex-start"),
+				("end", "flex-end"),
+				("center", "center"),
+				("between", "space-between"),
+				("around", "space-around"),
+				("evenly", "space-evenly"),
+				("stretch", "stretch"),
+			),
+		),
+		"items": (
+			"prop": "align-items",
+			"values": (
+				("start", "flex-start"),
+				("end", "flex-end"),
+				("center", "center"),
+				("baseline", "baseline"),
+				("stretch", "stretch"),
+			),
+		),
+		"content": (
+			"prop": "align-content",
+			"values": (
+				("normal" "normal"),
+				("center", "center"),
+				("flex-start", "flex-start"),
+				("flex-end", "flex-end"),
+				("space-between", "space-between"),
+				("space-around", "space-around"),
+				("space-evenly", "space-evenly"),
+				("baseline", "baseline"),
+				("stretch", "stretch"),
+			),
+		),
+	)
+);
 
-		@include addClasses(
-			(
-				"self": (
-					"prop": "align-self",
-					"values": (
-						("auto", "auto"),
-						("start", "flex-start"),
-						("end", "flex-end"),
-						("center", "center"),
-						("stretch", "stretch"),
-						("baseline", "baseline"),
-					),
-				),
-			)
-		);
+.col {
+	flex: 1;
+	position: relative;
 
-		@each $prefix, $breakpoint in $breakpoints {
-			@for $i from 1 through $columns {
-				@include respondTo($prefix) {
-					@include colwidth($i, $prefix);
-				}
+	@each $prefix, $breakpoint in $breakpoints {
+		@for $i from 1 through $columns {
+			@include respondTo($prefix) {
+				@include colwidth($i, $prefix);
+			}
+		}
+	}
+}
+
+@include addClasses(
+	(
+		"self": (
+			"prop": "align-self",
+			"values": (
+				("auto", "auto"),
+				("start", "flex-start"),
+				("end", "flex-end"),
+				("center", "center"),
+				("stretch", "stretch"),
+				("baseline", "baseline"),
+			),
+		),
+	)
+);
+
+.has-text-align {
+	@each $prefix, $breakpoint in $breakpoints {
+		@include respondTo($prefix) {
+			$prefix: getPrefix($prefix);
+
+			&-#{$prefix}left {
+				text-align: left;
+			}
+			&-#{$prefix}center {
+				text-align: center;
+			}
+			&-#{$prefix}right {
+				text-align: right;
 			}
 		}
 	}
