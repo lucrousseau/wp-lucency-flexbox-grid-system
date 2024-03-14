@@ -15,7 +15,7 @@ $xs: 480px;
 }
 
 $breakpoints: (
-	full: 999999,
+	full: null,
 	xxl: $xxl,
 	xl: $xl,
 	lg: $lg,
@@ -61,6 +61,7 @@ $breakpoints: (
 
 	@return null;
 }
+
 @function getPrefix($prefix: "") {
 	@return if($prefix == "" or $prefix == "full", "", "#{$prefix}-");
 }
