@@ -9,11 +9,6 @@ $md: 768px;
 $sm: 576px;
 $xs: 480px;
 
-:root {
-	--gap: 1em;
-	--columns: #{$columns};
-}
-
 $breakpoints: (
 	full: null,
 	xxl: $xxl,
@@ -136,11 +131,27 @@ $breakpoints: (
 	}
 }
 
-.row {
-	display: flex;
-	flex-wrap: wrap;
-	gap: var(--gap);
+@mixin gap() {
+	@each $prefix, $breakpoint in $breakpoints {
+		@include respondTo($prefix) {
+			$previousPrefix: findPreviousBreakepoint($prefix);
+			$prefix: getPrefix($prefix);
 
+			$previousBreakpoint: if(
+				$prefix == "",
+				1rem,
+				var(--get-#{$previousPrefix}gap)
+			);
+
+			--get-#{$prefix}gap: var(--#{$prefix}gap, #{$previousBreakpoint});
+
+			$value: var(--get-#{$prefix}gap, #{$previousBreakpoint});
+			gap: $value;
+		}
+	}
+}
+
+.lucency {
 	@include directions(
 		(
 			"margin": (
@@ -159,16 +170,21 @@ $breakpoints: (
 	);
 }
 
+.lucency-flex,
+.lucency-inline-flex {
+	@include gap();
+}
+
 @include addClasses(
 	(
 		"lucency": (
 			"prop": "display",
 			"values": (
 				("flex", flex),
-				("inline", inline-flex),
+				("inline-flex", inline-flex),
 			),
 		),
-		"flex": (
+		"lucency-flex": (
 			"prop": "flex-direction",
 			"values": (
 				("row", row),
@@ -177,7 +193,7 @@ $breakpoints: (
 				("column-reverse", column-reverse),
 			),
 		),
-		"flex-wrap": (
+		"lucency-flex-wrap": (
 			"prop": "flex-wrap",
 			"values": (
 				("", wrap),
@@ -185,7 +201,7 @@ $breakpoints: (
 				("nowrap", nowrap),
 			),
 		),
-		"justify": (
+		"lucency-justify": (
 			"prop": "justify-content",
 			"values": (
 				("normal", normal),
@@ -198,7 +214,7 @@ $breakpoints: (
 				("stretch", stretch),
 			),
 		),
-		"items": (
+		"lucency-items": (
 			"prop": "align-items",
 			"values": (
 				("start", flex-start),
@@ -208,7 +224,7 @@ $breakpoints: (
 				("stretch", stretch),
 			),
 		),
-		"content": (
+		"lucency-content": (
 			"prop": "align-content",
 			"values": (
 				("normal" normal),
@@ -240,7 +256,7 @@ $breakpoints: (
 
 @include addClasses(
 	(
-		"self": (
+		"lucency-self": (
 			"prop": "align-self",
 			"values": (
 				("auto", auto),
