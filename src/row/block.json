@@ -8,7 +8,7 @@
 	"description": "Container for flexbox grid system",
 	"example": {},
 	"supports": {
-		"html": false
+		"html": true
 	},
 	"textdomain": "lucency",
 	"editorScript": "file:./index.js",
