@@ -1,25 +1,25 @@
 @use "sass:math";
 
-@mixin lucencySetMediaQuery($breakpoints, $breakpoint) {
-	@if map-has-key($breakpoints, $breakpoint) {
-		@if $breakpoint == "full" {
+@mixin lucencySetMediaQueryBreakpoints($breakpoints, $prefix) {
+	@if map-has-key($breakpoints, $prefix) {
+		@if $prefix == "full" {
 			@content;
 		} @else {
-			@media (max-width: map-get($breakpoints, $breakpoint)) {
+			@media (max-width: map-get($breakpoints, $prefix)) {
 				@content;
 			}
 		}
 	} @else {
-		@warn "Unknown breakpoint: #{$breakpoint}.";
+		@warn "Unknown breakpoint: #{$prefix}.";
 	}
 }
 
-@mixin lucencySetResponsive($breakpoints) {
-	@each $originalPrefix, $breakpointValue in $breakpoints {
-		$prefix: lucencyGetPrefix($originalPrefix);
+@mixin lucencySetResponsiveStyles($breakpoints) {
+	@each $currentPrefix, $breakAt in $breakpoints {
+		$prefix: lucencyGetPrefix($currentPrefix);
 
-		@include lucencySetMediaQuery($breakpoints, $originalPrefix) {
-			@content ($originalPrefix, $prefix);
+		@include lucencySetMediaQueryBreakpoints($breakpoints, $currentPrefix) {
+			@content ($currentPrefix, $prefix);
 		}
 	}
 }
@@ -28,7 +28,7 @@
 	@return if($prefix == "" or $prefix == "full", "", "--#{$prefix}");
 }
 
-@function lucencyGetPreviousPrefix($breakpoints, $prefix, $return: "prefix") {
+@function lucencyGetPreviousPrefix($breakpoints, $prefix) {
 	$previousPrefix: null;
 	$previousBreakpoint: null;
 
@@ -36,17 +36,12 @@
 		@return null;
 	}
 
-	@each $currentPrefix, $currentBreakpoint in $breakpoints {
+	@each $currentPrefix, $breakAt in $breakpoints {
 		@if $currentPrefix == $prefix and $previousPrefix != null {
-			@if $return == "prefix" {
-				@return lucencyGetPrefix($previousPrefix);
-			} @else {
-				@return $previousBreakpoint;
-			}
+			@return lucencyGetPrefix($previousPrefix);
 		}
 
 		$previousPrefix: $currentPrefix;
-		$previousBreakpoint: $currentBreakpoint;
 	}
 
 	@return null;
@@ -90,10 +85,10 @@
 @mixin lucencyAddMarginPadding(
 	$marginPadding,
 	$breakpoints,
-	$originalPrefix,
+	$currentPrefix,
 	$prefix
 ) {
-	$previousPrefix: lucencyGetPreviousPrefix($breakpoints, $originalPrefix);
+	$previousPrefix: lucencyGetPreviousPrefix($breakpoints, $currentPrefix);
 
 	@each $property, $directions in $marginPadding {
 		$values: ();
@@ -122,8 +117,8 @@
 	}
 }
 
-@mixin lucencySetGap($breakpoints, $originalPrefix, $prefix) {
-	$previousPrefix: lucencyGetPreviousPrefix($breakpoints, $originalPrefix);
+@mixin lucencySetGap($breakpoints, $currentPrefix, $prefix) {
+	$previousPrefix: lucencyGetPreviousPrefix($breakpoints, $currentPrefix);
 
 	$previousBreakpoint: if(
 		$prefix == "",
@@ -150,7 +145,8 @@
 	$slug: "lucency"
 ) {
 	.#{$slug} {
-		@include lucencySetResponsive($breakpoints) using ($originalPrefix, $prefix) {
+		@include lucencySetResponsiveStyles($breakpoints) using
+			($currentPrefix, $prefix) {
 			@include lucencyAddMarginPadding(
 				(
 					"margin": (
@@ -167,7 +163,7 @@
 					),
 				),
 				$breakpoints,
-				$originalPrefix,
+				$currentPrefix,
 				$prefix
 			);
 
@@ -241,15 +237,15 @@
 
 		&-flex,
 		&-inline-flex {
-			@include lucencySetResponsive($breakpoints) using
-				($originalPrefix, $prefix) {
-				@include lucencySetGap($breakpoints, $originalPrefix, $prefix);
+			@include lucencySetResponsiveStyles($breakpoints) using
+				($currentPrefix, $prefix) {
+				@include lucencySetGap($breakpoints, $currentPrefix, $prefix);
 			}
 		}
 
 		&-col {
-			@include lucencySetResponsive($breakpoints) using
-				($originalPrefix, $prefix) {
+			@include lucencySetResponsiveStyles($breakpoints) using
+				($currentPrefix, $prefix) {
 				@include lucencySetColsWidth($prefix, $columns, $slug);
 
 				@include lucencyAddCSSClasses(
@@ -271,8 +267,8 @@
 			}
 		}
 		&-align {
-			@include lucencySetResponsive($breakpoints) using
-				($originalPrefix, $prefix) {
+			@include lucencySetResponsiveStyles($breakpoints) using
+				($currentPrefix, $prefix) {
 				&-left#{$prefix} {
 					text-align: left;
 				}
