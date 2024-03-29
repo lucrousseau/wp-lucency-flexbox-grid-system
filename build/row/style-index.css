@@ -2,40 +2,40 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/row/style.scss ***!
   \*******************************************************************************************************************************************************************************************************************************************/
 .lucency {
-  --gmt: var(
+  --get-margin-top: var(
   	--margin-top,
   	0
   );
-  --gmr: var(
+  --get-margin-right: var(
   	--margin-right,
   	0
   );
-  --gmb: var(
+  --get-margin-bottom: var(
   	--margin-bottom,
   	0
   );
-  --gml: var(
+  --get-margin-left: var(
   	--margin-left,
   	0
   );
-  margin: var(--gmt, 0) var(--gmr, 0) var(--gmb, 0) var(--gml, 0);
-  --gpt: var(
+  margin: var(--get-margin-top, 0) var(--get-margin-right, 0) var(--get-margin-bottom, 0) var(--get-margin-left, 0);
+  --get-padding-top: var(
   	--padding-top,
   	0
   );
-  --gpr: var(
+  --get-padding-right: var(
   	--padding-right,
   	0
   );
-  --gpb: var(
+  --get-padding-bottom: var(
   	--padding-bottom,
   	0
   );
-  --gpl: var(
+  --get-padding-left: var(
   	--padding-left,
   	0
   );
-  padding: var(--gpt, 0) var(--gpr, 0) var(--gpb, 0) var(--gpl, 0);
+  padding: var(--get-padding-top, 0) var(--get-padding-right, 0) var(--get-padding-bottom, 0) var(--get-padding-left, 0);
 }
 .lucency.lucency-flex {
   display: flex;
@@ -132,40 +132,40 @@
 }
 @media (max-width: 1400px) {
   .lucency {
-    --gmt--xxl: var(
+    --get-margin-top--xxl: var(
     	--margin-top--xxl,
-    	var(--gmt)
+    	var(--get-margin-top)
     );
-    --gmr--xxl: var(
+    --get-margin-right--xxl: var(
     	--margin-right--xxl,
-    	var(--gmr)
+    	var(--get-margin-right)
     );
-    --gmb--xxl: var(
+    --get-margin-bottom--xxl: var(
     	--margin-bottom--xxl,
-    	var(--gmb)
+    	var(--get-margin-bottom)
     );
-    --gml--xxl: var(
+    --get-margin-left--xxl: var(
     	--margin-left--xxl,
-    	var(--gml)
+    	var(--get-margin-left)
     );
-    margin: var(--gmt--xxl, var(--gmt)) var(--gmr--xxl, var(--gmr)) var(--gmb--xxl, var(--gmb)) var(--gml--xxl, var(--gml));
-    --gpt--xxl: var(
+    margin: var(--get-margin-top--xxl, var(--get-margin-top)) var(--get-margin-right--xxl, var(--get-margin-right)) var(--get-margin-bottom--xxl, var(--get-margin-bottom)) var(--get-margin-left--xxl, var(--get-margin-left));
+    --get-padding-top--xxl: var(
     	--padding-top--xxl,
-    	var(--gpt)
+    	var(--get-padding-top)
     );
-    --gpr--xxl: var(
+    --get-padding-right--xxl: var(
     	--padding-right--xxl,
-    	var(--gpr)
+    	var(--get-padding-right)
     );
-    --gpb--xxl: var(
+    --get-padding-bottom--xxl: var(
     	--padding-bottom--xxl,
-    	var(--gpb)
+    	var(--get-padding-bottom)
     );
-    --gpl--xxl: var(
+    --get-padding-left--xxl: var(
     	--padding-left--xxl,
-    	var(--gpl)
+    	var(--get-padding-left)
     );
-    padding: var(--gpt--xxl, var(--gpt)) var(--gpr--xxl, var(--gpr)) var(--gpb--xxl, var(--gpb)) var(--gpl--xxl, var(--gpl));
+    padding: var(--get-padding-top--xxl, var(--get-padding-top)) var(--get-padding-right--xxl, var(--get-padding-right)) var(--get-padding-bottom--xxl, var(--get-padding-bottom)) var(--get-padding-left--xxl, var(--get-padding-left));
   }
   .lucency.lucency-flex--xxl {
     display: flex;
@@ -263,40 +263,40 @@
 }
 @media (max-width: 1200px) {
   .lucency {
-    --gmt--xl: var(
+    --get-margin-top--xl: var(
     	--margin-top--xl,
-    	var(--gmt--xxl)
+    	var(--get-margin-top--xxl)
     );
-    --gmr--xl: var(
+    --get-margin-right--xl: var(
     	--margin-right--xl,
-    	var(--gmr--xxl)
+    	var(--get-margin-right--xxl)
     );
-    --gmb--xl: var(
+    --get-margin-bottom--xl: var(
     	--margin-bottom--xl,
-    	var(--gmb--xxl)
+    	var(--get-margin-bottom--xxl)
     );
-    --gml--xl: var(
+    --get-margin-left--xl: var(
     	--margin-left--xl,
-    	var(--gml--xxl)
+    	var(--get-margin-left--xxl)
     );
-    margin: var(--gmt--xl, var(--gmt--xxl)) var(--gmr--xl, var(--gmr--xxl)) var(--gmb--xl, var(--gmb--xxl)) var(--gml--xl, var(--gml--xxl));
-    --gpt--xl: var(
+    margin: var(--get-margin-top--xl, var(--get-margin-top--xxl)) var(--get-margin-right--xl, var(--get-margin-right--xxl)) var(--get-margin-bottom--xl, var(--get-margin-bottom--xxl)) var(--get-margin-left--xl, var(--get-margin-left--xxl));
+    --get-padding-top--xl: var(
     	--padding-top--xl,
-    	var(--gpt--xxl)
+    	var(--get-padding-top--xxl)
     );
-    --gpr--xl: var(
+    --get-padding-right--xl: var(
     	--padding-right--xl,
-    	var(--gpr--xxl)
+    	var(--get-padding-right--xxl)
     );
-    --gpb--xl: var(
+    --get-padding-bottom--xl: var(
     	--padding-bottom--xl,
-    	var(--gpb--xxl)
+    	var(--get-padding-bottom--xxl)
     );
-    --gpl--xl: var(
+    --get-padding-left--xl: var(
     	--padding-left--xl,
-    	var(--gpl--xxl)
+    	var(--get-padding-left--xxl)
     );
-    padding: var(--gpt--xl, var(--gpt--xxl)) var(--gpr--xl, var(--gpr--xxl)) var(--gpb--xl, var(--gpb--xxl)) var(--gpl--xl, var(--gpl--xxl));
+    padding: var(--get-padding-top--xl, var(--get-padding-top--xxl)) var(--get-padding-right--xl, var(--get-padding-right--xxl)) var(--get-padding-bottom--xl, var(--get-padding-bottom--xxl)) var(--get-padding-left--xl, var(--get-padding-left--xxl));
   }
   .lucency.lucency-flex--xl {
     display: flex;
@@ -394,40 +394,40 @@
 }
 @media (max-width: 992px) {
   .lucency {
-    --gmt--lg: var(
+    --get-margin-top--lg: var(
     	--margin-top--lg,
-    	var(--gmt--xl)
+    	var(--get-margin-top--xl)
     );
-    --gmr--lg: var(
+    --get-margin-right--lg: var(
     	--margin-right--lg,
-    	var(--gmr--xl)
+    	var(--get-margin-right--xl)
     );
-    --gmb--lg: var(
+    --get-margin-bottom--lg: var(
     	--margin-bottom--lg,
-    	var(--gmb--xl)
+    	var(--get-margin-bottom--xl)
     );
-    --gml--lg: var(
+    --get-margin-left--lg: var(
     	--margin-left--lg,
-    	var(--gml--xl)
+    	var(--get-margin-left--xl)
     );
-    margin: var(--gmt--lg, var(--gmt--xl)) var(--gmr--lg, var(--gmr--xl)) var(--gmb--lg, var(--gmb--xl)) var(--gml--lg, var(--gml--xl));
-    --gpt--lg: var(
+    margin: var(--get-margin-top--lg, var(--get-margin-top--xl)) var(--get-margin-right--lg, var(--get-margin-right--xl)) var(--get-margin-bottom--lg, var(--get-margin-bottom--xl)) var(--get-margin-left--lg, var(--get-margin-left--xl));
+    --get-padding-top--lg: var(
     	--padding-top--lg,
-    	var(--gpt--xl)
+    	var(--get-padding-top--xl)
     );
-    --gpr--lg: var(
+    --get-padding-right--lg: var(
     	--padding-right--lg,
-    	var(--gpr--xl)
+    	var(--get-padding-right--xl)
     );
-    --gpb--lg: var(
+    --get-padding-bottom--lg: var(
     	--padding-bottom--lg,
-    	var(--gpb--xl)
+    	var(--get-padding-bottom--xl)
     );
-    --gpl--lg: var(
+    --get-padding-left--lg: var(
     	--padding-left--lg,
-    	var(--gpl--xl)
+    	var(--get-padding-left--xl)
     );
-    padding: var(--gpt--lg, var(--gpt--xl)) var(--gpr--lg, var(--gpr--xl)) var(--gpb--lg, var(--gpb--xl)) var(--gpl--lg, var(--gpl--xl));
+    padding: var(--get-padding-top--lg, var(--get-padding-top--xl)) var(--get-padding-right--lg, var(--get-padding-right--xl)) var(--get-padding-bottom--lg, var(--get-padding-bottom--xl)) var(--get-padding-left--lg, var(--get-padding-left--xl));
   }
   .lucency.lucency-flex--lg {
     display: flex;
@@ -525,40 +525,40 @@
 }
 @media (max-width: 768px) {
   .lucency {
-    --gmt--md: var(
+    --get-margin-top--md: var(
     	--margin-top--md,
-    	var(--gmt--lg)
+    	var(--get-margin-top--lg)
     );
-    --gmr--md: var(
+    --get-margin-right--md: var(
     	--margin-right--md,
-    	var(--gmr--lg)
+    	var(--get-margin-right--lg)
     );
-    --gmb--md: var(
+    --get-margin-bottom--md: var(
     	--margin-bottom--md,
-    	var(--gmb--lg)
+    	var(--get-margin-bottom--lg)
     );
-    --gml--md: var(
+    --get-margin-left--md: var(
     	--margin-left--md,
-    	var(--gml--lg)
+    	var(--get-margin-left--lg)
     );
-    margin: var(--gmt--md, var(--gmt--lg)) var(--gmr--md, var(--gmr--lg)) var(--gmb--md, var(--gmb--lg)) var(--gml--md, var(--gml--lg));
-    --gpt--md: var(
+    margin: var(--get-margin-top--md, var(--get-margin-top--lg)) var(--get-margin-right--md, var(--get-margin-right--lg)) var(--get-margin-bottom--md, var(--get-margin-bottom--lg)) var(--get-margin-left--md, var(--get-margin-left--lg));
+    --get-padding-top--md: var(
     	--padding-top--md,
-    	var(--gpt--lg)
+    	var(--get-padding-top--lg)
     );
-    --gpr--md: var(
+    --get-padding-right--md: var(
     	--padding-right--md,
-    	var(--gpr--lg)
+    	var(--get-padding-right--lg)
     );
-    --gpb--md: var(
+    --get-padding-bottom--md: var(
     	--padding-bottom--md,
-    	var(--gpb--lg)
+    	var(--get-padding-bottom--lg)
     );
-    --gpl--md: var(
+    --get-padding-left--md: var(
     	--padding-left--md,
-    	var(--gpl--lg)
+    	var(--get-padding-left--lg)
     );
-    padding: var(--gpt--md, var(--gpt--lg)) var(--gpr--md, var(--gpr--lg)) var(--gpb--md, var(--gpb--lg)) var(--gpl--md, var(--gpl--lg));
+    padding: var(--get-padding-top--md, var(--get-padding-top--lg)) var(--get-padding-right--md, var(--get-padding-right--lg)) var(--get-padding-bottom--md, var(--get-padding-bottom--lg)) var(--get-padding-left--md, var(--get-padding-left--lg));
   }
   .lucency.lucency-flex--md {
     display: flex;
@@ -656,40 +656,40 @@
 }
 @media (max-width: 576px) {
   .lucency {
-    --gmt--sm: var(
+    --get-margin-top--sm: var(
     	--margin-top--sm,
-    	var(--gmt--md)
+    	var(--get-margin-top--md)
     );
-    --gmr--sm: var(
+    --get-margin-right--sm: var(
     	--margin-right--sm,
-    	var(--gmr--md)
+    	var(--get-margin-right--md)
     );
-    --gmb--sm: var(
+    --get-margin-bottom--sm: var(
     	--margin-bottom--sm,
-    	var(--gmb--md)
+    	var(--get-margin-bottom--md)
     );
-    --gml--sm: var(
+    --get-margin-left--sm: var(
     	--margin-left--sm,
-    	var(--gml--md)
+    	var(--get-margin-left--md)
     );
-    margin: var(--gmt--sm, var(--gmt--md)) var(--gmr--sm, var(--gmr--md)) var(--gmb--sm, var(--gmb--md)) var(--gml--sm, var(--gml--md));
-    --gpt--sm: var(
+    margin: var(--get-margin-top--sm, var(--get-margin-top--md)) var(--get-margin-right--sm, var(--get-margin-right--md)) var(--get-margin-bottom--sm, var(--get-margin-bottom--md)) var(--get-margin-left--sm, var(--get-margin-left--md));
+    --get-padding-top--sm: var(
     	--padding-top--sm,
-    	var(--gpt--md)
+    	var(--get-padding-top--md)
     );
-    --gpr--sm: var(
+    --get-padding-right--sm: var(
     	--padding-right--sm,
-    	var(--gpr--md)
+    	var(--get-padding-right--md)
     );
-    --gpb--sm: var(
+    --get-padding-bottom--sm: var(
     	--padding-bottom--sm,
-    	var(--gpb--md)
+    	var(--get-padding-bottom--md)
     );
-    --gpl--sm: var(
+    --get-padding-left--sm: var(
     	--padding-left--sm,
-    	var(--gpl--md)
+    	var(--get-padding-left--md)
     );
-    padding: var(--gpt--sm, var(--gpt--md)) var(--gpr--sm, var(--gpr--md)) var(--gpb--sm, var(--gpb--md)) var(--gpl--sm, var(--gpl--md));
+    padding: var(--get-padding-top--sm, var(--get-padding-top--md)) var(--get-padding-right--sm, var(--get-padding-right--md)) var(--get-padding-bottom--sm, var(--get-padding-bottom--md)) var(--get-padding-left--sm, var(--get-padding-left--md));
   }
   .lucency.lucency-flex--sm {
     display: flex;
@@ -787,40 +787,40 @@
 }
 @media (max-width: 480px) {
   .lucency {
-    --gmt--xs: var(
+    --get-margin-top--xs: var(
     	--margin-top--xs,
-    	var(--gmt--sm)
+    	var(--get-margin-top--sm)
     );
-    --gmr--xs: var(
+    --get-margin-right--xs: var(
     	--margin-right--xs,
-    	var(--gmr--sm)
+    	var(--get-margin-right--sm)
     );
-    --gmb--xs: var(
+    --get-margin-bottom--xs: var(
     	--margin-bottom--xs,
-    	var(--gmb--sm)
+    	var(--get-margin-bottom--sm)
     );
-    --gml--xs: var(
+    --get-margin-left--xs: var(
     	--margin-left--xs,
-    	var(--gml--sm)
+    	var(--get-margin-left--sm)
     );
-    margin: var(--gmt--xs, var(--gmt--sm)) var(--gmr--xs, var(--gmr--sm)) var(--gmb--xs, var(--gmb--sm)) var(--gml--xs, var(--gml--sm));
-    --gpt--xs: var(
+    margin: var(--get-margin-top--xs, var(--get-margin-top--sm)) var(--get-margin-right--xs, var(--get-margin-right--sm)) var(--get-margin-bottom--xs, var(--get-margin-bottom--sm)) var(--get-margin-left--xs, var(--get-margin-left--sm));
+    --get-padding-top--xs: var(
     	--padding-top--xs,
-    	var(--gpt--sm)
+    	var(--get-padding-top--sm)
     );
-    --gpr--xs: var(
+    --get-padding-right--xs: var(
     	--padding-right--xs,
-    	var(--gpr--sm)
+    	var(--get-padding-right--sm)
     );
-    --gpb--xs: var(
+    --get-padding-bottom--xs: var(
     	--padding-bottom--xs,
-    	var(--gpb--sm)
+    	var(--get-padding-bottom--sm)
     );
-    --gpl--xs: var(
+    --get-padding-left--xs: var(
     	--padding-left--xs,
-    	var(--gpl--sm)
+    	var(--get-padding-left--sm)
     );
-    padding: var(--gpt--xs, var(--gpt--sm)) var(--gpr--xs, var(--gpr--sm)) var(--gpb--xs, var(--gpb--sm)) var(--gpl--xs, var(--gpl--sm));
+    padding: var(--get-padding-top--xs, var(--get-padding-top--sm)) var(--get-padding-right--xs, var(--get-padding-right--sm)) var(--get-padding-bottom--xs, var(--get-padding-bottom--sm)) var(--get-padding-left--xs, var(--get-padding-left--sm));
   }
   .lucency.lucency-flex--xs {
     display: flex;
@@ -917,95 +917,95 @@
   }
 }
 .lucency-flex, .lucency-inline-flex {
-  --gg: var(--gap, 1rem);
-  gap: var(--gg, 1rem);
+  --get-gap: var(--gap, 1rem);
+  gap: var(--get-gap, 1rem);
 }
 @media (max-width: 1400px) {
   .lucency-flex, .lucency-inline-flex {
-    --gg--xxl: var(--gap--xxl, var(--gg));
-    gap: var(--gg--xxl, var(--gg));
+    --get-gap--xxl: var(--gap--xxl, var(--get-gap));
+    gap: var(--get-gap--xxl, var(--get-gap));
   }
 }
 @media (max-width: 1200px) {
   .lucency-flex, .lucency-inline-flex {
-    --gg--xl: var(--gap--xl, var(--gg--xxl));
-    gap: var(--gg--xl, var(--gg--xxl));
+    --get-gap--xl: var(--gap--xl, var(--get-gap--xxl));
+    gap: var(--get-gap--xl, var(--get-gap--xxl));
   }
 }
 @media (max-width: 992px) {
   .lucency-flex, .lucency-inline-flex {
-    --gg--lg: var(--gap--lg, var(--gg--xl));
-    gap: var(--gg--lg, var(--gg--xl));
+    --get-gap--lg: var(--gap--lg, var(--get-gap--xl));
+    gap: var(--get-gap--lg, var(--get-gap--xl));
   }
 }
 @media (max-width: 768px) {
   .lucency-flex, .lucency-inline-flex {
-    --gg--md: var(--gap--md, var(--gg--lg));
-    gap: var(--gg--md, var(--gg--lg));
+    --get-gap--md: var(--gap--md, var(--get-gap--lg));
+    gap: var(--get-gap--md, var(--get-gap--lg));
   }
 }
 @media (max-width: 576px) {
   .lucency-flex, .lucency-inline-flex {
-    --gg--sm: var(--gap--sm, var(--gg--md));
-    gap: var(--gg--sm, var(--gg--md));
+    --get-gap--sm: var(--gap--sm, var(--get-gap--md));
+    gap: var(--get-gap--sm, var(--get-gap--md));
   }
 }
 @media (max-width: 480px) {
   .lucency-flex, .lucency-inline-flex {
-    --gg--xs: var(--gap--xs, var(--gg--sm));
-    gap: var(--gg--xs, var(--gg--sm));
+    --get-gap--xs: var(--gap--xs, var(--get-gap--sm));
+    gap: var(--get-gap--xs, var(--get-gap--sm));
   }
 }
 .lucency-col {
   flex: 1;
 }
 .lucency-col.lucency-col-1 {
-  flex: 0 0 calc(100% / 12 * 1 - var(--gg) * 0.9166666667);
-  max-width: calc(100% / 12 * 1 - var(--gg) * 0.9166666667);
+  flex: 0 0 calc(100% / 12 * 1 - var(--get-gap) * 0.9166666667);
+  max-width: calc(100% / 12 * 1 - var(--get-gap) * 0.9166666667);
 }
 .lucency-col.lucency-col-2 {
-  flex: 0 0 calc(100% / 12 * 2 - var(--gg) * 0.8333333333);
-  max-width: calc(100% / 12 * 2 - var(--gg) * 0.8333333333);
+  flex: 0 0 calc(100% / 12 * 2 - var(--get-gap) * 0.8333333333);
+  max-width: calc(100% / 12 * 2 - var(--get-gap) * 0.8333333333);
 }
 .lucency-col.lucency-col-3 {
-  flex: 0 0 calc(100% / 12 * 3 - var(--gg) * 0.75);
-  max-width: calc(100% / 12 * 3 - var(--gg) * 0.75);
+  flex: 0 0 calc(100% / 12 * 3 - var(--get-gap) * 0.75);
+  max-width: calc(100% / 12 * 3 - var(--get-gap) * 0.75);
 }
 .lucency-col.lucency-col-4 {
-  flex: 0 0 calc(100% / 12 * 4 - var(--gg) * 0.6666666667);
-  max-width: calc(100% / 12 * 4 - var(--gg) * 0.6666666667);
+  flex: 0 0 calc(100% / 12 * 4 - var(--get-gap) * 0.6666666667);
+  max-width: calc(100% / 12 * 4 - var(--get-gap) * 0.6666666667);
 }
 .lucency-col.lucency-col-5 {
-  flex: 0 0 calc(100% / 12 * 5 - var(--gg) * 0.5833333333);
-  max-width: calc(100% / 12 * 5 - var(--gg) * 0.5833333333);
+  flex: 0 0 calc(100% / 12 * 5 - var(--get-gap) * 0.5833333333);
+  max-width: calc(100% / 12 * 5 - var(--get-gap) * 0.5833333333);
 }
 .lucency-col.lucency-col-6 {
-  flex: 0 0 calc(100% / 12 * 6 - var(--gg) * 0.5);
-  max-width: calc(100% / 12 * 6 - var(--gg) * 0.5);
+  flex: 0 0 calc(100% / 12 * 6 - var(--get-gap) * 0.5);
+  max-width: calc(100% / 12 * 6 - var(--get-gap) * 0.5);
 }
 .lucency-col.lucency-col-7 {
-  flex: 0 0 calc(100% / 12 * 7 - var(--gg) * 0.4166666667);
-  max-width: calc(100% / 12 * 7 - var(--gg) * 0.4166666667);
+  flex: 0 0 calc(100% / 12 * 7 - var(--get-gap) * 0.4166666667);
+  max-width: calc(100% / 12 * 7 - var(--get-gap) * 0.4166666667);
 }
 .lucency-col.lucency-col-8 {
-  flex: 0 0 calc(100% / 12 * 8 - var(--gg) * 0.3333333333);
-  max-width: calc(100% / 12 * 8 - var(--gg) * 0.3333333333);
+  flex: 0 0 calc(100% / 12 * 8 - var(--get-gap) * 0.3333333333);
+  max-width: calc(100% / 12 * 8 - var(--get-gap) * 0.3333333333);
 }
 .lucency-col.lucency-col-9 {
-  flex: 0 0 calc(100% / 12 * 9 - var(--gg) * 0.25);
-  max-width: calc(100% / 12 * 9 - var(--gg) * 0.25);
+  flex: 0 0 calc(100% / 12 * 9 - var(--get-gap) * 0.25);
+  max-width: calc(100% / 12 * 9 - var(--get-gap) * 0.25);
 }
 .lucency-col.lucency-col-10 {
-  flex: 0 0 calc(100% / 12 * 10 - var(--gg) * 0.1666666667);
-  max-width: calc(100% / 12 * 10 - var(--gg) * 0.1666666667);
+  flex: 0 0 calc(100% / 12 * 10 - var(--get-gap) * 0.1666666667);
+  max-width: calc(100% / 12 * 10 - var(--get-gap) * 0.1666666667);
 }
 .lucency-col.lucency-col-11 {
-  flex: 0 0 calc(100% / 12 * 11 - var(--gg) * 0.0833333333);
-  max-width: calc(100% / 12 * 11 - var(--gg) * 0.0833333333);
+  flex: 0 0 calc(100% / 12 * 11 - var(--get-gap) * 0.0833333333);
+  max-width: calc(100% / 12 * 11 - var(--get-gap) * 0.0833333333);
 }
 .lucency-col.lucency-col-12 {
-  flex: 0 0 calc(100% / 12 * 12 - var(--gg) * 0);
-  max-width: calc(100% / 12 * 12 - var(--gg) * 0);
+  flex: 0 0 calc(100% / 12 * 12 - var(--get-gap) * 0);
+  max-width: calc(100% / 12 * 12 - var(--get-gap) * 0);
 }
 .lucency-col.lucency-self-auto {
   align-self: auto;
@@ -1027,52 +1027,52 @@
 }
 @media (max-width: 1400px) {
   .lucency-col.lucency-col-1--xxl {
-    flex: 0 0 calc(100% / 12 * 1 - var(--gg--xxl) * 0.9166666667);
-    max-width: calc(100% / 12 * 1 - var(--gg--xxl) * 0.9166666667);
+    flex: 0 0 calc(100% / 12 * 1 - var(--get-gap--xxl) * 0.9166666667);
+    max-width: calc(100% / 12 * 1 - var(--get-gap--xxl) * 0.9166666667);
   }
   .lucency-col.lucency-col-2--xxl {
-    flex: 0 0 calc(100% / 12 * 2 - var(--gg--xxl) * 0.8333333333);
-    max-width: calc(100% / 12 * 2 - var(--gg--xxl) * 0.8333333333);
+    flex: 0 0 calc(100% / 12 * 2 - var(--get-gap--xxl) * 0.8333333333);
+    max-width: calc(100% / 12 * 2 - var(--get-gap--xxl) * 0.8333333333);
   }
   .lucency-col.lucency-col-3--xxl {
-    flex: 0 0 calc(100% / 12 * 3 - var(--gg--xxl) * 0.75);
-    max-width: calc(100% / 12 * 3 - var(--gg--xxl) * 0.75);
+    flex: 0 0 calc(100% / 12 * 3 - var(--get-gap--xxl) * 0.75);
+    max-width: calc(100% / 12 * 3 - var(--get-gap--xxl) * 0.75);
   }
   .lucency-col.lucency-col-4--xxl {
-    flex: 0 0 calc(100% / 12 * 4 - var(--gg--xxl) * 0.6666666667);
-    max-width: calc(100% / 12 * 4 - var(--gg--xxl) * 0.6666666667);
+    flex: 0 0 calc(100% / 12 * 4 - var(--get-gap--xxl) * 0.6666666667);
+    max-width: calc(100% / 12 * 4 - var(--get-gap--xxl) * 0.6666666667);
   }
   .lucency-col.lucency-col-5--xxl {
-    flex: 0 0 calc(100% / 12 * 5 - var(--gg--xxl) * 0.5833333333);
-    max-width: calc(100% / 12 * 5 - var(--gg--xxl) * 0.5833333333);
+    flex: 0 0 calc(100% / 12 * 5 - var(--get-gap--xxl) * 0.5833333333);
+    max-width: calc(100% / 12 * 5 - var(--get-gap--xxl) * 0.5833333333);
   }
   .lucency-col.lucency-col-6--xxl {
-    flex: 0 0 calc(100% / 12 * 6 - var(--gg--xxl) * 0.5);
-    max-width: calc(100% / 12 * 6 - var(--gg--xxl) * 0.5);
+    flex: 0 0 calc(100% / 12 * 6 - var(--get-gap--xxl) * 0.5);
+    max-width: calc(100% / 12 * 6 - var(--get-gap--xxl) * 0.5);
   }
   .lucency-col.lucency-col-7--xxl {
-    flex: 0 0 calc(100% / 12 * 7 - var(--gg--xxl) * 0.4166666667);
-    max-width: calc(100% / 12 * 7 - var(--gg--xxl) * 0.4166666667);
+    flex: 0 0 calc(100% / 12 * 7 - var(--get-gap--xxl) * 0.4166666667);
+    max-width: calc(100% / 12 * 7 - var(--get-gap--xxl) * 0.4166666667);
   }
   .lucency-col.lucency-col-8--xxl {
-    flex: 0 0 calc(100% / 12 * 8 - var(--gg--xxl) * 0.3333333333);
-    max-width: calc(100% / 12 * 8 - var(--gg--xxl) * 0.3333333333);
+    flex: 0 0 calc(100% / 12 * 8 - var(--get-gap--xxl) * 0.3333333333);
+    max-width: calc(100% / 12 * 8 - var(--get-gap--xxl) * 0.3333333333);
   }
   .lucency-col.lucency-col-9--xxl {
-    flex: 0 0 calc(100% / 12 * 9 - var(--gg--xxl) * 0.25);
-    max-width: calc(100% / 12 * 9 - var(--gg--xxl) * 0.25);
+    flex: 0 0 calc(100% / 12 * 9 - var(--get-gap--xxl) * 0.25);
+    max-width: calc(100% / 12 * 9 - var(--get-gap--xxl) * 0.25);
   }
   .lucency-col.lucency-col-10--xxl {
-    flex: 0 0 calc(100% / 12 * 10 - var(--gg--xxl) * 0.1666666667);
-    max-width: calc(100% / 12 * 10 - var(--gg--xxl) * 0.1666666667);
+    flex: 0 0 calc(100% / 12 * 10 - var(--get-gap--xxl) * 0.1666666667);
+    max-width: calc(100% / 12 * 10 - var(--get-gap--xxl) * 0.1666666667);
   }
   .lucency-col.lucency-col-11--xxl {
-    flex: 0 0 calc(100% / 12 * 11 - var(--gg--xxl) * 0.0833333333);
-    max-width: calc(100% / 12 * 11 - var(--gg--xxl) * 0.0833333333);
+    flex: 0 0 calc(100% / 12 * 11 - var(--get-gap--xxl) * 0.0833333333);
+    max-width: calc(100% / 12 * 11 - var(--get-gap--xxl) * 0.0833333333);
   }
   .lucency-col.lucency-col-12--xxl {
-    flex: 0 0 calc(100% / 12 * 12 - var(--gg--xxl) * 0);
-    max-width: calc(100% / 12 * 12 - var(--gg--xxl) * 0);
+    flex: 0 0 calc(100% / 12 * 12 - var(--get-gap--xxl) * 0);
+    max-width: calc(100% / 12 * 12 - var(--get-gap--xxl) * 0);
   }
   .lucency-col.lucency-self-auto--xxl {
     align-self: auto;
@@ -1095,52 +1095,52 @@
 }
 @media (max-width: 1200px) {
   .lucency-col.lucency-col-1--xl {
-    flex: 0 0 calc(100% / 12 * 1 - var(--gg--xl) * 0.9166666667);
-    max-width: calc(100% / 12 * 1 - var(--gg--xl) * 0.9166666667);
+    flex: 0 0 calc(100% / 12 * 1 - var(--get-gap--xl) * 0.9166666667);
+    max-width: calc(100% / 12 * 1 - var(--get-gap--xl) * 0.9166666667);
   }
   .lucency-col.lucency-col-2--xl {
-    flex: 0 0 calc(100% / 12 * 2 - var(--gg--xl) * 0.8333333333);
-    max-width: calc(100% / 12 * 2 - var(--gg--xl) * 0.8333333333);
+    flex: 0 0 calc(100% / 12 * 2 - var(--get-gap--xl) * 0.8333333333);
+    max-width: calc(100% / 12 * 2 - var(--get-gap--xl) * 0.8333333333);
   }
   .lucency-col.lucency-col-3--xl {
-    flex: 0 0 calc(100% / 12 * 3 - var(--gg--xl) * 0.75);
-    max-width: calc(100% / 12 * 3 - var(--gg--xl) * 0.75);
+    flex: 0 0 calc(100% / 12 * 3 - var(--get-gap--xl) * 0.75);
+    max-width: calc(100% / 12 * 3 - var(--get-gap--xl) * 0.75);
   }
   .lucency-col.lucency-col-4--xl {
-    flex: 0 0 calc(100% / 12 * 4 - var(--gg--xl) * 0.6666666667);
-    max-width: calc(100% / 12 * 4 - var(--gg--xl) * 0.6666666667);
+    flex: 0 0 calc(100% / 12 * 4 - var(--get-gap--xl) * 0.6666666667);
+    max-width: calc(100% / 12 * 4 - var(--get-gap--xl) * 0.6666666667);
   }
   .lucency-col.lucency-col-5--xl {
-    flex: 0 0 calc(100% / 12 * 5 - var(--gg--xl) * 0.5833333333);
-    max-width: calc(100% / 12 * 5 - var(--gg--xl) * 0.5833333333);
+    flex: 0 0 calc(100% / 12 * 5 - var(--get-gap--xl) * 0.5833333333);
+    max-width: calc(100% / 12 * 5 - var(--get-gap--xl) * 0.5833333333);
   }
   .lucency-col.lucency-col-6--xl {
-    flex: 0 0 calc(100% / 12 * 6 - var(--gg--xl) * 0.5);
-    max-width: calc(100% / 12 * 6 - var(--gg--xl) * 0.5);
+    flex: 0 0 calc(100% / 12 * 6 - var(--get-gap--xl) * 0.5);
+    max-width: calc(100% / 12 * 6 - var(--get-gap--xl) * 0.5);
   }
   .lucency-col.lucency-col-7--xl {
-    flex: 0 0 calc(100% / 12 * 7 - var(--gg--xl) * 0.4166666667);
-    max-width: calc(100% / 12 * 7 - var(--gg--xl) * 0.4166666667);
+    flex: 0 0 calc(100% / 12 * 7 - var(--get-gap--xl) * 0.4166666667);
+    max-width: calc(100% / 12 * 7 - var(--get-gap--xl) * 0.4166666667);
   }
   .lucency-col.lucency-col-8--xl {
-    flex: 0 0 calc(100% / 12 * 8 - var(--gg--xl) * 0.3333333333);
-    max-width: calc(100% / 12 * 8 - var(--gg--xl) * 0.3333333333);
+    flex: 0 0 calc(100% / 12 * 8 - var(--get-gap--xl) * 0.3333333333);
+    max-width: calc(100% / 12 * 8 - var(--get-gap--xl) * 0.3333333333);
   }
   .lucency-col.lucency-col-9--xl {
-    flex: 0 0 calc(100% / 12 * 9 - var(--gg--xl) * 0.25);
-    max-width: calc(100% / 12 * 9 - var(--gg--xl) * 0.25);
+    flex: 0 0 calc(100% / 12 * 9 - var(--get-gap--xl) * 0.25);
+    max-width: calc(100% / 12 * 9 - var(--get-gap--xl) * 0.25);
   }
   .lucency-col.lucency-col-10--xl {
-    flex: 0 0 calc(100% / 12 * 10 - var(--gg--xl) * 0.1666666667);
-    max-width: calc(100% / 12 * 10 - var(--gg--xl) * 0.1666666667);
+    flex: 0 0 calc(100% / 12 * 10 - var(--get-gap--xl) * 0.1666666667);
+    max-width: calc(100% / 12 * 10 - var(--get-gap--xl) * 0.1666666667);
   }
   .lucency-col.lucency-col-11--xl {
-    flex: 0 0 calc(100% / 12 * 11 - var(--gg--xl) * 0.0833333333);
-    max-width: calc(100% / 12 * 11 - var(--gg--xl) * 0.0833333333);
+    flex: 0 0 calc(100% / 12 * 11 - var(--get-gap--xl) * 0.0833333333);
+    max-width: calc(100% / 12 * 11 - var(--get-gap--xl) * 0.0833333333);
   }
   .lucency-col.lucency-col-12--xl {
-    flex: 0 0 calc(100% / 12 * 12 - var(--gg--xl) * 0);
-    max-width: calc(100% / 12 * 12 - var(--gg--xl) * 0);
+    flex: 0 0 calc(100% / 12 * 12 - var(--get-gap--xl) * 0);
+    max-width: calc(100% / 12 * 12 - var(--get-gap--xl) * 0);
   }
   .lucency-col.lucency-self-auto--xl {
     align-self: auto;
@@ -1163,52 +1163,52 @@
 }
 @media (max-width: 992px) {
   .lucency-col.lucency-col-1--lg {
-    flex: 0 0 calc(100% / 12 * 1 - var(--gg--lg) * 0.9166666667);
-    max-width: calc(100% / 12 * 1 - var(--gg--lg) * 0.9166666667);
+    flex: 0 0 calc(100% / 12 * 1 - var(--get-gap--lg) * 0.9166666667);
+    max-width: calc(100% / 12 * 1 - var(--get-gap--lg) * 0.9166666667);
   }
   .lucency-col.lucency-col-2--lg {
-    flex: 0 0 calc(100% / 12 * 2 - var(--gg--lg) * 0.8333333333);
-    max-width: calc(100% / 12 * 2 - var(--gg--lg) * 0.8333333333);
+    flex: 0 0 calc(100% / 12 * 2 - var(--get-gap--lg) * 0.8333333333);
+    max-width: calc(100% / 12 * 2 - var(--get-gap--lg) * 0.8333333333);
   }
   .lucency-col.lucency-col-3--lg {
-    flex: 0 0 calc(100% / 12 * 3 - var(--gg--lg) * 0.75);
-    max-width: calc(100% / 12 * 3 - var(--gg--lg) * 0.75);
+    flex: 0 0 calc(100% / 12 * 3 - var(--get-gap--lg) * 0.75);
+    max-width: calc(100% / 12 * 3 - var(--get-gap--lg) * 0.75);
   }
   .lucency-col.lucency-col-4--lg {
-    flex: 0 0 calc(100% / 12 * 4 - var(--gg--lg) * 0.6666666667);
-    max-width: calc(100% / 12 * 4 - var(--gg--lg) * 0.6666666667);
+    flex: 0 0 calc(100% / 12 * 4 - var(--get-gap--lg) * 0.6666666667);
+    max-width: calc(100% / 12 * 4 - var(--get-gap--lg) * 0.6666666667);
   }
   .lucency-col.lucency-col-5--lg {
-    flex: 0 0 calc(100% / 12 * 5 - var(--gg--lg) * 0.5833333333);
-    max-width: calc(100% / 12 * 5 - var(--gg--lg) * 0.5833333333);
+    flex: 0 0 calc(100% / 12 * 5 - var(--get-gap--lg) * 0.5833333333);
+    max-width: calc(100% / 12 * 5 - var(--get-gap--lg) * 0.5833333333);
   }
   .lucency-col.lucency-col-6--lg {
-    flex: 0 0 calc(100% / 12 * 6 - var(--gg--lg) * 0.5);
-    max-width: calc(100% / 12 * 6 - var(--gg--lg) * 0.5);
+    flex: 0 0 calc(100% / 12 * 6 - var(--get-gap--lg) * 0.5);
+    max-width: calc(100% / 12 * 6 - var(--get-gap--lg) * 0.5);
   }
   .lucency-col.lucency-col-7--lg {
-    flex: 0 0 calc(100% / 12 * 7 - var(--gg--lg) * 0.4166666667);
-    max-width: calc(100% / 12 * 7 - var(--gg--lg) * 0.4166666667);
+    flex: 0 0 calc(100% / 12 * 7 - var(--get-gap--lg) * 0.4166666667);
+    max-width: calc(100% / 12 * 7 - var(--get-gap--lg) * 0.4166666667);
   }
   .lucency-col.lucency-col-8--lg {
-    flex: 0 0 calc(100% / 12 * 8 - var(--gg--lg) * 0.3333333333);
-    max-width: calc(100% / 12 * 8 - var(--gg--lg) * 0.3333333333);
+    flex: 0 0 calc(100% / 12 * 8 - var(--get-gap--lg) * 0.3333333333);
+    max-width: calc(100% / 12 * 8 - var(--get-gap--lg) * 0.3333333333);
   }
   .lucency-col.lucency-col-9--lg {
-    flex: 0 0 calc(100% / 12 * 9 - var(--gg--lg) * 0.25);
-    max-width: calc(100% / 12 * 9 - var(--gg--lg) * 0.25);
+    flex: 0 0 calc(100% / 12 * 9 - var(--get-gap--lg) * 0.25);
+    max-width: calc(100% / 12 * 9 - var(--get-gap--lg) * 0.25);
   }
   .lucency-col.lucency-col-10--lg {
-    flex: 0 0 calc(100% / 12 * 10 - var(--gg--lg) * 0.1666666667);
-    max-width: calc(100% / 12 * 10 - var(--gg--lg) * 0.1666666667);
+    flex: 0 0 calc(100% / 12 * 10 - var(--get-gap--lg) * 0.1666666667);
+    max-width: calc(100% / 12 * 10 - var(--get-gap--lg) * 0.1666666667);
   }
   .lucency-col.lucency-col-11--lg {
-    flex: 0 0 calc(100% / 12 * 11 - var(--gg--lg) * 0.0833333333);
-    max-width: calc(100% / 12 * 11 - var(--gg--lg) * 0.0833333333);
+    flex: 0 0 calc(100% / 12 * 11 - var(--get-gap--lg) * 0.0833333333);
+    max-width: calc(100% / 12 * 11 - var(--get-gap--lg) * 0.0833333333);
   }
   .lucency-col.lucency-col-12--lg {
-    flex: 0 0 calc(100% / 12 * 12 - var(--gg--lg) * 0);
-    max-width: calc(100% / 12 * 12 - var(--gg--lg) * 0);
+    flex: 0 0 calc(100% / 12 * 12 - var(--get-gap--lg) * 0);
+    max-width: calc(100% / 12 * 12 - var(--get-gap--lg) * 0);
   }
   .lucency-col.lucency-self-auto--lg {
     align-self: auto;
@@ -1231,52 +1231,52 @@
 }
 @media (max-width: 768px) {
   .lucency-col.lucency-col-1--md {
-    flex: 0 0 calc(100% / 12 * 1 - var(--gg--md) * 0.9166666667);
-    max-width: calc(100% / 12 * 1 - var(--gg--md) * 0.9166666667);
+    flex: 0 0 calc(100% / 12 * 1 - var(--get-gap--md) * 0.9166666667);
+    max-width: calc(100% / 12 * 1 - var(--get-gap--md) * 0.9166666667);
   }
   .lucency-col.lucency-col-2--md {
-    flex: 0 0 calc(100% / 12 * 2 - var(--gg--md) * 0.8333333333);
-    max-width: calc(100% / 12 * 2 - var(--gg--md) * 0.8333333333);
+    flex: 0 0 calc(100% / 12 * 2 - var(--get-gap--md) * 0.8333333333);
+    max-width: calc(100% / 12 * 2 - var(--get-gap--md) * 0.8333333333);
   }
   .lucency-col.lucency-col-3--md {
-    flex: 0 0 calc(100% / 12 * 3 - var(--gg--md) * 0.75);
-    max-width: calc(100% / 12 * 3 - var(--gg--md) * 0.75);
+    flex: 0 0 calc(100% / 12 * 3 - var(--get-gap--md) * 0.75);
+    max-width: calc(100% / 12 * 3 - var(--get-gap--md) * 0.75);
   }
   .lucency-col.lucency-col-4--md {
-    flex: 0 0 calc(100% / 12 * 4 - var(--gg--md) * 0.6666666667);
-    max-width: calc(100% / 12 * 4 - var(--gg--md) * 0.6666666667);
+    flex: 0 0 calc(100% / 12 * 4 - var(--get-gap--md) * 0.6666666667);
+    max-width: calc(100% / 12 * 4 - var(--get-gap--md) * 0.6666666667);
   }
   .lucency-col.lucency-col-5--md {
-    flex: 0 0 calc(100% / 12 * 5 - var(--gg--md) * 0.5833333333);
-    max-width: calc(100% / 12 * 5 - var(--gg--md) * 0.5833333333);
+    flex: 0 0 calc(100% / 12 * 5 - var(--get-gap--md) * 0.5833333333);
+    max-width: calc(100% / 12 * 5 - var(--get-gap--md) * 0.5833333333);
   }
   .lucency-col.lucency-col-6--md {
-    flex: 0 0 calc(100% / 12 * 6 - var(--gg--md) * 0.5);
-    max-width: calc(100% / 12 * 6 - var(--gg--md) * 0.5);
+    flex: 0 0 calc(100% / 12 * 6 - var(--get-gap--md) * 0.5);
+    max-width: calc(100% / 12 * 6 - var(--get-gap--md) * 0.5);
   }
   .lucency-col.lucency-col-7--md {
-    flex: 0 0 calc(100% / 12 * 7 - var(--gg--md) * 0.4166666667);
-    max-width: calc(100% / 12 * 7 - var(--gg--md) * 0.4166666667);
+    flex: 0 0 calc(100% / 12 * 7 - var(--get-gap--md) * 0.4166666667);
+    max-width: calc(100% / 12 * 7 - var(--get-gap--md) * 0.4166666667);
   }
   .lucency-col.lucency-col-8--md {
-    flex: 0 0 calc(100% / 12 * 8 - var(--gg--md) * 0.3333333333);
-    max-width: calc(100% / 12 * 8 - var(--gg--md) * 0.3333333333);
+    flex: 0 0 calc(100% / 12 * 8 - var(--get-gap--md) * 0.3333333333);
+    max-width: calc(100% / 12 * 8 - var(--get-gap--md) * 0.3333333333);
   }
   .lucency-col.lucency-col-9--md {
-    flex: 0 0 calc(100% / 12 * 9 - var(--gg--md) * 0.25);
-    max-width: calc(100% / 12 * 9 - var(--gg--md) * 0.25);
+    flex: 0 0 calc(100% / 12 * 9 - var(--get-gap--md) * 0.25);
+    max-width: calc(100% / 12 * 9 - var(--get-gap--md) * 0.25);
   }
   .lucency-col.lucency-col-10--md {
-    flex: 0 0 calc(100% / 12 * 10 - var(--gg--md) * 0.1666666667);
-    max-width: calc(100% / 12 * 10 - var(--gg--md) * 0.1666666667);
+    flex: 0 0 calc(100% / 12 * 10 - var(--get-gap--md) * 0.1666666667);
+    max-width: calc(100% / 12 * 10 - var(--get-gap--md) * 0.1666666667);
   }
   .lucency-col.lucency-col-11--md {
-    flex: 0 0 calc(100% / 12 * 11 - var(--gg--md) * 0.0833333333);
-    max-width: calc(100% / 12 * 11 - var(--gg--md) * 0.0833333333);
+    flex: 0 0 calc(100% / 12 * 11 - var(--get-gap--md) * 0.0833333333);
+    max-width: calc(100% / 12 * 11 - var(--get-gap--md) * 0.0833333333);
   }
   .lucency-col.lucency-col-12--md {
-    flex: 0 0 calc(100% / 12 * 12 - var(--gg--md) * 0);
-    max-width: calc(100% / 12 * 12 - var(--gg--md) * 0);
+    flex: 0 0 calc(100% / 12 * 12 - var(--get-gap--md) * 0);
+    max-width: calc(100% / 12 * 12 - var(--get-gap--md) * 0);
   }
   .lucency-col.lucency-self-auto--md {
     align-self: auto;
@@ -1299,52 +1299,52 @@
 }
 @media (max-width: 576px) {
   .lucency-col.lucency-col-1--sm {
-    flex: 0 0 calc(100% / 12 * 1 - var(--gg--sm) * 0.9166666667);
-    max-width: calc(100% / 12 * 1 - var(--gg--sm) * 0.9166666667);
+    flex: 0 0 calc(100% / 12 * 1 - var(--get-gap--sm) * 0.9166666667);
+    max-width: calc(100% / 12 * 1 - var(--get-gap--sm) * 0.9166666667);
   }
   .lucency-col.lucency-col-2--sm {
-    flex: 0 0 calc(100% / 12 * 2 - var(--gg--sm) * 0.8333333333);
-    max-width: calc(100% / 12 * 2 - var(--gg--sm) * 0.8333333333);
+    flex: 0 0 calc(100% / 12 * 2 - var(--get-gap--sm) * 0.8333333333);
+    max-width: calc(100% / 12 * 2 - var(--get-gap--sm) * 0.8333333333);
   }
   .lucency-col.lucency-col-3--sm {
-    flex: 0 0 calc(100% / 12 * 3 - var(--gg--sm) * 0.75);
-    max-width: calc(100% / 12 * 3 - var(--gg--sm) * 0.75);
+    flex: 0 0 calc(100% / 12 * 3 - var(--get-gap--sm) * 0.75);
+    max-width: calc(100% / 12 * 3 - var(--get-gap--sm) * 0.75);
   }
   .lucency-col.lucency-col-4--sm {
-    flex: 0 0 calc(100% / 12 * 4 - var(--gg--sm) * 0.6666666667);
-    max-width: calc(100% / 12 * 4 - var(--gg--sm) * 0.6666666667);
+    flex: 0 0 calc(100% / 12 * 4 - var(--get-gap--sm) * 0.6666666667);
+    max-width: calc(100% / 12 * 4 - var(--get-gap--sm) * 0.6666666667);
   }
   .lucency-col.lucency-col-5--sm {
-    flex: 0 0 calc(100% / 12 * 5 - var(--gg--sm) * 0.5833333333);
-    max-width: calc(100% / 12 * 5 - var(--gg--sm) * 0.5833333333);
+    flex: 0 0 calc(100% / 12 * 5 - var(--get-gap--sm) * 0.5833333333);
+    max-width: calc(100% / 12 * 5 - var(--get-gap--sm) * 0.5833333333);
   }
   .lucency-col.lucency-col-6--sm {
-    flex: 0 0 calc(100% / 12 * 6 - var(--gg--sm) * 0.5);
-    max-width: calc(100% / 12 * 6 - var(--gg--sm) * 0.5);
+    flex: 0 0 calc(100% / 12 * 6 - var(--get-gap--sm) * 0.5);
+    max-width: calc(100% / 12 * 6 - var(--get-gap--sm) * 0.5);
   }
   .lucency-col.lucency-col-7--sm {
-    flex: 0 0 calc(100% / 12 * 7 - var(--gg--sm) * 0.4166666667);
-    max-width: calc(100% / 12 * 7 - var(--gg--sm) * 0.4166666667);
+    flex: 0 0 calc(100% / 12 * 7 - var(--get-gap--sm) * 0.4166666667);
+    max-width: calc(100% / 12 * 7 - var(--get-gap--sm) * 0.4166666667);
   }
   .lucency-col.lucency-col-8--sm {
-    flex: 0 0 calc(100% / 12 * 8 - var(--gg--sm) * 0.3333333333);
-    max-width: calc(100% / 12 * 8 - var(--gg--sm) * 0.3333333333);
+    flex: 0 0 calc(100% / 12 * 8 - var(--get-gap--sm) * 0.3333333333);
+    max-width: calc(100% / 12 * 8 - var(--get-gap--sm) * 0.3333333333);
   }
   .lucency-col.lucency-col-9--sm {
-    flex: 0 0 calc(100% / 12 * 9 - var(--gg--sm) * 0.25);
-    max-width: calc(100% / 12 * 9 - var(--gg--sm) * 0.25);
+    flex: 0 0 calc(100% / 12 * 9 - var(--get-gap--sm) * 0.25);
+    max-width: calc(100% / 12 * 9 - var(--get-gap--sm) * 0.25);
   }
   .lucency-col.lucency-col-10--sm {
-    flex: 0 0 calc(100% / 12 * 10 - var(--gg--sm) * 0.1666666667);
-    max-width: calc(100% / 12 * 10 - var(--gg--sm) * 0.1666666667);
+    flex: 0 0 calc(100% / 12 * 10 - var(--get-gap--sm) * 0.1666666667);
+    max-width: calc(100% / 12 * 10 - var(--get-gap--sm) * 0.1666666667);
   }
   .lucency-col.lucency-col-11--sm {
-    flex: 0 0 calc(100% / 12 * 11 - var(--gg--sm) * 0.0833333333);
-    max-width: calc(100% / 12 * 11 - var(--gg--sm) * 0.0833333333);
+    flex: 0 0 calc(100% / 12 * 11 - var(--get-gap--sm) * 0.0833333333);
+    max-width: calc(100% / 12 * 11 - var(--get-gap--sm) * 0.0833333333);
   }
   .lucency-col.lucency-col-12--sm {
-    flex: 0 0 calc(100% / 12 * 12 - var(--gg--sm) * 0);
-    max-width: calc(100% / 12 * 12 - var(--gg--sm) * 0);
+    flex: 0 0 calc(100% / 12 * 12 - var(--get-gap--sm) * 0);
+    max-width: calc(100% / 12 * 12 - var(--get-gap--sm) * 0);
   }
   .lucency-col.lucency-self-auto--sm {
     align-self: auto;
@@ -1367,52 +1367,52 @@
 }
 @media (max-width: 480px) {
   .lucency-col.lucency-col-1--xs {
-    flex: 0 0 calc(100% / 12 * 1 - var(--gg--xs) * 0.9166666667);
-    max-width: calc(100% / 12 * 1 - var(--gg--xs) * 0.9166666667);
+    flex: 0 0 calc(100% / 12 * 1 - var(--get-gap--xs) * 0.9166666667);
+    max-width: calc(100% / 12 * 1 - var(--get-gap--xs) * 0.9166666667);
   }
   .lucency-col.lucency-col-2--xs {
-    flex: 0 0 calc(100% / 12 * 2 - var(--gg--xs) * 0.8333333333);
-    max-width: calc(100% / 12 * 2 - var(--gg--xs) * 0.8333333333);
+    flex: 0 0 calc(100% / 12 * 2 - var(--get-gap--xs) * 0.8333333333);
+    max-width: calc(100% / 12 * 2 - var(--get-gap--xs) * 0.8333333333);
   }
   .lucency-col.lucency-col-3--xs {
-    flex: 0 0 calc(100% / 12 * 3 - var(--gg--xs) * 0.75);
-    max-width: calc(100% / 12 * 3 - var(--gg--xs) * 0.75);
+    flex: 0 0 calc(100% / 12 * 3 - var(--get-gap--xs) * 0.75);
+    max-width: calc(100% / 12 * 3 - var(--get-gap--xs) * 0.75);
   }
   .lucency-col.lucency-col-4--xs {
-    flex: 0 0 calc(100% / 12 * 4 - var(--gg--xs) * 0.6666666667);
-    max-width: calc(100% / 12 * 4 - var(--gg--xs) * 0.6666666667);
+    flex: 0 0 calc(100% / 12 * 4 - var(--get-gap--xs) * 0.6666666667);
+    max-width: calc(100% / 12 * 4 - var(--get-gap--xs) * 0.6666666667);
   }
   .lucency-col.lucency-col-5--xs {
-    flex: 0 0 calc(100% / 12 * 5 - var(--gg--xs) * 0.5833333333);
-    max-width: calc(100% / 12 * 5 - var(--gg--xs) * 0.5833333333);
+    flex: 0 0 calc(100% / 12 * 5 - var(--get-gap--xs) * 0.5833333333);
+    max-width: calc(100% / 12 * 5 - var(--get-gap--xs) * 0.5833333333);
   }
   .lucency-col.lucency-col-6--xs {
-    flex: 0 0 calc(100% / 12 * 6 - var(--gg--xs) * 0.5);
-    max-width: calc(100% / 12 * 6 - var(--gg--xs) * 0.5);
+    flex: 0 0 calc(100% / 12 * 6 - var(--get-gap--xs) * 0.5);
+    max-width: calc(100% / 12 * 6 - var(--get-gap--xs) * 0.5);
   }
   .lucency-col.lucency-col-7--xs {
-    flex: 0 0 calc(100% / 12 * 7 - var(--gg--xs) * 0.4166666667);
-    max-width: calc(100% / 12 * 7 - var(--gg--xs) * 0.4166666667);
+    flex: 0 0 calc(100% / 12 * 7 - var(--get-gap--xs) * 0.4166666667);
+    max-width: calc(100% / 12 * 7 - var(--get-gap--xs) * 0.4166666667);
   }
   .lucency-col.lucency-col-8--xs {
-    flex: 0 0 calc(100% / 12 * 8 - var(--gg--xs) * 0.3333333333);
-    max-width: calc(100% / 12 * 8 - var(--gg--xs) * 0.3333333333);
+    flex: 0 0 calc(100% / 12 * 8 - var(--get-gap--xs) * 0.3333333333);
+    max-width: calc(100% / 12 * 8 - var(--get-gap--xs) * 0.3333333333);
   }
   .lucency-col.lucency-col-9--xs {
-    flex: 0 0 calc(100% / 12 * 9 - var(--gg--xs) * 0.25);
-    max-width: calc(100% / 12 * 9 - var(--gg--xs) * 0.25);
+    flex: 0 0 calc(100% / 12 * 9 - var(--get-gap--xs) * 0.25);
+    max-width: calc(100% / 12 * 9 - var(--get-gap--xs) * 0.25);
   }
   .lucency-col.lucency-col-10--xs {
-    flex: 0 0 calc(100% / 12 * 10 - var(--gg--xs) * 0.1666666667);
-    max-width: calc(100% / 12 * 10 - var(--gg--xs) * 0.1666666667);
+    flex: 0 0 calc(100% / 12 * 10 - var(--get-gap--xs) * 0.1666666667);
+    max-width: calc(100% / 12 * 10 - var(--get-gap--xs) * 0.1666666667);
   }
   .lucency-col.lucency-col-11--xs {
-    flex: 0 0 calc(100% / 12 * 11 - var(--gg--xs) * 0.0833333333);
-    max-width: calc(100% / 12 * 11 - var(--gg--xs) * 0.0833333333);
+    flex: 0 0 calc(100% / 12 * 11 - var(--get-gap--xs) * 0.0833333333);
+    max-width: calc(100% / 12 * 11 - var(--get-gap--xs) * 0.0833333333);
   }
   .lucency-col.lucency-col-12--xs {
-    flex: 0 0 calc(100% / 12 * 12 - var(--gg--xs) * 0);
-    max-width: calc(100% / 12 * 12 - var(--gg--xs) * 0);
+    flex: 0 0 calc(100% / 12 * 12 - var(--get-gap--xs) * 0);
+    max-width: calc(100% / 12 * 12 - var(--get-gap--xs) * 0);
   }
   .lucency-col.lucency-self-auto--xs {
     align-self: auto;

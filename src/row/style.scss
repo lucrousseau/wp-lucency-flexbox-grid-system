@@ -56,7 +56,7 @@
 		&.#{$slug}-col-#{$size}#{$prefix} {
 			$calc: calc(
 				((100% / #{$columns}) * #{$size}) -
-					(var(--gg#{$prefix}) * #{1 - math.div(1, $columns) * $size})
+					(var(--get-gap#{$prefix}) * #{1 - math.div(1, $columns) * $size})
 			);
 
 			flex: 0 0 $calc;
@@ -94,21 +94,21 @@
 		$values: ();
 
 		@each $direction in $directions {
-			$p: str-slice($property, 1, 1);
-			$d: str-slice($direction, 1, 1);
-
 			$previousBreakpoint: if(
 				$prefix == "",
 				0,
-				var(--g#{$p}#{$d}#{$previousPrefix})
+				var(--get-#{$property}-#{$direction}#{$previousPrefix})
 			);
 
-			--g#{$p}#{$d}#{$prefix}: var(
+			--get-#{$property}-#{$direction}#{$prefix}: var(
 				--#{$property}-#{$direction}#{$prefix},
 				#{$previousBreakpoint}
 			);
 
-			$value: var(--g#{$p}#{$d}#{$prefix}, #{$previousBreakpoint});
+			$value: var(
+				--get-#{$property}-#{$direction}#{$prefix},
+				#{$previousBreakpoint}
+			);
 
 			$values: append($values, $value, space);
 		}
@@ -120,11 +120,15 @@
 @mixin lucencySetGap($breakpoints, $currentPrefix, $prefix) {
 	$previousPrefix: lucencyGetPreviousPrefix($breakpoints, $currentPrefix);
 
-	$previousBreakpoint: if($prefix == "", 1rem, var(--gg#{$previousPrefix}));
+	$previousBreakpoint: if(
+		$prefix == "",
+		1rem,
+		var(--get-gap#{$previousPrefix})
+	);
 
-	--gg#{$prefix}: var(--gap#{$prefix}, #{$previousBreakpoint});
+	--get-gap#{$prefix}: var(--gap#{$prefix}, #{$previousBreakpoint});
 
-	gap: var(--gg#{$prefix}, #{$previousBreakpoint});
+	gap: var(--get-gap#{$prefix}, #{$previousBreakpoint});
 }
 
 @mixin lucencyBuildGrid(
@@ -262,7 +266,6 @@
 				);
 			}
 		}
-
 		&-align {
 			@include lucencySetResponsiveStyles($breakpoints) using
 				($currentPrefix, $prefix) {
