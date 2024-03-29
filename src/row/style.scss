@@ -58,16 +58,16 @@ $breakpoints: (
 }
 
 @function getPrefix($prefix: "") {
-	@return if($prefix == "" or $prefix == "full", "", "#{$prefix}-");
+	@return if($prefix == "" or $prefix == "full", "", "--#{$prefix}");
 }
 
 @mixin colwidth($size, $prefix: "") {
 	$prefix: getPrefix($prefix);
 
-	&.col--#{$prefix}#{$size} {
+	&.lucency-col-#{$size}#{$prefix} {
 		$calc: calc(
 			((100% / #{$columns}) * #{$size}) -
-				(var(--get-#{$prefix}gap) * #{1 - math.div(1, $columns) * $size})
+				(var(--get-gap#{$prefix}) * #{1 - math.div(1, $columns) * $size})
 		);
 
 		flex: 0 0 $calc;
@@ -79,6 +79,7 @@ $breakpoints: (
 	@each $prefix, $breakpoint in $breakpoints {
 		@include respondTo($prefix) {
 			$prefix: getPrefix($prefix);
+
 			@each $key, $value in $classes {
 				$prop: map-get($value, prop);
 				$values: map-get($value, values);
@@ -88,7 +89,7 @@ $breakpoints: (
 						$valueKey: "-#{$valueKey}";
 					}
 
-					.#{$prefix}#{$key}#{$valueKey} {
+					.#{$key}#{$valueKey}#{$prefix} {
 						#{$prop}: $actualValue;
 					}
 				}
@@ -110,16 +111,16 @@ $breakpoints: (
 					$previousBreakpoint: if(
 						$prefix == "",
 						0,
-						var(--get-#{$previousPrefix}#{$property}-#{$direction})
+						var(--get-#{$property}-#{$direction}#{$previousPrefix})
 					);
 
-					--get-#{$prefix}#{$property}-#{$direction}: var(
-						--#{$prefix}#{$property}-#{$direction},
+					--get-#{$property}-#{$direction}#{$prefix}: var(
+						--#{$property}-#{$direction}#{$prefix},
 						#{$previousBreakpoint}
 					);
 
 					$value: var(
-						--get-#{$prefix}#{$property}-#{$direction},
+						--get-#{$property}-#{$direction}#{$prefix},
 						#{$previousBreakpoint}
 					);
 					$values: append($values, $value, space);
@@ -140,12 +141,12 @@ $breakpoints: (
 			$previousBreakpoint: if(
 				$prefix == "",
 				1rem,
-				var(--get-#{$previousPrefix}gap)
+				var(--get-gap#{$previousPrefix})
 			);
 
-			--get-#{$prefix}gap: var(--#{$prefix}gap, #{$previousBreakpoint});
+			--get-gap#{$prefix}: var(--gap#{$prefix}, #{$previousBreakpoint});
 
-			gap: var(--get-#{$prefix}gap, #{$previousBreakpoint});
+			gap: var(--get-gap#{$prefix}, #{$previousBreakpoint});
 		}
 	}
 }
@@ -170,6 +171,16 @@ $breakpoints: (
 	&-flex,
 	&-inline-flex {
 		@include gap();
+	}
+	&-col {
+		flex: 1;
+		@each $prefix, $breakpoint in $breakpoints {
+			@for $i from 1 through $columns {
+				@include respondTo($prefix) {
+					@include colwidth($i, $prefix);
+				}
+			}
+		}
 	}
 }
 
@@ -238,19 +249,6 @@ $breakpoints: (
 		),
 	)
 );
-
-.col {
-	flex: 1;
-	position: relative;
-
-	@each $prefix, $breakpoint in $breakpoints {
-		@for $i from 1 through $columns {
-			@include respondTo($prefix) {
-				@include colwidth($i, $prefix);
-			}
-		}
-	}
-}
 
 @include addClasses(
 	(
