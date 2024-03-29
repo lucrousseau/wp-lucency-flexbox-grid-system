@@ -132,6 +132,8 @@
 }
 
 @mixin lucencyBuildGrid(
+	$slug: "lucency",
+	$columns: 12,
 	$breakpoints: (
 		full: null,
 		xxl: 1400px,
@@ -140,9 +142,7 @@
 		md: 768px,
 		sm: 576px,
 		xs: 480px,
-	),
-	$columns: 12,
-	$slug: "lucency"
+	)
 ) {
 	.#{$slug} {
 		@include lucencySetResponsiveStyles($breakpoints) using
