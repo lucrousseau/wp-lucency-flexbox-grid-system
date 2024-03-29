@@ -258,8 +258,8 @@ $breakpoints: (
 	&-col {
 		flex: 1;
 		@each $prefix, $breakpoint in $breakpoints {
-			@for $i from 1 through $columns {
-				@include respondTo($prefix) {
+			@include respondTo($prefix) {
+				@for $i from 1 through $columns {
 					@include colwidth($i, $prefix);
 				}
 			}
