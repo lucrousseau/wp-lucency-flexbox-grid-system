@@ -67,7 +67,7 @@ $breakpoints: (
 	&.col--#{$prefix}#{$size} {
 		$calc: calc(
 			((100% / #{$columns}) * #{$size}) -
-				(var(--gap) * #{1 - math.div(1, $columns) * $size})
+				(var(--get-#{$prefix}gap) * #{1 - math.div(1, $columns) * $size})
 		);
 
 		flex: 0 0 $calc;
@@ -145,8 +145,7 @@ $breakpoints: (
 
 			--get-#{$prefix}gap: var(--#{$prefix}gap, #{$previousBreakpoint});
 
-			$value: var(--get-#{$prefix}gap, #{$previousBreakpoint});
-			gap: $value;
+			gap: var(--get-#{$prefix}gap, #{$previousBreakpoint});
 		}
 	}
 }
@@ -168,11 +167,10 @@ $breakpoints: (
 			),
 		)
 	);
-}
-
-.lucency-flex,
-.lucency-inline-flex {
-	@include gap();
+	&-flex,
+	&-inline-flex {
+		@include gap();
+	}
 }
 
 @include addClasses(
