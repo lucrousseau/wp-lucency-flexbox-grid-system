@@ -151,39 +151,6 @@ $breakpoints: (
 	}
 }
 
-.lucency {
-	@include directions(
-		(
-			"margin": (
-				top,
-				right,
-				bottom,
-				left,
-			),
-			"padding": (
-				top,
-				right,
-				bottom,
-				left,
-			),
-		)
-	);
-	&-flex,
-	&-inline-flex {
-		@include gap();
-	}
-	&-col {
-		flex: 1;
-		@each $prefix, $breakpoint in $breakpoints {
-			@for $i from 1 through $columns {
-				@include respondTo($prefix) {
-					@include colwidth($i, $prefix);
-				}
-			}
-		}
-	}
-}
-
 @include addClasses(
 	(
 		"lucency": (
@@ -266,19 +233,52 @@ $breakpoints: (
 	)
 );
 
-.text-align {
-	@each $prefix, $breakpoint in $breakpoints {
-		@include respondTo($prefix) {
-			$prefix: getPrefix($prefix);
+.lucency {
+	@include directions(
+		(
+			"margin": (
+				top,
+				right,
+				bottom,
+				left,
+			),
+			"padding": (
+				top,
+				right,
+				bottom,
+				left,
+			),
+		)
+	);
 
-			&-#{$prefix}left {
-				text-align: left;
+	&-flex,
+	&-inline-flex {
+		@include gap();
+	}
+	&-col {
+		flex: 1;
+		@each $prefix, $breakpoint in $breakpoints {
+			@for $i from 1 through $columns {
+				@include respondTo($prefix) {
+					@include colwidth($i, $prefix);
+				}
 			}
-			&-#{$prefix}center {
-				text-align: center;
-			}
-			&-#{$prefix}right {
-				text-align: right;
+		}
+	}
+	&-align {
+		@each $prefix, $breakpoint in $breakpoints {
+			@include respondTo($prefix) {
+				$prefix: getPrefix($prefix);
+
+				&-left#{$prefix} {
+					text-align: left;
+				}
+				&-center#{$prefix} {
+					text-align: center;
+				}
+				&-right#{$prefix} {
+					text-align: right;
+				}
 			}
 		}
 	}
