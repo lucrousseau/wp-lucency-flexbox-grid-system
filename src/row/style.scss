@@ -1,25 +1,6 @@
 @use "sass:math";
 
-$columns: 12;
-
-$xxl: 1400px;
-$xl: 1200px;
-$lg: 992px;
-$md: 768px;
-$sm: 576px;
-$xs: 480px;
-
-$breakpoints: (
-	full: null,
-	xxl: $xxl,
-	xl: $xl,
-	lg: $lg,
-	md: $md,
-	sm: $sm,
-	xs: $xs,
-);
-
-@mixin respondTo($breakpoint) {
+@mixin lucencySetMediaQuery($breakpoints, $breakpoint) {
 	@if map-has-key($breakpoints, $breakpoint) {
 		@if $breakpoint == "full" {
 			@content;
@@ -33,7 +14,21 @@ $breakpoints: (
 	}
 }
 
-@function findPreviousBreakepoint($prefix, $return: "prefix") {
+@mixin lucencySetResponsive($breakpoints) {
+	@each $originalPrefix, $breakpointValue in $breakpoints {
+		$prefix: lucencyGetPrefix($originalPrefix);
+
+		@include lucencySetMediaQuery($breakpoints, $originalPrefix) {
+			@content ($originalPrefix, $prefix);
+		}
+	}
+}
+
+@function lucencyGetPrefix($prefix) {
+	@return if($prefix == "" or $prefix == "full", "", "--#{$prefix}");
+}
+
+@function lucencyGetPreviousPrefix($breakpoints, $prefix, $return: "prefix") {
 	$previousPrefix: null;
 	$previousBreakpoint: null;
 
@@ -44,7 +39,7 @@ $breakpoints: (
 	@each $currentPrefix, $currentBreakpoint in $breakpoints {
 		@if $currentPrefix == $prefix and $previousPrefix != null {
 			@if $return == "prefix" {
-				@return getPrefix($previousPrefix);
+				@return lucencyGetPrefix($previousPrefix);
 			} @else {
 				@return $previousBreakpoint;
 			}
@@ -57,219 +52,227 @@ $breakpoints: (
 	@return null;
 }
 
-@function getPrefix($prefix: "") {
-	@return if($prefix == "" or $prefix == "full", "", "--#{$prefix}");
-}
-
-@mixin colwidth($size, $prefix: "") {
-	$prefix: getPrefix($prefix);
-
-	&.lucency-col-#{$size}#{$prefix} {
-		$calc: calc(
-			((100% / #{$columns}) * #{$size}) -
-				(var(--get-gap#{$prefix}) * #{1 - math.div(1, $columns) * $size})
-		);
-
-		flex: 0 0 $calc;
-		max-width: $calc;
+@mixin lucencySetColsWidth($prefix, $columns, $slug) {
+	@if ($prefix == "") {
+		flex: 1;
 	}
-}
 
-@mixin addClasses($classes) {
-	@each $prefix, $breakpoint in $breakpoints {
-		@include respondTo($prefix) {
-			$prefix: getPrefix($prefix);
-
-			@each $key, $value in $classes {
-				$prop: map-get($value, prop);
-				$values: map-get($value, values);
-
-				@each $valueKey, $actualValue in $values {
-					@if ($valueKey != "") {
-						$valueKey: "-#{$valueKey}";
-					}
-
-					.#{$key}#{$valueKey}#{$prefix} {
-						#{$prop}: $actualValue;
-					}
-				}
-			}
-		}
-	}
-}
-
-@mixin directions($marginPadding) {
-	@each $prefix, $breakpoint in $breakpoints {
-		@include respondTo($prefix) {
-			$previousPrefix: findPreviousBreakepoint($prefix);
-			$prefix: getPrefix($prefix);
-
-			@each $property, $directions in $marginPadding {
-				$values: ();
-
-				@each $direction in $directions {
-					$previousBreakpoint: if(
-						$prefix == "",
-						0,
-						var(--get-#{$property}-#{$direction}#{$previousPrefix})
-					);
-
-					--get-#{$property}-#{$direction}#{$prefix}: var(
-						--#{$property}-#{$direction}#{$prefix},
-						#{$previousBreakpoint}
-					);
-
-					$value: var(
-						--get-#{$property}-#{$direction}#{$prefix},
-						#{$previousBreakpoint}
-					);
-					$values: append($values, $value, space);
-				}
-
-				#{$property}: $values;
-			}
-		}
-	}
-}
-
-@mixin gap() {
-	@each $prefix, $breakpoint in $breakpoints {
-		@include respondTo($prefix) {
-			$previousPrefix: findPreviousBreakepoint($prefix);
-			$prefix: getPrefix($prefix);
-
-			$previousBreakpoint: if(
-				$prefix == "",
-				1rem,
-				var(--get-gap#{$previousPrefix})
+	@for $size from 1 through $columns {
+		&.#{$slug}-col-#{$size}#{$prefix} {
+			$calc: calc(
+				((100% / #{$columns}) * #{$size}) -
+					(var(--get-gap#{$prefix}) * #{1 - math.div(1, $columns) * $size})
 			);
 
-			--get-gap#{$prefix}: var(--gap#{$prefix}, #{$previousBreakpoint});
-
-			gap: var(--get-gap#{$prefix}, #{$previousBreakpoint});
+			flex: 0 0 $calc;
+			max-width: $calc;
 		}
 	}
 }
 
-@include addClasses(
-	(
-		"lucency": (
-			"prop": "display",
-			"values": (
-				("flex", flex),
-				("inline-flex", inline-flex),
-			),
-		),
-		"lucency-flex": (
-			"prop": "flex-direction",
-			"values": (
-				("row", row),
-				("row-reverse", row-reverse),
-				("column", column),
-				("column-reverse", column-reverse),
-			),
-		),
-		"lucency-flex-wrap": (
-			"prop": "flex-wrap",
-			"values": (
-				("", wrap),
-				("wrap-reverse", wrap-reverse),
-				("nowrap", nowrap),
-			),
-		),
-		"lucency-justify": (
-			"prop": "justify-content",
-			"values": (
-				("normal", normal),
-				("start", flex-start),
-				("end", flex-end),
-				("center", center),
-				("between", space-between),
-				("around", space-around),
-				("evenly", space-evenly),
-				("stretch", stretch),
-			),
-		),
-		"lucency-items": (
-			"prop": "align-items",
-			"values": (
-				("start", flex-start),
-				("end", flex-end),
-				("center", center),
-				("baseline", baseline),
-				("stretch", stretch),
-			),
-		),
-		"lucency-content": (
-			"prop": "align-content",
-			"values": (
-				("normal" normal),
-				("center", center),
-				("flex-start", flex-start),
-				("flex-end", flex-end),
-				("space-between", space-between),
-				("space-around", space-around),
-				("space-evenly", space-evenly),
-				("baseline", baseline),
-				("stretch", stretch),
-			),
-		),
-	)
-);
+@mixin lucencyAddCSSClasses($classes, $prefix) {
+	@each $key, $value in $classes {
+		$prop: map-get($value, prop);
+		$values: map-get($value, values);
 
-@include addClasses(
-	(
-		"lucency-self": (
-			"prop": "align-self",
-			"values": (
-				("auto", auto),
-				("start", flex-start),
-				("end", flex-end),
-				("center", center),
-				("stretch", stretch),
-				("baseline", baseline),
-			),
-		),
-	)
-);
+		@each $valueKey, $actualValue in $values {
+			@if ($valueKey != "") {
+				$valueKey: "-#{$valueKey}";
+			}
 
-.lucency {
-	@include directions(
-		(
-			"margin": (
-				top,
-				right,
-				bottom,
-				left,
-			),
-			"padding": (
-				top,
-				right,
-				bottom,
-				left,
-			),
-		)
-	);
-
-	&-flex,
-	&-inline-flex {
-		@include gap();
-	}
-	&-col {
-		flex: 1;
-		@each $prefix, $breakpoint in $breakpoints {
-			@include respondTo($prefix) {
-				@for $i from 1 through $columns {
-					@include colwidth($i, $prefix);
-				}
+			&.#{$key}#{$valueKey}#{$prefix} {
+				#{$prop}: $actualValue;
 			}
 		}
 	}
-	&-align {
-		@each $prefix, $breakpoint in $breakpoints {
-			@include respondTo($prefix) {
-				$prefix: getPrefix($prefix);
+}
 
+@mixin lucencyAddMarginPadding(
+	$marginPadding,
+	$breakpoints,
+	$originalPrefix,
+	$prefix
+) {
+	$previousPrefix: lucencyGetPreviousPrefix($breakpoints, $originalPrefix);
+
+	@each $property, $directions in $marginPadding {
+		$values: ();
+
+		@each $direction in $directions {
+			$previousBreakpoint: if(
+				$prefix == "",
+				0,
+				var(--get-#{$property}-#{$direction}#{$previousPrefix})
+			);
+
+			--get-#{$property}-#{$direction}#{$prefix}: var(
+				--#{$property}-#{$direction}#{$prefix},
+				#{$previousBreakpoint}
+			);
+
+			$value: var(
+				--get-#{$property}-#{$direction}#{$prefix},
+				#{$previousBreakpoint}
+			);
+
+			$values: append($values, $value, space);
+		}
+
+		#{$property}: $values;
+	}
+}
+
+@mixin lucencySetGap($breakpoints, $originalPrefix, $prefix) {
+	$previousPrefix: lucencyGetPreviousPrefix($breakpoints, $originalPrefix);
+
+	$previousBreakpoint: if(
+		$prefix == "",
+		1rem,
+		var(--get-gap#{$previousPrefix})
+	);
+
+	--get-gap#{$prefix}: var(--gap#{$prefix}, #{$previousBreakpoint});
+
+	gap: var(--get-gap#{$prefix}, #{$previousBreakpoint});
+}
+
+@mixin lucencyBuildGrid(
+	$breakpoints: (
+		full: null,
+		xxl: 1400px,
+		xl: 1200px,
+		lg: 992px,
+		md: 768px,
+		sm: 576px,
+		xs: 480px,
+	),
+	$columns: 12,
+	$slug: "lucency"
+) {
+	.#{$slug} {
+		@include lucencySetResponsive($breakpoints) using ($originalPrefix, $prefix) {
+			@include lucencyAddMarginPadding(
+				(
+					"margin": (
+						top,
+						right,
+						bottom,
+						left,
+					),
+					"padding": (
+						top,
+						right,
+						bottom,
+						left,
+					),
+				),
+				$breakpoints,
+				$originalPrefix,
+				$prefix
+			);
+
+			@include lucencyAddCSSClasses(
+				(
+					"#{$slug}": (
+						"prop": "display",
+						"values": (
+							("flex", flex),
+							("inline-flex", inline-flex),
+						),
+					),
+					"#{$slug}-flex": (
+						"prop": "flex-direction",
+						"values": (
+							("row", row),
+							("row-reverse", row-reverse),
+							("column", column),
+							("column-reverse", column-reverse),
+						),
+					),
+					"#{$slug}-flex-wrap": (
+						"prop": "flex-wrap",
+						"values": (
+							("", wrap),
+							("wrap-reverse", wrap-reverse),
+							("nowrap", nowrap),
+						),
+					),
+					"#{$slug}-justify": (
+						"prop": "justify-content",
+						"values": (
+							("normal", normal),
+							("start", flex-start),
+							("end", flex-end),
+							("center", center),
+							("between", space-between),
+							("around", space-around),
+							("evenly", space-evenly),
+							("stretch", stretch),
+						),
+					),
+					"#{$slug}-items": (
+						"prop": "align-items",
+						"values": (
+							("start", flex-start),
+							("end", flex-end),
+							("center", center),
+							("baseline", baseline),
+							("stretch", stretch),
+						),
+					),
+					"#{$slug}-content": (
+						"prop": "align-content",
+						"values": (
+							("normal" normal),
+							("center", center),
+							("flex-start", flex-start),
+							("flex-end", flex-end),
+							("space-between", space-between),
+							("space-around", space-around),
+							("space-evenly", space-evenly),
+							("baseline", baseline),
+							("stretch", stretch),
+						),
+					),
+				),
+				$prefix
+			);
+		}
+
+		&-flex,
+		&-inline-flex {
+			@include lucencySetResponsive($breakpoints) using
+				($originalPrefix, $prefix) {
+				@include lucencySetGap($breakpoints, $originalPrefix, $prefix);
+			}
+		}
+
+		&-col {
+			@include lucencySetResponsive($breakpoints) using
+				($originalPrefix, $prefix) {
+				@include lucencySetColsWidth($prefix, $columns, $slug);
+
+				@include lucencyAddCSSClasses(
+					(
+						"#{$slug}-self": (
+							"prop": "align-self",
+							"values": (
+								("auto", auto),
+								("start", flex-start),
+								("end", flex-end),
+								("center", center),
+								("stretch", stretch),
+								("baseline", baseline),
+							),
+						),
+					),
+					$prefix
+				);
+			}
+		}
+		&-align {
+			@include lucencySetResponsive($breakpoints) using
+				($originalPrefix, $prefix) {
 				&-left#{$prefix} {
 					text-align: left;
 				}
@@ -283,3 +286,5 @@ $breakpoints: (
 		}
 	}
 }
+
+@include lucencyBuildGrid();
