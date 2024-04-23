@@ -41,67 +41,84 @@ export default function createCollapsibleItems({
 		const controls = [
 			{
 				options: [
-					{ label: "left", value: "left" },
-					{ label: "center", value: "center" },
-					{ label: "right", value: "right" },
-					{ label: "justify", value: "justify" },
+					{ label: "flex", value: "lucency-flex" },
+					{ label: "inline-flex", value: "lucency-inline-flex" },
 				],
-				label: "Text Align",
-				prop: "text-align",
+				label: "Display",
+				prop: "display",
 			},
 			{
 				options: [
-					{ label: "flex-start", value: "flex-start" },
-					{ label: "flex-end", value: "flex-end" },
-					{ label: "center", value: "center" },
-					{ label: "space-between", value: "space-between" },
-					{ label: "space-around", value: "space-around" },
-					{ label: "space-evenly", value: "space-evenly" },
-				],
-				label: "Justify Content",
-				prop: "justify-content",
-			},
-			{
-				options: [
-					{ label: "flex-start", value: "flex-start" },
-					{ label: "flex-end", value: "flex-end" },
-					{ label: "center", value: "center" },
-					{ label: "baseline", value: "baseline" },
-					{ label: "stretch", value: "stretch" },
-				],
-				label: "Align Items",
-				prop: "align-items",
-			},
-			{
-				options: [
-					{ label: "flex-start", value: "flex-start" },
-					{ label: "flex-end", value: "flex-end" },
-					{ label: "center", value: "center" },
-					{ label: "space-between", value: "space-between" },
-					{ label: "space-around", value: "space-around" },
-					{ label: "stretch", value: "stretch" },
-				],
-				label: "Align Content",
-				prop: "align-content",
-			},
-			{
-				options: [
-					{ label: "row", value: "row" },
-					{ label: "row-reverse", value: "row-reverse" },
-					{ label: "column", value: "column" },
-					{ label: "column-reverse", value: "column-reverse" },
+					{ label: "row", value: "lucency-flex-row" },
+					{ label: "row-reverse", value: "lucency-flex-row-reverse" },
+					{ label: "column", value: "lucency-flex-column" },
+					{ label: "column-reverse", value: "lucency-flex-column-reverse" },
 				],
 				label: "Flex Direction",
 				prop: "flex-direction",
 			},
 			{
 				options: [
-					{ label: "nowrap", value: "nowrap" },
-					{ label: "wrap", value: "wrap" },
-					{ label: "wrap-reverse", value: "wrap-reverse" },
+					{ label: "wrap", value: "lucency-flex-wrap" },
+					{ label: "wrap-reverse", value: "lucency-flex-wrap-reverse" },
+					{ label: "nowrap", value: "lucency-flex-wrap-nowrap" },
 				],
 				label: "Flex Wrap",
 				prop: "flex-wrap",
+			},
+			{
+				options: [
+					{ label: "normal", value: "lucency-justify-normal" },
+					{ label: "flex-start", value: "lucency-justify-start" },
+					{ label: "flex-end", value: "lucency-justify-end" },
+					{ label: "center", value: "lucency-justify-center" },
+					{ label: "between", value: "lucency-justify-between" },
+					{ label: "around", value: "lucency-justify-around" },
+					{ label: "evenly", value: "lucency-justify-evenly" },
+					{ label: "stretch", value: "lucency-justify-stretch" },
+				],
+				label: "Justify Content",
+				prop: "justify-content",
+			},
+			{
+				options: [
+					{ label: "flex-start", value: "lucency-items-start" },
+					{ label: "flex-end", value: "lucency-items-end" },
+					{ label: "center", value: "lucency-items-center" },
+					{ label: "baseline", value: "lucency-items-baseline" },
+					{ label: "stretch", value: "lucency-items-stretch" },
+				],
+				label: "Align Items",
+				prop: "align-items",
+			},
+			{
+				options: [
+					{ label: "normal", value: "lucency-content-normal" },
+					{ label: "center", value: "lucency-content-center" },
+					{ label: "flex-start", value: "lucency-content-start" },
+					{ label: "flex-end", value: "lucency-content-end" },
+					{ label: "space-between", value: "lucency-content-between" },
+					{ label: "space-around", value: "lucency-content-around" },
+					{ label: "space-evenly", value: "lucency-content-evenly" },
+					{ label: "baseline", value: "lucency-content-baseline" },
+					{ label: "stretch", value: "lucency-content-stretch" },
+				],
+				label: "Align Content",
+				prop: "align-content",
+			},
+			{
+				options: [
+					{ label: "left", value: "lucency-align-left" },
+					{ label: "center", value: "lucency-align-center" },
+					{ label: "right", value: "lucency-align-right" },
+					{ label: "justify", value: "lucency-align-justify" },
+				],
+				label: "Text Align",
+				prop: "text-align",
+			},
+			{
+				label: "Gap",
+				prop: "gap",
 			},
 		];
 
@@ -114,6 +131,7 @@ export default function createCollapsibleItems({
 						label,
 						prop,
 						size,
+						col: 6,
 						handleChange,
 					}),
 				)}
@@ -149,6 +167,7 @@ export default function createCollapsibleItems({
 						label,
 						prop,
 						size,
+						col: 3,
 						handleChange,
 					}),
 				)}
@@ -188,6 +207,7 @@ export default function createCollapsibleItems({
 						label,
 						prop,
 						size,
+						col: 3,
 						handleChange,
 					}),
 				)}
@@ -208,11 +228,15 @@ export default function createCollapsibleItems({
 			console.error(`No function found for type: ${fn}`);
 			return null;
 		}
+		//lucency-col
 
 		return (
 			<>
 				<h2>{title}</h2>
-				<div className="row" style={{ "--gap": "0.25em" }}>
+				<div
+					className="lucency lucency-flex lucency-flex-wrap"
+					style={{ "--gap": "0.25em" }}
+				>
 					<ContentFunction size={size} />
 				</div>
 			</>

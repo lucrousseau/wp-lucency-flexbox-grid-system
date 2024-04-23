@@ -9,10 +9,11 @@ export default function renderControl({
 	label,
 	prop,
 	size,
+	col = 6,
 	handleChange,
 }) {
 	const renderSelectControl = () => (
-		<div className="col col--6">
+		<div className={`lucency-col lucency-col-${col}`}>
 			<SelectControl
 				label={label}
 				value={stylesClasses?.[size]?.classes?.[prop]}
@@ -31,7 +32,7 @@ export default function renderControl({
 	);
 
 	const renderNumberControl = () => (
-		<div className="col col--3">
+		<div className={`lucency-col lucency-col-${col}`}>
 			<NumberControl
 				label={label}
 				value={stylesClasses?.[size]?.variables?.[prop] ?? null}

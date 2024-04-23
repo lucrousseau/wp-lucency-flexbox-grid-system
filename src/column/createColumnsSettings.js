@@ -12,7 +12,7 @@ export default function createColumnsSettings({ sizes, handleSizeChange }) {
 
 		const content = (
 			<RangeControl
-				label={__("Columns Eidth", "lucency")}
+				label={__("Columns Width", "lucency")}
 				min={0}
 				max={COLUMNS}
 				value={sizes?.[size] ?? 0}

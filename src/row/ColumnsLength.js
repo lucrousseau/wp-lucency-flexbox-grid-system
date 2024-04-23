@@ -43,6 +43,8 @@ export default function ColumnsLength({
 
 	const savedContentRef = useRef({});
 
+	useEffect(() => onColumnsLengthChange(columns), []);
+
 	const onColumnsLengthChange = (value) => {
 		if (value < 1 || value > COLUMNS) {
 			console.error(`The number of columns must be between 1 and ${COLUMNS}.`);

@@ -10,7 +10,7 @@ export default function save({ attributes }) {
 	const style = {};
 
 	const innerBlocksProps = useInnerBlocksProps.save({
-		className: classnames("col", responsiveColumnSizes({ sizes })),
+		className: classnames("lucency-col", responsiveColumnSizes({ sizes })),
 	});
 
 	return <div {...innerBlocksProps} style={style} />;

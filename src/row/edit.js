@@ -33,7 +33,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const style = updateStyles({ stylesClasses });
 
 	const blockProps = useBlockProps({
-		className: updateClasses({ stylesClasses }, classnames("lucency", "row")),
+		className: updateClasses({ stylesClasses }, classnames("lucency")),
 	});
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {

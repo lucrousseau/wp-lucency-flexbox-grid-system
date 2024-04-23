@@ -16,7 +16,7 @@ function processStylesClasses({ key, stylesClasses, processEntry }) {
 	Object.entries(stylesClasses ?? {}).forEach(([size, props]) => {
 		Object.entries(props?.[key] ?? {}).forEach(([prop, value]) => {
 			if (value !== undefined && value !== null) {
-				const prefix = size === "full" ? "" : `${size}-`;
+				const prefix = size === "full" ? "" : `--${size}`;
 
 				processEntry(result, prefix, prop, value);
 			}
@@ -47,7 +47,7 @@ export function updateClasses({ stylesClasses }, classes = null) {
 		key,
 		stylesClasses,
 		processEntry: (result, prefix, prop, value) => {
-			result[`${prefix}${prop}-${value}`] = true;
+			result[`${value}${prefix}`] = true;
 		},
 	});
 

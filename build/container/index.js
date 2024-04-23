@@ -174,112 +174,140 @@ function createCollapsibleItems({
   }) => {
     const controls = [{
       options: [{
-        label: "left",
-        value: "left"
+        label: "flex",
+        value: "lucency-flex"
       }, {
-        label: "center",
-        value: "center"
-      }, {
-        label: "right",
-        value: "right"
-      }, {
-        label: "justify",
-        value: "justify"
+        label: "inline-flex",
+        value: "lucency-inline-flex"
       }],
-      label: "Text Align",
-      prop: "text-align"
+      label: "Display",
+      prop: "display"
     }, {
       options: [{
+        label: "row",
+        value: "lucency-flex-row"
+      }, {
+        label: "row-reverse",
+        value: "lucency-flex-row-reverse"
+      }, {
+        label: "column",
+        value: "lucency-flex-column"
+      }, {
+        label: "column-reverse",
+        value: "lucency-flex-column-reverse"
+      }],
+      label: "Flex Direction",
+      prop: "flex-direction"
+    }, {
+      options: [{
+        label: "wrap",
+        value: "lucency-flex-wrap"
+      }, {
+        label: "wrap-reverse",
+        value: "lucency-flex-wrap-reverse"
+      }, {
+        label: "nowrap",
+        value: "lucency-flex-wrap-nowrap"
+      }],
+      label: "Flex Wrap",
+      prop: "flex-wrap"
+    }, {
+      options: [{
+        label: "normal",
+        value: "lucency-justify-normal"
+      }, {
         label: "flex-start",
-        value: "flex-start"
+        value: "lucency-justify-start"
       }, {
         label: "flex-end",
-        value: "flex-end"
+        value: "lucency-justify-end"
       }, {
         label: "center",
-        value: "center"
+        value: "lucency-justify-center"
       }, {
-        label: "space-between",
-        value: "space-between"
+        label: "between",
+        value: "lucency-justify-between"
       }, {
-        label: "space-around",
-        value: "space-around"
+        label: "around",
+        value: "lucency-justify-around"
       }, {
-        label: "space-evenly",
-        value: "space-evenly"
+        label: "evenly",
+        value: "lucency-justify-evenly"
+      }, {
+        label: "stretch",
+        value: "lucency-justify-stretch"
       }],
       label: "Justify Content",
       prop: "justify-content"
     }, {
       options: [{
         label: "flex-start",
-        value: "flex-start"
+        value: "lucency-items-start"
       }, {
         label: "flex-end",
-        value: "flex-end"
+        value: "lucency-items-end"
       }, {
         label: "center",
-        value: "center"
+        value: "lucency-items-center"
       }, {
         label: "baseline",
-        value: "baseline"
+        value: "lucency-items-baseline"
       }, {
         label: "stretch",
-        value: "stretch"
+        value: "lucency-items-stretch"
       }],
       label: "Align Items",
       prop: "align-items"
     }, {
       options: [{
-        label: "flex-start",
-        value: "flex-start"
-      }, {
-        label: "flex-end",
-        value: "flex-end"
+        label: "normal",
+        value: "lucency-content-normal"
       }, {
         label: "center",
-        value: "center"
+        value: "lucency-content-center"
+      }, {
+        label: "flex-start",
+        value: "lucency-content-start"
+      }, {
+        label: "flex-end",
+        value: "lucency-content-end"
       }, {
         label: "space-between",
-        value: "space-between"
+        value: "lucency-content-between"
       }, {
         label: "space-around",
-        value: "space-around"
+        value: "lucency-content-around"
+      }, {
+        label: "space-evenly",
+        value: "lucency-content-evenly"
+      }, {
+        label: "baseline",
+        value: "lucency-content-baseline"
       }, {
         label: "stretch",
-        value: "stretch"
+        value: "lucency-content-stretch"
       }],
       label: "Align Content",
       prop: "align-content"
     }, {
       options: [{
-        label: "row",
-        value: "row"
+        label: "left",
+        value: "lucency-align-left"
       }, {
-        label: "row-reverse",
-        value: "row-reverse"
+        label: "center",
+        value: "lucency-align-center"
       }, {
-        label: "column",
-        value: "column"
+        label: "right",
+        value: "lucency-align-right"
       }, {
-        label: "column-reverse",
-        value: "column-reverse"
+        label: "justify",
+        value: "lucency-align-justify"
       }],
-      label: "Flex Direction",
-      prop: "flex-direction"
+      label: "Text Align",
+      prop: "text-align"
     }, {
-      options: [{
-        label: "nowrap",
-        value: "nowrap"
-      }, {
-        label: "wrap",
-        value: "wrap"
-      }, {
-        label: "wrap-reverse",
-        value: "wrap-reverse"
-      }],
-      label: "Flex Wrap",
-      prop: "flex-wrap"
+      label: "Gap",
+      prop: "gap"
     }];
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, controls.map(({
       options,
@@ -291,6 +319,7 @@ function createCollapsibleItems({
       label,
       prop,
       size,
+      col: 6,
       handleChange
     })));
   };
@@ -318,6 +347,7 @@ function createCollapsibleItems({
       label,
       prop,
       size,
+      col: 3,
       handleChange
     })));
   };
@@ -349,6 +379,7 @@ function createCollapsibleItems({
       label,
       prop,
       size,
+      col: 3,
       handleChange
     })));
   };
@@ -367,8 +398,10 @@ function createCollapsibleItems({
       console.error(`No function found for type: ${fn}`);
       return null;
     }
+    //lucency-col
+
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, title), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "row",
+      className: "lucency lucency-flex lucency-flex-wrap",
       style: {
         "--gap": "0.25em"
       }
@@ -444,7 +477,7 @@ function processStylesClasses({
     var _props$key;
     Object.entries((_props$key = props?.[key]) !== null && _props$key !== void 0 ? _props$key : {}).forEach(([prop, value]) => {
       if (value !== undefined && value !== null) {
-        const prefix = size === "full" ? "" : `${size}-`;
+        const prefix = size === "full" ? "" : `--${size}`;
         processEntry(result, prefix, prop, value);
       }
     });
@@ -475,7 +508,7 @@ function updateClasses({
     key,
     stylesClasses,
     processEntry: (result, prefix, prop, value) => {
-      result[`${prefix}${prop}-${value}`] = true;
+      result[`${value}${prefix}`] = true;
     }
   });
   return classnames__WEBPACK_IMPORTED_MODULE_6___default()(classes, {
@@ -522,10 +555,11 @@ function renderControl({
   label,
   prop,
   size,
+  col = 6,
   handleChange
 }) {
   const renderSelectControl = () => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "col col--6"
+    className: `lucency-col lucency-col-${col}`
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
     label: label,
     value: stylesClasses?.[size]?.classes?.[prop],
@@ -544,7 +578,7 @@ function renderControl({
   const renderNumberControl = () => {
     var _stylesClasses$size$v;
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "col col--3"
+      className: `lucency-col lucency-col-${col}`
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
       label: label,
       value: (_stylesClasses$size$v = stylesClasses?.[size]?.variables?.[prop]) !== null && _stylesClasses$size$v !== void 0 ? _stylesClasses$size$v : null,

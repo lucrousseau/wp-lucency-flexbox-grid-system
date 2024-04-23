@@ -31,5 +31,8 @@
 		"@wordpress/icons": "^9.43.0",
 		"@wordpress/scripts": "^27.3.0",
 		"classnames": "^2.5.1"
+	},
+	"dependencies": {
+		"lucency-flex-grid": "github:lucrousseau/lucency-flex-grid"
 	}
 }

@@ -11,7 +11,7 @@ export default function save({ attributes }) {
 	const style = updateStyles({ stylesClasses });
 
 	const blockProps = useBlockProps.save({
-		className: updateClasses({ stylesClasses }, classnames("lucency", "row")),
+		className: updateClasses({ stylesClasses }, classnames("lucency")),
 	});
 
 	const innerBlocksProps = useInnerBlocksProps.save(blockProps);

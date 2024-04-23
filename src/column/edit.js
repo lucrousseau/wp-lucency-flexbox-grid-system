@@ -26,7 +26,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	}));
 
 	const blockProps = useBlockProps({
-		className: classnames("col", responsiveColumnSizes({ sizes })),
+		className: classnames("lucency-col", responsiveColumnSizes({ sizes })),
 	});
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {

@@ -22,11 +22,22 @@
     },
     "columns": {
       "type": "number",
-      "default": 1
+      "default": 2
     },
     "stylesClasses": {
       "type": "object",
-      "default": {}
+      "default": {
+        "full": {
+          "classes": {
+            "display": "lucency-flex",
+            "flex-direction": "lucency-flex-row",
+            "flex-wrap": "lucency-flex-wrap"
+          },
+          "variables": {
+            "gap": "1"
+          }
+        }
+      }
     }
   }
 }

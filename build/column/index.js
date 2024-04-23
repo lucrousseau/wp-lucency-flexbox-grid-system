@@ -87,7 +87,7 @@ function createColumnsSettings({
     var _sizes$size;
     const title = `${(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(size.toUpperCase(), "lucency")}${size !== "full" ? `, ${_abstracts_constants__WEBPACK_IMPORTED_MODULE_3__.BREAKPOINTS[size]}px` : ""}`;
     const content = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Columns Eidth", "lucency"),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Columns Width", "lucency"),
       min: 0,
       max: _abstracts_constants__WEBPACK_IMPORTED_MODULE_3__.COLUMNS,
       value: (_sizes$size = sizes?.[size]) !== null && _sizes$size !== void 0 ? _sizes$size : 0,
@@ -160,7 +160,7 @@ function Edit({
     hasInnerBlocks: select("core/block-editor").getBlockCount(clientId) > 0
   }));
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)({
-    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("col", (0,_responsiveColumnSizes_js__WEBPACK_IMPORTED_MODULE_7__["default"])({
+    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("lucency-col", (0,_responsiveColumnSizes_js__WEBPACK_IMPORTED_MODULE_7__["default"])({
       sizes
     }))
   });
@@ -217,8 +217,8 @@ function responsiveColumnSizes({
   sizes
 }) {
   const classes = Object.entries(sizes).reduce((acc, [size, value]) => {
-    const prefix = size === "full" ? "" : `${size}-`;
-    acc[`col--${prefix}${value}`] = true;
+    const prefix = size === "full" ? "" : `--${size}`;
+    acc[`lucency-col-${value}${prefix}`] = true;
     return acc;
   }, {});
   return classnames__WEBPACK_IMPORTED_MODULE_0___default()(classes);
@@ -256,7 +256,7 @@ function save({
   } = attributes;
   const style = {};
   const innerBlocksProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useInnerBlocksProps.save({
-    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("col", (0,_responsiveColumnSizes_js__WEBPACK_IMPORTED_MODULE_3__["default"])({
+    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("lucency-col", (0,_responsiveColumnSizes_js__WEBPACK_IMPORTED_MODULE_3__["default"])({
       sizes
     }))
   });
