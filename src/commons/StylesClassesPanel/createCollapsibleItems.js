@@ -228,7 +228,6 @@ export default function createCollapsibleItems({
 			console.error(`No function found for type: ${fn}`);
 			return null;
 		}
-		//lucency-col
 
 		return (
 			<>
