@@ -2,17 +2,22 @@ import { __ } from "@wordpress/i18n";
 
 import { BREAKPOINTS } from "../../abstracts/constants";
 
+import { __experimentalNumberControl as NumberControl } from "@wordpress/components";
+
+import Collapsible from "../Collapsible";
+
 import {
-	__experimentalNumberControl as NumberControl,
-	PanelRow,
-} from "@wordpress/components";
+	updateStyles,
+	updateClasses,
+	handleStylesClassesChange,
+} from "./functions";
 
-import { handleChange } from "./";
-
-export default function createCollapsibleItems({
+export default function ResponsivePanel({
+	enabled = { margin: true, padding: true },
 	stylesClasses,
 	setAttributes,
-	createCollapsibleItemsContentAlignements,
+	responsivePanelBefore = {}, // { title, fn }
+	responsivePanelAfter = {}, // { title, fn }
 }) {
 	const stylesClassesObject = Object.fromEntries(
 		Object.keys(BREAKPOINTS).map((size) => [size, {}]),
@@ -24,7 +29,7 @@ export default function createCollapsibleItems({
 				label={label}
 				value={stylesClasses?.[size]?.variables?.[prop] ?? null}
 				onChange={(value) =>
-					handleChange({
+					handleStylesClassesChange({
 						size,
 						prop,
 						value,
@@ -40,7 +45,7 @@ export default function createCollapsibleItems({
 		</div>
 	);
 
-	const createCollapsibleItemsContentMargins = ({ size }) => {
+	const responsivePanelMargins = ({ size }) => {
 		const controls = [
 			{
 				label: __("Top", "lucency"),
@@ -75,7 +80,7 @@ export default function createCollapsibleItems({
 		);
 	};
 
-	const createCollapsibleItemsContentPaddings = ({ size }) => {
+	const responsivePanelPaddings = ({ size }) => {
 		const controls = [
 			{
 				label: __("Top", "lucency"),
@@ -114,14 +119,8 @@ export default function createCollapsibleItems({
 		);
 	};
 
-	const createCollapsibleItemsContent = ({ title, size, fn }) => {
-		const functionMap = {
-			createCollapsibleItemsContentAlignements,
-			createCollapsibleItemsContentMargins,
-			createCollapsibleItemsContentPaddings,
-		};
-
-		const ContentFunction = functionMap[fn];
+	const createResponsivePanelItemsContent = ({ title, size, fn }) => {
+		const ContentFunction = fn;
 
 		if (!ContentFunction) {
 			console.error(`No function found for type: ${fn}`);
@@ -141,28 +140,41 @@ export default function createCollapsibleItems({
 		);
 	};
 
+	const panelSettings = [
+		{
+			condition: responsivePanelBefore?.fn,
+			title: responsivePanelBefore.title || null,
+			fn: responsivePanelBefore.fn,
+		},
+		{
+			condition: enabled.margin,
+			title: "Margins",
+			fn: responsivePanelMargins,
+		},
+		{
+			condition: enabled.margin,
+			title: "Paddings",
+			fn: responsivePanelPaddings,
+		},
+		{
+			condition: responsivePanelAfter?.fn,
+			title: responsivePanelAfter?.title || null,
+			fn: responsivePanelAfter.fn,
+		},
+	];
+
 	return Object.keys(stylesClassesObject).reduce((collapsibleItems, size) => {
 		const title = `${__(size.toUpperCase(), "lucency")}${
 			size !== "full" ? `, ${BREAKPOINTS[size]}px` : ""
 		}`;
 
 		const content = (
-			<div className="stylesClassesPanel">
-				{createCollapsibleItemsContent({
-					title: "Alignments",
-					fn: "createCollapsibleItemsContentAlignements",
-					size,
-				})}
-				{createCollapsibleItemsContent({
-					title: "Margins",
-					fn: "createCollapsibleItemsContentMargins",
-					size,
-				})}
-				{createCollapsibleItemsContent({
-					title: "Paddings",
-					fn: "createCollapsibleItemsContentPaddings",
-					size,
-				})}
+			<div className="responsiveResponsiveStylesClassesPanel">
+				{panelSettings.map(({ condition, title, fn }) =>
+					condition
+						? createResponsivePanelItemsContent({ title, fn, size })
+						: null,
+				)}
 			</div>
 		);
 
@@ -170,3 +182,5 @@ export default function createCollapsibleItems({
 		return collapsibleItems;
 	}, {});
 }
+
+export { updateStyles, updateClasses, handleStylesClassesChange };

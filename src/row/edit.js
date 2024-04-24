@@ -17,15 +17,14 @@ import {
 } from "@wordpress/components";
 
 import Collapsible from "../commons/Collapsible";
-import createCollapsibleItems from "../commons/StylesClassesPanel/createCollapsibleItems";
 
 import ColumnsLength from "./ColumnsLength";
 
-import {
+import ResponsivePanel, {
 	updateStyles,
 	updateClasses,
-	handleChange,
-} from "../commons/StylesClassesPanel";
+	handleStylesClassesChange,
+} from "../commons/ResponsivePanel";
 
 import "./editor.scss";
 
@@ -67,7 +66,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					value={stylesClasses?.[size]?.classes?.[prop]}
 					options={[...[{ label: "", value: null }], ...options]}
 					onChange={(value) =>
-						handleChange({
+						handleStylesClassesChange({
 							size,
 							prop,
 							value,
@@ -87,7 +86,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					label={label}
 					value={stylesClasses?.[size]?.variables?.[prop] ?? null}
 					onChange={(value) =>
-						handleChange({
+						handleStylesClassesChange({
 							size,
 							prop,
 							value,
@@ -106,7 +105,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		return options ? renderSelectControl() : renderNumberControl();
 	};
 
-	const createCollapsibleItemsContentAlignements = ({ size }) => {
+	const responsivePanelBefore = ({ size }) => {
 		const controls = [
 			{
 				options: [
@@ -218,10 +217,13 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						setShowNotice={setShowNotice}
 					/>
 					<Collapsible
-						items={createCollapsibleItems({
+						items={ResponsivePanel({
 							stylesClasses,
 							setAttributes,
-							createCollapsibleItemsContentAlignements,
+							responsivePanelBefore: {
+								fn: responsivePanelBefore,
+								title: __("Alignment", "lucency"),
+							},
 						})}
 						initialOpenPanel={"full"}
 					/>

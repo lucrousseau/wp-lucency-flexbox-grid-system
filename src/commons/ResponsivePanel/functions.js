@@ -1,13 +1,5 @@
 import { __ } from "@wordpress/i18n";
 
-//import { PanelBody } from "@wordpress/components";
-
-//import Collapsible from "../Collapsible";
-
-//import createCollapsibleItems from "./createCollapsibleItems";
-
-//import "./editor.scss";
-
 import classnames from "classnames";
 
 function processStylesClasses({ key, stylesClasses, processEntry }) {
@@ -54,7 +46,7 @@ export function updateClasses({ stylesClasses }, classes = null) {
 	return classnames(classes, { ...processed });
 }
 
-export function handleChange({
+export function handleStylesClassesChange({
 	size,
 	prop,
 	value,
@@ -83,27 +75,3 @@ export function handleChange({
 
 	setAttributes({ stylesClasses: updatedStylesClasses });
 }
-
-/*
-export default function StylesClassesPanel({
-	stylesClasses = {},
-	setAttributes,
-}) {
-	return (
-		<PanelBody title={__("Margin & Padding")}>
-			<p>
-				<em>
-					{__(
-						"All units are in REM and use sizes for all breakpoints",
-						"lucency",
-					)}
-				</em>
-			</p>
-			<Collapsible
-				items={createCollapsibleItems({ stylesClasses, setAttributes })}
-				initialOpenPanel={"full"}
-			/>
-		</PanelBody>
-	);
-}
-*/

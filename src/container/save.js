@@ -2,7 +2,7 @@ import classnames from "classnames";
 
 import { useBlockProps, useInnerBlocksProps } from "@wordpress/block-editor";
 
-import { updateStyles, updateClasses } from "../commons/StylesClassesPanel";
+import { updateStyles, updateClasses } from "../commons/ResponsivePanel";
 
 export default function save({ attributes }) {
 	const { tag, stylesClasses } = attributes;
