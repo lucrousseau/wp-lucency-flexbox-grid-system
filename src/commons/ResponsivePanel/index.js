@@ -23,7 +23,14 @@ function responsivePanelItems({
 		Object.keys(BREAKPOINTS).map((size) => [size, {}]),
 	);
 
-	const renderControl = ({ stylesClasses, label, prop, size, col = 6 }) => (
+	const renderControl = ({
+		stylesClasses,
+		label,
+		prop,
+		size,
+		col = 6,
+		min,
+	}) => (
 		<div className={`lucency-col lucency-col-${col}`}>
 			<NumberControl
 				label={label}
@@ -38,6 +45,7 @@ function responsivePanelItems({
 						setAttributes,
 					})
 				}
+				min={min}
 				step={0.1}
 				isShiftStepEnabled={true}
 				shiftStep={10}
@@ -112,6 +120,7 @@ function responsivePanelItems({
 						label,
 						prop,
 						size,
+						min: 0,
 						col: 3,
 					}),
 				)}
@@ -147,12 +156,12 @@ function responsivePanelItems({
 			fn: responsivePanelBefore.fn,
 		},
 		{
-			condition: enabled.margin,
+			condition: enabled?.margin,
 			title: "Margins",
 			fn: responsivePanelMargins,
 		},
 		{
-			condition: enabled.margin,
+			condition: enabled?.padding,
 			title: "Paddings",
 			fn: responsivePanelPaddings,
 		},

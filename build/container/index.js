@@ -263,7 +263,8 @@ function responsivePanelItems({
     label,
     prop,
     size,
-    col = 6
+    col = 6,
+    min
   }) => {
     var _stylesClasses$size$v;
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -279,6 +280,7 @@ function responsivePanelItems({
         stylesClasses,
         setAttributes
       }),
+      min: min,
       step: 0.1,
       isShiftStepEnabled: true,
       shiftStep: 10
@@ -339,6 +341,7 @@ function responsivePanelItems({
       label,
       prop,
       size,
+      min: 0,
       col: 3
     })));
   };
@@ -366,11 +369,11 @@ function responsivePanelItems({
     title: responsivePanelBefore.title || null,
     fn: responsivePanelBefore.fn
   }, {
-    condition: enabled.margin,
+    condition: enabled?.margin,
     title: "Margins",
     fn: responsivePanelMargins
   }, {
-    condition: enabled.margin,
+    condition: enabled?.padding,
     title: "Paddings",
     fn: responsivePanelPaddings
   }, {

@@ -8,26 +8,34 @@ import {
 	InspectorControls,
 } from "@wordpress/block-editor";
 
-import { PanelBody, Notice } from "@wordpress/components";
+import { PanelBody, Notice, RangeControl } from "@wordpress/components";
 
-import Collapsible from "../commons/Collapsible";
+import { COLUMNS } from "../abstracts/constants";
+
+import ResponsivePanel, {
+	updateStyles,
+	updateClasses,
+} from "../commons/ResponsivePanel";
+
 import responsiveColumnSizes from "./responsiveColumnSizes.js";
-import createColumnsSettings from "./createColumnsSettings.js";
 
 import "./editor.scss";
 
 export default function Edit({ attributes, setAttributes, clientId }) {
-	const { sizes } = attributes;
+	const { stylesClasses, sizes } = attributes;
 
-	const style = {};
+	const style = updateStyles({ stylesClasses });
+
+	const blockProps = useBlockProps({
+		className: updateClasses(
+			{ stylesClasses },
+			classnames("lucency-col", responsiveColumnSizes({ sizes })),
+		),
+	});
 
 	const { hasInnerBlocks } = useSelect((select) => ({
 		hasInnerBlocks: select("core/block-editor").getBlockCount(clientId) > 0,
 	}));
-
-	const blockProps = useBlockProps({
-		className: classnames("lucency-col", responsiveColumnSizes({ sizes })),
-	});
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		renderAppender: !hasInnerBlocks
@@ -44,6 +52,21 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		setAttributes({ sizes: updatedColumnSize });
 	};
 
+	const responsivePanelBefore = ({ size }) => (
+		<>
+			<div className={`lucency-col`}>
+				<RangeControl
+					label={__("Columns Width", "lucency")}
+					min={0}
+					max={COLUMNS}
+					value={sizes?.[size] ?? 0}
+					onChange={(value) => handleSizeChange({ size, sizes, value })}
+					help={__("Leave at 0 for auto width", "lucency")}
+				/>
+			</div>
+		</>
+	);
+
 	return (
 		<>
 			<InspectorControls>
@@ -54,9 +77,14 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 							"lucency",
 						)}
 					</Notice>
-					<Collapsible
-						items={createColumnsSettings({ sizes, handleSizeChange })}
-						initialOpenPanel={"full"}
+					<ResponsivePanel
+						enabled={{ padding: true }}
+						stylesClasses={stylesClasses}
+						setAttributes={setAttributes}
+						responsivePanelBefore={{
+							fn: responsivePanelBefore,
+							title: __("Alignment", "lucency"),
+						}}
 					/>
 				</PanelBody>
 			</InspectorControls>

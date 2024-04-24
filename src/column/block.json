@@ -21,6 +21,15 @@
 		"sizes": {
 			"type": "object",
 			"default": {}
+		},
+		"stylesClasses": {
+			"type": "object",
+			"default": {
+				"full": {
+					"classes": {},
+					"variables": {}
+				}
+			}
 		}
 	}
 }
