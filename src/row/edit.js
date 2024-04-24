@@ -16,8 +16,6 @@ import {
 	Notice,
 } from "@wordpress/components";
 
-import Collapsible from "../commons/Collapsible";
-
 import ColumnsLength from "./ColumnsLength";
 
 import ResponsivePanel, {
@@ -216,16 +214,13 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						clientId={clientId}
 						setShowNotice={setShowNotice}
 					/>
-					<Collapsible
-						items={ResponsivePanel({
-							stylesClasses,
-							setAttributes,
-							responsivePanelBefore: {
-								fn: responsivePanelBefore,
-								title: __("Alignment", "lucency"),
-							},
-						})}
-						initialOpenPanel={"full"}
+					<ResponsivePanel
+						stylesClasses={stylesClasses}
+						setAttributes={setAttributes}
+						responsivePanelBefore={{
+							fn: responsivePanelBefore,
+							title: __("Alignment", "lucency"),
+						}}
 					/>
 				</PanelBody>
 			</InspectorControls>

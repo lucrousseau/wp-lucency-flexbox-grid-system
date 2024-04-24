@@ -241,16 +241,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function ResponsivePanel({
+function responsivePanelItems({
   enabled = {
     margin: true,
     padding: true
   },
   stylesClasses,
   setAttributes,
-  responsivePanelBefore = {},
-  // { title, fn }
-  responsivePanelAfter = {} // { title, fn }
+  responsivePanelBefore = {
+    title: null,
+    fn: null
+  },
+  responsivePanelAfter = {
+    title: null,
+    fn: null
+  }
 }) {
   const stylesClassesObject = Object.fromEntries(Object.keys(_abstracts_constants__WEBPACK_IMPORTED_MODULE_2__.BREAKPOINTS).map(size => [size, {}]));
   const renderControl = ({
@@ -392,6 +397,12 @@ function ResponsivePanel({
     };
     return collapsibleItems;
   }, {});
+}
+function ResponsivePanel(props) {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Collapsible__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    items: responsivePanelItems(props),
+    initialOpenPanel: "full"
+  });
 }
 
 

@@ -12,12 +12,12 @@ import {
 	handleStylesClassesChange,
 } from "./functions";
 
-export default function ResponsivePanel({
+function responsivePanelItems({
 	enabled = { margin: true, padding: true },
 	stylesClasses,
 	setAttributes,
-	responsivePanelBefore = {}, // { title, fn }
-	responsivePanelAfter = {}, // { title, fn }
+	responsivePanelBefore = { title: null, fn: null },
+	responsivePanelAfter = { title: null, fn: null },
 }) {
 	const stylesClassesObject = Object.fromEntries(
 		Object.keys(BREAKPOINTS).map((size) => [size, {}]),
@@ -181,6 +181,15 @@ export default function ResponsivePanel({
 		collapsibleItems[size] = { title, content };
 		return collapsibleItems;
 	}, {});
+}
+
+export default function ResponsivePanel(props) {
+	return (
+		<Collapsible
+			items={responsivePanelItems(props)}
+			initialOpenPanel={"full"}
+		/>
+	);
 }
 
 export { updateStyles, updateClasses, handleStylesClassesChange };

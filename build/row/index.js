@@ -241,16 +241,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function ResponsivePanel({
+function responsivePanelItems({
   enabled = {
     margin: true,
     padding: true
   },
   stylesClasses,
   setAttributes,
-  responsivePanelBefore = {},
-  // { title, fn }
-  responsivePanelAfter = {} // { title, fn }
+  responsivePanelBefore = {
+    title: null,
+    fn: null
+  },
+  responsivePanelAfter = {
+    title: null,
+    fn: null
+  }
 }) {
   const stylesClassesObject = Object.fromEntries(Object.keys(_abstracts_constants__WEBPACK_IMPORTED_MODULE_2__.BREAKPOINTS).map(size => [size, {}]));
   const renderControl = ({
@@ -393,6 +398,12 @@ function ResponsivePanel({
     return collapsibleItems;
   }, {});
 }
+function ResponsivePanel(props) {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Collapsible__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    items: responsivePanelItems(props),
+    initialOpenPanel: "full"
+  });
+}
 
 
 /***/ }),
@@ -526,11 +537,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _commons_Collapsible__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../commons/Collapsible */ "./src/commons/Collapsible/index.js");
-/* harmony import */ var _ColumnsLength__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./ColumnsLength */ "./src/row/ColumnsLength.js");
-/* harmony import */ var _commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../commons/ResponsivePanel */ "./src/commons/ResponsivePanel/index.js");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./editor.scss */ "./src/row/editor.scss");
-
+/* harmony import */ var _ColumnsLength__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ColumnsLength */ "./src/row/ColumnsLength.js");
+/* harmony import */ var _commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../commons/ResponsivePanel */ "./src/commons/ResponsivePanel/index.js");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./editor.scss */ "./src/row/editor.scss");
 
 
 
@@ -557,11 +566,11 @@ function Edit({
     const count = select("core/block-editor").getBlockCount(clientId);
     return count > 0;
   });
-  const style = (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_9__.updateStyles)({
+  const style = (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_8__.updateStyles)({
     stylesClasses
   });
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps)({
-    className: (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_9__.updateClasses)({
+    className: (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_8__.updateClasses)({
       stylesClasses
     }, classnames__WEBPACK_IMPORTED_MODULE_2___default()("lucency"))
   });
@@ -586,7 +595,7 @@ function Edit({
         label: "",
         value: null
       }], ...options],
-      onChange: value => (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_9__.handleStylesClassesChange)({
+      onChange: value => (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_8__.handleStylesClassesChange)({
         size,
         prop,
         value,
@@ -603,7 +612,7 @@ function Edit({
       }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.__experimentalNumberControl, {
         label: label,
         value: (_stylesClasses$size$v = stylesClasses?.[size]?.variables?.[prop]) !== null && _stylesClasses$size$v !== void 0 ? _stylesClasses$size$v : null,
-        onChange: value => (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_9__.handleStylesClassesChange)({
+        onChange: value => (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_8__.handleStylesClassesChange)({
           size,
           prop,
           value,
@@ -773,21 +782,18 @@ function Edit({
   };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Row Settings")
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ColumnsLength__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ColumnsLength__WEBPACK_IMPORTED_MODULE_7__["default"], {
     columns: columns,
     setAttributes: setAttributes,
     clientId: clientId,
     setShowNotice: setShowNotice
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_commons_Collapsible__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    items: (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_9__["default"])({
-      stylesClasses,
-      setAttributes,
-      responsivePanelBefore: {
-        fn: responsivePanelBefore,
-        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Alignment", "lucency")
-      }
-    }),
-    initialOpenPanel: "full"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    stylesClasses: stylesClasses,
+    setAttributes: setAttributes,
+    responsivePanelBefore: {
+      fn: responsivePanelBefore,
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Alignment", "lucency")
+    }
   }))), showNotice && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Notice, {
     status: "error",
     isDismissible: false
