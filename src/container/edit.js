@@ -8,11 +8,6 @@ import {
 	InspectorControls,
 } from "@wordpress/block-editor";
 
-import StylesClassesPanel, {
-	updateStyles,
-	updateClasses,
-} from "../commons/StylesClassesPanel";
-
 import "./editor.scss";
 
 export default function Edit({ attributes, setAttributes, clientId }) {
@@ -37,12 +32,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	return (
 		<>
-			<InspectorControls>
-				<StylesClassesPanel
-					stylesClasses={stylesClasses}
-					setAttributes={setAttributes}
-				/>
-			</InspectorControls>
+			<InspectorControls></InspectorControls>
 			<Tag {...innerBlocksProps} style={style} />
 		</>
 	);

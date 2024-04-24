@@ -1,12 +1,12 @@
 import { __ } from "@wordpress/i18n";
 
-import { PanelBody } from "@wordpress/components";
+//import { PanelBody } from "@wordpress/components";
 
-import Collapsible from "../Collapsible";
+//import Collapsible from "../Collapsible";
 
-import createCollapsibleItems from "./createCollapsibleItems";
+//import createCollapsibleItems from "./createCollapsibleItems";
 
-import "./editor.scss";
+//import "./editor.scss";
 
 import classnames from "classnames";
 
@@ -54,6 +54,37 @@ export function updateClasses({ stylesClasses }, classes = null) {
 	return classnames(classes, { ...processed });
 }
 
+export function handleChange({
+	size,
+	prop,
+	value,
+	key,
+	stylesClasses,
+	setAttributes,
+}) {
+	const updatedStylesClasses = {
+		...stylesClasses,
+		[size]: {
+			...stylesClasses[size],
+			[key]: {
+				...stylesClasses[size]?.[key],
+				...(value !== null ? { [prop]: value } : {}),
+			},
+		},
+	};
+
+	if (!value) {
+		delete updatedStylesClasses[size][key];
+	}
+
+	if (Object.keys(updatedStylesClasses[size]).length === 0) {
+		delete updatedStylesClasses[size];
+	}
+
+	setAttributes({ stylesClasses: updatedStylesClasses });
+}
+
+/*
 export default function StylesClassesPanel({
 	stylesClasses = {},
 	setAttributes,
@@ -75,3 +106,4 @@ export default function StylesClassesPanel({
 		</PanelBody>
 	);
 }
+*/
