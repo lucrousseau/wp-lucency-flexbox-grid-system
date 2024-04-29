@@ -52,8 +52,8 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		setAttributes({ sizes: updatedColumnSize });
 	};
 
-	const responsivePanelBefore = ({ size }) => (
-		<>
+	const responsivePanelBefore = {
+		fn: ({ size }) => (
 			<div className={`lucency-col`}>
 				<RangeControl
 					label={__("Columns Width", "lucency")}
@@ -64,8 +64,9 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					help={__("Leave at 0 for auto width", "lucency")}
 				/>
 			</div>
-		</>
-	);
+		),
+		title: __("Alignment", "lucency"),
+	};
 
 	return (
 		<>
@@ -81,10 +82,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						enabled={{ padding: true }}
 						stylesClasses={stylesClasses}
 						setAttributes={setAttributes}
-						responsivePanelBefore={{
-							fn: responsivePanelBefore,
-							title: __("Alignment", "lucency"),
-						}}
+						responsivePanelBefore={responsivePanelBefore}
 					/>
 				</PanelBody>
 			</InspectorControls>

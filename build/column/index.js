@@ -134,24 +134,27 @@ function Edit({
       sizes: updatedColumnSize
     });
   };
-  const responsivePanelBefore = ({
-    size
-  }) => {
-    var _sizes$size;
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: `lucency-col`
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.RangeControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Columns Width", "lucency"),
-      min: 0,
-      max: _abstracts_constants__WEBPACK_IMPORTED_MODULE_6__.COLUMNS,
-      value: (_sizes$size = sizes?.[size]) !== null && _sizes$size !== void 0 ? _sizes$size : 0,
-      onChange: value => handleSizeChange({
-        size,
-        sizes,
-        value
-      }),
-      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Leave at 0 for auto width", "lucency")
-    })));
+  const responsivePanelBefore = {
+    fn: ({
+      size
+    }) => {
+      var _sizes$size;
+      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        className: `lucency-col`
+      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.RangeControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Columns Width", "lucency"),
+        min: 0,
+        max: _abstracts_constants__WEBPACK_IMPORTED_MODULE_6__.COLUMNS,
+        value: (_sizes$size = sizes?.[size]) !== null && _sizes$size !== void 0 ? _sizes$size : 0,
+        onChange: value => handleSizeChange({
+          size,
+          sizes,
+          value
+        }),
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Leave at 0 for auto width", "lucency")
+      }));
+    },
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Alignment", "lucency")
   };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Column Settings")
@@ -164,10 +167,7 @@ function Edit({
     },
     stylesClasses: stylesClasses,
     setAttributes: setAttributes,
-    responsivePanelBefore: {
-      fn: responsivePanelBefore,
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Alignment", "lucency")
-    }
+    responsivePanelBefore: responsivePanelBefore
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...innerBlocksProps,
     style: style
