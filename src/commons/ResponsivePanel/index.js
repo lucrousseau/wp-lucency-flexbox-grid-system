@@ -197,7 +197,7 @@ export default function ResponsivePanel(props) {
 	const [openPanel, setOpenPanel] = useState("full");
 
 	return (
-		<div className={classnames("lucency__collapsible")}>
+		<div className={classnames("lucency__responsivepanel")}>
 			{Object.entries(responsivePanelItems(props)).map(([item, props]) => {
 				const { title, content } = props;
 

@@ -550,7 +550,7 @@ function responsivePanelItems({
 function ResponsivePanel(props) {
   const [openPanel, setOpenPanel] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)("full");
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("lucency__collapsible")
+    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("lucency__responsivepanel")
   }, Object.entries(responsivePanelItems(props)).map(([item, props]) => {
     const {
       title,
