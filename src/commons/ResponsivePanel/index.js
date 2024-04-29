@@ -130,9 +130,7 @@ function responsivePanelItems({
 	};
 
 	const createResponsivePanelItemsContent = ({ title, size, fn }) => {
-		const ContentFunction = fn;
-
-		if (!ContentFunction) {
+		if (!fn) {
 			console.error(`No function found for type: ${fn}`);
 			return null;
 		}
@@ -144,7 +142,7 @@ function responsivePanelItems({
 					className="lucency lucency-flex lucency-flex-wrap"
 					style={{ "--gap": "0.25em" }}
 				>
-					<ContentFunction size={size} />
+					{fn({ size })}
 				</div>
 			</>
 		);

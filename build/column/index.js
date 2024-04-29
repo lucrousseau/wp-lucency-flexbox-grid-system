@@ -496,8 +496,7 @@ function responsivePanelItems({
     size,
     fn
   }) => {
-    const ContentFunction = fn;
-    if (!ContentFunction) {
+    if (!fn) {
       console.error(`No function found for type: ${fn}`);
       return null;
     }
@@ -506,8 +505,8 @@ function responsivePanelItems({
       style: {
         "--gap": "0.25em"
       }
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(ContentFunction, {
-      size: size
+    }, fn({
+      size
     })));
   };
   const panelSettings = [{
