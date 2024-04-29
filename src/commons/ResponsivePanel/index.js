@@ -194,10 +194,9 @@ function responsivePanelItems({
 
 export default function ResponsivePanel(props) {
 	return (
-		<Collapsible
-			items={responsivePanelItems(props)}
-			initialOpenPanel={"full"}
-		/>
+		<Collapsible initialOpenPanel={"full"}>
+			{responsivePanelItems(props)}
+		</Collapsible>
 	);
 }
 

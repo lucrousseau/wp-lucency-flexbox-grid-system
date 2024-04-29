@@ -275,13 +275,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Collapsible({
-  items = {},
+  children,
   initialOpenPanel = ""
 }) {
   const [openPanel, setOpenPanel] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(initialOpenPanel);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("lucency__collapsible")
-  }, Object.entries(items).map(([item, props]) => {
+  }, Object.entries(children).map(([item, props]) => {
     const {
       title,
       content
@@ -598,9 +598,8 @@ function responsivePanelItems({
 }
 function ResponsivePanel(props) {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Collapsible__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    items: responsivePanelItems(props),
     initialOpenPanel: "full"
-  });
+  }, responsivePanelItems(props));
 }
 
 

@@ -4,12 +4,12 @@ import classnames from "classnames";
 
 import "./editor.scss";
 
-export default function Collapsible({ items = {}, initialOpenPanel = "" }) {
+export default function Collapsible({ children, initialOpenPanel = "" }) {
 	const [openPanel, setOpenPanel] = useState(initialOpenPanel);
 
 	return (
 		<div className={classnames("lucency__collapsible")}>
-			{Object.entries(items).map(([item, props]) => {
+			{Object.entries(children).map(([item, props]) => {
 				const { title, content } = props;
 
 				return (
