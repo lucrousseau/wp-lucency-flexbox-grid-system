@@ -600,12 +600,9 @@ function Edit({
     options,
     label,
     prop,
-    size,
-    col = 6
+    size
   }) => {
-    const renderSelectControl = () => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: `lucency-col lucency-col-${col}`
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.SelectControl, {
+    const renderSelectControl = () => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.SelectControl, {
       label: label,
       value: stylesClasses?.[size]?.classes?.[prop],
       options: [...[{
@@ -621,12 +618,10 @@ function Edit({
         setAttributes
       }),
       __nextHasNoMarginBottom: true
-    }));
+    });
     const renderNumberControl = () => {
       var _stylesClasses$size$v;
-      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: `lucency-col lucency-col-${col}`
-      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.__experimentalNumberControl, {
+      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.__experimentalNumberControl, {
         label: label,
         value: (_stylesClasses$size$v = stylesClasses?.[size]?.variables?.[prop]) !== null && _stylesClasses$size$v !== void 0 ? _stylesClasses$size$v : null,
         onChange: value => (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_8__.handleStylesClassesChange)({
@@ -640,7 +635,7 @@ function Edit({
         step: 0.1,
         isShiftStepEnabled: true,
         shiftStep: 10
-      }));
+      });
     };
     return options ? renderSelectControl() : renderNumberControl();
   };
@@ -785,17 +780,18 @@ function Edit({
         label: "Gap",
         prop: "gap"
       }];
-      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, controls.map(({
+      return controls.map(({
         options,
         label,
         prop
-      }) => renderControl({
+      }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        className: `lucency-col lucency-col-6`
+      }, renderControl({
         stylesClasses,
         options,
         label,
         prop,
-        size,
-        col: 6
+        size
       })));
     },
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Alignment", "lucency")

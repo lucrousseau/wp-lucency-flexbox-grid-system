@@ -49,55 +49,44 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			: null,
 	});
 
-	const renderControl = ({
-		stylesClasses,
-		options,
-		label,
-		prop,
-		size,
-		col = 6,
-	}) => {
+	const renderControl = ({ stylesClasses, options, label, prop, size }) => {
 		const renderSelectControl = () => (
-			<div className={`lucency-col lucency-col-${col}`}>
-				<SelectControl
-					label={label}
-					value={stylesClasses?.[size]?.classes?.[prop]}
-					options={[...[{ label: "", value: null }], ...options]}
-					onChange={(value) =>
-						handleStylesClassesChange({
-							size,
-							prop,
-							value,
-							key: "classes",
-							stylesClasses,
-							setAttributes,
-						})
-					}
-					__nextHasNoMarginBottom
-				/>
-			</div>
+			<SelectControl
+				label={label}
+				value={stylesClasses?.[size]?.classes?.[prop]}
+				options={[...[{ label: "", value: null }], ...options]}
+				onChange={(value) =>
+					handleStylesClassesChange({
+						size,
+						prop,
+						value,
+						key: "classes",
+						stylesClasses,
+						setAttributes,
+					})
+				}
+				__nextHasNoMarginBottom
+			/>
 		);
 
 		const renderNumberControl = () => (
-			<div className={`lucency-col lucency-col-${col}`}>
-				<NumberControl
-					label={label}
-					value={stylesClasses?.[size]?.variables?.[prop] ?? null}
-					onChange={(value) =>
-						handleStylesClassesChange({
-							size,
-							prop,
-							value,
-							key: "variables",
-							stylesClasses,
-							setAttributes,
-						})
-					}
-					step={0.1}
-					isShiftStepEnabled={true}
-					shiftStep={10}
-				/>
-			</div>
+			<NumberControl
+				label={label}
+				value={stylesClasses?.[size]?.variables?.[prop] ?? null}
+				onChange={(value) =>
+					handleStylesClassesChange({
+						size,
+						prop,
+						value,
+						key: "variables",
+						stylesClasses,
+						setAttributes,
+					})
+				}
+				step={0.1}
+				isShiftStepEnabled={true}
+				shiftStep={10}
+			/>
 		);
 
 		return options ? renderSelectControl() : renderNumberControl();
@@ -189,20 +178,17 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 				},
 			];
 
-			return (
-				<>
-					{controls.map(({ options, label, prop }) =>
-						renderControl({
-							stylesClasses,
-							options,
-							label,
-							prop,
-							size,
-							col: 6,
-						}),
-					)}
-				</>
-			);
+			return controls.map(({ options, label, prop }) => (
+				<div className={`lucency-col lucency-col-6`}>
+					{renderControl({
+						stylesClasses,
+						options,
+						label,
+						prop,
+						size,
+					})}
+				</div>
+			));
 		},
 		title: __("Alignment", "lucency"),
 	};
