@@ -644,158 +644,161 @@ function Edit({
     };
     return options ? renderSelectControl() : renderNumberControl();
   };
-  const responsivePanelBefore = ({
-    size
-  }) => {
-    const controls = [{
-      options: [{
-        label: "flex",
-        value: "lucency-flex"
+  const responsivePanelBefore = {
+    fn: ({
+      size
+    }) => {
+      const controls = [{
+        options: [{
+          label: "flex",
+          value: "lucency-flex"
+        }, {
+          label: "inline-flex",
+          value: "lucency-inline-flex"
+        }],
+        label: "Display",
+        prop: "display"
       }, {
-        label: "inline-flex",
-        value: "lucency-inline-flex"
-      }],
-      label: "Display",
-      prop: "display"
-    }, {
-      options: [{
-        label: "row",
-        value: "lucency-flex-row"
+        options: [{
+          label: "row",
+          value: "lucency-flex-row"
+        }, {
+          label: "row-reverse",
+          value: "lucency-flex-row-reverse"
+        }, {
+          label: "column",
+          value: "lucency-flex-column"
+        }, {
+          label: "column-reverse",
+          value: "lucency-flex-column-reverse"
+        }],
+        label: "Flex Direction",
+        prop: "flex-direction"
       }, {
-        label: "row-reverse",
-        value: "lucency-flex-row-reverse"
+        options: [{
+          label: "wrap",
+          value: "lucency-flex-wrap"
+        }, {
+          label: "wrap-reverse",
+          value: "lucency-flex-wrap-reverse"
+        }, {
+          label: "nowrap",
+          value: "lucency-flex-wrap-nowrap"
+        }],
+        label: "Flex Wrap",
+        prop: "flex-wrap"
       }, {
-        label: "column",
-        value: "lucency-flex-column"
+        options: [{
+          label: "normal",
+          value: "lucency-justify-normal"
+        }, {
+          label: "flex-start",
+          value: "lucency-justify-start"
+        }, {
+          label: "flex-end",
+          value: "lucency-justify-end"
+        }, {
+          label: "center",
+          value: "lucency-justify-center"
+        }, {
+          label: "between",
+          value: "lucency-justify-between"
+        }, {
+          label: "around",
+          value: "lucency-justify-around"
+        }, {
+          label: "evenly",
+          value: "lucency-justify-evenly"
+        }, {
+          label: "stretch",
+          value: "lucency-justify-stretch"
+        }],
+        label: "Justify Content",
+        prop: "justify-content"
       }, {
-        label: "column-reverse",
-        value: "lucency-flex-column-reverse"
-      }],
-      label: "Flex Direction",
-      prop: "flex-direction"
-    }, {
-      options: [{
-        label: "wrap",
-        value: "lucency-flex-wrap"
+        options: [{
+          label: "flex-start",
+          value: "lucency-items-start"
+        }, {
+          label: "flex-end",
+          value: "lucency-items-end"
+        }, {
+          label: "center",
+          value: "lucency-items-center"
+        }, {
+          label: "baseline",
+          value: "lucency-items-baseline"
+        }, {
+          label: "stretch",
+          value: "lucency-items-stretch"
+        }],
+        label: "Align Items",
+        prop: "align-items"
       }, {
-        label: "wrap-reverse",
-        value: "lucency-flex-wrap-reverse"
+        options: [{
+          label: "normal",
+          value: "lucency-content-normal"
+        }, {
+          label: "center",
+          value: "lucency-content-center"
+        }, {
+          label: "flex-start",
+          value: "lucency-content-start"
+        }, {
+          label: "flex-end",
+          value: "lucency-content-end"
+        }, {
+          label: "space-between",
+          value: "lucency-content-between"
+        }, {
+          label: "space-around",
+          value: "lucency-content-around"
+        }, {
+          label: "space-evenly",
+          value: "lucency-content-evenly"
+        }, {
+          label: "baseline",
+          value: "lucency-content-baseline"
+        }, {
+          label: "stretch",
+          value: "lucency-content-stretch"
+        }],
+        label: "Align Content",
+        prop: "align-content"
       }, {
-        label: "nowrap",
-        value: "lucency-flex-wrap-nowrap"
-      }],
-      label: "Flex Wrap",
-      prop: "flex-wrap"
-    }, {
-      options: [{
-        label: "normal",
-        value: "lucency-justify-normal"
+        options: [{
+          label: "left",
+          value: "lucency-align-left"
+        }, {
+          label: "center",
+          value: "lucency-align-center"
+        }, {
+          label: "right",
+          value: "lucency-align-right"
+        }, {
+          label: "justify",
+          value: "lucency-align-justify"
+        }],
+        label: "Text Align",
+        prop: "text-align"
       }, {
-        label: "flex-start",
-        value: "lucency-justify-start"
-      }, {
-        label: "flex-end",
-        value: "lucency-justify-end"
-      }, {
-        label: "center",
-        value: "lucency-justify-center"
-      }, {
-        label: "between",
-        value: "lucency-justify-between"
-      }, {
-        label: "around",
-        value: "lucency-justify-around"
-      }, {
-        label: "evenly",
-        value: "lucency-justify-evenly"
-      }, {
-        label: "stretch",
-        value: "lucency-justify-stretch"
-      }],
-      label: "Justify Content",
-      prop: "justify-content"
-    }, {
-      options: [{
-        label: "flex-start",
-        value: "lucency-items-start"
-      }, {
-        label: "flex-end",
-        value: "lucency-items-end"
-      }, {
-        label: "center",
-        value: "lucency-items-center"
-      }, {
-        label: "baseline",
-        value: "lucency-items-baseline"
-      }, {
-        label: "stretch",
-        value: "lucency-items-stretch"
-      }],
-      label: "Align Items",
-      prop: "align-items"
-    }, {
-      options: [{
-        label: "normal",
-        value: "lucency-content-normal"
-      }, {
-        label: "center",
-        value: "lucency-content-center"
-      }, {
-        label: "flex-start",
-        value: "lucency-content-start"
-      }, {
-        label: "flex-end",
-        value: "lucency-content-end"
-      }, {
-        label: "space-between",
-        value: "lucency-content-between"
-      }, {
-        label: "space-around",
-        value: "lucency-content-around"
-      }, {
-        label: "space-evenly",
-        value: "lucency-content-evenly"
-      }, {
-        label: "baseline",
-        value: "lucency-content-baseline"
-      }, {
-        label: "stretch",
-        value: "lucency-content-stretch"
-      }],
-      label: "Align Content",
-      prop: "align-content"
-    }, {
-      options: [{
-        label: "left",
-        value: "lucency-align-left"
-      }, {
-        label: "center",
-        value: "lucency-align-center"
-      }, {
-        label: "right",
-        value: "lucency-align-right"
-      }, {
-        label: "justify",
-        value: "lucency-align-justify"
-      }],
-      label: "Text Align",
-      prop: "text-align"
-    }, {
-      label: "Gap",
-      prop: "gap"
-    }];
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, controls.map(({
-      options,
-      label,
-      prop
-    }) => renderControl({
-      stylesClasses,
-      options,
-      label,
-      prop,
-      size,
-      col: 6
-    })));
+        label: "Gap",
+        prop: "gap"
+      }];
+      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, controls.map(({
+        options,
+        label,
+        prop
+      }) => renderControl({
+        stylesClasses,
+        options,
+        label,
+        prop,
+        size,
+        col: 6
+      })));
+    },
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Alignment", "lucency")
   };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Row Settings")
@@ -807,10 +810,7 @@ function Edit({
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_8__["default"], {
     stylesClasses: stylesClasses,
     setAttributes: setAttributes,
-    responsivePanelBefore: {
-      fn: responsivePanelBefore,
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Alignment", "lucency")
-    }
+    responsivePanelBefore: responsivePanelBefore
   }))), showNotice && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Notice, {
     status: "error",
     isDismissible: false

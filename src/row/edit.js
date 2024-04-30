@@ -103,105 +103,108 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		return options ? renderSelectControl() : renderNumberControl();
 	};
 
-	const responsivePanelBefore = ({ size }) => {
-		const controls = [
-			{
-				options: [
-					{ label: "flex", value: "lucency-flex" },
-					{ label: "inline-flex", value: "lucency-inline-flex" },
-				],
-				label: "Display",
-				prop: "display",
-			},
-			{
-				options: [
-					{ label: "row", value: "lucency-flex-row" },
-					{ label: "row-reverse", value: "lucency-flex-row-reverse" },
-					{ label: "column", value: "lucency-flex-column" },
-					{ label: "column-reverse", value: "lucency-flex-column-reverse" },
-				],
-				label: "Flex Direction",
-				prop: "flex-direction",
-			},
-			{
-				options: [
-					{ label: "wrap", value: "lucency-flex-wrap" },
-					{ label: "wrap-reverse", value: "lucency-flex-wrap-reverse" },
-					{ label: "nowrap", value: "lucency-flex-wrap-nowrap" },
-				],
-				label: "Flex Wrap",
-				prop: "flex-wrap",
-			},
-			{
-				options: [
-					{ label: "normal", value: "lucency-justify-normal" },
-					{ label: "flex-start", value: "lucency-justify-start" },
-					{ label: "flex-end", value: "lucency-justify-end" },
-					{ label: "center", value: "lucency-justify-center" },
-					{ label: "between", value: "lucency-justify-between" },
-					{ label: "around", value: "lucency-justify-around" },
-					{ label: "evenly", value: "lucency-justify-evenly" },
-					{ label: "stretch", value: "lucency-justify-stretch" },
-				],
-				label: "Justify Content",
-				prop: "justify-content",
-			},
-			{
-				options: [
-					{ label: "flex-start", value: "lucency-items-start" },
-					{ label: "flex-end", value: "lucency-items-end" },
-					{ label: "center", value: "lucency-items-center" },
-					{ label: "baseline", value: "lucency-items-baseline" },
-					{ label: "stretch", value: "lucency-items-stretch" },
-				],
-				label: "Align Items",
-				prop: "align-items",
-			},
-			{
-				options: [
-					{ label: "normal", value: "lucency-content-normal" },
-					{ label: "center", value: "lucency-content-center" },
-					{ label: "flex-start", value: "lucency-content-start" },
-					{ label: "flex-end", value: "lucency-content-end" },
-					{ label: "space-between", value: "lucency-content-between" },
-					{ label: "space-around", value: "lucency-content-around" },
-					{ label: "space-evenly", value: "lucency-content-evenly" },
-					{ label: "baseline", value: "lucency-content-baseline" },
-					{ label: "stretch", value: "lucency-content-stretch" },
-				],
-				label: "Align Content",
-				prop: "align-content",
-			},
-			{
-				options: [
-					{ label: "left", value: "lucency-align-left" },
-					{ label: "center", value: "lucency-align-center" },
-					{ label: "right", value: "lucency-align-right" },
-					{ label: "justify", value: "lucency-align-justify" },
-				],
-				label: "Text Align",
-				prop: "text-align",
-			},
-			{
-				label: "Gap",
-				prop: "gap",
-			},
-		];
+	const responsivePanelBefore = {
+		fn: ({ size }) => {
+			const controls = [
+				{
+					options: [
+						{ label: "flex", value: "lucency-flex" },
+						{ label: "inline-flex", value: "lucency-inline-flex" },
+					],
+					label: "Display",
+					prop: "display",
+				},
+				{
+					options: [
+						{ label: "row", value: "lucency-flex-row" },
+						{ label: "row-reverse", value: "lucency-flex-row-reverse" },
+						{ label: "column", value: "lucency-flex-column" },
+						{ label: "column-reverse", value: "lucency-flex-column-reverse" },
+					],
+					label: "Flex Direction",
+					prop: "flex-direction",
+				},
+				{
+					options: [
+						{ label: "wrap", value: "lucency-flex-wrap" },
+						{ label: "wrap-reverse", value: "lucency-flex-wrap-reverse" },
+						{ label: "nowrap", value: "lucency-flex-wrap-nowrap" },
+					],
+					label: "Flex Wrap",
+					prop: "flex-wrap",
+				},
+				{
+					options: [
+						{ label: "normal", value: "lucency-justify-normal" },
+						{ label: "flex-start", value: "lucency-justify-start" },
+						{ label: "flex-end", value: "lucency-justify-end" },
+						{ label: "center", value: "lucency-justify-center" },
+						{ label: "between", value: "lucency-justify-between" },
+						{ label: "around", value: "lucency-justify-around" },
+						{ label: "evenly", value: "lucency-justify-evenly" },
+						{ label: "stretch", value: "lucency-justify-stretch" },
+					],
+					label: "Justify Content",
+					prop: "justify-content",
+				},
+				{
+					options: [
+						{ label: "flex-start", value: "lucency-items-start" },
+						{ label: "flex-end", value: "lucency-items-end" },
+						{ label: "center", value: "lucency-items-center" },
+						{ label: "baseline", value: "lucency-items-baseline" },
+						{ label: "stretch", value: "lucency-items-stretch" },
+					],
+					label: "Align Items",
+					prop: "align-items",
+				},
+				{
+					options: [
+						{ label: "normal", value: "lucency-content-normal" },
+						{ label: "center", value: "lucency-content-center" },
+						{ label: "flex-start", value: "lucency-content-start" },
+						{ label: "flex-end", value: "lucency-content-end" },
+						{ label: "space-between", value: "lucency-content-between" },
+						{ label: "space-around", value: "lucency-content-around" },
+						{ label: "space-evenly", value: "lucency-content-evenly" },
+						{ label: "baseline", value: "lucency-content-baseline" },
+						{ label: "stretch", value: "lucency-content-stretch" },
+					],
+					label: "Align Content",
+					prop: "align-content",
+				},
+				{
+					options: [
+						{ label: "left", value: "lucency-align-left" },
+						{ label: "center", value: "lucency-align-center" },
+						{ label: "right", value: "lucency-align-right" },
+						{ label: "justify", value: "lucency-align-justify" },
+					],
+					label: "Text Align",
+					prop: "text-align",
+				},
+				{
+					label: "Gap",
+					prop: "gap",
+				},
+			];
 
-		return (
-			<>
-				{controls.map(({ options, label, prop }) =>
-					renderControl({
-						stylesClasses,
-						options,
-						label,
-						prop,
-						size,
-						col: 6,
-					}),
-				)}
-			</>
-		);
+			return (
+				<>
+					{controls.map(({ options, label, prop }) =>
+						renderControl({
+							stylesClasses,
+							options,
+							label,
+							prop,
+							size,
+							col: 6,
+						}),
+					)}
+				</>
+			);
+		},
+		title: __("Alignment", "lucency"),
 	};
 
 	return (
@@ -217,10 +220,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					<ResponsivePanel
 						stylesClasses={stylesClasses}
 						setAttributes={setAttributes}
-						responsivePanelBefore={{
-							fn: responsivePanelBefore,
-							title: __("Alignment", "lucency"),
-						}}
+						responsivePanelBefore={responsivePanelBefore}
 					/>
 				</PanelBody>
 			</InspectorControls>
