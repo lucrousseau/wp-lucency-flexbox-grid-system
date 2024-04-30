@@ -8,11 +8,17 @@ import {
 	InspectorControls,
 } from "@wordpress/block-editor";
 
+import { PanelBody } from "@wordpress/components";
+
+import ResponsivePanel, {
+	updateStyles,
+	updateClasses,
+} from "../commons/ResponsivePanel";
+
 import "./editor.scss";
 
 export default function Edit({ attributes, setAttributes, clientId }) {
-	const { tag, stylesClasses } = attributes;
-	const Tag = tag;
+	const { stylesClasses } = attributes;
 
 	const style = updateStyles({ stylesClasses });
 
@@ -21,7 +27,10 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	}));
 
 	const blockProps = useBlockProps({
-		className: updateClasses({ stylesClasses }, classnames("container")),
+		className: updateClasses(
+			{ stylesClasses },
+			classnames("container lucency lucency-flex"),
+		),
 	});
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
@@ -32,8 +41,17 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	return (
 		<>
-			<InspectorControls></InspectorControls>
-			<Tag {...innerBlocksProps} style={style} />
+			<InspectorControls>
+				<PanelBody title={__("Container Settings")}>
+					<ResponsivePanel
+						stylesClasses={stylesClasses}
+						setAttributes={setAttributes}
+					/>
+				</PanelBody>
+			</InspectorControls>
+			<section {...blockProps} style={style}>
+				<div {...innerBlocksProps} className="lucency-col"></div>
+			</section>
 		</>
 	);
 }

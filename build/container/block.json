@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "lucency-grid/container",
   "version": "1.0.0",
-  "title": "Container for flexbox grid system",
+  "title": "Container",
   "category": "design",
   "description": "Container for flexbox grid system",
   "example": {},
@@ -19,10 +19,6 @@
   "style": "file:./style-index.css",
   "viewScript": "file:./view.js",
   "attributes": {
-    "tag": {
-      "type": "string",
-      "default": "section"
-    },
     "stylesClasses": {
       "type": "object",
       "default": {

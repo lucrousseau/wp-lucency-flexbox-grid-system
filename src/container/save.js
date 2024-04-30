@@ -5,16 +5,22 @@ import { useBlockProps, useInnerBlocksProps } from "@wordpress/block-editor";
 import { updateStyles, updateClasses } from "../commons/ResponsivePanel";
 
 export default function save({ attributes }) {
-	const { tag, stylesClasses } = attributes;
-	const Tag = tag;
+	const { stylesClasses } = attributes;
 
 	const style = updateStyles({ stylesClasses });
 
 	const blockProps = useBlockProps.save({
-		className: updateClasses({ stylesClasses }, classnames("container")),
+		className: updateClasses(
+			{ stylesClasses },
+			classnames("container container lucency lucency-flex"),
+		),
 	});
 
 	const innerBlocksProps = useInnerBlocksProps.save(blockProps);
 
-	return <Tag {...innerBlocksProps} style={style} />;
+	return (
+		<section {...blockProps} style={style}>
+			<div {...innerBlocksProps} className="lucency-col"></div>
+		</section>
+	);
 }

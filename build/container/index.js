@@ -439,7 +439,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editor.scss */ "./src/container/editor.scss");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../commons/ResponsivePanel */ "./src/commons/ResponsivePanel/index.js");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./editor.scss */ "./src/container/editor.scss");
+
+
 
 
 
@@ -452,11 +457,9 @@ function Edit({
   clientId
 }) {
   const {
-    tag,
     stylesClasses
   } = attributes;
-  const Tag = tag;
-  const style = updateStyles({
+  const style = (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_6__.updateStyles)({
     stylesClasses
   });
   const {
@@ -465,17 +468,25 @@ function Edit({
     hasInnerBlocks: select("core/block-editor").getBlockCount(clientId) > 0
   }));
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)({
-    className: updateClasses({
+    className: (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_6__.updateClasses)({
       stylesClasses
-    }, classnames__WEBPACK_IMPORTED_MODULE_1___default()("container"))
+    }, classnames__WEBPACK_IMPORTED_MODULE_1___default()("container lucency lucency-flex"))
   });
   const innerBlocksProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useInnerBlocksProps)(blockProps, {
     renderAppender: !hasInnerBlocks ? () => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InnerBlocks.ButtonBlockAppender, null) : null
   });
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Tag, {
-    ...innerBlocksProps,
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Container Settings")
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    stylesClasses: stylesClasses,
+    setAttributes: setAttributes
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
+    ...blockProps,
     style: style
-  }));
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ...innerBlocksProps,
+    className: "lucency-col"
+  })));
 }
 
 /***/ }),
@@ -506,23 +517,24 @@ function save({
   attributes
 }) {
   const {
-    tag,
     stylesClasses
   } = attributes;
-  const Tag = tag;
   const style = (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_3__.updateStyles)({
     stylesClasses
   });
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
     className: (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_3__.updateClasses)({
       stylesClasses
-    }, classnames__WEBPACK_IMPORTED_MODULE_1___default()("container"))
+    }, classnames__WEBPACK_IMPORTED_MODULE_1___default()("container container lucency lucency-flex"))
   });
   const innerBlocksProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useInnerBlocksProps.save(blockProps);
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Tag, {
-    ...innerBlocksProps,
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
+    ...blockProps,
     style: style
-  });
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ...innerBlocksProps,
+    className: "lucency-col"
+  }));
 }
 
 /***/ }),
@@ -734,7 +746,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"lucency-grid/container","version":"1.0.0","title":"Container for flexbox grid system","category":"design","description":"Container for flexbox grid system","example":{},"supports":{"html":false},"parent":[null],"textdomain":"lucency","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"tag":{"type":"string","default":"section"},"stylesClasses":{"type":"object","default":{"full":{"variables":{"padding-top":4,"padding-right":2,"padding-bottom":4,"padding-left":2}}}}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"lucency-grid/container","version":"1.0.0","title":"Container","category":"design","description":"Container for flexbox grid system","example":{},"supports":{"html":false},"parent":[null],"textdomain":"lucency","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"stylesClasses":{"type":"object","default":{"full":{"variables":{"padding-top":4,"padding-right":2,"padding-bottom":4,"padding-left":2}}}}}}');
 
 /***/ })
 
