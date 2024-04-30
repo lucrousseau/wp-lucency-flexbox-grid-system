@@ -71,13 +71,13 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	return (
 		<>
 			<InspectorControls>
+				<Notice status="warning" isDismissible={false}>
+					{__(
+						"Comulative column width for sleected breakpoints should not exceed 12 or row will break in another line",
+						"lucency",
+					)}
+				</Notice>
 				<PanelBody title={__("Column Settings")}>
-					<Notice status="warning" isDismissible={true}>
-						{__(
-							"Comulative column width for sleected breakpoints should not exceed 12 or row will break in another line",
-							"lucency",
-						)}
-					</Notice>
 					<ResponsivePanel
 						enabled={{ padding: true }}
 						stylesClasses={stylesClasses}
