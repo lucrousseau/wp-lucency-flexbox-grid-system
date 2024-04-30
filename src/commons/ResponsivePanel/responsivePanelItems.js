@@ -10,6 +10,7 @@ export default function responsivePanelItems({
 	enabled = { margin: true, padding: true },
 	stylesClasses,
 	setAttributes,
+	defaultStylesClasses = {},
 	responsivePanelBefore = { title: null, fn: null },
 	responsivePanelAfter = { title: null, fn: null },
 }) {
@@ -24,28 +25,36 @@ export default function responsivePanelItems({
 		size,
 		col = 6,
 		min,
-	}) => (
-		<div className={`lucency-col lucency-col-${col}`}>
-			<NumberControl
-				label={label}
-				value={stylesClasses?.[size]?.variables?.[prop] ?? null}
-				onChange={(value) =>
-					handleStylesClassesChange({
-						size,
-						prop,
-						value,
-						key: "variables",
-						stylesClasses,
-						setAttributes,
-					})
-				}
-				min={min}
-				step={0.1}
-				isShiftStepEnabled={true}
-				shiftStep={10}
-			/>
-		</div>
-	);
+	}) => {
+		const defaultValue = defaultStylesClasses?.[size]?.variables?.[prop];
+		const setValues = stylesClasses?.[size]?.variables?.[prop] ?? null;
+
+		//console.log(defaultValue, defaultStylesClasses);
+
+		return (
+			<div className={`lucency-col lucency-col-${col}`}>
+				<NumberControl
+					label={label}
+					value={setValues ?? defaultValue}
+					onChange={(value) =>
+						handleStylesClassesChange({
+							size,
+							prop,
+							value,
+							key: "variables",
+							stylesClasses,
+							setAttributes,
+							defaultValue,
+						})
+					}
+					min={min}
+					step={0.1}
+					isShiftStepEnabled={true}
+					shiftStep={10}
+				/>
+			</div>
+		);
+	};
 
 	const responsivePanelMargins = ({ size }) => {
 		const controls = [

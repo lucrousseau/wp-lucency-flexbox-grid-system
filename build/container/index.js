@@ -140,7 +140,8 @@ function handleStylesClassesChange({
   value,
   key,
   stylesClasses,
-  setAttributes
+  setAttributes,
+  defaultValue
 }) {
   const updatedStylesClasses = {
     ...stylesClasses,
@@ -154,7 +155,7 @@ function handleStylesClassesChange({
       }
     }
   };
-  if (!value) {
+  if (!value || value === defaultValue?.toString()) {
     delete updatedStylesClasses[size][key][prop];
   }
   if (Object.keys(updatedStylesClasses[size]).length === 0) {
@@ -263,6 +264,7 @@ function responsivePanelItems({
   },
   stylesClasses,
   setAttributes,
+  defaultStylesClasses = {},
   responsivePanelBefore = {
     title: null,
     fn: null
@@ -282,18 +284,24 @@ function responsivePanelItems({
     min
   }) => {
     var _stylesClasses$size$v;
+    const defaultValue = defaultStylesClasses?.[size]?.variables?.[prop];
+    const setValues = (_stylesClasses$size$v = stylesClasses?.[size]?.variables?.[prop]) !== null && _stylesClasses$size$v !== void 0 ? _stylesClasses$size$v : null;
+
+    //console.log(defaultValue, defaultStylesClasses);
+
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: `lucency-col lucency-col-${col}`
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalNumberControl, {
       label: label,
-      value: (_stylesClasses$size$v = stylesClasses?.[size]?.variables?.[prop]) !== null && _stylesClasses$size$v !== void 0 ? _stylesClasses$size$v : null,
+      value: setValues !== null && setValues !== void 0 ? setValues : defaultValue,
       onChange: value => (0,_handleStylesClassesChange__WEBPACK_IMPORTED_MODULE_4__["default"])({
         size,
         prop,
         value,
         key: "variables",
         stylesClasses,
-        setAttributes
+        setAttributes,
+        defaultValue
       }),
       min: min,
       step: 0.1,
@@ -442,7 +450,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../commons/ResponsivePanel */ "./src/commons/ResponsivePanel/index.js");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./editor.scss */ "./src/container/editor.scss");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./block.json */ "./src/container/block.json");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./editor.scss */ "./src/container/editor.scss");
+
 
 
 
@@ -479,7 +489,8 @@ function Edit({
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Container Settings")
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_6__["default"], {
     stylesClasses: stylesClasses,
-    setAttributes: setAttributes
+    setAttributes: setAttributes,
+    defaultStylesClasses: _block_json__WEBPACK_IMPORTED_MODULE_7__?.attributes?.stylesClasses?.default
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
     ...blockProps,
     style: style

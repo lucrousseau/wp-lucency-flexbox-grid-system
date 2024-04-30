@@ -335,7 +335,8 @@ function handleStylesClassesChange({
   value,
   key,
   stylesClasses,
-  setAttributes
+  setAttributes,
+  defaultValue
 }) {
   const updatedStylesClasses = {
     ...stylesClasses,
@@ -349,7 +350,7 @@ function handleStylesClassesChange({
       }
     }
   };
-  if (!value) {
+  if (!value || value === defaultValue?.toString()) {
     delete updatedStylesClasses[size][key][prop];
   }
   if (Object.keys(updatedStylesClasses[size]).length === 0) {
@@ -458,6 +459,7 @@ function responsivePanelItems({
   },
   stylesClasses,
   setAttributes,
+  defaultStylesClasses = {},
   responsivePanelBefore = {
     title: null,
     fn: null
@@ -477,18 +479,24 @@ function responsivePanelItems({
     min
   }) => {
     var _stylesClasses$size$v;
+    const defaultValue = defaultStylesClasses?.[size]?.variables?.[prop];
+    const setValues = (_stylesClasses$size$v = stylesClasses?.[size]?.variables?.[prop]) !== null && _stylesClasses$size$v !== void 0 ? _stylesClasses$size$v : null;
+
+    //console.log(defaultValue, defaultStylesClasses);
+
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: `lucency-col lucency-col-${col}`
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalNumberControl, {
       label: label,
-      value: (_stylesClasses$size$v = stylesClasses?.[size]?.variables?.[prop]) !== null && _stylesClasses$size$v !== void 0 ? _stylesClasses$size$v : null,
+      value: setValues !== null && setValues !== void 0 ? setValues : defaultValue,
       onChange: value => (0,_handleStylesClassesChange__WEBPACK_IMPORTED_MODULE_4__["default"])({
         size,
         prop,
         value,
         key: "variables",
         stylesClasses,
-        setAttributes
+        setAttributes,
+        defaultValue
       }),
       min: min,
       step: 0.1,

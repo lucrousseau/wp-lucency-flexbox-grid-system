@@ -15,6 +15,8 @@ import ResponsivePanel, {
 	updateClasses,
 } from "../commons/ResponsivePanel";
 
+import metadata from "./block.json";
+
 import "./editor.scss";
 
 export default function Edit({ attributes, setAttributes, clientId }) {
@@ -46,6 +48,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					<ResponsivePanel
 						stylesClasses={stylesClasses}
 						setAttributes={setAttributes}
+						defaultStylesClasses={metadata?.attributes?.stylesClasses?.default}
 					/>
 				</PanelBody>
 			</InspectorControls>

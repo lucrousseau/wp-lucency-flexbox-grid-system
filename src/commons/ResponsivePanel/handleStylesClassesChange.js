@@ -5,6 +5,7 @@ export default function handleStylesClassesChange({
 	key,
 	stylesClasses,
 	setAttributes,
+	defaultValue,
 }) {
 	const updatedStylesClasses = {
 		...stylesClasses,
@@ -17,7 +18,7 @@ export default function handleStylesClassesChange({
 		},
 	};
 
-	if (!value) {
+	if (!value || value === defaultValue?.toString()) {
 		delete updatedStylesClasses[size][key][prop];
 	}
 
