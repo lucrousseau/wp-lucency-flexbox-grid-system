@@ -3,9 +3,9 @@
 	"apiVersion": 3,
 	"name": "lucency-grid/row",
 	"version": "1.0.0",
-	"title": "Row for flexbox grid system",
+	"title": "Row",
 	"category": "design",
-	"description": "Container for flexbox grid system",
+	"description": "Create a flex row and columns with responsive sizes.",
 	"example": {},
 	"supports": {
 		"html": true

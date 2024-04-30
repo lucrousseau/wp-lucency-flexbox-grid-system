@@ -19,8 +19,6 @@ import ResponsivePanel, {
 
 import responsiveColumnSizes from "./responsiveColumnSizes.js";
 
-import "./editor.scss";
-
 export default function Edit({ attributes, setAttributes, clientId }) {
 	const { stylesClasses, sizes } = attributes;
 

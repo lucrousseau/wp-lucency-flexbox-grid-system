@@ -29,8 +29,6 @@ export default function responsivePanelItems({
 		const defaultValue = defaultStylesClasses?.[size]?.variables?.[prop];
 		const setValues = stylesClasses?.[size]?.variables?.[prop] ?? null;
 
-		//console.log(defaultValue, defaultStylesClasses);
-
 		return (
 			<div className={`lucency-col lucency-col-${col}`}>
 				<NumberControl

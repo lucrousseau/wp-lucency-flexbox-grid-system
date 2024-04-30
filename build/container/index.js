@@ -1,9 +1,9 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/@wordpress/icons/build-module/library/mobile.js":
+/***/ "./node_modules/@wordpress/icons/build-module/library/layout.js":
 /*!**********************************************************************!*\
-  !*** ./node_modules/@wordpress/icons/build-module/library/mobile.js ***!
+  !*** ./node_modules/@wordpress/icons/build-module/library/layout.js ***!
   \**********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -21,14 +21,14 @@ __webpack_require__.r(__webpack_exports__);
  * WordPress dependencies
  */
 
-const mobile = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.SVG, {
+const layout = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.SVG, {
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 24 24"
 }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.Path, {
-  d: "M15 4H9c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm.5 14c0 .3-.2.5-.5.5H9c-.3 0-.5-.2-.5-.5V6c0-.3.2-.5.5-.5h6c.3 0 .5.2.5.5v12zm-4.5-.5h2V16h-2v1.5z"
+  d: "M18 5.5H6a.5.5 0 00-.5.5v3h13V6a.5.5 0 00-.5-.5zm.5 5H10v8h8a.5.5 0 00.5-.5v-7.5zm-10 0h-3V18a.5.5 0 00.5.5h2.5v-8zM6 4h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2z"
 }));
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (mobile);
-//# sourceMappingURL=mobile.js.map
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (layout);
+//# sourceMappingURL=layout.js.map
 
 /***/ }),
 
@@ -286,9 +286,6 @@ function responsivePanelItems({
     var _stylesClasses$size$v;
     const defaultValue = defaultStylesClasses?.[size]?.variables?.[prop];
     const setValues = (_stylesClasses$size$v = stylesClasses?.[size]?.variables?.[prop]) !== null && _stylesClasses$size$v !== void 0 ? _stylesClasses$size$v : null;
-
-    //console.log(defaultValue, defaultStylesClasses);
-
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: `lucency-col lucency-col-${col}`
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalNumberControl, {
@@ -510,7 +507,7 @@ function Edit({
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/mobile.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/layout.js");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./src/container/edit.js");
@@ -799,7 +796,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"lucency-grid/container","version":"1.0.0","title":"Container","category":"design","description":"Container for flexbox grid system","example":{},"supports":{"html":false},"parent":[null],"textdomain":"lucency","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"stylesClasses":{"type":"object","default":{"full":{"variables":{"padding-top":4,"padding-right":2,"padding-bottom":4,"padding-left":2}}}}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"lucency-grid/container","version":"1.0.0","title":"Container","category":"design","description":"Create a container to add all other components.","example":{"innerBlocks":[{"name":"core/heading","attributes":{"level":1,"content":"Title"}},{"name":"lucency-grid/row","innerBlocks":[{"name":"lucency-grid/column","innerBlocks":[{"name":"core/paragraph","attributes":{"content":"Lorem ipsum dolor sit amet..."}}]},{"name":"lucency-grid/column","innerBlocks":[{"name":"core/paragraph","attributes":{"content":"Lorem ipsum dolor sit amet..."}}]}]}]},"supports":{"html":false},"parent":[null],"textdomain":"lucency","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"stylesClasses":{"type":"object","default":{"full":{"variables":{"padding-top":4,"padding-right":2,"padding-bottom":4,"padding-left":2}}}}}}');
 
 /***/ })
 

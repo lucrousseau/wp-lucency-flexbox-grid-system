@@ -1,10 +1,10 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/@wordpress/icons/build-module/library/mobile.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/@wordpress/icons/build-module/library/mobile.js ***!
-  \**********************************************************************/
+/***/ "./node_modules/@wordpress/icons/build-module/library/columns.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@wordpress/icons/build-module/library/columns.js ***!
+  \***********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -21,14 +21,16 @@ __webpack_require__.r(__webpack_exports__);
  * WordPress dependencies
  */
 
-const mobile = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.SVG, {
-  xmlns: "http://www.w3.org/2000/svg",
-  viewBox: "0 0 24 24"
+const columns = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.SVG, {
+  viewBox: "0 0 24 24",
+  xmlns: "http://www.w3.org/2000/svg"
 }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.Path, {
-  d: "M15 4H9c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm.5 14c0 .3-.2.5-.5.5H9c-.3 0-.5-.2-.5-.5V6c0-.3.2-.5.5-.5h6c.3 0 .5.2.5.5v12zm-4.5-.5h2V16h-2v1.5z"
+  fillRule: "evenodd",
+  clipRule: "evenodd",
+  d: "M15 7.5h-5v10h5v-10Zm1.5 0v10H19a.5.5 0 0 0 .5-.5V8a.5.5 0 0 0-.5-.5h-2.5ZM6 7.5h2.5v10H6a.5.5 0 0 1-.5-.5V8a.5.5 0 0 1 .5-.5ZM6 6h13a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"
 }));
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (mobile);
-//# sourceMappingURL=mobile.js.map
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (columns);
+//# sourceMappingURL=columns.js.map
 
 /***/ }),
 
@@ -286,9 +288,6 @@ function responsivePanelItems({
     var _stylesClasses$size$v;
     const defaultValue = defaultStylesClasses?.[size]?.variables?.[prop];
     const setValues = (_stylesClasses$size$v = stylesClasses?.[size]?.variables?.[prop]) !== null && _stylesClasses$size$v !== void 0 ? _stylesClasses$size$v : null;
-
-    //console.log(defaultValue, defaultStylesClasses);
-
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: `lucency-col lucency-col-${col}`
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalNumberControl, {
@@ -831,7 +830,7 @@ function Edit({
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/mobile.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/columns.js");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./src/row/edit.js");
@@ -1119,7 +1118,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"lucency-grid/row","version":"1.0.0","title":"Row for flexbox grid system","category":"design","description":"Container for flexbox grid system","example":{},"supports":{"html":true},"textdomain":"lucency","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"tag":{"type":"string","default":"div"},"columns":{"type":"number","default":2},"stylesClasses":{"type":"object","default":{"full":{"classes":{"display":"lucency-flex","flex-direction":"lucency-flex-row","flex-wrap":"lucency-flex-wrap"},"variables":{"gap":"1"}}}}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"lucency-grid/row","version":"1.0.0","title":"Row","category":"design","description":"Create a flex row and columns with responsive sizes.","example":{},"supports":{"html":true},"textdomain":"lucency","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"tag":{"type":"string","default":"div"},"columns":{"type":"number","default":2},"stylesClasses":{"type":"object","default":{"full":{"classes":{"display":"lucency-flex","flex-direction":"lucency-flex-row","flex-wrap":"lucency-flex-wrap"},"variables":{"gap":"1"}}}}}}');
 
 /***/ })
 

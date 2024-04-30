@@ -1,4 +1,4 @@
-import { mobile as icon } from "@wordpress/icons";
+import { layout as icon } from "@wordpress/icons";
 import { registerBlockType } from "@wordpress/blocks";
 
 import Edit from "./edit";

@@ -1,9 +1,9 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/@wordpress/icons/build-module/library/mobile.js":
+/***/ "./node_modules/@wordpress/icons/build-module/library/column.js":
 /*!**********************************************************************!*\
-  !*** ./node_modules/@wordpress/icons/build-module/library/mobile.js ***!
+  !*** ./node_modules/@wordpress/icons/build-module/library/column.js ***!
   \**********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -21,14 +21,14 @@ __webpack_require__.r(__webpack_exports__);
  * WordPress dependencies
  */
 
-const mobile = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.SVG, {
+const column = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.SVG, {
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 24 24"
 }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.Path, {
-  d: "M15 4H9c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm.5 14c0 .3-.2.5-.5.5H9c-.3 0-.5-.2-.5-.5V6c0-.3.2-.5.5-.5h6c.3 0 .5.2.5.5v12zm-4.5-.5h2V16h-2v1.5z"
+  d: "M19 6H6c-1.1 0-2 .9-2 2v9c0 1.1.9 2 2 2h13c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM6 17.5c-.3 0-.5-.2-.5-.5V8c0-.3.2-.5.5-.5h3v10H6zm13.5-.5c0 .3-.2.5-.5.5h-3v-10h3c.3 0 .5.2.5.5v9z"
 }));
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (mobile);
-//# sourceMappingURL=mobile.js.map
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (column);
+//# sourceMappingURL=column.js.map
 
 /***/ }),
 
@@ -83,8 +83,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _abstracts_constants__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../abstracts/constants */ "./src/abstracts/constants.js");
 /* harmony import */ var _commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../commons/ResponsivePanel */ "./src/commons/ResponsivePanel/index.js");
 /* harmony import */ var _responsiveColumnSizes_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./responsiveColumnSizes.js */ "./src/column/responsiveColumnSizes.js");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./editor.scss */ "./src/column/editor.scss");
-
 
 
 
@@ -481,9 +479,6 @@ function responsivePanelItems({
     var _stylesClasses$size$v;
     const defaultValue = defaultStylesClasses?.[size]?.variables?.[prop];
     const setValues = (_stylesClasses$size$v = stylesClasses?.[size]?.variables?.[prop]) !== null && _stylesClasses$size$v !== void 0 ? _stylesClasses$size$v : null;
-
-    //console.log(defaultValue, defaultStylesClasses);
-
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: `lucency-col lucency-col-${col}`
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalNumberControl, {
@@ -618,19 +613,6 @@ function responsivePanelItems({
     return collapsibleItems;
   }, {});
 }
-
-/***/ }),
-
-/***/ "./src/column/editor.scss":
-/*!********************************!*\
-  !*** ./src/column/editor.scss ***!
-  \********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
 
 /***/ }),
 
@@ -828,7 +810,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"lucency-grid/column","version":"1.0.0","title":"Column(s)","category":"design","description":"Column for flexbox grid system","example":{},"supports":{"html":false,"inserter":false},"parent":["lucency-grid/row"],"textdomain":"lucency","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"sizes":{"type":"object","default":{}},"stylesClasses":{"type":"object","default":{"full":{"classes":{},"variables":{}}}}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"lucency-grid/column","version":"1.0.0","title":"Column","category":"design","description":"","example":{},"supports":{"html":false,"inserter":false},"parent":["lucency-grid/row"],"textdomain":"lucency","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"sizes":{"type":"object","default":{}},"stylesClasses":{"type":"object","default":{"full":{"classes":{},"variables":{}}}}}}');
 
 /***/ })
 
@@ -908,7 +890,7 @@ var __webpack_exports__ = {};
   !*** ./src/column/index.js ***!
   \*****************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/mobile.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/column.js");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./src/column/edit.js");
@@ -918,9 +900,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-//import "./style.scss";
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
   icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_4__["default"],
