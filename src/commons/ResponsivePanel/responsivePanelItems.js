@@ -4,6 +4,8 @@ import { BREAKPOINTS } from "../../abstracts/constants";
 
 import { __experimentalNumberControl as NumberControl } from "@wordpress/components";
 
+import handleStylesClassesChange from "./handleStylesClassesChange";
+
 export default function responsivePanelItems({
 	enabled = { margin: true, padding: true },
 	stylesClasses,

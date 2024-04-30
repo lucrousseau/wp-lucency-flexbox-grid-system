@@ -250,6 +250,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _abstracts_constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../abstracts/constants */ "./src/abstracts/constants.js");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _handleStylesClassesChange__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./handleStylesClassesChange */ "./src/commons/ResponsivePanel/handleStylesClassesChange.js");
+
 
 
 
@@ -285,7 +287,7 @@ function responsivePanelItems({
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalNumberControl, {
       label: label,
       value: (_stylesClasses$size$v = stylesClasses?.[size]?.variables?.[prop]) !== null && _stylesClasses$size$v !== void 0 ? _stylesClasses$size$v : null,
-      onChange: value => handleStylesClassesChange({
+      onChange: value => (0,_handleStylesClassesChange__WEBPACK_IMPORTED_MODULE_4__["default"])({
         size,
         prop,
         value,
