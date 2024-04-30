@@ -195,7 +195,7 @@ function responsiveColumnSizes({
 }) {
   const classes = Object.entries(sizes).reduce((acc, [size, value]) => {
     const prefix = size === "full" ? "" : `--${size}`;
-    acc[`lucency-col-${value}${prefix}`] = true;
+    acc[`lucency-col-${value}${prefix}`] = value ? true : false;
     return acc;
   }, {});
   return classnames__WEBPACK_IMPORTED_MODULE_0___default()(classes);
