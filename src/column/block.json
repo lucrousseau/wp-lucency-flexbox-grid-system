@@ -3,7 +3,7 @@
 	"apiVersion": 3,
 	"name": "lucency-grid/column",
 	"version": "1.0.0",
-	"title": "Column for flexbox grid system",
+	"title": "Column(s)",
 	"category": "design",
 	"description": "Column for flexbox grid system",
 	"example": {},

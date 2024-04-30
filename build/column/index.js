@@ -820,7 +820,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"lucency-grid/column","version":"1.0.0","title":"Column for flexbox grid system","category":"design","description":"Column for flexbox grid system","example":{},"supports":{"html":false,"inserter":false},"parent":["lucency-grid/row"],"textdomain":"lucency","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"sizes":{"type":"object","default":{}},"stylesClasses":{"type":"object","default":{"full":{"classes":{},"variables":{}}}}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"lucency-grid/column","version":"1.0.0","title":"Column(s)","category":"design","description":"Column for flexbox grid system","example":{},"supports":{"html":false,"inserter":false},"parent":["lucency-grid/row"],"textdomain":"lucency","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"sizes":{"type":"object","default":{}},"stylesClasses":{"type":"object","default":{"full":{"classes":{},"variables":{}}}}}}');
 
 /***/ })
 
