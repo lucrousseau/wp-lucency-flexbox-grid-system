@@ -340,7 +340,7 @@ function handleStylesClassesChange({
     }
   };
   if (!value) {
-    delete updatedStylesClasses[size][key];
+    delete updatedStylesClasses[size][key][prop];
   }
   if (Object.keys(updatedStylesClasses[size]).length === 0) {
     delete updatedStylesClasses[size];
