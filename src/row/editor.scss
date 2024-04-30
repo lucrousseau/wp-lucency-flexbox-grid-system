@@ -1,9 +1,10 @@
-.row {
+.lucency-flex,
+.lucency-inline-flex {
 	> .block-list-appender {
 		flex: 1;
 		width: 100%;
 	}
-	> .col {
+	> .lucency-col {
 		> .block-list-appender {
 			flex: 1;
 			width: 100%;
