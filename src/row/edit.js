@@ -49,17 +49,17 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	});
 
 	const responsivePanelBefore = {
-		fn: ({ size }) => {
-			return FLEX_CSS_PROPS.map((props) =>
+		fn: ({ size }) =>
+			Object.entries(FLEX_CSS_PROPS).map(([prop, props]) =>
 				responsivePanelControls({
 					stylesClasses,
 					setAttributes,
 					size,
 					col: 6,
+					prop,
 					...props,
 				}),
-			);
-		},
+			),
 		title: __("Alignment", "lucency"),
 	};
 

@@ -1,3 +1,5 @@
+import { __ } from "@wordpress/i18n";
+
 export const COLUMNS = 12;
 
 export const BREAKPOINTS = {
@@ -10,18 +12,17 @@ export const BREAKPOINTS = {
 	xs: 480,
 };
 
-export const FLEX_CSS_PROPS = [
-	{
+export const FLEX_CSS_PROPS = {
+	display: {
 		options: [
 			{ label: "flex", value: "lucency-flex" },
 			{ label: "inline-flex", value: "lucency-inline-flex" },
 		],
 		label: __("Display", "lucency"),
-		prop: "display",
 		type: "select",
 		key: "classes",
 	},
-	{
+	"flex-direction": {
 		options: [
 			{ label: "row", value: "lucency-flex-row" },
 			{ label: "row-reverse", value: "lucency-flex-row-reverse" },
@@ -29,23 +30,20 @@ export const FLEX_CSS_PROPS = [
 			{ label: "column-reverse", value: "lucency-flex-column-reverse" },
 		],
 		label: __("Flex Direction", "lucency"),
-		prop: "flex-direction",
 		type: "select",
 		key: "classes",
-		col: 6,
 	},
-	{
+	"flex-wrap": {
 		options: [
 			{ label: "wrap", value: "lucency-flex-wrap" },
 			{ label: "wrap-reverse", value: "lucency-flex-wrap-reverse" },
 			{ label: "nowrap", value: "lucency-flex-wrap-nowrap" },
 		],
 		label: __("Flex Wrap", "lucency"),
-		prop: "flex-wrap",
 		type: "select",
 		key: "classes",
 	},
-	{
+	"justify-content": {
 		options: [
 			{ label: "normal", value: "lucency-justify-normal" },
 			{ label: "flex-start", value: "lucency-justify-start" },
@@ -57,11 +55,10 @@ export const FLEX_CSS_PROPS = [
 			{ label: "stretch", value: "lucency-justify-stretch" },
 		],
 		label: __("Justify Content", "lucency"),
-		prop: "justify-content",
 		type: "select",
 		key: "classes",
 	},
-	{
+	"align-items": {
 		options: [
 			{ label: "flex-start", value: "lucency-items-start" },
 			{ label: "flex-end", value: "lucency-items-end" },
@@ -70,11 +67,10 @@ export const FLEX_CSS_PROPS = [
 			{ label: "stretch", value: "lucency-items-stretch" },
 		],
 		label: __("Align Items", "lucency"),
-		prop: "align-items",
 		type: "select",
 		key: "classes",
 	},
-	{
+	"align-content": {
 		options: [
 			{ label: "normal", value: "lucency-content-normal" },
 			{ label: "center", value: "lucency-content-center" },
@@ -87,11 +83,10 @@ export const FLEX_CSS_PROPS = [
 			{ label: "stretch", value: "lucency-content-stretch" },
 		],
 		label: __("Align Content", "lucency"),
-		prop: "align-content",
 		type: "select",
 		key: "classes",
 	},
-	{
+	"text-align": {
 		options: [
 			{ label: "left", value: "lucency-align-left" },
 			{ label: "center", value: "lucency-align-center" },
@@ -99,14 +94,12 @@ export const FLEX_CSS_PROPS = [
 			{ label: "justify", value: "lucency-align-justify" },
 		],
 		label: __("Text Align", "lucency"),
-		prop: "text-align",
 		type: "select",
 		key: "classes",
 	},
-	{
+	gap: {
 		label: __("Gap", "lucency"),
-		prop: "gap",
 		type: "number",
 		key: "variables",
 	},
-];
+};
