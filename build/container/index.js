@@ -179,6 +179,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ ResponsivePanel),
 /* harmony export */   handleStylesClassesChange: () => (/* reexport safe */ _handleStylesClassesChange__WEBPACK_IMPORTED_MODULE_5__["default"]),
+/* harmony export */   renderControls: () => (/* reexport safe */ _renderControls__WEBPACK_IMPORTED_MODULE_6__["default"]),
 /* harmony export */   updateClasses: () => (/* reexport safe */ _functions__WEBPACK_IMPORTED_MODULE_4__.updateClasses),
 /* harmony export */   updateStyles: () => (/* reexport safe */ _functions__WEBPACK_IMPORTED_MODULE_4__.updateStyles)
 /* harmony export */ });
@@ -192,8 +193,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./functions */ "./src/commons/ResponsivePanel/functions.js");
 /* harmony import */ var _handleStylesClassesChange__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./handleStylesClassesChange */ "./src/commons/ResponsivePanel/handleStylesClassesChange.js");
-/* harmony import */ var _responsivePanelItems__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./responsivePanelItems */ "./src/commons/ResponsivePanel/responsivePanelItems.js");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./editor.scss */ "./src/commons/ResponsivePanel/editor.scss");
+/* harmony import */ var _renderControls__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./renderControls */ "./src/commons/ResponsivePanel/renderControls.js");
+/* harmony import */ var _responsivePanelItems__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./responsivePanelItems */ "./src/commons/ResponsivePanel/responsivePanelItems.js");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./editor.scss */ "./src/commons/ResponsivePanel/editor.scss");
+
 
 
 
@@ -206,7 +209,7 @@ function ResponsivePanel(props) {
   const [openPanel, setOpenPanel] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)("full");
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("lucency__responsivepanel")
-  }, Object.entries((0,_responsivePanelItems__WEBPACK_IMPORTED_MODULE_6__["default"])(props)).map(([item, props]) => {
+  }, Object.entries((0,_responsivePanelItems__WEBPACK_IMPORTED_MODULE_7__["default"])(props)).map(([item, props]) => {
     const {
       title,
       content
@@ -230,6 +233,79 @@ function ResponsivePanel(props) {
   }));
 }
 
+
+/***/ }),
+
+/***/ "./src/commons/ResponsivePanel/renderControls.js":
+/*!*******************************************************!*\
+  !*** ./src/commons/ResponsivePanel/renderControls.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! . */ "./src/commons/ResponsivePanel/index.js");
+
+
+
+const renderControls = ({
+  stylesClasses,
+  setAttributes,
+  options,
+  label,
+  type,
+  prop,
+  size,
+  key,
+  col,
+  onChange = null
+}) => {
+  var _stylesClasses$size$v;
+  const setOnChange = onChange !== null && onChange !== void 0 ? onChange : value => (0,___WEBPACK_IMPORTED_MODULE_2__.handleStylesClassesChange)({
+    size,
+    prop,
+    value,
+    key,
+    stylesClasses,
+    setAttributes
+  });
+  let output = null;
+  switch (type) {
+    case "select":
+      output = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
+        label: label,
+        value: stylesClasses?.[size]?.classes?.[prop],
+        options: [...[{
+          label: "",
+          value: null
+        }], ...options],
+        onChange: setOnChange,
+        __nextHasNoMarginBottom: true
+      });
+      break;
+    case "number":
+      output = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
+        label: label,
+        value: (_stylesClasses$size$v = stylesClasses?.[size]?.variables?.[prop]) !== null && _stylesClasses$size$v !== void 0 ? _stylesClasses$size$v : null,
+        onChange: setOnChange,
+        step: 0.1,
+        isShiftStepEnabled: true,
+        shiftStep: 10
+      });
+      break;
+  }
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `lucency-col lucency-col-${col}`
+  }, output);
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (renderControls);
 
 /***/ }),
 

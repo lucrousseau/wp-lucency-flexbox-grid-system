@@ -9,19 +9,14 @@ import {
 	InspectorControls,
 } from "@wordpress/block-editor";
 
-import {
-	SelectControl,
-	__experimentalNumberControl as NumberControl,
-	PanelBody,
-	Notice,
-} from "@wordpress/components";
+import { PanelBody, Notice } from "@wordpress/components";
 
 import ColumnsLength from "./ColumnsLength";
 
 import ResponsivePanel, {
 	updateStyles,
 	updateClasses,
-	handleStylesClassesChange,
+	renderControls,
 } from "../commons/ResponsivePanel";
 
 import "./editor.scss";
@@ -48,61 +43,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			? () => <InnerBlocks.ButtonBlockAppender />
 			: null,
 	});
-
-	const renderControl = ({
-		stylesClasses,
-		options,
-		label,
-		type,
-		prop,
-		size,
-		key,
-		col,
-		onChange = null,
-	}) => {
-		const setOnChange =
-			onChange ??
-			((value) =>
-				handleStylesClassesChange({
-					size,
-					prop,
-					value,
-					key,
-					stylesClasses,
-					setAttributes,
-				}));
-
-		let output = null;
-
-		switch (type) {
-			case "select":
-				output = (
-					<SelectControl
-						label={label}
-						value={stylesClasses?.[size]?.classes?.[prop]}
-						options={[...[{ label: "", value: null }], ...options]}
-						onChange={setOnChange}
-						__nextHasNoMarginBottom
-					/>
-				);
-				break;
-
-			case "number":
-				output = (
-					<NumberControl
-						label={label}
-						value={stylesClasses?.[size]?.variables?.[prop] ?? null}
-						onChange={setOnChange}
-						step={0.1}
-						isShiftStepEnabled={true}
-						shiftStep={10}
-					/>
-				);
-				break;
-		}
-
-		return <div className={`lucency-col lucency-col-${col}`}>{output}</div>;
-	};
 
 	const responsivePanelBefore = {
 		fn: ({ size }) => {
@@ -215,8 +155,9 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			];
 
 			return controls.map((props) =>
-				renderControl({
+				renderControls({
 					stylesClasses,
+					setAttributes,
 					size,
 					...props,
 				}),
