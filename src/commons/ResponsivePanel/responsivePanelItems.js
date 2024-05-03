@@ -4,7 +4,7 @@ import { BREAKPOINTS } from "../../abstracts/constants";
 
 import { __experimentalNumberControl as NumberControl } from "@wordpress/components";
 
-import handleStylesClassesChange from "./handleStylesClassesChange";
+import renderControls from "./renderControls";
 
 export default function responsivePanelItems({
 	enabled = { margin: true, padding: true },
@@ -17,42 +17,6 @@ export default function responsivePanelItems({
 	const stylesClassesObject = Object.fromEntries(
 		Object.keys(BREAKPOINTS).map((size) => [size, {}]),
 	);
-
-	const renderControl = ({
-		stylesClasses,
-		label,
-		prop,
-		size,
-		col = 6,
-		min,
-	}) => {
-		const defaultValue = defaultStylesClasses?.[size]?.variables?.[prop];
-		const setValues = stylesClasses?.[size]?.variables?.[prop] ?? null;
-
-		return (
-			<div className={`lucency-col lucency-col-${col}`}>
-				<NumberControl
-					label={label}
-					value={setValues ?? defaultValue}
-					onChange={(value) =>
-						handleStylesClassesChange({
-							size,
-							prop,
-							value,
-							key: "variables",
-							stylesClasses,
-							setAttributes,
-							defaultValue,
-						})
-					}
-					min={min}
-					step={0.1}
-					isShiftStepEnabled={true}
-					shiftStep={10}
-				/>
-			</div>
-		);
-	};
 
 	const responsivePanelMargins = ({ size }) => {
 		const controls = [
@@ -76,13 +40,16 @@ export default function responsivePanelItems({
 
 		return (
 			<>
-				{controls.map(({ label, prop }) =>
-					renderControl({
+				{controls.map((props) =>
+					renderControls({
 						stylesClasses,
-						label,
-						prop,
+						setAttributes,
+						defaultStylesClasses,
 						size,
+						type: "number",
+						key: "variables",
 						col: 3,
+						...props,
 					}),
 				)}
 			</>
@@ -94,35 +61,34 @@ export default function responsivePanelItems({
 			{
 				label: __("Top", "lucency"),
 				prop: "padding-top",
-				size,
 			},
 			{
 				label: __("Bottom", "lucency"),
 				prop: "padding-bottom",
-				size,
 			},
 			{
 				label: __("Left", "lucency"),
 				prop: "padding-left",
-				size,
 			},
 			{
 				label: __("Right", "lucency"),
 				prop: "padding-right",
-				size,
 			},
 		];
 
 		return (
 			<>
-				{controls.map(({ label, prop }) =>
-					renderControl({
+				{controls.map((props) =>
+					renderControls({
 						stylesClasses,
-						label,
-						prop,
-						size,
-						min: 0,
+						setAttributes,
+						defaultStylesClasses,
+						type: "number",
+						key: "variables",
 						col: 3,
+						min: 0,
+						size,
+						...props,
 					}),
 				)}
 			</>

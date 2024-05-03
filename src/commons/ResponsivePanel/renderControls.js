@@ -14,9 +14,15 @@ const renderControls = ({
 	prop,
 	size,
 	key,
-	col,
+	min,
+	max,
+	col = 6,
+	shiftStep = 10,
 	onChange = null,
+	defaultStylesClasses = {},
 }) => {
+	const defaultValue = defaultStylesClasses?.[size]?.[key]?.[prop];
+	const setValues = stylesClasses?.[size]?.[key]?.[prop] ?? null;
 	const setOnChange =
 		onChange ??
 		((value) =>
@@ -36,7 +42,7 @@ const renderControls = ({
 			output = (
 				<SelectControl
 					label={label}
-					value={stylesClasses?.[size]?.classes?.[prop]}
+					value={setValues ?? defaultValue}
 					options={[...[{ label: "", value: null }], ...options]}
 					onChange={setOnChange}
 					__nextHasNoMarginBottom
@@ -48,11 +54,13 @@ const renderControls = ({
 			output = (
 				<NumberControl
 					label={label}
-					value={stylesClasses?.[size]?.variables?.[prop] ?? null}
+					value={setValues ?? defaultValue}
 					onChange={setOnChange}
 					step={0.1}
 					isShiftStepEnabled={true}
-					shiftStep={10}
+					shiftStep={shiftStep}
+					min={min}
+					max={max}
 				/>
 			);
 			break;

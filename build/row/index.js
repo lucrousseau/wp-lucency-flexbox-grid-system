@@ -266,10 +266,16 @@ const renderControls = ({
   prop,
   size,
   key,
-  col,
-  onChange = null
+  min,
+  max,
+  col = 6,
+  shiftStep = 10,
+  onChange = null,
+  defaultStylesClasses = {}
 }) => {
-  var _stylesClasses$size$v;
+  var _stylesClasses$size$k;
+  const defaultValue = defaultStylesClasses?.[size]?.[key]?.[prop];
+  const setValues = (_stylesClasses$size$k = stylesClasses?.[size]?.[key]?.[prop]) !== null && _stylesClasses$size$k !== void 0 ? _stylesClasses$size$k : null;
   const setOnChange = onChange !== null && onChange !== void 0 ? onChange : value => (0,___WEBPACK_IMPORTED_MODULE_2__.handleStylesClassesChange)({
     size,
     prop,
@@ -283,7 +289,7 @@ const renderControls = ({
     case "select":
       output = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
         label: label,
-        value: stylesClasses?.[size]?.classes?.[prop],
+        value: setValues !== null && setValues !== void 0 ? setValues : defaultValue,
         options: [...[{
           label: "",
           value: null
@@ -295,11 +301,13 @@ const renderControls = ({
     case "number":
       output = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalNumberControl, {
         label: label,
-        value: (_stylesClasses$size$v = stylesClasses?.[size]?.variables?.[prop]) !== null && _stylesClasses$size$v !== void 0 ? _stylesClasses$size$v : null,
+        value: setValues !== null && setValues !== void 0 ? setValues : defaultValue,
         onChange: setOnChange,
         step: 0.1,
         isShiftStepEnabled: true,
-        shiftStep: 10
+        shiftStep: shiftStep,
+        min: min,
+        max: max
       });
       break;
   }
@@ -329,7 +337,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _abstracts_constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../abstracts/constants */ "./src/abstracts/constants.js");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _handleStylesClassesChange__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./handleStylesClassesChange */ "./src/commons/ResponsivePanel/handleStylesClassesChange.js");
+/* harmony import */ var _renderControls__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./renderControls */ "./src/commons/ResponsivePanel/renderControls.js");
 
 
 
@@ -353,37 +361,6 @@ function responsivePanelItems({
   }
 }) {
   const stylesClassesObject = Object.fromEntries(Object.keys(_abstracts_constants__WEBPACK_IMPORTED_MODULE_2__.BREAKPOINTS).map(size => [size, {}]));
-  const renderControl = ({
-    stylesClasses,
-    label,
-    prop,
-    size,
-    col = 6,
-    min
-  }) => {
-    var _stylesClasses$size$v;
-    const defaultValue = defaultStylesClasses?.[size]?.variables?.[prop];
-    const setValues = (_stylesClasses$size$v = stylesClasses?.[size]?.variables?.[prop]) !== null && _stylesClasses$size$v !== void 0 ? _stylesClasses$size$v : null;
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: `lucency-col lucency-col-${col}`
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalNumberControl, {
-      label: label,
-      value: setValues !== null && setValues !== void 0 ? setValues : defaultValue,
-      onChange: value => (0,_handleStylesClassesChange__WEBPACK_IMPORTED_MODULE_4__["default"])({
-        size,
-        prop,
-        value,
-        key: "variables",
-        stylesClasses,
-        setAttributes,
-        defaultValue
-      }),
-      min: min,
-      step: 0.1,
-      isShiftStepEnabled: true,
-      shiftStep: 10
-    }));
-  };
   const responsivePanelMargins = ({
     size
   }) => {
@@ -400,15 +377,15 @@ function responsivePanelItems({
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Right", "lucency"),
       prop: "margin-right"
     }];
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, controls.map(({
-      label,
-      prop
-    }) => renderControl({
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, controls.map(props => (0,_renderControls__WEBPACK_IMPORTED_MODULE_4__["default"])({
       stylesClasses,
-      label,
-      prop,
+      setAttributes,
+      defaultStylesClasses,
       size,
-      col: 3
+      type: "number",
+      key: "variables",
+      col: 3,
+      ...props
     })));
   };
   const responsivePanelPaddings = ({
@@ -416,31 +393,27 @@ function responsivePanelItems({
   }) => {
     const controls = [{
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Top", "lucency"),
-      prop: "padding-top",
-      size
+      prop: "padding-top"
     }, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Bottom", "lucency"),
-      prop: "padding-bottom",
-      size
+      prop: "padding-bottom"
     }, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Left", "lucency"),
-      prop: "padding-left",
-      size
+      prop: "padding-left"
     }, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Right", "lucency"),
-      prop: "padding-right",
-      size
+      prop: "padding-right"
     }];
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, controls.map(({
-      label,
-      prop
-    }) => renderControl({
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, controls.map(props => (0,_renderControls__WEBPACK_IMPORTED_MODULE_4__["default"])({
       stylesClasses,
-      label,
-      prop,
-      size,
+      setAttributes,
+      defaultStylesClasses,
+      type: "number",
+      key: "variables",
+      col: 3,
       min: 0,
-      col: 3
+      size,
+      ...props
     })));
   };
   const createResponsivePanelItemsContent = ({
@@ -686,8 +659,7 @@ function Edit({
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Display", "lucency"),
         prop: "display",
         type: "select",
-        key: "classes",
-        col: 6
+        key: "classes"
       }, {
         options: [{
           label: "row",
@@ -721,8 +693,7 @@ function Edit({
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Flex Wrap", "lucency"),
         prop: "flex-wrap",
         type: "select",
-        key: "classes",
-        col: 6
+        key: "classes"
       }, {
         options: [{
           label: "normal",
@@ -752,8 +723,7 @@ function Edit({
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Justify Content", "lucency"),
         prop: "justify-content",
         type: "select",
-        key: "classes",
-        col: 6
+        key: "classes"
       }, {
         options: [{
           label: "flex-start",
@@ -774,8 +744,7 @@ function Edit({
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Align Items", "lucency"),
         prop: "align-items",
         type: "select",
-        key: "classes",
-        col: 6
+        key: "classes"
       }, {
         options: [{
           label: "normal",
@@ -808,8 +777,7 @@ function Edit({
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Align Content", "lucency"),
         prop: "align-content",
         type: "select",
-        key: "classes",
-        col: 6
+        key: "classes"
       }, {
         options: [{
           label: "left",
@@ -827,19 +795,18 @@ function Edit({
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Text Align", "lucency"),
         prop: "text-align",
         type: "select",
-        key: "classes",
-        col: 6
+        key: "classes"
       }, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Gap", "lucency"),
         prop: "gap",
         type: "number",
-        key: "variables",
-        col: 6
+        key: "variables"
       }];
       return controls.map(props => (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_8__.renderControls)({
         stylesClasses,
         setAttributes,
         size,
+        col: 6,
         ...props
       }));
     },

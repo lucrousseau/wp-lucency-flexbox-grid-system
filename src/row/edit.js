@@ -56,7 +56,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					prop: "display",
 					type: "select",
 					key: "classes",
-					col: 6,
 				},
 				{
 					options: [
@@ -81,7 +80,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					prop: "flex-wrap",
 					type: "select",
 					key: "classes",
-					col: 6,
 				},
 				{
 					options: [
@@ -98,7 +96,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					prop: "justify-content",
 					type: "select",
 					key: "classes",
-					col: 6,
 				},
 				{
 					options: [
@@ -112,7 +109,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					prop: "align-items",
 					type: "select",
 					key: "classes",
-					col: 6,
 				},
 				{
 					options: [
@@ -130,7 +126,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					prop: "align-content",
 					type: "select",
 					key: "classes",
-					col: 6,
 				},
 				{
 					options: [
@@ -143,14 +138,12 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					prop: "text-align",
 					type: "select",
 					key: "classes",
-					col: 6,
 				},
 				{
 					label: __("Gap", "lucency"),
 					prop: "gap",
 					type: "number",
 					key: "variables",
-					col: 6,
 				},
 			];
 
@@ -159,6 +152,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					stylesClasses,
 					setAttributes,
 					size,
+					col: 6,
 					...props,
 				}),
 			);
