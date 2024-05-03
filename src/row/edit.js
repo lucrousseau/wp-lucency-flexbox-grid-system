@@ -49,47 +49,59 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			: null,
 	});
 
-	const renderControl = ({ stylesClasses, options, label, prop, size }) => {
-		const renderSelectControl = () => (
-			<SelectControl
-				label={label}
-				value={stylesClasses?.[size]?.classes?.[prop]}
-				options={[...[{ label: "", value: null }], ...options]}
-				onChange={(value) =>
-					handleStylesClassesChange({
-						size,
-						prop,
-						value,
-						key: "classes",
-						stylesClasses,
-						setAttributes,
-					})
-				}
-				__nextHasNoMarginBottom
-			/>
-		);
+	const renderControl = ({
+		stylesClasses,
+		options,
+		label,
+		type,
+		prop,
+		size,
+		key,
+		col,
+		onChange = null,
+	}) => {
+		const setOnChange =
+			onChange ??
+			((value) =>
+				handleStylesClassesChange({
+					size,
+					prop,
+					value,
+					key,
+					stylesClasses,
+					setAttributes,
+				}));
 
-		const renderNumberControl = () => (
-			<NumberControl
-				label={label}
-				value={stylesClasses?.[size]?.variables?.[prop] ?? null}
-				onChange={(value) =>
-					handleStylesClassesChange({
-						size,
-						prop,
-						value,
-						key: "variables",
-						stylesClasses,
-						setAttributes,
-					})
-				}
-				step={0.1}
-				isShiftStepEnabled={true}
-				shiftStep={10}
-			/>
-		);
+		let output = null;
 
-		return options ? renderSelectControl() : renderNumberControl();
+		switch (type) {
+			case "select":
+				output = (
+					<SelectControl
+						label={label}
+						value={stylesClasses?.[size]?.classes?.[prop]}
+						options={[...[{ label: "", value: null }], ...options]}
+						onChange={setOnChange}
+						__nextHasNoMarginBottom
+					/>
+				);
+				break;
+
+			case "number":
+				output = (
+					<NumberControl
+						label={label}
+						value={stylesClasses?.[size]?.variables?.[prop] ?? null}
+						onChange={setOnChange}
+						step={0.1}
+						isShiftStepEnabled={true}
+						shiftStep={10}
+					/>
+				);
+				break;
+		}
+
+		return <div className={`lucency-col lucency-col-${col}`}>{output}</div>;
 	};
 
 	const responsivePanelBefore = {
@@ -100,8 +112,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						{ label: "flex", value: "lucency-flex" },
 						{ label: "inline-flex", value: "lucency-inline-flex" },
 					],
-					label: "Display",
+					label: __("Display", "lucency"),
 					prop: "display",
+					type: "select",
+					key: "classes",
+					col: 6,
 				},
 				{
 					options: [
@@ -110,8 +125,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						{ label: "column", value: "lucency-flex-column" },
 						{ label: "column-reverse", value: "lucency-flex-column-reverse" },
 					],
-					label: "Flex Direction",
+					label: __("Flex Direction", "lucency"),
 					prop: "flex-direction",
+					type: "select",
+					key: "classes",
+					col: 6,
 				},
 				{
 					options: [
@@ -119,8 +137,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						{ label: "wrap-reverse", value: "lucency-flex-wrap-reverse" },
 						{ label: "nowrap", value: "lucency-flex-wrap-nowrap" },
 					],
-					label: "Flex Wrap",
+					label: __("Flex Wrap", "lucency"),
 					prop: "flex-wrap",
+					type: "select",
+					key: "classes",
+					col: 6,
 				},
 				{
 					options: [
@@ -133,8 +154,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						{ label: "evenly", value: "lucency-justify-evenly" },
 						{ label: "stretch", value: "lucency-justify-stretch" },
 					],
-					label: "Justify Content",
+					label: __("Justify Content", "lucency"),
 					prop: "justify-content",
+					type: "select",
+					key: "classes",
+					col: 6,
 				},
 				{
 					options: [
@@ -144,8 +168,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						{ label: "baseline", value: "lucency-items-baseline" },
 						{ label: "stretch", value: "lucency-items-stretch" },
 					],
-					label: "Align Items",
+					label: __("Align Items", "lucency"),
 					prop: "align-items",
+					type: "select",
+					key: "classes",
+					col: 6,
 				},
 				{
 					options: [
@@ -159,8 +186,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						{ label: "baseline", value: "lucency-content-baseline" },
 						{ label: "stretch", value: "lucency-content-stretch" },
 					],
-					label: "Align Content",
+					label: __("Align Content", "lucency"),
 					prop: "align-content",
+					type: "select",
+					key: "classes",
+					col: 6,
 				},
 				{
 					options: [
@@ -169,26 +199,28 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						{ label: "right", value: "lucency-align-right" },
 						{ label: "justify", value: "lucency-align-justify" },
 					],
-					label: "Text Align",
+					label: __("Text Align", "lucency"),
 					prop: "text-align",
+					type: "select",
+					key: "classes",
+					col: 6,
 				},
 				{
-					label: "Gap",
+					label: __("Gap", "lucency"),
 					prop: "gap",
+					type: "number",
+					key: "variables",
+					col: 6,
 				},
 			];
 
-			return controls.map(({ options, label, prop }) => (
-				<div className={`lucency-col lucency-col-6`}>
-					{renderControl({
-						stylesClasses,
-						options,
-						label,
-						prop,
-						size,
-					})}
-				</div>
-			));
+			return controls.map((props) =>
+				renderControl({
+					stylesClasses,
+					size,
+					...props,
+				}),
+			);
 		},
 		title: __("Alignment", "lucency"),
 	};

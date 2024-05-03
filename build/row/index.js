@@ -599,45 +599,50 @@ function Edit({
     stylesClasses,
     options,
     label,
+    type,
     prop,
-    size
+    size,
+    key,
+    col,
+    onChange = null
   }) => {
-    const renderSelectControl = () => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.SelectControl, {
-      label: label,
-      value: stylesClasses?.[size]?.classes?.[prop],
-      options: [...[{
-        label: "",
-        value: null
-      }], ...options],
-      onChange: value => (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_8__.handleStylesClassesChange)({
-        size,
-        prop,
-        value,
-        key: "classes",
-        stylesClasses,
-        setAttributes
-      }),
-      __nextHasNoMarginBottom: true
+    var _stylesClasses$size$v;
+    const setOnChange = onChange !== null && onChange !== void 0 ? onChange : value => (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_8__.handleStylesClassesChange)({
+      size,
+      prop,
+      value,
+      key,
+      stylesClasses,
+      setAttributes
     });
-    const renderNumberControl = () => {
-      var _stylesClasses$size$v;
-      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.__experimentalNumberControl, {
-        label: label,
-        value: (_stylesClasses$size$v = stylesClasses?.[size]?.variables?.[prop]) !== null && _stylesClasses$size$v !== void 0 ? _stylesClasses$size$v : null,
-        onChange: value => (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_8__.handleStylesClassesChange)({
-          size,
-          prop,
-          value,
-          key: "variables",
-          stylesClasses,
-          setAttributes
-        }),
-        step: 0.1,
-        isShiftStepEnabled: true,
-        shiftStep: 10
-      });
-    };
-    return options ? renderSelectControl() : renderNumberControl();
+    let output = null;
+    switch (type) {
+      case "select":
+        output = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.SelectControl, {
+          label: label,
+          value: stylesClasses?.[size]?.classes?.[prop],
+          options: [...[{
+            label: "",
+            value: null
+          }], ...options],
+          onChange: setOnChange,
+          __nextHasNoMarginBottom: true
+        });
+        break;
+      case "number":
+        output = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.__experimentalNumberControl, {
+          label: label,
+          value: (_stylesClasses$size$v = stylesClasses?.[size]?.variables?.[prop]) !== null && _stylesClasses$size$v !== void 0 ? _stylesClasses$size$v : null,
+          onChange: setOnChange,
+          step: 0.1,
+          isShiftStepEnabled: true,
+          shiftStep: 10
+        });
+        break;
+    }
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: `lucency-col lucency-col-${col}`
+    }, output);
   };
   const responsivePanelBefore = {
     fn: ({
@@ -651,8 +656,11 @@ function Edit({
           label: "inline-flex",
           value: "lucency-inline-flex"
         }],
-        label: "Display",
-        prop: "display"
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Display", "lucency"),
+        prop: "display",
+        type: "select",
+        key: "classes",
+        col: 6
       }, {
         options: [{
           label: "row",
@@ -667,8 +675,11 @@ function Edit({
           label: "column-reverse",
           value: "lucency-flex-column-reverse"
         }],
-        label: "Flex Direction",
-        prop: "flex-direction"
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Flex Direction", "lucency"),
+        prop: "flex-direction",
+        type: "select",
+        key: "classes",
+        col: 6
       }, {
         options: [{
           label: "wrap",
@@ -680,8 +691,11 @@ function Edit({
           label: "nowrap",
           value: "lucency-flex-wrap-nowrap"
         }],
-        label: "Flex Wrap",
-        prop: "flex-wrap"
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Flex Wrap", "lucency"),
+        prop: "flex-wrap",
+        type: "select",
+        key: "classes",
+        col: 6
       }, {
         options: [{
           label: "normal",
@@ -708,8 +722,11 @@ function Edit({
           label: "stretch",
           value: "lucency-justify-stretch"
         }],
-        label: "Justify Content",
-        prop: "justify-content"
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Justify Content", "lucency"),
+        prop: "justify-content",
+        type: "select",
+        key: "classes",
+        col: 6
       }, {
         options: [{
           label: "flex-start",
@@ -727,8 +744,11 @@ function Edit({
           label: "stretch",
           value: "lucency-items-stretch"
         }],
-        label: "Align Items",
-        prop: "align-items"
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Align Items", "lucency"),
+        prop: "align-items",
+        type: "select",
+        key: "classes",
+        col: 6
       }, {
         options: [{
           label: "normal",
@@ -758,8 +778,11 @@ function Edit({
           label: "stretch",
           value: "lucency-content-stretch"
         }],
-        label: "Align Content",
-        prop: "align-content"
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Align Content", "lucency"),
+        prop: "align-content",
+        type: "select",
+        key: "classes",
+        col: 6
       }, {
         options: [{
           label: "left",
@@ -774,25 +797,23 @@ function Edit({
           label: "justify",
           value: "lucency-align-justify"
         }],
-        label: "Text Align",
-        prop: "text-align"
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Text Align", "lucency"),
+        prop: "text-align",
+        type: "select",
+        key: "classes",
+        col: 6
       }, {
-        label: "Gap",
-        prop: "gap"
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Gap", "lucency"),
+        prop: "gap",
+        type: "number",
+        key: "variables",
+        col: 6
       }];
-      return controls.map(({
-        options,
-        label,
-        prop
-      }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: `lucency-col lucency-col-6`
-      }, renderControl({
+      return controls.map(props => renderControl({
         stylesClasses,
-        options,
-        label,
-        prop,
-        size
-      })));
+        size,
+        ...props
+      }));
     },
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Alignment", "lucency")
   };
