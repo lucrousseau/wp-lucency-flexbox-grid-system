@@ -13,7 +13,10 @@ import { PanelBody } from "@wordpress/components";
 import ResponsivePanel, {
 	updateStyles,
 	updateClasses,
+	responsivePanelControls,
 } from "../commons/ResponsivePanel";
+
+import { FLEX_CSS_PROPS } from "../abstracts/constants";
 
 import metadata from "./block.json";
 
@@ -41,6 +44,23 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			: null,
 	});
 
+	const responsivePanelBefore = {
+		fn: ({ size }) => {
+			const controls = FLEX_CSS_PROPS;
+
+			return controls.map((props) =>
+				responsivePanelControls({
+					stylesClasses,
+					setAttributes,
+					size,
+					col: 6,
+					...props,
+				}),
+			);
+		},
+		title: __("Alignment", "lucency"),
+	};
+
 	return (
 		<>
 			<InspectorControls>
@@ -48,6 +68,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					<ResponsivePanel
 						stylesClasses={stylesClasses}
 						setAttributes={setAttributes}
+						responsivePanelBefore={responsivePanelBefore}
 						defaultStylesClasses={metadata?.attributes?.stylesClasses?.default}
 					/>
 				</PanelBody>
