@@ -526,10 +526,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _abstracts_constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../abstracts/constants */ "./src/abstracts/constants.js");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _renderControls__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./renderControls */ "./src/commons/ResponsivePanel/renderControls.js");
-
+/* harmony import */ var _renderControls__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./renderControls */ "./src/commons/ResponsivePanel/renderControls.js");
 
 
 
@@ -568,7 +565,7 @@ function responsivePanelItems({
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Right", "lucency"),
       prop: "margin-right"
     }];
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, controls.map(props => (0,_renderControls__WEBPACK_IMPORTED_MODULE_4__["default"])({
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, controls.map(props => (0,_renderControls__WEBPACK_IMPORTED_MODULE_3__["default"])({
       stylesClasses,
       setAttributes,
       defaultStylesClasses,
@@ -595,7 +592,7 @@ function responsivePanelItems({
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Right", "lucency"),
       prop: "padding-right"
     }];
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, controls.map(props => (0,_renderControls__WEBPACK_IMPORTED_MODULE_4__["default"])({
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, controls.map(props => (0,_renderControls__WEBPACK_IMPORTED_MODULE_3__["default"])({
       stylesClasses,
       setAttributes,
       defaultStylesClasses,

@@ -2,8 +2,6 @@ import { __ } from "@wordpress/i18n";
 
 import { BREAKPOINTS } from "../../abstracts/constants";
 
-import { __experimentalNumberControl as NumberControl } from "@wordpress/components";
-
 import renderControls from "./renderControls";
 
 export default function responsivePanelItems({
