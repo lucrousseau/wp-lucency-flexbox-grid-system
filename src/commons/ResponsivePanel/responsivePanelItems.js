@@ -2,7 +2,7 @@ import { __ } from "@wordpress/i18n";
 
 import { BREAKPOINTS } from "../../abstracts/constants";
 
-import renderControls from "./renderControls";
+import responsivePanelControls from "./responsivePanelControls";
 
 export default function responsivePanelItems({
 	enabled = { margin: true, padding: true },
@@ -39,7 +39,7 @@ export default function responsivePanelItems({
 		return (
 			<>
 				{controls.map((props) =>
-					renderControls({
+					responsivePanelControls({
 						stylesClasses,
 						setAttributes,
 						defaultStylesClasses,
@@ -77,7 +77,7 @@ export default function responsivePanelItems({
 		return (
 			<>
 				{controls.map((props) =>
-					renderControls({
+					responsivePanelControls({
 						stylesClasses,
 						setAttributes,
 						defaultStylesClasses,

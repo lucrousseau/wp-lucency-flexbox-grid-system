@@ -181,7 +181,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ ResponsivePanel),
 /* harmony export */   handleStylesClassesChange: () => (/* reexport safe */ _handleStylesClassesChange__WEBPACK_IMPORTED_MODULE_5__["default"]),
-/* harmony export */   renderControls: () => (/* reexport safe */ _renderControls__WEBPACK_IMPORTED_MODULE_6__["default"]),
+/* harmony export */   responsivePanelControls: () => (/* reexport safe */ _responsivePanelControls__WEBPACK_IMPORTED_MODULE_6__["default"]),
 /* harmony export */   updateClasses: () => (/* reexport safe */ _functions__WEBPACK_IMPORTED_MODULE_4__.updateClasses),
 /* harmony export */   updateStyles: () => (/* reexport safe */ _functions__WEBPACK_IMPORTED_MODULE_4__.updateStyles)
 /* harmony export */ });
@@ -195,7 +195,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./functions */ "./src/commons/ResponsivePanel/functions.js");
 /* harmony import */ var _handleStylesClassesChange__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./handleStylesClassesChange */ "./src/commons/ResponsivePanel/handleStylesClassesChange.js");
-/* harmony import */ var _renderControls__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./renderControls */ "./src/commons/ResponsivePanel/renderControls.js");
+/* harmony import */ var _responsivePanelControls__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./responsivePanelControls */ "./src/commons/ResponsivePanel/responsivePanelControls.js");
 /* harmony import */ var _responsivePanelItems__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./responsivePanelItems */ "./src/commons/ResponsivePanel/responsivePanelItems.js");
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./editor.scss */ "./src/commons/ResponsivePanel/editor.scss");
 
@@ -238,10 +238,10 @@ function ResponsivePanel(props) {
 
 /***/ }),
 
-/***/ "./src/commons/ResponsivePanel/renderControls.js":
-/*!*******************************************************!*\
-  !*** ./src/commons/ResponsivePanel/renderControls.js ***!
-  \*******************************************************/
+/***/ "./src/commons/ResponsivePanel/responsivePanelControls.js":
+/*!****************************************************************!*\
+  !*** ./src/commons/ResponsivePanel/responsivePanelControls.js ***!
+  \****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -257,7 +257,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const renderControls = ({
+const responsivePanelControls = ({
   stylesClasses,
   setAttributes,
   options,
@@ -315,7 +315,7 @@ const renderControls = ({
     className: `lucency-col lucency-col-${col}`
   }, output);
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (renderControls);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (responsivePanelControls);
 
 /***/ }),
 
@@ -335,7 +335,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _abstracts_constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../abstracts/constants */ "./src/abstracts/constants.js");
-/* harmony import */ var _renderControls__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./renderControls */ "./src/commons/ResponsivePanel/renderControls.js");
+/* harmony import */ var _responsivePanelControls__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./responsivePanelControls */ "./src/commons/ResponsivePanel/responsivePanelControls.js");
 
 
 
@@ -374,7 +374,7 @@ function responsivePanelItems({
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Right", "lucency"),
       prop: "margin-right"
     }];
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, controls.map(props => (0,_renderControls__WEBPACK_IMPORTED_MODULE_3__["default"])({
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, controls.map(props => (0,_responsivePanelControls__WEBPACK_IMPORTED_MODULE_3__["default"])({
       stylesClasses,
       setAttributes,
       defaultStylesClasses,
@@ -401,7 +401,7 @@ function responsivePanelItems({
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Right", "lucency"),
       prop: "padding-right"
     }];
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, controls.map(props => (0,_renderControls__WEBPACK_IMPORTED_MODULE_3__["default"])({
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, controls.map(props => (0,_responsivePanelControls__WEBPACK_IMPORTED_MODULE_3__["default"])({
       stylesClasses,
       setAttributes,
       defaultStylesClasses,
@@ -799,7 +799,7 @@ function Edit({
         type: "number",
         key: "variables"
       }];
-      return controls.map(props => (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_8__.renderControls)({
+      return controls.map(props => (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_8__.responsivePanelControls)({
         stylesClasses,
         setAttributes,
         size,

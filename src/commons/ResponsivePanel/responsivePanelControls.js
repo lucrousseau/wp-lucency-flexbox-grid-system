@@ -5,7 +5,7 @@ import {
 
 import { handleStylesClassesChange } from ".";
 
-const renderControls = ({
+const responsivePanelControls = ({
 	stylesClasses,
 	setAttributes,
 	options,
@@ -69,4 +69,4 @@ const renderControls = ({
 	return <div className={`lucency-col lucency-col-${col}`}>{output}</div>;
 };
 
-export default renderControls;
+export default responsivePanelControls;

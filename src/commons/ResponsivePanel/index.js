@@ -4,7 +4,7 @@ import { useState } from "@wordpress/element";
 
 import { updateStyles, updateClasses } from "./functions";
 import handleStylesClassesChange from "./handleStylesClassesChange";
-import renderControls from "./renderControls";
+import responsivePanelControls from "./responsivePanelControls";
 import responsivePanelItems from "./responsivePanelItems";
 
 import "./editor.scss";
@@ -47,6 +47,6 @@ export default function ResponsivePanel(props) {
 export {
 	updateStyles,
 	updateClasses,
-	renderControls,
+	responsivePanelControls,
 	handleStylesClassesChange,
 };

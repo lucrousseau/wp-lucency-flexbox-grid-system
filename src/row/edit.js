@@ -16,7 +16,7 @@ import ColumnsLength from "./ColumnsLength";
 import ResponsivePanel, {
 	updateStyles,
 	updateClasses,
-	renderControls,
+	responsivePanelControls,
 } from "../commons/ResponsivePanel";
 
 import "./editor.scss";
@@ -148,7 +148,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			];
 
 			return controls.map((props) =>
-				renderControls({
+				responsivePanelControls({
 					stylesClasses,
 					setAttributes,
 					size,
