@@ -602,7 +602,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _ColumnsLength__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ColumnsLength */ "./src/row/ColumnsLength.js");
 /* harmony import */ var _commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../commons/ResponsivePanel */ "./src/commons/ResponsivePanel/index.js");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./editor.scss */ "./src/row/editor.scss");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./block.json */ "./src/row/block.json");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./editor.scss */ "./src/row/editor.scss");
+
 
 
 
@@ -819,7 +821,8 @@ function Edit({
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_8__["default"], {
     stylesClasses: stylesClasses,
     setAttributes: setAttributes,
-    responsivePanelBefore: responsivePanelBefore
+    responsivePanelBefore: responsivePanelBefore,
+    defaultStylesClasses: _block_json__WEBPACK_IMPORTED_MODULE_9__?.attributes?.stylesClasses?.default
   }))), showNotice && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Notice, {
     status: "error",
     isDismissible: false

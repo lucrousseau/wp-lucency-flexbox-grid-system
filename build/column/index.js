@@ -83,6 +83,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _abstracts_constants__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../abstracts/constants */ "./src/abstracts/constants.js");
 /* harmony import */ var _commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../commons/ResponsivePanel */ "./src/commons/ResponsivePanel/index.js");
 /* harmony import */ var _responsiveColumnSizes_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./responsiveColumnSizes.js */ "./src/column/responsiveColumnSizes.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./block.json */ "./src/column/block.json");
+
 
 
 
@@ -165,7 +167,8 @@ function Edit({
     },
     stylesClasses: stylesClasses,
     setAttributes: setAttributes,
-    responsivePanelBefore: responsivePanelBefore
+    responsivePanelBefore: responsivePanelBefore,
+    defaultStylesClasses: _block_json__WEBPACK_IMPORTED_MODULE_9__?.attributes?.stylesClasses?.default
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...innerBlocksProps,
     style: style

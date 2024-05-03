@@ -19,6 +19,8 @@ import ResponsivePanel, {
 
 import responsiveColumnSizes from "./responsiveColumnSizes.js";
 
+import metadata from "./block.json";
+
 export default function Edit({ attributes, setAttributes, clientId }) {
 	const { stylesClasses, sizes } = attributes;
 
@@ -81,6 +83,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						stylesClasses={stylesClasses}
 						setAttributes={setAttributes}
 						responsivePanelBefore={responsivePanelBefore}
+						defaultStylesClasses={metadata?.attributes?.stylesClasses?.default}
 					/>
 				</PanelBody>
 			</InspectorControls>
