@@ -40,11 +40,14 @@ const responsivePanelControls = ({
 
 	switch (type) {
 		case "select":
+			const setOptions = !defaultValue
+				? [...[{ label: "", value: null }], ...options]
+				: options;
 			output = (
 				<SelectControl
 					label={label}
 					value={setValues ?? defaultValue}
-					options={[...[{ label: "", value: null }], ...options]}
+					options={setOptions}
 					onChange={setOnChange}
 					__nextHasNoMarginBottom
 				/>

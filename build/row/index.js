@@ -453,13 +453,14 @@ const responsivePanelControls = ({
   let output = null;
   switch (type) {
     case "select":
+      const setOptions = !defaultValue ? [...[{
+        label: "",
+        value: null
+      }], ...options] : options;
       output = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
         label: label,
         value: setValues !== null && setValues !== void 0 ? setValues : defaultValue,
-        options: [...[{
-          label: "",
-          value: null
-        }], ...options],
+        options: setOptions,
         onChange: setOnChange,
         __nextHasNoMarginBottom: true
       });
