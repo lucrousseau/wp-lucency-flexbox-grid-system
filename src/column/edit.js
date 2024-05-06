@@ -15,6 +15,7 @@ import { COLUMNS } from "../abstracts/constants";
 import ResponsivePanel, {
 	updateStyles,
 	updateClasses,
+	responsivePanelControls,
 } from "../commons/ResponsivePanel";
 
 import responsiveColumnSizes from "./responsiveColumnSizes.js";
@@ -54,18 +55,58 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	};
 
 	const responsivePanelBefore = {
-		fn: ({ size }) => (
-			<div className={`lucency-col`}>
-				<RangeControl
-					label={__("Columns Width", "lucency")}
-					min={0}
-					max={COLUMNS}
-					value={sizes?.[size] ?? 0}
-					onChange={(value) => handleSizeChange({ size, sizes, value })}
-					help={__("Leave at 0 for auto width", "lucency")}
-				/>
-			</div>
-		),
+		fn: ({ size }) => {
+			const controls = {
+				"text-align": {
+					options: [
+						{ label: "left", value: "lucency-align-left" },
+						{ label: "center", value: "lucency-align-center" },
+						{ label: "right", value: "lucency-align-right" },
+						{ label: "justify", value: "lucency-align-justify" },
+					],
+					label: __("Text Align", "lucency"),
+					type: "select",
+					key: "classes",
+				},
+				"align-self": {
+					options: [
+						{ label: "auto", value: "lucency-self-auto" },
+						{ label: "flex-start", value: "lucency-self-start" },
+						{ label: "flex-end", value: "lucency-self-end" },
+						{ label: "center", value: "lucency-self-center" },
+						{ label: "stretch", value: "lucency-self-stretch" },
+						{ label: "baseline", value: "lucency-self-baseline" },
+					],
+					label: __("Align Self", "lucency"),
+					type: "select",
+					key: "classes",
+				},
+			};
+			return (
+				<>
+					<div className={`lucency-col lucency-col-12`}>
+						<RangeControl
+							label={__("Columns Width", "lucency")}
+							min={0}
+							max={COLUMNS}
+							value={sizes?.[size] ?? 0}
+							onChange={(value) => handleSizeChange({ size, sizes, value })}
+							help={__("Leave at 0 for auto width", "lucency")}
+						/>
+					</div>
+					{Object.entries(controls).map(([prop, props]) =>
+						responsivePanelControls({
+							stylesClasses,
+							setAttributes,
+							size,
+							col: 6,
+							prop,
+							...props,
+						}),
+					)}
+				</>
+			);
+		},
 		title: __("Alignment", "lucency"),
 	};
 

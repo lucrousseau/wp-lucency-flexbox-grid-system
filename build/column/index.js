@@ -298,8 +298,52 @@ function Edit({
       size
     }) => {
       var _sizes$size;
-      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: `lucency-col`
+      const controls = {
+        "text-align": {
+          options: [{
+            label: "left",
+            value: "lucency-align-left"
+          }, {
+            label: "center",
+            value: "lucency-align-center"
+          }, {
+            label: "right",
+            value: "lucency-align-right"
+          }, {
+            label: "justify",
+            value: "lucency-align-justify"
+          }],
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Text Align", "lucency"),
+          type: "select",
+          key: "classes"
+        },
+        "align-self": {
+          options: [{
+            label: "auto",
+            value: "lucency-self-auto"
+          }, {
+            label: "flex-start",
+            value: "lucency-self-start"
+          }, {
+            label: "flex-end",
+            value: "lucency-self-end"
+          }, {
+            label: "center",
+            value: "lucency-self-center"
+          }, {
+            label: "stretch",
+            value: "lucency-self-stretch"
+          }, {
+            label: "baseline",
+            value: "lucency-self-baseline"
+          }],
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Align Self", "lucency"),
+          type: "select",
+          key: "classes"
+        }
+      };
+      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        className: `lucency-col lucency-col-12`
       }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.RangeControl, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Columns Width", "lucency"),
         min: 0,
@@ -311,7 +355,14 @@ function Edit({
           value
         }),
         help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Leave at 0 for auto width", "lucency")
-      }));
+      })), Object.entries(controls).map(([prop, props]) => (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_7__.responsivePanelControls)({
+        stylesClasses,
+        setAttributes,
+        size,
+        col: 6,
+        prop,
+        ...props
+      })));
     },
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Alignment", "lucency")
   };
