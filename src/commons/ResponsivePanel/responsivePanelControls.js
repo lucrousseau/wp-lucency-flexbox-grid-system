@@ -33,6 +33,7 @@ const responsivePanelControls = ({
 				key,
 				stylesClasses,
 				setAttributes,
+				defaultValue,
 			}));
 
 	let output = null;

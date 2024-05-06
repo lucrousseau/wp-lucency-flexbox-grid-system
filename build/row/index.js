@@ -315,12 +315,19 @@ function handleStylesClassesChange({
       }
     }
   };
+  console.log({
+    updatedStylesClasses
+  }, "A");
   if (!value || value === defaultValue?.toString()) {
     delete updatedStylesClasses[size][key][prop];
   }
   if (Object.keys(updatedStylesClasses[size]).length === 0) {
     delete updatedStylesClasses[size];
   }
+  console.log({
+    updatedStylesClasses,
+    defaultValue
+  }, "B");
   setAttributes({
     stylesClasses: updatedStylesClasses
   });
@@ -440,7 +447,8 @@ const responsivePanelControls = ({
     value,
     key,
     stylesClasses,
-    setAttributes
+    setAttributes,
+    defaultValue
   });
   let output = null;
   switch (type) {
@@ -787,6 +795,7 @@ function Edit({
   } = attributes;
   const Tag = tag;
   const [showNotice, setShowNotice] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+  const defaultStylesClasses = _block_json__WEBPACK_IMPORTED_MODULE_10__?.attributes?.stylesClasses?.default;
   const hasInnerBlocks = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => {
     const count = select("core/block-editor").getBlockCount(clientId);
     return count > 0;
@@ -812,6 +821,7 @@ function Edit({
       size,
       col: 6,
       prop,
+      defaultStylesClasses,
       ...props
     })),
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Alignment", "lucency")
@@ -827,7 +837,7 @@ function Edit({
     stylesClasses: stylesClasses,
     setAttributes: setAttributes,
     responsivePanelBefore: responsivePanelBefore,
-    defaultStylesClasses: _block_json__WEBPACK_IMPORTED_MODULE_10__?.attributes?.stylesClasses?.default
+    defaultStylesClasses: defaultStylesClasses
   }))), showNotice && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Notice, {
     status: "error",
     isDismissible: false

@@ -29,6 +29,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const { tag, stylesClasses, columns } = attributes;
 	const Tag = tag;
 	const [showNotice, setShowNotice] = useState(false);
+	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
 	const hasInnerBlocks = useSelect((select) => {
 		const count = select("core/block-editor").getBlockCount(clientId);
@@ -57,6 +58,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					size,
 					col: 6,
 					prop,
+					defaultStylesClasses,
 					...props,
 				}),
 			),
@@ -77,7 +79,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						stylesClasses={stylesClasses}
 						setAttributes={setAttributes}
 						responsivePanelBefore={responsivePanelBefore}
-						defaultStylesClasses={metadata?.attributes?.stylesClasses?.default}
+						defaultStylesClasses={defaultStylesClasses}
 					/>
 				</PanelBody>
 			</InspectorControls>

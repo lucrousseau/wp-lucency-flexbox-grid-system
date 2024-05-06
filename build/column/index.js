@@ -509,12 +509,19 @@ function handleStylesClassesChange({
       }
     }
   };
+  console.log({
+    updatedStylesClasses
+  }, "A");
   if (!value || value === defaultValue?.toString()) {
     delete updatedStylesClasses[size][key][prop];
   }
   if (Object.keys(updatedStylesClasses[size]).length === 0) {
     delete updatedStylesClasses[size];
   }
+  console.log({
+    updatedStylesClasses,
+    defaultValue
+  }, "B");
   setAttributes({
     stylesClasses: updatedStylesClasses
   });
@@ -634,7 +641,8 @@ const responsivePanelControls = ({
     value,
     key,
     stylesClasses,
-    setAttributes
+    setAttributes,
+    defaultValue
   });
   let output = null;
   switch (type) {

@@ -18,6 +18,8 @@ export default function handleStylesClassesChange({
 		},
 	};
 
+	console.log({ updatedStylesClasses }, "A");
+
 	if (!value || value === defaultValue?.toString()) {
 		delete updatedStylesClasses[size][key][prop];
 	}
@@ -25,6 +27,8 @@ export default function handleStylesClassesChange({
 	if (Object.keys(updatedStylesClasses[size]).length === 0) {
 		delete updatedStylesClasses[size];
 	}
+
+	console.log({ updatedStylesClasses, defaultValue }, "B");
 
 	setAttributes({ stylesClasses: updatedStylesClasses });
 }
