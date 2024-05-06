@@ -11,3 +11,36 @@
 		}
 	}
 }
+
+.lucency-admin-row-appender {
+	border: 1px solid #999;
+	background-color: #fff;
+	border-radius: 0.5em;
+	padding: 1em;
+	box-sizing: border-box;
+	header {
+		margin-bottom: 0.5em;
+		h3,
+		p {
+			margin: 0;
+			padding: 0;
+		}
+		h3 {
+			display: flex;
+			font-weight: normal;
+		}
+		p {
+			font-size: 0.8em;
+		}
+		svg {
+			width: 1.5em;
+			height: auto;
+			margin-right: 0.25em;
+			display: inline-block;
+			vertical-align: middle;
+		}
+	}
+	.components-button {
+		height: 32px;
+	}
+}

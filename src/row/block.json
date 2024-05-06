@@ -22,7 +22,7 @@
 		},
 		"columns": {
 			"type": "number",
-			"default": 2
+			"default": null
 		},
 		"stylesClasses": {
 			"type": "object",

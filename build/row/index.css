@@ -40,4 +40,37 @@
   width: 100%;
 }
 
+.lucency-admin-row-appender {
+  border: 1px solid #999;
+  background-color: #fff;
+  border-radius: 0.5em;
+  padding: 1em;
+  box-sizing: border-box;
+}
+.lucency-admin-row-appender header {
+  margin-bottom: 0.5em;
+}
+.lucency-admin-row-appender header h3,
+.lucency-admin-row-appender header p {
+  margin: 0;
+  padding: 0;
+}
+.lucency-admin-row-appender header h3 {
+  display: flex;
+  font-weight: normal;
+}
+.lucency-admin-row-appender header p {
+  font-size: 0.8em;
+}
+.lucency-admin-row-appender header svg {
+  width: 1.5em;
+  height: auto;
+  margin-right: 0.25em;
+  display: inline-block;
+  vertical-align: middle;
+}
+.lucency-admin-row-appender .components-button {
+  height: 32px;
+}
+
 /*# sourceMappingURL=index.css.map*/

@@ -761,17 +761,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _ColumnsLength__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ColumnsLength */ "./src/row/ColumnsLength.js");
-/* harmony import */ var _commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../commons/ResponsivePanel */ "./src/commons/ResponsivePanel/index.js");
-/* harmony import */ var _abstracts_constants__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../abstracts/constants */ "./src/abstracts/constants.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./block.json */ "./src/row/block.json");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./editor.scss */ "./src/row/editor.scss");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/columns.js");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _ColumnsLength__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./ColumnsLength */ "./src/row/ColumnsLength.js");
+/* harmony import */ var _commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../commons/ResponsivePanel */ "./src/commons/ResponsivePanel/index.js");
+/* harmony import */ var _abstracts_constants__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../abstracts/constants */ "./src/abstracts/constants.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./block.json */ "./src/row/block.json");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./editor.scss */ "./src/row/editor.scss");
+
+
 
 
 
@@ -796,27 +801,57 @@ function Edit({
   } = attributes;
   const Tag = tag;
   const [showNotice, setShowNotice] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
-  const defaultStylesClasses = _block_json__WEBPACK_IMPORTED_MODULE_10__?.attributes?.stylesClasses?.default;
+  const [newColumns, setNewColumns] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(1);
+  const noColumnsDefined = !columns;
+  const defaultStylesClasses = _block_json__WEBPACK_IMPORTED_MODULE_11__?.attributes?.stylesClasses?.default;
   const hasInnerBlocks = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => {
     const count = select("core/block-editor").getBlockCount(clientId);
     return count > 0;
   });
-  const style = (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_8__.updateStyles)({
+  const style = (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_9__.updateStyles)({
     stylesClasses
   });
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps)({
-    className: (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_8__.updateClasses)({
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.useBlockProps)({
+    className: (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_9__.updateClasses)({
       stylesClasses
     }, classnames__WEBPACK_IMPORTED_MODULE_2___default()("lucency"))
   });
-  const innerBlocksProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useInnerBlocksProps)(blockProps, {
+  const handleSetColumns = () => {
+    setAttributes({
+      columns: newColumns
+    });
+    for (let i = 0; i < newColumns; i++) {
+      (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_4__.createBlock)("lucency-grid/column");
+    }
+  };
+  const innerBlocksProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.useInnerBlocksProps)(blockProps, {
     allowedBlocks: ["lucency-grid/column"],
-    renderAppender: !hasInnerBlocks ? () => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InnerBlocks.ButtonBlockAppender, null) : null
+    renderAppender: !hasInnerBlocks ? () => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "lucency-admin-row-appender"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("header", {
+      className: "lucency"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "lucency-col"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", null, _wordpress_icons__WEBPACK_IMPORTED_MODULE_13__["default"], (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)("Please set the number of columns you want.", "lucency")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)("You will be able to set column(s) width and other parameters after this step.", "lucency")))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "lucency"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "lucency-col lucency-col-2"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.__experimentalNumberControl, {
+      value: newColumns,
+      onChange: value => setNewColumns(parseInt(value)),
+      min: 1,
+      max: 12
+    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "lucency-col"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Button, {
+      isPrimary: true,
+      onClick: handleSetColumns
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)("Add", "lucency"))))) : null
   });
   const responsivePanelBefore = {
     fn: ({
       size
-    }) => Object.entries(_abstracts_constants__WEBPACK_IMPORTED_MODULE_9__.FLEX_CSS_PROPS).map(([prop, props]) => (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_8__.responsivePanelControls)({
+    }) => Object.entries(_abstracts_constants__WEBPACK_IMPORTED_MODULE_10__.FLEX_CSS_PROPS).map(([prop, props]) => (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_9__.responsivePanelControls)({
       stylesClasses,
       setAttributes,
       size,
@@ -825,24 +860,24 @@ function Edit({
       defaultStylesClasses,
       ...props
     })),
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Alignment", "lucency")
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)("Alignment", "lucency")
   };
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Row Settings")
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ColumnsLength__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, !noColumnsDefined && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)("Row Settings")
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ColumnsLength__WEBPACK_IMPORTED_MODULE_8__["default"], {
     columns: columns,
     setAttributes: setAttributes,
     clientId: clientId,
     setShowNotice: setShowNotice
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_9__["default"], {
     stylesClasses: stylesClasses,
     setAttributes: setAttributes,
     responsivePanelBefore: responsivePanelBefore,
     defaultStylesClasses: defaultStylesClasses
-  }))), showNotice && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Notice, {
+  }))), showNotice && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Notice, {
     status: "error",
     isDismissible: false
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("This block is intended to be used with 12 columns. Having more can lead to unexpected results.", "lucency")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Tag, {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)("This block is intended to be used with 12 columns. Having more can lead to unexpected results.", "lucency")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Tag, {
     ...innerBlocksProps,
     style: style
   }));
@@ -1146,7 +1181,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"lucency-grid/row","version":"1.0.0","title":"Row","category":"design","description":"Create a flex row and columns with responsive sizes.","example":{},"supports":{"html":true},"textdomain":"lucency","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"tag":{"type":"string","default":"div"},"columns":{"type":"number","default":2},"stylesClasses":{"type":"object","default":{"full":{"classes":{"display":"lucency-flex","flex-direction":"lucency-flex-row","flex-wrap":"lucency-flex-wrap"},"variables":{"gap":"1"}}}}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"lucency-grid/row","version":"1.0.0","title":"Row","category":"design","description":"Create a flex row and columns with responsive sizes.","example":{},"supports":{"html":true},"textdomain":"lucency","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"tag":{"type":"string","default":"div"},"columns":{"type":"number","default":null},"stylesClasses":{"type":"object","default":{"full":{"classes":{"display":"lucency-flex","flex-direction":"lucency-flex-row","flex-wrap":"lucency-flex-wrap"},"variables":{"gap":"1"}}}}}}');
 
 /***/ })
 

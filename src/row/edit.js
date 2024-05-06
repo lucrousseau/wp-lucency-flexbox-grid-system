@@ -1,15 +1,21 @@
 import { useState } from "@wordpress/element";
 import classnames from "classnames";
 import { useSelect } from "@wordpress/data";
+import { createBlock } from "@wordpress/blocks";
+import { columns as icon } from "@wordpress/icons";
 import { __ } from "@wordpress/i18n";
 import {
-	InnerBlocks,
 	useBlockProps,
 	useInnerBlocksProps,
 	InspectorControls,
 } from "@wordpress/block-editor";
 
-import { PanelBody, Notice } from "@wordpress/components";
+import {
+	PanelBody,
+	Notice,
+	Button,
+	__experimentalNumberControl as NumberControl,
+} from "@wordpress/components";
 
 import ColumnsLength from "./ColumnsLength";
 
@@ -29,6 +35,8 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const { tag, stylesClasses, columns } = attributes;
 	const Tag = tag;
 	const [showNotice, setShowNotice] = useState(false);
+	const [newColumns, setNewColumns] = useState(1);
+	const noColumnsDefined = !columns;
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
 	const hasInnerBlocks = useSelect((select) => {
@@ -42,10 +50,50 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		className: updateClasses({ stylesClasses }, classnames("lucency")),
 	});
 
+	const handleSetColumns = () => {
+		setAttributes({ columns: newColumns });
+
+		for (let i = 0; i < newColumns; i++) {
+			createBlock("lucency-grid/column");
+		}
+	};
+
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		allowedBlocks: ["lucency-grid/column"],
 		renderAppender: !hasInnerBlocks
-			? () => <InnerBlocks.ButtonBlockAppender />
+			? () => (
+					<div className="lucency-admin-row-appender">
+						<header className="lucency">
+							<div className="lucency-col">
+								<h3>
+									{icon}
+									{__("Please set the number of columns you want.", "lucency")}
+								</h3>
+								<p>
+									{__(
+										"You will be able to set column(s) width and other parameters after this step.",
+										"lucency",
+									)}
+								</p>
+							</div>
+						</header>
+						<div className="lucency">
+							<div className="lucency-col lucency-col-2">
+								<NumberControl
+									value={newColumns}
+									onChange={(value) => setNewColumns(parseInt(value))}
+									min={1}
+									max={12}
+								/>
+							</div>
+							<div className="lucency-col">
+								<Button isPrimary onClick={handleSetColumns}>
+									{__("Add", "lucency")}
+								</Button>
+							</div>
+						</div>
+					</div>
+			  )
 			: null,
 	});
 
@@ -67,22 +115,24 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	return (
 		<>
-			<InspectorControls>
-				<PanelBody title={__("Row Settings")}>
-					<ColumnsLength
-						columns={columns}
-						setAttributes={setAttributes}
-						clientId={clientId}
-						setShowNotice={setShowNotice}
-					/>
-					<ResponsivePanel
-						stylesClasses={stylesClasses}
-						setAttributes={setAttributes}
-						responsivePanelBefore={responsivePanelBefore}
-						defaultStylesClasses={defaultStylesClasses}
-					/>
-				</PanelBody>
-			</InspectorControls>
+			{!noColumnsDefined && (
+				<InspectorControls>
+					<PanelBody title={__("Row Settings")}>
+						<ColumnsLength
+							columns={columns}
+							setAttributes={setAttributes}
+							clientId={clientId}
+							setShowNotice={setShowNotice}
+						/>
+						<ResponsivePanel
+							stylesClasses={stylesClasses}
+							setAttributes={setAttributes}
+							responsivePanelBefore={responsivePanelBefore}
+							defaultStylesClasses={defaultStylesClasses}
+						/>
+					</PanelBody>
+				</InspectorControls>
+			)}
 			{showNotice && (
 				<Notice status="error" isDismissible={false}>
 					{__(
