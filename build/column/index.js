@@ -261,6 +261,7 @@ function Edit({
     stylesClasses,
     sizes
   } = attributes;
+  const defaultStylesClasses = _block_json__WEBPACK_IMPORTED_MODULE_9__?.attributes?.stylesClasses?.default;
   const style = (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_7__.updateStyles)({
     stylesClasses
   });
@@ -326,7 +327,7 @@ function Edit({
     stylesClasses: stylesClasses,
     setAttributes: setAttributes,
     responsivePanelBefore: responsivePanelBefore,
-    defaultStylesClasses: _block_json__WEBPACK_IMPORTED_MODULE_9__?.attributes?.stylesClasses?.default
+    defaultStylesClasses: defaultStylesClasses
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...innerBlocksProps,
     style: style

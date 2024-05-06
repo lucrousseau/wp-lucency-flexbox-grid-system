@@ -681,6 +681,7 @@ function Edit({
   const {
     stylesClasses
   } = attributes;
+  const defaultStylesClasses = _block_json__WEBPACK_IMPORTED_MODULE_8__?.attributes?.stylesClasses?.default;
   const style = (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_6__.updateStyles)({
     stylesClasses
   });
@@ -722,7 +723,7 @@ function Edit({
     stylesClasses: stylesClasses,
     setAttributes: setAttributes,
     responsivePanelBefore: responsivePanelBefore,
-    defaultStylesClasses: _block_json__WEBPACK_IMPORTED_MODULE_8__?.attributes?.stylesClasses?.default
+    defaultStylesClasses: defaultStylesClasses
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
     ...blockProps,
     style: style

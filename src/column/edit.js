@@ -23,6 +23,7 @@ import metadata from "./block.json";
 
 export default function Edit({ attributes, setAttributes, clientId }) {
 	const { stylesClasses, sizes } = attributes;
+	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
 	const style = updateStyles({ stylesClasses });
 
@@ -83,7 +84,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						stylesClasses={stylesClasses}
 						setAttributes={setAttributes}
 						responsivePanelBefore={responsivePanelBefore}
-						defaultStylesClasses={metadata?.attributes?.stylesClasses?.default}
+						defaultStylesClasses={defaultStylesClasses}
 					/>
 				</PanelBody>
 			</InspectorControls>

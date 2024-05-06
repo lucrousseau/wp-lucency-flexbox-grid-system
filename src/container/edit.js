@@ -25,6 +25,8 @@ import "./editor.scss";
 export default function Edit({ attributes, setAttributes, clientId }) {
 	const { stylesClasses } = attributes;
 
+	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
+
 	const style = updateStyles({ stylesClasses });
 
 	const { hasInnerBlocks } = useSelect((select) => ({
@@ -74,7 +76,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						stylesClasses={stylesClasses}
 						setAttributes={setAttributes}
 						responsivePanelBefore={responsivePanelBefore}
-						defaultStylesClasses={metadata?.attributes?.stylesClasses?.default}
+						defaultStylesClasses={defaultStylesClasses}
 					/>
 				</PanelBody>
 			</InspectorControls>
