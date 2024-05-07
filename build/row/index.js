@@ -684,7 +684,7 @@ function ColumnsLength({
       hasInnerBlocks: count > 0,
       innerBlocksCount: count
     };
-  });
+  }, [clientId]);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
     if (!hasInnerBlocks && columns === 1) {
       const initialBlock = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.createBlock)("lucency-grid/column");
@@ -701,7 +701,7 @@ function ColumnsLength({
   } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useDispatch)("core/block-editor");
   const innerBlocks = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => select("core/block-editor").getBlocks(clientId), [clientId]);
   const savedContentRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)({});
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => onColumnsLengthChange(columns), []);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => onColumnsLengthChange(columns), [columns]);
   const onColumnsLengthChange = value => {
     if (value < 1 || value > _abstracts_constants__WEBPACK_IMPORTED_MODULE_6__.COLUMNS) {
       console.error(`The number of columns must be between 1 and ${_abstracts_constants__WEBPACK_IMPORTED_MODULE_6__.COLUMNS}.`);
@@ -804,10 +804,16 @@ function Edit({
   const [newColumns, setNewColumns] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(1);
   const noColumnsDefined = !columns;
   const defaultStylesClasses = _block_json__WEBPACK_IMPORTED_MODULE_11__?.attributes?.stylesClasses?.default;
-  const hasInnerBlocks = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => {
+  const {
+    hasInnerBlocks,
+    innerBlocksCount
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => {
     const count = select("core/block-editor").getBlockCount(clientId);
-    return count > 0;
-  });
+    return {
+      hasInnerBlocks: count > 0,
+      innerBlocksCount: count
+    };
+  }, [clientId]);
   const style = (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_9__.updateStyles)({
     stylesClasses
   });
@@ -816,6 +822,13 @@ function Edit({
       stylesClasses
     }, classnames__WEBPACK_IMPORTED_MODULE_2___default()("lucency"))
   });
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    if (columns !== innerBlocksCount && hasInnerBlocks) {
+      setAttributes({
+        columns: innerBlocksCount
+      });
+    }
+  }, [columns, hasInnerBlocks, innerBlocksCount]);
   const handleSetColumns = () => {
     setAttributes({
       columns: newColumns

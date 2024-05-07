@@ -1,4 +1,4 @@
-import { useState } from "@wordpress/element";
+import { useState, useEffect } from "@wordpress/element";
 import classnames from "classnames";
 import { useSelect } from "@wordpress/data";
 import { createBlock } from "@wordpress/blocks";
@@ -39,16 +39,29 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const noColumnsDefined = !columns;
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
-	const hasInnerBlocks = useSelect((select) => {
-		const count = select("core/block-editor").getBlockCount(clientId);
-		return count > 0;
-	});
+	const { hasInnerBlocks, innerBlocksCount } = useSelect(
+		(select) => {
+			const count = select("core/block-editor").getBlockCount(clientId);
+
+			return {
+				hasInnerBlocks: count > 0,
+				innerBlocksCount: count,
+			};
+		},
+		[clientId],
+	);
 
 	const style = updateStyles({ stylesClasses });
 
 	const blockProps = useBlockProps({
 		className: updateClasses({ stylesClasses }, classnames("lucency")),
 	});
+
+	useEffect(() => {
+		if (columns !== innerBlocksCount && hasInnerBlocks) {
+			setAttributes({ columns: innerBlocksCount });
+		}
+	}, [columns, hasInnerBlocks, innerBlocksCount]);
 
 	const handleSetColumns = () => {
 		setAttributes({ columns: newColumns });

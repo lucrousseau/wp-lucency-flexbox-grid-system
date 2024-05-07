@@ -13,14 +13,17 @@ export default function ColumnsLength({
 	setShowNotice,
 	clientId,
 }) {
-	const { hasInnerBlocks, innerBlocksCount } = useSelect((select) => {
-		const count = select("core/block-editor").getBlockCount(clientId);
+	const { hasInnerBlocks, innerBlocksCount } = useSelect(
+		(select) => {
+			const count = select("core/block-editor").getBlockCount(clientId);
 
-		return {
-			hasInnerBlocks: count > 0,
-			innerBlocksCount: count,
-		};
-	});
+			return {
+				hasInnerBlocks: count > 0,
+				innerBlocksCount: count,
+			};
+		},
+		[clientId],
+	);
 
 	useEffect(() => {
 		if (!hasInnerBlocks && columns === 1) {
@@ -36,6 +39,7 @@ export default function ColumnsLength({
 	}, [columns, hasInnerBlocks, innerBlocksCount]);
 
 	const { replaceInnerBlocks } = useDispatch("core/block-editor");
+
 	const innerBlocks = useSelect(
 		(select) => select("core/block-editor").getBlocks(clientId),
 		[clientId],
@@ -43,7 +47,7 @@ export default function ColumnsLength({
 
 	const savedContentRef = useRef({});
 
-	useEffect(() => onColumnsLengthChange(columns), []);
+	useEffect(() => onColumnsLengthChange(columns), [columns]);
 
 	const onColumnsLengthChange = (value) => {
 		if (value < 1 || value > COLUMNS) {
