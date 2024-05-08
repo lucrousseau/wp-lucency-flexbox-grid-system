@@ -324,10 +324,6 @@ function handleStylesClassesChange({
   if (Object.keys(updatedStylesClasses[size]).length === 0) {
     delete updatedStylesClasses[size];
   }
-  console.log({
-    updatedStylesClasses,
-    defaultValue
-  }, "B");
   setAttributes({
     stylesClasses: updatedStylesClasses
   });
@@ -673,18 +669,15 @@ function ColumnsLength({
   columns,
   setAttributes,
   setShowNotice,
+  hasInnerBlocks,
+  innerBlocksCount,
   clientId
 }) {
   const {
-    hasInnerBlocks,
-    innerBlocksCount
-  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => {
-    const count = select("core/block-editor").getBlockCount(clientId);
-    return {
-      hasInnerBlocks: count > 0,
-      innerBlocksCount: count
-    };
-  }, [clientId]);
+    replaceInnerBlocks
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useDispatch)("core/block-editor");
+  const innerBlocks = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => select("core/block-editor").getBlocks(clientId), [clientId]);
+  const savedContentRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)({});
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
     if (!hasInnerBlocks && columns === 1) {
       const initialBlock = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.createBlock)("lucency-grid/column");
@@ -696,11 +689,6 @@ function ColumnsLength({
       setShowNotice(false);
     }
   }, [columns, hasInnerBlocks, innerBlocksCount]);
-  const {
-    replaceInnerBlocks
-  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useDispatch)("core/block-editor");
-  const innerBlocks = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => select("core/block-editor").getBlocks(clientId), [clientId]);
-  const savedContentRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)({});
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => onColumnsLengthChange({
     value: columns
   }), []);
@@ -708,11 +696,6 @@ function ColumnsLength({
     value,
     control = false
   }) => {
-    console.log("onColumnsLengthChange", {
-      value,
-      innerBlocksCount,
-      control
-    });
     if (value < 1 || value > _abstracts_constants__WEBPACK_IMPORTED_MODULE_6__.COLUMNS) {
       console.error(`The number of columns must be between 1 and ${_abstracts_constants__WEBPACK_IMPORTED_MODULE_6__.COLUMNS}.`);
       return;
@@ -818,6 +801,14 @@ function Edit({
   const [newColumns, setNewColumns] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(1);
   const noColumnsDefined = !columns;
   const defaultStylesClasses = _block_json__WEBPACK_IMPORTED_MODULE_11__?.attributes?.stylesClasses?.default;
+  const style = (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_9__.updateStyles)({
+    stylesClasses
+  });
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.useBlockProps)({
+    className: (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_9__.updateClasses)({
+      stylesClasses
+    }, classnames__WEBPACK_IMPORTED_MODULE_2___default()("lucency"))
+  });
   const {
     hasInnerBlocks,
     innerBlocksCount
@@ -828,21 +819,6 @@ function Edit({
       innerBlocksCount: count
     };
   }, [clientId]);
-  const style = (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_9__.updateStyles)({
-    stylesClasses
-  });
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.useBlockProps)({
-    className: (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_9__.updateClasses)({
-      stylesClasses
-    }, classnames__WEBPACK_IMPORTED_MODULE_2___default()("lucency"))
-  });
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
-    if (columns !== innerBlocksCount && hasInnerBlocks) {
-      setAttributes({
-        columns: innerBlocksCount
-      });
-    }
-  }, [columns, hasInnerBlocks, innerBlocksCount]);
   const handleSetColumns = () => {
     setAttributes({
       columns: newColumns
@@ -851,6 +827,13 @@ function Edit({
       (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_4__.createBlock)("lucency-grid/column");
     }
   };
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    if (columns !== innerBlocksCount && hasInnerBlocks) {
+      setAttributes({
+        columns: innerBlocksCount
+      });
+    }
+  }, [columns, hasInnerBlocks, innerBlocksCount]);
   const innerBlocksProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.useInnerBlocksProps)(blockProps, {
     allowedBlocks: ["lucency-grid/column"],
     renderAppender: !hasInnerBlocks ? () => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -895,7 +878,9 @@ function Edit({
     columns: columns,
     setAttributes: setAttributes,
     clientId: clientId,
-    setShowNotice: setShowNotice
+    setShowNotice: setShowNotice,
+    hasInnerBlocks: hasInnerBlocks,
+    innerBlocksCount: innerBlocksCount
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_9__["default"], {
     stylesClasses: stylesClasses,
     setAttributes: setAttributes,

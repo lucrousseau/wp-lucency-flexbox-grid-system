@@ -322,10 +322,6 @@ function handleStylesClassesChange({
   if (Object.keys(updatedStylesClasses[size]).length === 0) {
     delete updatedStylesClasses[size];
   }
-  console.log({
-    updatedStylesClasses,
-    defaultValue
-  }, "B");
   setAttributes({
     stylesClasses: updatedStylesClasses
   });

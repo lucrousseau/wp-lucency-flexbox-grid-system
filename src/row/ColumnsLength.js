@@ -11,19 +11,18 @@ export default function ColumnsLength({
 	columns,
 	setAttributes,
 	setShowNotice,
+	hasInnerBlocks,
+	innerBlocksCount,
 	clientId,
 }) {
-	const { hasInnerBlocks, innerBlocksCount } = useSelect(
-		(select) => {
-			const count = select("core/block-editor").getBlockCount(clientId);
+	const { replaceInnerBlocks } = useDispatch("core/block-editor");
 
-			return {
-				hasInnerBlocks: count > 0,
-				innerBlocksCount: count,
-			};
-		},
+	const innerBlocks = useSelect(
+		(select) => select("core/block-editor").getBlocks(clientId),
 		[clientId],
 	);
+
+	const savedContentRef = useRef({});
 
 	useEffect(() => {
 		if (!hasInnerBlocks && columns === 1) {
@@ -38,20 +37,9 @@ export default function ColumnsLength({
 		}
 	}, [columns, hasInnerBlocks, innerBlocksCount]);
 
-	const { replaceInnerBlocks } = useDispatch("core/block-editor");
-
-	const innerBlocks = useSelect(
-		(select) => select("core/block-editor").getBlocks(clientId),
-		[clientId],
-	);
-
-	const savedContentRef = useRef({});
-
 	useEffect(() => onColumnsLengthChange({ value: columns }), []);
 
 	const onColumnsLengthChange = ({ value, control = false }) => {
-		console.log("onColumnsLengthChange", { value, innerBlocksCount, control });
-
 		if (value < 1 || value > COLUMNS) {
 			console.error(`The number of columns must be between 1 and ${COLUMNS}.`);
 			return;

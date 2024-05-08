@@ -39,6 +39,12 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const noColumnsDefined = !columns;
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
+	const style = updateStyles({ stylesClasses });
+
+	const blockProps = useBlockProps({
+		className: updateClasses({ stylesClasses }, classnames("lucency")),
+	});
+
 	const { hasInnerBlocks, innerBlocksCount } = useSelect(
 		(select) => {
 			const count = select("core/block-editor").getBlockCount(clientId);
@@ -51,18 +57,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		[clientId],
 	);
 
-	const style = updateStyles({ stylesClasses });
-
-	const blockProps = useBlockProps({
-		className: updateClasses({ stylesClasses }, classnames("lucency")),
-	});
-
-	useEffect(() => {
-		if (columns !== innerBlocksCount && hasInnerBlocks) {
-			setAttributes({ columns: innerBlocksCount });
-		}
-	}, [columns, hasInnerBlocks, innerBlocksCount]);
-
 	const handleSetColumns = () => {
 		setAttributes({ columns: newColumns });
 
@@ -70,6 +64,12 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			createBlock("lucency-grid/column");
 		}
 	};
+
+	useEffect(() => {
+		if (columns !== innerBlocksCount && hasInnerBlocks) {
+			setAttributes({ columns: innerBlocksCount });
+		}
+	}, [columns, hasInnerBlocks, innerBlocksCount]);
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		allowedBlocks: ["lucency-grid/column"],
@@ -136,6 +136,8 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 							setAttributes={setAttributes}
 							clientId={clientId}
 							setShowNotice={setShowNotice}
+							hasInnerBlocks={hasInnerBlocks}
+							innerBlocksCount={innerBlocksCount}
 						/>
 						<ResponsivePanel
 							stylesClasses={stylesClasses}

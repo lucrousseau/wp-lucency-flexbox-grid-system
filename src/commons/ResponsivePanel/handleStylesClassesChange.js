@@ -28,7 +28,5 @@ export default function handleStylesClassesChange({
 		delete updatedStylesClasses[size];
 	}
 
-	console.log({ updatedStylesClasses, defaultValue }, "B");
-
 	setAttributes({ stylesClasses: updatedStylesClasses });
 }
