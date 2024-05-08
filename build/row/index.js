@@ -701,7 +701,7 @@ function ColumnsLength({
   } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useDispatch)("core/block-editor");
   const innerBlocks = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => select("core/block-editor").getBlocks(clientId), [clientId]);
   const savedContentRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)({});
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => onColumnsLengthChange(columns), [columns]);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => onColumnsLengthChange(columns), []);
   const onColumnsLengthChange = value => {
     if (value < 1 || value > _abstracts_constants__WEBPACK_IMPORTED_MODULE_6__.COLUMNS) {
       console.error(`The number of columns must be between 1 and ${_abstracts_constants__WEBPACK_IMPORTED_MODULE_6__.COLUMNS}.`);

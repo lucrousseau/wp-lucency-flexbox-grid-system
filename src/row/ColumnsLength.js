@@ -47,7 +47,7 @@ export default function ColumnsLength({
 
 	const savedContentRef = useRef({});
 
-	useEffect(() => onColumnsLengthChange(columns), [columns]);
+	useEffect(() => onColumnsLengthChange(columns), []);
 
 	const onColumnsLengthChange = (value) => {
 		if (value < 1 || value > COLUMNS) {
