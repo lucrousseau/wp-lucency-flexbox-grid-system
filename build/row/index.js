@@ -315,9 +315,6 @@ function handleStylesClassesChange({
       }
     }
   };
-  console.log({
-    updatedStylesClasses
-  }, "A");
   if (!value || value === defaultValue?.toString()) {
     delete updatedStylesClasses[size][key][prop];
   }
