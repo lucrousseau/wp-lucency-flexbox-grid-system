@@ -701,12 +701,23 @@ function ColumnsLength({
   } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useDispatch)("core/block-editor");
   const innerBlocks = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => select("core/block-editor").getBlocks(clientId), [clientId]);
   const savedContentRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)({});
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => onColumnsLengthChange(columns), []);
-  const onColumnsLengthChange = value => {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => onColumnsLengthChange({
+    value: columns
+  }), []);
+  const onColumnsLengthChange = ({
+    value,
+    control = false
+  }) => {
+    console.log("onColumnsLengthChange", {
+      value,
+      innerBlocksCount,
+      control
+    });
     if (value < 1 || value > _abstracts_constants__WEBPACK_IMPORTED_MODULE_6__.COLUMNS) {
       console.error(`The number of columns must be between 1 and ${_abstracts_constants__WEBPACK_IMPORTED_MODULE_6__.COLUMNS}.`);
       return;
     }
+    const setValue = control ? value : innerBlocksCount || value;
     const updatedInnerBlocks = [...innerBlocks];
     const currentCount = updatedInnerBlocks.length;
     const difference = value - currentCount;
@@ -716,7 +727,7 @@ function ColumnsLength({
       });
       updatedInnerBlocks.length = value;
     }
-    for (let i = currentCount; i < value; i++) {
+    for (let i = currentCount; i < setValue; i++) {
       let newBlock;
       if (savedContentRef.current[i]) {
         newBlock = savedContentRef.current[i];
@@ -728,7 +739,7 @@ function ColumnsLength({
     }
     replaceInnerBlocks(clientId, updatedInnerBlocks, false);
     setAttributes({
-      columns: value
+      columns: setValue
     });
   };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.RangeControl, {
@@ -736,7 +747,10 @@ function ColumnsLength({
     min: 1,
     max: _abstracts_constants__WEBPACK_IMPORTED_MODULE_6__.COLUMNS,
     value: columns,
-    onChange: onColumnsLengthChange
+    onChange: value => onColumnsLengthChange({
+      value,
+      control: true
+    })
   });
 }
 

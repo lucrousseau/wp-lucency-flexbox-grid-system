@@ -47,14 +47,17 @@ export default function ColumnsLength({
 
 	const savedContentRef = useRef({});
 
-	useEffect(() => onColumnsLengthChange(columns), []);
+	useEffect(() => onColumnsLengthChange({ value: columns }), []);
 
-	const onColumnsLengthChange = (value) => {
+	const onColumnsLengthChange = ({ value, control = false }) => {
+		console.log("onColumnsLengthChange", { value, innerBlocksCount, control });
+
 		if (value < 1 || value > COLUMNS) {
 			console.error(`The number of columns must be between 1 and ${COLUMNS}.`);
 			return;
 		}
 
+		const setValue = control ? value : innerBlocksCount || value;
 		const updatedInnerBlocks = [...innerBlocks];
 		const currentCount = updatedInnerBlocks.length;
 		const difference = value - currentCount;
@@ -63,10 +66,11 @@ export default function ColumnsLength({
 			updatedInnerBlocks.slice(value).forEach((block, index) => {
 				savedContentRef.current[value + index] = block;
 			});
+
 			updatedInnerBlocks.length = value;
 		}
 
-		for (let i = currentCount; i < value; i++) {
+		for (let i = currentCount; i < setValue; i++) {
 			let newBlock;
 
 			if (savedContentRef.current[i]) {
@@ -80,7 +84,7 @@ export default function ColumnsLength({
 		}
 
 		replaceInnerBlocks(clientId, updatedInnerBlocks, false);
-		setAttributes({ columns: value });
+		setAttributes({ columns: setValue });
 	};
 
 	return (
@@ -89,7 +93,7 @@ export default function ColumnsLength({
 			min={1}
 			max={COLUMNS}
 			value={columns}
-			onChange={onColumnsLengthChange}
+			onChange={(value) => onColumnsLengthChange({ value, control: true })}
 		/>
 	);
 }
