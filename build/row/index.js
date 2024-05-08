@@ -879,6 +879,9 @@ function Edit({
     hasInnerBlocks: hasInnerBlocks,
     innerBlocksCount: innerBlocksCount
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    enabled: {
+      margin: true
+    },
     stylesClasses: stylesClasses,
     setAttributes: setAttributes,
     responsivePanelBefore: responsivePanelBefore,

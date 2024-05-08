@@ -140,6 +140,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 							innerBlocksCount={innerBlocksCount}
 						/>
 						<ResponsivePanel
+							enabled={{ margin: true }}
 							stylesClasses={stylesClasses}
 							setAttributes={setAttributes}
 							responsivePanelBefore={responsivePanelBefore}
