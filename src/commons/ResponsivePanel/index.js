@@ -34,6 +34,7 @@ export default function ResponsivePanel(props) {
 							className="lucency__collapsible__panel"
 							style={openPanel !== item ? { display: "none" } : null}
 						>
+							<hr />
 							{content}
 						</div>
 						<hr />
