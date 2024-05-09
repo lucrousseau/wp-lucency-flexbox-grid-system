@@ -22,16 +22,18 @@ import responsiveColumnSizes from "./responsiveColumnSizes.js";
 
 import metadata from "./block.json";
 
-export default function Edit({ attributes, setAttributes, clientId }) {
-	const { stylesClasses, sizes } = attributes;
+export default function Edit({ attributes, setAttributes, context, clientId }) {
+	const { stylesClasses, width, height } = attributes;
+	const { display } = context;
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
+	const colOrCellLabel = display === "grid" ? "Cell" : "Column";
 
 	const style = updateStyles({ stylesClasses });
 
 	const blockProps = useBlockProps({
 		className: updateClasses(
 			{ stylesClasses },
-			classnames("lucency-col", responsiveColumnSizes({ sizes })),
+			classnames("lucency-col", responsiveColumnSizes({ width, height })),
 		),
 	});
 
@@ -45,54 +47,76 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			: null,
 	});
 
-	const handleSizeChange = ({ size, sizes, value }) => {
-		const updatedColumnSize = {
-			...sizes,
-			[size]: value,
-		};
-
-		setAttributes({ sizes: updatedColumnSize });
-	};
-
 	const responsivePanelBefore = {
 		fn: ({ size }) => {
 			const controls = {
-				"text-align": {
-					options: [
-						{ label: "left", value: "lucency-align-left" },
-						{ label: "center", value: "lucency-align-center" },
-						{ label: "right", value: "lucency-align-right" },
-						{ label: "justify", value: "lucency-align-justify" },
-					],
-					label: __("Text Align", "lucency"),
-					type: "select",
-					key: "classes",
+				...{
+					"text-align": {
+						options: [
+							{ label: "left", value: "lucency-align-left" },
+							{ label: "center", value: "lucency-align-center" },
+							{ label: "right", value: "lucency-align-right" },
+							{ label: "justify", value: "lucency-align-justify" },
+						],
+						label: __("Text Align", "lucency"),
+						type: "select",
+						key: "classes",
+					},
 				},
-				"align-self": {
-					options: [
-						{ label: "auto", value: "lucency-self-auto" },
-						{ label: "flex-start", value: "lucency-self-start" },
-						{ label: "flex-end", value: "lucency-self-end" },
-						{ label: "center", value: "lucency-self-center" },
-						{ label: "stretch", value: "lucency-self-stretch" },
-						{ label: "baseline", value: "lucency-self-baseline" },
-					],
-					label: __("Align Self", "lucency"),
-					type: "select",
-					key: "classes",
-				},
+				...(display === "flex"
+					? {
+							"align-self": {
+								options: [
+									{ label: "auto", value: "lucency-self-auto" },
+									{ label: "flex-start", value: "lucency-self-start" },
+									{ label: "flex-end", value: "lucency-self-end" },
+									{ label: "center", value: "lucency-self-center" },
+									{ label: "stretch", value: "lucency-self-stretch" },
+									{ label: "baseline", value: "lucency-self-baseline" },
+								],
+								label: __("Align Self", "lucency"),
+								type: "select",
+								key: "classes",
+							},
+					  }
+					: {}),
 			};
+
 			return (
 				<>
 					<div className={`lucency-col lucency-col-12`}>
 						<RangeControl
-							label={__("Columns Width", "lucency")}
+							label={__(`${colOrCellLabel} Width`, "lucency")}
 							min={0}
 							max={COLUMNS}
-							value={sizes?.[size] ?? 0}
-							onChange={(value) => handleSizeChange({ size, sizes, value })}
+							value={width?.[size] ?? 0}
+							onChange={(value) =>
+								setAttributes({
+									width: {
+										...width,
+										[size]: value,
+									},
+								})
+							}
 							help={__("Leave at 0 for auto width", "lucency")}
 						/>
+						{display === "grid" && (
+							<RangeControl
+								label={__(`${colOrCellLabel} Height`, "lucency")}
+								min={0}
+								max={COLUMNS}
+								value={height?.[size] ?? 0}
+								onChange={(value) =>
+									setAttributes({
+										height: {
+											...height,
+											[size]: value,
+										},
+									})
+								}
+								help={__("Leave at 0 for auto height", "lucency")}
+							/>
+						)}
 					</div>
 					{Object.entries(controls).map(([prop, props]) =>
 						responsivePanelControls({
@@ -119,7 +143,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						"lucency",
 					)}
 				</Notice>
-				<PanelBody title={__("Column Settings")}>
+				<PanelBody title={__("Responsive Settings")}>
 					<ResponsivePanel
 						enabled={{ padding: true }}
 						stylesClasses={stylesClasses}

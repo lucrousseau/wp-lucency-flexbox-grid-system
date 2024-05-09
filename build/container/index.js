@@ -58,159 +58,168 @@ const BREAKPOINTS = {
   sm: 576,
   xs: 480
 };
-const FLEX_CSS_PROPS = {
-  display: {
-    options: [{
-      label: "flex",
-      value: "lucency-flex"
-    }, {
-      label: "inline-flex",
-      value: "lucency-inline-flex"
-    }],
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Display", "lucency"),
-    type: "select",
-    key: "classes"
-  },
-  "flex-direction": {
-    options: [{
-      label: "row",
-      value: "lucency-flex-row"
-    }, {
-      label: "row-reverse",
-      value: "lucency-flex-row-reverse"
-    }, {
-      label: "column",
-      value: "lucency-flex-column"
-    }, {
-      label: "column-reverse",
-      value: "lucency-flex-column-reverse"
-    }],
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Flex Direction", "lucency"),
-    type: "select",
-    key: "classes"
-  },
-  "flex-wrap": {
-    options: [{
-      label: "wrap",
-      value: "lucency-flex-wrap"
-    }, {
-      label: "wrap-reverse",
-      value: "lucency-flex-wrap-reverse"
-    }, {
-      label: "nowrap",
-      value: "lucency-flex-wrap-nowrap"
-    }],
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Flex Wrap", "lucency"),
-    type: "select",
-    key: "classes"
-  },
-  "justify-content": {
-    options: [{
-      label: "normal",
-      value: "lucency-justify-normal"
-    }, {
-      label: "flex-start",
-      value: "lucency-justify-start"
-    }, {
-      label: "flex-end",
-      value: "lucency-justify-end"
-    }, {
-      label: "center",
-      value: "lucency-justify-center"
-    }, {
-      label: "between",
-      value: "lucency-justify-between"
-    }, {
-      label: "around",
-      value: "lucency-justify-around"
-    }, {
-      label: "evenly",
-      value: "lucency-justify-evenly"
-    }, {
-      label: "stretch",
-      value: "lucency-justify-stretch"
-    }],
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Justify Content", "lucency"),
-    type: "select",
-    key: "classes"
-  },
-  "align-items": {
-    options: [{
-      label: "flex-start",
-      value: "lucency-items-start"
-    }, {
-      label: "flex-end",
-      value: "lucency-items-end"
-    }, {
-      label: "center",
-      value: "lucency-items-center"
-    }, {
-      label: "baseline",
-      value: "lucency-items-baseline"
-    }, {
-      label: "stretch",
-      value: "lucency-items-stretch"
-    }],
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Align Items", "lucency"),
-    type: "select",
-    key: "classes"
-  },
-  "align-content": {
-    options: [{
-      label: "normal",
-      value: "lucency-content-normal"
-    }, {
-      label: "center",
-      value: "lucency-content-center"
-    }, {
-      label: "flex-start",
-      value: "lucency-content-start"
-    }, {
-      label: "flex-end",
-      value: "lucency-content-end"
-    }, {
-      label: "space-between",
-      value: "lucency-content-between"
-    }, {
-      label: "space-around",
-      value: "lucency-content-around"
-    }, {
-      label: "space-evenly",
-      value: "lucency-content-evenly"
-    }, {
-      label: "baseline",
-      value: "lucency-content-baseline"
-    }, {
-      label: "stretch",
-      value: "lucency-content-stretch"
-    }],
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Align Content", "lucency"),
-    type: "select",
-    key: "classes"
-  },
-  "text-align": {
-    options: [{
-      label: "left",
-      value: "lucency-align-left"
-    }, {
-      label: "center",
-      value: "lucency-align-center"
-    }, {
-      label: "right",
-      value: "lucency-align-right"
-    }, {
-      label: "justify",
-      value: "lucency-align-justify"
-    }],
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Text Align", "lucency"),
-    type: "select",
-    key: "classes"
-  },
-  gap: {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Gap", "lucency"),
-    type: "number",
-    key: "variables"
-  }
+const FLEX_CSS_PROPS = ({
+  display = "flex"
+} = {}) => {
+  const controls = {
+    display: {
+      options: [{
+        label: "flex",
+        value: "lucency-flex"
+      }, {
+        label: "inline-flex",
+        value: "lucency-inline-flex"
+      }],
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Display", "lucency"),
+      type: "select",
+      key: "classes"
+    },
+    "flex-direction": {
+      options: [{
+        label: "row",
+        value: "lucency-flex-row"
+      }, {
+        label: "row-reverse",
+        value: "lucency-flex-row-reverse"
+      }, {
+        label: "column",
+        value: "lucency-flex-column"
+      }, {
+        label: "column-reverse",
+        value: "lucency-flex-column-reverse"
+      }],
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Flex Direction", "lucency"),
+      type: "select",
+      key: "classes"
+    },
+    "flex-wrap": {
+      options: [{
+        label: "wrap",
+        value: "lucency-flex-wrap"
+      }, {
+        label: "wrap-reverse",
+        value: "lucency-flex-wrap-reverse"
+      }, {
+        label: "nowrap",
+        value: "lucency-flex-wrap-nowrap"
+      }],
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Flex Wrap", "lucency"),
+      type: "select",
+      key: "classes"
+    },
+    "justify-content": {
+      options: [{
+        label: "normal",
+        value: "lucency-justify-normal"
+      }, {
+        label: "flex-start",
+        value: "lucency-justify-start"
+      }, {
+        label: "flex-end",
+        value: "lucency-justify-end"
+      }, {
+        label: "center",
+        value: "lucency-justify-center"
+      }, {
+        label: "between",
+        value: "lucency-justify-between"
+      }, {
+        label: "around",
+        value: "lucency-justify-around"
+      }, {
+        label: "evenly",
+        value: "lucency-justify-evenly"
+      }, {
+        label: "stretch",
+        value: "lucency-justify-stretch"
+      }],
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Justify Content", "lucency"),
+      type: "select",
+      key: "classes"
+    },
+    "align-items": {
+      options: [{
+        label: "flex-start",
+        value: "lucency-items-start"
+      }, {
+        label: "flex-end",
+        value: "lucency-items-end"
+      }, {
+        label: "center",
+        value: "lucency-items-center"
+      }, {
+        label: "baseline",
+        value: "lucency-items-baseline"
+      }, {
+        label: "stretch",
+        value: "lucency-items-stretch"
+      }],
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Align Items", "lucency"),
+      type: "select",
+      key: "classes"
+    },
+    "align-content": {
+      options: [{
+        label: "normal",
+        value: "lucency-content-normal"
+      }, {
+        label: "center",
+        value: "lucency-content-center"
+      }, {
+        label: "flex-start",
+        value: "lucency-content-start"
+      }, {
+        label: "flex-end",
+        value: "lucency-content-end"
+      }, {
+        label: "space-between",
+        value: "lucency-content-between"
+      }, {
+        label: "space-around",
+        value: "lucency-content-around"
+      }, {
+        label: "space-evenly",
+        value: "lucency-content-evenly"
+      }, {
+        label: "baseline",
+        value: "lucency-content-baseline"
+      }, {
+        label: "stretch",
+        value: "lucency-content-stretch"
+      }],
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Align Content", "lucency"),
+      type: "select",
+      key: "classes"
+    }
+  };
+  return {
+    ...(display === "flex" ? controls : {}),
+    ...{
+      "text-align": {
+        options: [{
+          label: "left",
+          value: "lucency-align-left"
+        }, {
+          label: "center",
+          value: "lucency-align-center"
+        }, {
+          label: "right",
+          value: "lucency-align-right"
+        }, {
+          label: "justify",
+          value: "lucency-align-justify"
+        }],
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Text Align", "lucency"),
+        type: "select",
+        key: "classes"
+      },
+      gap: {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Gap", "lucency"),
+        type: "number",
+        key: "variables"
+      }
+    }
+  };
 };
 
 /***/ }),
@@ -427,10 +436,11 @@ const responsivePanelControls = ({
   col = 6,
   shiftStep = 10,
   onChange = null,
+  setDefault = null,
   defaultStylesClasses = {}
 }) => {
   var _stylesClasses$size$k;
-  const defaultValue = defaultStylesClasses?.[size]?.[key]?.[prop];
+  const defaultValue = setDefault !== null && setDefault !== void 0 ? setDefault : defaultStylesClasses?.[size]?.[key]?.[prop];
   const setValues = (_stylesClasses$size$k = stylesClasses?.[size]?.[key]?.[prop]) !== null && _stylesClasses$size$k !== void 0 ? _stylesClasses$size$k : null;
   const setOnChange = onChange !== null && onChange !== void 0 ? onChange : value => (0,___WEBPACK_IMPORTED_MODULE_2__.handleStylesClassesChange)({
     size,
@@ -466,6 +476,15 @@ const responsivePanelControls = ({
         shiftStep: shiftStep,
         min: min,
         max: max
+      });
+      break;
+    case "range":
+      output = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
+        label: label,
+        min: min,
+        max: max,
+        value: setValues !== null && setValues !== void 0 ? setValues : defaultValue,
+        onChange: setOnChange
       });
       break;
   }
@@ -695,7 +714,7 @@ function Edit({
     fn: ({
       size
     }) => {
-      const controls = _abstracts_constants__WEBPACK_IMPORTED_MODULE_7__.FLEX_CSS_PROPS;
+      const controls = (0,_abstracts_constants__WEBPACK_IMPORTED_MODULE_7__.FLEX_CSS_PROPS)();
       delete controls.display;
       delete controls["flex-wrap"];
       delete controls.gap;

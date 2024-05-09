@@ -1,6 +1,6 @@
 import { useState, useEffect } from "@wordpress/element";
 import classnames from "classnames";
-import { useSelect } from "@wordpress/data";
+import { useSelect, useDispatch } from "@wordpress/data";
 import { createBlock } from "@wordpress/blocks";
 import { columns as icon } from "@wordpress/icons";
 import { __ } from "@wordpress/i18n";
@@ -14,6 +14,7 @@ import {
 	PanelBody,
 	Notice,
 	Button,
+	SelectControl,
 	__experimentalNumberControl as NumberControl,
 } from "@wordpress/components";
 
@@ -25,6 +26,7 @@ import ResponsivePanel, {
 	responsivePanelControls,
 } from "../commons/ResponsivePanel";
 
+import { COLUMNS } from "../abstracts/constants";
 import { FLEX_CSS_PROPS } from "../abstracts/constants";
 
 import metadata from "./block.json";
@@ -32,12 +34,15 @@ import metadata from "./block.json";
 import "./editor.scss";
 
 export default function Edit({ attributes, setAttributes, clientId }) {
-	const { tag, stylesClasses, columns } = attributes;
+	const { tag, stylesClasses, columns, display } = attributes;
 	const Tag = tag;
-	const [showNotice, setShowNotice] = useState(false);
-	const [newColumns, setNewColumns] = useState(1);
 	const noColumnsDefined = !columns;
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
+
+	const [showNotice, setShowNotice] = useState(false);
+	const [newColumns, setNewColumns] = useState(1);
+	const [newRows, setNewRows] = useState(1);
+	const [newDisplay, setNewDisplay] = useState("flex");
 
 	const style = updateStyles({ stylesClasses });
 
@@ -57,19 +62,44 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		[clientId],
 	);
 
-	const handleSetColumns = () => {
-		setAttributes({ columns: newColumns });
+	const { insertBlocks } = useDispatch("core/block-editor");
 
-		for (let i = 0; i < newColumns; i++) {
-			createBlock("lucency-grid/column");
+	const handleSetColumns = () => {
+		setAttributes({
+			columns: newColumns,
+			display: newDisplay,
+		});
+
+		const blocks = [];
+		for (let i = 0; i < newColumns * newRows; i++) {
+			const block = createBlock("lucency-grid/column");
+			blocks.push(block);
 		}
+
+		insertBlocks(blocks, null, clientId);
 	};
 
+	/*
 	useEffect(() => {
 		if (columns !== innerBlocksCount && hasInnerBlocks) {
 			setAttributes({ columns: innerBlocksCount });
 		}
 	}, [columns, hasInnerBlocks, innerBlocksCount]);
+	*/
+
+	const setDisplayType = ({ labelPosition = "top", value, onChange } = {}) => (
+		<SelectControl
+			label={__("Display as", "lucency")}
+			labelPosition={labelPosition}
+			value={value}
+			options={[
+				{ label: __("Flex", "lucency"), value: "flex" },
+				{ label: __("Gird", "lucency"), value: "grid" },
+			]}
+			onChange={onChange}
+			__nextHasNoMarginBottom
+		/>
+	);
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		allowedBlocks: ["lucency-grid/column"],
@@ -90,15 +120,40 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 								</p>
 							</div>
 						</header>
-						<div className="lucency">
-							<div className="lucency-col lucency-col-2">
+						<div className="lucency lucency-flex">
+							<div className="lucency-col lucency-col-3">
+								{setDisplayType({
+									onChange: (value) => setNewDisplay(value),
+									labelPosition: "side",
+									value: newDisplay,
+								})}
+							</div>
+							<div className="lucency-col lucency-col-3">
 								<NumberControl
+									label={
+										newDisplay === "flex"
+											? __("Columns", "lucency")
+											: __("Cells", "lucency")
+									}
 									value={newColumns}
 									onChange={(value) => setNewColumns(parseInt(value))}
+									labelPosition="side"
 									min={1}
-									max={12}
+									max={newDisplay === "flex" ? COLUMNS : COLUMNS * 4}
 								/>
 							</div>
+							{newDisplay === "grid" && (
+								<div className="lucency-col lucency-col-3">
+									<NumberControl
+										label={__("Columns", "lucency")}
+										value={newRows}
+										onChange={(value) => setNewRows(parseInt(value))}
+										labelPosition="side"
+										min={1}
+										max={COLUMNS}
+									/>
+								</div>
+							)}
 							<div className="lucency-col">
 								<Button isPrimary onClick={handleSetColumns}>
 									{__("Add", "lucency")}
@@ -111,8 +166,25 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	});
 
 	const responsivePanelBefore = {
-		fn: ({ size }) =>
-			Object.entries(FLEX_CSS_PROPS).map(([prop, props]) =>
+		fn: ({ size }) => {
+			const controls = {
+				...(display === "grid"
+					? {
+							cols: {
+								min: 0,
+								max: COLUMNS,
+								col: COLUMNS,
+								setDefault: size === "full" ? Math.ceil(columns / 2) : 0,
+								label: __("Columns per Grid", "lucency"),
+								type: "range",
+								key: "variables",
+							},
+					  }
+					: {}),
+				...FLEX_CSS_PROPS({ display }),
+			};
+
+			return Object.entries(controls).map(([prop, props]) =>
 				responsivePanelControls({
 					stylesClasses,
 					setAttributes,
@@ -122,7 +194,8 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					defaultStylesClasses,
 					...props,
 				}),
-			),
+			);
+		},
 		title: __("Alignment", "lucency"),
 	};
 
@@ -130,15 +203,22 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		<>
 			{!noColumnsDefined && (
 				<InspectorControls>
-					<PanelBody title={__("Row Settings")}>
+					<PanelBody title={__("Layout Settings", "lucency")}>
+						{setDisplayType({
+							onChange: (value) => setAttributes({ display: value }),
+							value: display,
+						})}
 						<ColumnsLength
 							columns={columns}
+							display={display}
 							setAttributes={setAttributes}
 							clientId={clientId}
 							setShowNotice={setShowNotice}
 							hasInnerBlocks={hasInnerBlocks}
 							innerBlocksCount={innerBlocksCount}
 						/>
+					</PanelBody>
+					<PanelBody title={__("Responsive Settings", "lucency")}>
 						<ResponsivePanel
 							enabled={{ margin: true }}
 							stylesClasses={stylesClasses}
@@ -152,7 +232,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			{showNotice && (
 				<Notice status="error" isDismissible={false}>
 					{__(
-						"This block is intended to be used with 12 columns. Having more can lead to unexpected results.",
+						`This block is intended to be used with ${COLUMNS} columns. Having more can lead to unexpected results.`,
 						"lucency",
 					)}
 				</Notice>

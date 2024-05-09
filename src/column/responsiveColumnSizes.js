@@ -1,11 +1,15 @@
 import classnames from "classnames";
 
-export default function responsiveColumnSizes({ sizes }) {
-	const classes = Object.entries(sizes).reduce((acc, [size, value]) => {
-		const prefix = size === "full" ? "" : `--${size}`;
-		acc[`lucency-col-${value}${prefix}`] = value ? true : false;
-		return acc;
-	}, {});
+export default function responsiveColumnSizes({ width, height }) {
+	const createClasses = (sizes, type) =>
+		Object.entries(sizes).reduce((acc, [size, value]) => {
+			const prefix = size === "full" ? "" : `--${size}`;
+			acc[`${type}-${value}${prefix}`] = !!value;
+			return acc;
+		}, {});
 
-	return classnames(classes);
+	const widthClasses = createClasses(width, "lucency-col");
+	const heightClasses = createClasses(height, "lucency-row");
+
+	return classnames({ ...widthClasses, ...heightClasses });
 }

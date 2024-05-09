@@ -24,6 +24,14 @@
 			"type": "number",
 			"default": null
 		},
+		"cells": {
+			"type": "number",
+			"default": null
+		},
+		"display": {
+			"type": "string",
+			"default": "flex"
+		},
 		"stylesClasses": {
 			"type": "object",
 			"default": {
@@ -39,5 +47,8 @@
 				}
 			}
 		}
+	},
+	"providesContext": {
+		"display": "display"
 	}
 }

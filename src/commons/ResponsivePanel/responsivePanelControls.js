@@ -1,5 +1,6 @@
 import {
 	SelectControl,
+	RangeControl,
 	__experimentalNumberControl as NumberControl,
 } from "@wordpress/components";
 
@@ -19,9 +20,11 @@ const responsivePanelControls = ({
 	col = 6,
 	shiftStep = 10,
 	onChange = null,
+	setDefault = null,
 	defaultStylesClasses = {},
 }) => {
-	const defaultValue = defaultStylesClasses?.[size]?.[key]?.[prop];
+	const defaultValue =
+		setDefault ?? defaultStylesClasses?.[size]?.[key]?.[prop];
 	const setValues = stylesClasses?.[size]?.[key]?.[prop] ?? null;
 	const setOnChange =
 		onChange ??
@@ -65,6 +68,18 @@ const responsivePanelControls = ({
 					shiftStep={shiftStep}
 					min={min}
 					max={max}
+				/>
+			);
+			break;
+
+		case "range":
+			output = (
+				<RangeControl
+					label={label}
+					min={min}
+					max={max}
+					value={setValues ?? defaultValue}
+					onChange={setOnChange}
 				/>
 			);
 			break;

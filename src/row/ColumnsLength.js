@@ -9,12 +9,14 @@ import { COLUMNS } from "../abstracts/constants";
 
 export default function ColumnsLength({
 	columns,
+	display,
 	setAttributes,
 	setShowNotice,
 	hasInnerBlocks,
 	innerBlocksCount,
 	clientId,
 }) {
+	/*
 	const { replaceInnerBlocks } = useDispatch("core/block-editor");
 
 	const innerBlocks = useSelect(
@@ -24,6 +26,7 @@ export default function ColumnsLength({
 
 	const savedContentRef = useRef({});
 
+	
 	useEffect(() => {
 		if (!hasInnerBlocks && columns === 1) {
 			const initialBlock = createBlock("lucency-grid/column");
@@ -36,10 +39,12 @@ export default function ColumnsLength({
 			setShowNotice(false);
 		}
 	}, [columns, hasInnerBlocks, innerBlocksCount]);
-
+	
 	useEffect(() => onColumnsLengthChange({ value: columns }), []);
 
 	const onColumnsLengthChange = ({ value, control = false }) => {
+		if (1 === 1) return;
+
 		if (value < 1 || value > COLUMNS) {
 			console.error(`The number of columns must be between 1 and ${COLUMNS}.`);
 			return;
@@ -74,14 +79,75 @@ export default function ColumnsLength({
 		replaceInnerBlocks(clientId, updatedInnerBlocks, false);
 		setAttributes({ columns: setValue });
 	};
+	*/
+
+	const max = display === "flex" ? COLUMNS : COLUMNS * 4;
+	const { replaceInnerBlocks } = useDispatch("core/block-editor");
+
+	const innerBlocks = useSelect(
+		(select) => select("core/block-editor").getBlocks(clientId),
+		[clientId],
+	);
+
+	const savedContentRef = useRef({});
+
+	useEffect(() => {
+		if (!hasInnerBlocks && columns === 1) {
+			const initialBlock = createBlock("lucency-grid/column");
+			replaceInnerBlocks(clientId, [initialBlock], false);
+		}
+
+		setShowNotice(innerBlocksCount > COLUMNS && display === "flex");
+	}, [columns, hasInnerBlocks, innerBlocksCount]);
+
+	useEffect(
+		() => onColumnsLengthChange({ value: columns, control: false }),
+		[],
+	);
+
+	const onColumnsLengthChange = ({ value, control = false }) => {
+		const setValue = control ? value : innerBlocksCount || value;
+		const updatedInnerBlocks = [...innerBlocks];
+		const currentCount = updatedInnerBlocks.length;
+		const difference = setValue - currentCount;
+
+		if (difference < 0) {
+			updatedInnerBlocks.slice(setValue).forEach((block, index) => {
+				savedContentRef.current[setValue + index] = block;
+			});
+
+			updatedInnerBlocks.length = setValue;
+		}
+
+		for (let i = currentCount; i < setValue; i++) {
+			let newBlock;
+
+			if (savedContentRef.current[i]) {
+				newBlock = savedContentRef.current[i];
+				delete savedContentRef.current[i];
+			} else {
+				newBlock = createBlock("lucency-grid/column");
+			}
+
+			updatedInnerBlocks.push(newBlock);
+		}
+
+		replaceInnerBlocks(clientId, updatedInnerBlocks, false);
+		setAttributes({ columns: setValue });
+	};
 
 	return (
-		<RangeControl
-			label={__("Number of Columns in the Row", "lucency")}
-			min={1}
-			max={COLUMNS}
-			value={columns}
-			onChange={(value) => onColumnsLengthChange({ value, control: true })}
-		/>
+		<>
+			<RangeControl
+				label={__(
+					`Number of Cells per ${display === "flex" ? "Row" : "Grid"}`,
+					"lucency",
+				)}
+				min={1}
+				max={innerBlocksCount > max ? innerBlocksCount : max}
+				value={columns}
+				onChange={(value) => onColumnsLengthChange({ value, control: true })}
+			/>
+		</>
 	);
 }

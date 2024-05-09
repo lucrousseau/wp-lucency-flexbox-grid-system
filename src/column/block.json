@@ -9,7 +9,8 @@
 	"example": {},
 	"supports": {
 		"html": false,
-		"inserter": false
+		"inserter": false,
+		"deleate": false
 	},
 	"parent": ["lucency-grid/row"],
 	"textdomain": "lucency",
@@ -18,7 +19,11 @@
 	"style": "file:./style-index.css",
 	"viewScript": "file:./view.js",
 	"attributes": {
-		"sizes": {
+		"width": {
+			"type": "object",
+			"default": {}
+		},
+		"height": {
 			"type": "object",
 			"default": {}
 		},
@@ -31,5 +36,6 @@
 				}
 			}
 		}
-	}
+	},
+	"usesContext": ["display"]
 }
