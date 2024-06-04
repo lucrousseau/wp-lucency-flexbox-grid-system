@@ -40,11 +40,13 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
 	const [showNotice, setShowNotice] = useState(false);
-	const [newColumns, setNewColumns] = useState(1);
-	const [newRows, setNewRows] = useState(1);
-	const [newDisplay, setNewDisplay] = useState("flex");
+	const [columnsCount, setColumnsCount] = useState(1);
+	const [rowsCount, setRowsCount] = useState(1);
+	const [displayProp, setDisplayProp] = useState("flex");
 
 	const style = updateStyles({ stylesClasses });
+	const isGrid = display === "grid";
+	const isFlex = display === "flex";
 
 	const blockProps = useBlockProps({
 		className: updateClasses({ stylesClasses }, classnames("lucency")),
@@ -66,12 +68,12 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	const handleSetColumns = () => {
 		setAttributes({
-			columns: newColumns,
-			display: newDisplay,
+			columns: columnsCount,
+			display: displayProp,
 		});
 
 		const blocks = [];
-		for (let i = 0; i < newColumns * newRows; i++) {
+		for (let i = 0; i < columnsCount * rowsCount; i++) {
 			const block = createBlock("lucency-grid/column");
 			blocks.push(block);
 		}
@@ -123,31 +125,29 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						<div className="lucency lucency-flex">
 							<div className="lucency-col lucency-col-3">
 								{setDisplayType({
-									onChange: (value) => setNewDisplay(value),
+									onChange: (value) => setDisplayProp(value),
 									labelPosition: "side",
-									value: newDisplay,
+									value: displayProp,
 								})}
 							</div>
 							<div className="lucency-col lucency-col-3">
 								<NumberControl
 									label={
-										newDisplay === "flex"
-											? __("Columns", "lucency")
-											: __("Cells", "lucency")
+										isFlex ? __("Columns", "lucency") : __("Cells", "lucency")
 									}
-									value={newColumns}
-									onChange={(value) => setNewColumns(parseInt(value))}
+									value={columnsCount}
+									onChange={(value) => setColumnsCount(parseInt(value))}
 									labelPosition="side"
 									min={1}
-									max={newDisplay === "flex" ? COLUMNS : COLUMNS * 4}
+									max={isFlex ? COLUMNS : COLUMNS * 4}
 								/>
 							</div>
-							{newDisplay === "grid" && (
+							{isGrid && (
 								<div className="lucency-col lucency-col-3">
 									<NumberControl
 										label={__("Columns", "lucency")}
-										value={newRows}
-										onChange={(value) => setNewRows(parseInt(value))}
+										value={rowsCount}
+										onChange={(value) => setRowsCount(parseInt(value))}
 										labelPosition="side"
 										min={1}
 										max={COLUMNS}
@@ -168,7 +168,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const responsivePanelBefore = {
 		fn: ({ size }) => {
 			const controls = {
-				...(display === "grid"
+				...(isGrid
 					? {
 							cols: {
 								min: 0,

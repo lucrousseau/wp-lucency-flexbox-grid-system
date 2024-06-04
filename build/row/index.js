@@ -398,7 +398,7 @@ function ResponsivePanel(props) {
       style: openPanel !== item ? {
         display: "none"
       } : null
-    }, content), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("hr", null));
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("hr", null), content), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("hr", null));
   }));
 }
 
@@ -865,12 +865,14 @@ function Edit({
   const noColumnsDefined = !columns;
   const defaultStylesClasses = _block_json__WEBPACK_IMPORTED_MODULE_11__?.attributes?.stylesClasses?.default;
   const [showNotice, setShowNotice] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
-  const [newColumns, setNewColumns] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(1);
-  const [newRows, setNewRows] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(1);
-  const [newDisplay, setNewDisplay] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)("flex");
+  const [columnsCount, setColumnsCount] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(1);
+  const [rowsCount, setRowsCount] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(1);
+  const [displayProp, setDisplayProp] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)("flex");
   const style = (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_9__.updateStyles)({
     stylesClasses
   });
+  const isGrid = display === "grid";
+  const isFlex = display === "flex";
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.useBlockProps)({
     className: (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_9__.updateClasses)({
       stylesClasses
@@ -891,11 +893,11 @@ function Edit({
   } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useDispatch)("core/block-editor");
   const handleSetColumns = () => {
     setAttributes({
-      columns: newColumns,
-      display: newDisplay
+      columns: columnsCount,
+      display: displayProp
     });
     const blocks = [];
-    for (let i = 0; i < newColumns * newRows; i++) {
+    for (let i = 0; i < columnsCount * rowsCount; i++) {
       const block = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_4__.createBlock)("lucency-grid/column");
       blocks.push(block);
     }
@@ -941,24 +943,24 @@ function Edit({
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "lucency-col lucency-col-3"
     }, setDisplayType({
-      onChange: value => setNewDisplay(value),
+      onChange: value => setDisplayProp(value),
       labelPosition: "side",
-      value: newDisplay
+      value: displayProp
     })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "lucency-col lucency-col-3"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.__experimentalNumberControl, {
-      label: newDisplay === "flex" ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)("Columns", "lucency") : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)("Cells", "lucency"),
-      value: newColumns,
-      onChange: value => setNewColumns(parseInt(value)),
+      label: isFlex ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)("Columns", "lucency") : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)("Cells", "lucency"),
+      value: columnsCount,
+      onChange: value => setColumnsCount(parseInt(value)),
       labelPosition: "side",
       min: 1,
-      max: newDisplay === "flex" ? _abstracts_constants__WEBPACK_IMPORTED_MODULE_10__.COLUMNS : _abstracts_constants__WEBPACK_IMPORTED_MODULE_10__.COLUMNS * 4
-    })), newDisplay === "grid" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      max: isFlex ? _abstracts_constants__WEBPACK_IMPORTED_MODULE_10__.COLUMNS : _abstracts_constants__WEBPACK_IMPORTED_MODULE_10__.COLUMNS * 4
+    })), isGrid && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "lucency-col lucency-col-3"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.__experimentalNumberControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)("Columns", "lucency"),
-      value: newRows,
-      onChange: value => setNewRows(parseInt(value)),
+      value: rowsCount,
+      onChange: value => setRowsCount(parseInt(value)),
       labelPosition: "side",
       min: 1,
       max: _abstracts_constants__WEBPACK_IMPORTED_MODULE_10__.COLUMNS
@@ -974,7 +976,7 @@ function Edit({
       size
     }) => {
       const controls = {
-        ...(display === "grid" ? {
+        ...(isGrid ? {
           cols: {
             min: 0,
             max: _abstracts_constants__WEBPACK_IMPORTED_MODULE_10__.COLUMNS,

@@ -396,7 +396,7 @@ function ResponsivePanel(props) {
       style: openPanel !== item ? {
         display: "none"
       } : null
-    }, content), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("hr", null));
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("hr", null), content), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("hr", null));
   }));
 }
 

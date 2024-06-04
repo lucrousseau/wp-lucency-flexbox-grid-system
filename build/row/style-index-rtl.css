@@ -18,7 +18,7 @@
     --margin-left,
     0
   );
-  margin: var(--get-margin-top, 0) var(--get-margin-right, 0) var(--get-margin-bottom, 0) var(--get-margin-left, 0);
+  margin: var(--get-margin-top, 0) var(--get-margin-left, 0) var(--get-margin-bottom, 0) var(--get-margin-right, 0);
   --get-padding-top: var(
     --padding-top,
     0
@@ -35,7 +35,7 @@
     --padding-left,
     0
   );
-  padding: var(--get-padding-top, 0) var(--get-padding-right, 0) var(--get-padding-bottom, 0) var(--get-padding-left, 0);
+  padding: var(--get-padding-top, 0) var(--get-padding-left, 0) var(--get-padding-bottom, 0) var(--get-padding-right, 0);
 }
 .lucency.lucency-flex {
   display: flex;
@@ -187,7 +187,7 @@
       --margin-left--xxl,
       var(--get-margin-left)
     );
-    margin: var(--get-margin-top--xxl, var(--get-margin-top)) var(--get-margin-right--xxl, var(--get-margin-right)) var(--get-margin-bottom--xxl, var(--get-margin-bottom)) var(--get-margin-left--xxl, var(--get-margin-left));
+    margin: var(--get-margin-top--xxl, var(--get-margin-top)) var(--get-margin-left--xxl, var(--get-margin-left)) var(--get-margin-bottom--xxl, var(--get-margin-bottom)) var(--get-margin-right--xxl, var(--get-margin-right));
     --get-padding-top--xxl: var(
       --padding-top--xxl,
       var(--get-padding-top)
@@ -204,7 +204,7 @@
       --padding-left--xxl,
       var(--get-padding-left)
     );
-    padding: var(--get-padding-top--xxl, var(--get-padding-top)) var(--get-padding-right--xxl, var(--get-padding-right)) var(--get-padding-bottom--xxl, var(--get-padding-bottom)) var(--get-padding-left--xxl, var(--get-padding-left));
+    padding: var(--get-padding-top--xxl, var(--get-padding-top)) var(--get-padding-left--xxl, var(--get-padding-left)) var(--get-padding-bottom--xxl, var(--get-padding-bottom)) var(--get-padding-right--xxl, var(--get-padding-right));
   }
   .lucency.lucency-flex--xxl {
     display: flex;
@@ -324,7 +324,7 @@
       --margin-left--xl,
       var(--get-margin-left--xxl)
     );
-    margin: var(--get-margin-top--xl, var(--get-margin-top--xxl)) var(--get-margin-right--xl, var(--get-margin-right--xxl)) var(--get-margin-bottom--xl, var(--get-margin-bottom--xxl)) var(--get-margin-left--xl, var(--get-margin-left--xxl));
+    margin: var(--get-margin-top--xl, var(--get-margin-top--xxl)) var(--get-margin-left--xl, var(--get-margin-left--xxl)) var(--get-margin-bottom--xl, var(--get-margin-bottom--xxl)) var(--get-margin-right--xl, var(--get-margin-right--xxl));
     --get-padding-top--xl: var(
       --padding-top--xl,
       var(--get-padding-top--xxl)
@@ -341,7 +341,7 @@
       --padding-left--xl,
       var(--get-padding-left--xxl)
     );
-    padding: var(--get-padding-top--xl, var(--get-padding-top--xxl)) var(--get-padding-right--xl, var(--get-padding-right--xxl)) var(--get-padding-bottom--xl, var(--get-padding-bottom--xxl)) var(--get-padding-left--xl, var(--get-padding-left--xxl));
+    padding: var(--get-padding-top--xl, var(--get-padding-top--xxl)) var(--get-padding-left--xl, var(--get-padding-left--xxl)) var(--get-padding-bottom--xl, var(--get-padding-bottom--xxl)) var(--get-padding-right--xl, var(--get-padding-right--xxl));
   }
   .lucency.lucency-flex--xl {
     display: flex;
@@ -461,7 +461,7 @@
       --margin-left--lg,
       var(--get-margin-left--xl)
     );
-    margin: var(--get-margin-top--lg, var(--get-margin-top--xl)) var(--get-margin-right--lg, var(--get-margin-right--xl)) var(--get-margin-bottom--lg, var(--get-margin-bottom--xl)) var(--get-margin-left--lg, var(--get-margin-left--xl));
+    margin: var(--get-margin-top--lg, var(--get-margin-top--xl)) var(--get-margin-left--lg, var(--get-margin-left--xl)) var(--get-margin-bottom--lg, var(--get-margin-bottom--xl)) var(--get-margin-right--lg, var(--get-margin-right--xl));
     --get-padding-top--lg: var(
       --padding-top--lg,
       var(--get-padding-top--xl)
@@ -478,7 +478,7 @@
       --padding-left--lg,
       var(--get-padding-left--xl)
     );
-    padding: var(--get-padding-top--lg, var(--get-padding-top--xl)) var(--get-padding-right--lg, var(--get-padding-right--xl)) var(--get-padding-bottom--lg, var(--get-padding-bottom--xl)) var(--get-padding-left--lg, var(--get-padding-left--xl));
+    padding: var(--get-padding-top--lg, var(--get-padding-top--xl)) var(--get-padding-left--lg, var(--get-padding-left--xl)) var(--get-padding-bottom--lg, var(--get-padding-bottom--xl)) var(--get-padding-right--lg, var(--get-padding-right--xl));
   }
   .lucency.lucency-flex--lg {
     display: flex;
@@ -598,7 +598,7 @@
       --margin-left--md,
       var(--get-margin-left--lg)
     );
-    margin: var(--get-margin-top--md, var(--get-margin-top--lg)) var(--get-margin-right--md, var(--get-margin-right--lg)) var(--get-margin-bottom--md, var(--get-margin-bottom--lg)) var(--get-margin-left--md, var(--get-margin-left--lg));
+    margin: var(--get-margin-top--md, var(--get-margin-top--lg)) var(--get-margin-left--md, var(--get-margin-left--lg)) var(--get-margin-bottom--md, var(--get-margin-bottom--lg)) var(--get-margin-right--md, var(--get-margin-right--lg));
     --get-padding-top--md: var(
       --padding-top--md,
       var(--get-padding-top--lg)
@@ -615,7 +615,7 @@
       --padding-left--md,
       var(--get-padding-left--lg)
     );
-    padding: var(--get-padding-top--md, var(--get-padding-top--lg)) var(--get-padding-right--md, var(--get-padding-right--lg)) var(--get-padding-bottom--md, var(--get-padding-bottom--lg)) var(--get-padding-left--md, var(--get-padding-left--lg));
+    padding: var(--get-padding-top--md, var(--get-padding-top--lg)) var(--get-padding-left--md, var(--get-padding-left--lg)) var(--get-padding-bottom--md, var(--get-padding-bottom--lg)) var(--get-padding-right--md, var(--get-padding-right--lg));
   }
   .lucency.lucency-flex--md {
     display: flex;
@@ -735,7 +735,7 @@
       --margin-left--sm,
       var(--get-margin-left--md)
     );
-    margin: var(--get-margin-top--sm, var(--get-margin-top--md)) var(--get-margin-right--sm, var(--get-margin-right--md)) var(--get-margin-bottom--sm, var(--get-margin-bottom--md)) var(--get-margin-left--sm, var(--get-margin-left--md));
+    margin: var(--get-margin-top--sm, var(--get-margin-top--md)) var(--get-margin-left--sm, var(--get-margin-left--md)) var(--get-margin-bottom--sm, var(--get-margin-bottom--md)) var(--get-margin-right--sm, var(--get-margin-right--md));
     --get-padding-top--sm: var(
       --padding-top--sm,
       var(--get-padding-top--md)
@@ -752,7 +752,7 @@
       --padding-left--sm,
       var(--get-padding-left--md)
     );
-    padding: var(--get-padding-top--sm, var(--get-padding-top--md)) var(--get-padding-right--sm, var(--get-padding-right--md)) var(--get-padding-bottom--sm, var(--get-padding-bottom--md)) var(--get-padding-left--sm, var(--get-padding-left--md));
+    padding: var(--get-padding-top--sm, var(--get-padding-top--md)) var(--get-padding-left--sm, var(--get-padding-left--md)) var(--get-padding-bottom--sm, var(--get-padding-bottom--md)) var(--get-padding-right--sm, var(--get-padding-right--md));
   }
   .lucency.lucency-flex--sm {
     display: flex;
@@ -872,7 +872,7 @@
       --margin-left--xs,
       var(--get-margin-left--sm)
     );
-    margin: var(--get-margin-top--xs, var(--get-margin-top--sm)) var(--get-margin-right--xs, var(--get-margin-right--sm)) var(--get-margin-bottom--xs, var(--get-margin-bottom--sm)) var(--get-margin-left--xs, var(--get-margin-left--sm));
+    margin: var(--get-margin-top--xs, var(--get-margin-top--sm)) var(--get-margin-left--xs, var(--get-margin-left--sm)) var(--get-margin-bottom--xs, var(--get-margin-bottom--sm)) var(--get-margin-right--xs, var(--get-margin-right--sm));
     --get-padding-top--xs: var(
       --padding-top--xs,
       var(--get-padding-top--sm)
@@ -889,7 +889,7 @@
       --padding-left--xs,
       var(--get-padding-left--sm)
     );
-    padding: var(--get-padding-top--xs, var(--get-padding-top--sm)) var(--get-padding-right--xs, var(--get-padding-right--sm)) var(--get-padding-bottom--xs, var(--get-padding-bottom--sm)) var(--get-padding-left--xs, var(--get-padding-left--sm));
+    padding: var(--get-padding-top--xs, var(--get-padding-top--sm)) var(--get-padding-left--xs, var(--get-padding-left--sm)) var(--get-padding-bottom--xs, var(--get-padding-bottom--sm)) var(--get-padding-right--xs, var(--get-padding-right--sm));
   }
   .lucency.lucency-flex--xs {
     display: flex;
@@ -1048,7 +1048,7 @@
     --margin-left,
     0
   );
-  margin: var(--get-margin-top, 0) var(--get-margin-right, 0) var(--get-margin-bottom, 0) var(--get-margin-left, 0);
+  margin: var(--get-margin-top, 0) var(--get-margin-left, 0) var(--get-margin-bottom, 0) var(--get-margin-right, 0);
   flex: 1;
   width: 100%;
 }
@@ -1101,10 +1101,10 @@
   width: calc(100% / 12 * 12 - var(--get-gap) * 0);
 }
 .lucency-flex .lucency-col.lucency-pull-left {
-  margin-right: auto;
+  margin-left: auto;
 }
 .lucency-flex .lucency-col.lucency-pull-right {
-  margin-left: auto;
+  margin-right: auto;
 }
 .lucency-flex .lucency-col.lucency-self-auto {
   align-self: auto;
@@ -1142,7 +1142,7 @@
       --margin-left--xxl,
       var(--get-margin-left)
     );
-    margin: var(--get-margin-top--xxl, var(--get-margin-top)) var(--get-margin-right--xxl, var(--get-margin-right)) var(--get-margin-bottom--xxl, var(--get-margin-bottom)) var(--get-margin-left--xxl, var(--get-margin-left));
+    margin: var(--get-margin-top--xxl, var(--get-margin-top)) var(--get-margin-left--xxl, var(--get-margin-left)) var(--get-margin-bottom--xxl, var(--get-margin-bottom)) var(--get-margin-right--xxl, var(--get-margin-right));
   }
   .lucency-flex .lucency-col.lucency-col-1--xxl {
     flex: 0 0 calc(100% / 12 * 1 - var(--get-gap--xxl) * 0.9166666667);
@@ -1193,10 +1193,10 @@
     width: calc(100% / 12 * 12 - var(--get-gap--xxl) * 0);
   }
   .lucency-flex .lucency-col.lucency-pull-left--xxl {
-    margin-right: auto;
+    margin-left: auto;
   }
   .lucency-flex .lucency-col.lucency-pull-right--xxl {
-    margin-left: auto;
+    margin-right: auto;
   }
   .lucency-flex .lucency-col.lucency-self-auto--xxl {
     align-self: auto;
@@ -1235,7 +1235,7 @@
       --margin-left--xl,
       var(--get-margin-left--xxl)
     );
-    margin: var(--get-margin-top--xl, var(--get-margin-top--xxl)) var(--get-margin-right--xl, var(--get-margin-right--xxl)) var(--get-margin-bottom--xl, var(--get-margin-bottom--xxl)) var(--get-margin-left--xl, var(--get-margin-left--xxl));
+    margin: var(--get-margin-top--xl, var(--get-margin-top--xxl)) var(--get-margin-left--xl, var(--get-margin-left--xxl)) var(--get-margin-bottom--xl, var(--get-margin-bottom--xxl)) var(--get-margin-right--xl, var(--get-margin-right--xxl));
   }
   .lucency-flex .lucency-col.lucency-col-1--xl {
     flex: 0 0 calc(100% / 12 * 1 - var(--get-gap--xl) * 0.9166666667);
@@ -1286,10 +1286,10 @@
     width: calc(100% / 12 * 12 - var(--get-gap--xl) * 0);
   }
   .lucency-flex .lucency-col.lucency-pull-left--xl {
-    margin-right: auto;
+    margin-left: auto;
   }
   .lucency-flex .lucency-col.lucency-pull-right--xl {
-    margin-left: auto;
+    margin-right: auto;
   }
   .lucency-flex .lucency-col.lucency-self-auto--xl {
     align-self: auto;
@@ -1328,7 +1328,7 @@
       --margin-left--lg,
       var(--get-margin-left--xl)
     );
-    margin: var(--get-margin-top--lg, var(--get-margin-top--xl)) var(--get-margin-right--lg, var(--get-margin-right--xl)) var(--get-margin-bottom--lg, var(--get-margin-bottom--xl)) var(--get-margin-left--lg, var(--get-margin-left--xl));
+    margin: var(--get-margin-top--lg, var(--get-margin-top--xl)) var(--get-margin-left--lg, var(--get-margin-left--xl)) var(--get-margin-bottom--lg, var(--get-margin-bottom--xl)) var(--get-margin-right--lg, var(--get-margin-right--xl));
   }
   .lucency-flex .lucency-col.lucency-col-1--lg {
     flex: 0 0 calc(100% / 12 * 1 - var(--get-gap--lg) * 0.9166666667);
@@ -1379,10 +1379,10 @@
     width: calc(100% / 12 * 12 - var(--get-gap--lg) * 0);
   }
   .lucency-flex .lucency-col.lucency-pull-left--lg {
-    margin-right: auto;
+    margin-left: auto;
   }
   .lucency-flex .lucency-col.lucency-pull-right--lg {
-    margin-left: auto;
+    margin-right: auto;
   }
   .lucency-flex .lucency-col.lucency-self-auto--lg {
     align-self: auto;
@@ -1421,7 +1421,7 @@
       --margin-left--md,
       var(--get-margin-left--lg)
     );
-    margin: var(--get-margin-top--md, var(--get-margin-top--lg)) var(--get-margin-right--md, var(--get-margin-right--lg)) var(--get-margin-bottom--md, var(--get-margin-bottom--lg)) var(--get-margin-left--md, var(--get-margin-left--lg));
+    margin: var(--get-margin-top--md, var(--get-margin-top--lg)) var(--get-margin-left--md, var(--get-margin-left--lg)) var(--get-margin-bottom--md, var(--get-margin-bottom--lg)) var(--get-margin-right--md, var(--get-margin-right--lg));
   }
   .lucency-flex .lucency-col.lucency-col-1--md {
     flex: 0 0 calc(100% / 12 * 1 - var(--get-gap--md) * 0.9166666667);
@@ -1472,10 +1472,10 @@
     width: calc(100% / 12 * 12 - var(--get-gap--md) * 0);
   }
   .lucency-flex .lucency-col.lucency-pull-left--md {
-    margin-right: auto;
+    margin-left: auto;
   }
   .lucency-flex .lucency-col.lucency-pull-right--md {
-    margin-left: auto;
+    margin-right: auto;
   }
   .lucency-flex .lucency-col.lucency-self-auto--md {
     align-self: auto;
@@ -1514,7 +1514,7 @@
       --margin-left--sm,
       var(--get-margin-left--md)
     );
-    margin: var(--get-margin-top--sm, var(--get-margin-top--md)) var(--get-margin-right--sm, var(--get-margin-right--md)) var(--get-margin-bottom--sm, var(--get-margin-bottom--md)) var(--get-margin-left--sm, var(--get-margin-left--md));
+    margin: var(--get-margin-top--sm, var(--get-margin-top--md)) var(--get-margin-left--sm, var(--get-margin-left--md)) var(--get-margin-bottom--sm, var(--get-margin-bottom--md)) var(--get-margin-right--sm, var(--get-margin-right--md));
   }
   .lucency-flex .lucency-col.lucency-col-1--sm {
     flex: 0 0 calc(100% / 12 * 1 - var(--get-gap--sm) * 0.9166666667);
@@ -1565,10 +1565,10 @@
     width: calc(100% / 12 * 12 - var(--get-gap--sm) * 0);
   }
   .lucency-flex .lucency-col.lucency-pull-left--sm {
-    margin-right: auto;
+    margin-left: auto;
   }
   .lucency-flex .lucency-col.lucency-pull-right--sm {
-    margin-left: auto;
+    margin-right: auto;
   }
   .lucency-flex .lucency-col.lucency-self-auto--sm {
     align-self: auto;
@@ -1607,7 +1607,7 @@
       --margin-left--xs,
       var(--get-margin-left--sm)
     );
-    margin: var(--get-margin-top--xs, var(--get-margin-top--sm)) var(--get-margin-right--xs, var(--get-margin-right--sm)) var(--get-margin-bottom--xs, var(--get-margin-bottom--sm)) var(--get-margin-left--xs, var(--get-margin-left--sm));
+    margin: var(--get-margin-top--xs, var(--get-margin-top--sm)) var(--get-margin-left--xs, var(--get-margin-left--sm)) var(--get-margin-bottom--xs, var(--get-margin-bottom--sm)) var(--get-margin-right--xs, var(--get-margin-right--sm));
   }
   .lucency-flex .lucency-col.lucency-col-1--xs {
     flex: 0 0 calc(100% / 12 * 1 - var(--get-gap--xs) * 0.9166666667);
@@ -1658,10 +1658,10 @@
     width: calc(100% / 12 * 12 - var(--get-gap--xs) * 0);
   }
   .lucency-flex .lucency-col.lucency-pull-left--xs {
-    margin-right: auto;
+    margin-left: auto;
   }
   .lucency-flex .lucency-col.lucency-pull-right--xs {
-    margin-left: auto;
+    margin-right: auto;
   }
   .lucency-flex .lucency-col.lucency-self-auto--xs {
     align-self: auto;
@@ -1704,7 +1704,7 @@
     --padding-left,
     0
   );
-  padding: var(--get-padding-top, 0) var(--get-padding-right, 0) var(--get-padding-bottom, 0) var(--get-padding-left, 0);
+  padding: var(--get-padding-top, 0) var(--get-padding-left, 0) var(--get-padding-bottom, 0) var(--get-padding-right, 0);
 }
 .lucency-grid .lucency-col {
   --get-grid-columns: var(
@@ -1811,7 +1811,7 @@
       --padding-left--xxl,
       var(--get-padding-left)
     );
-    padding: var(--get-padding-top--xxl, var(--get-padding-top)) var(--get-padding-right--xxl, var(--get-padding-right)) var(--get-padding-bottom--xxl, var(--get-padding-bottom)) var(--get-padding-left--xxl, var(--get-padding-left));
+    padding: var(--get-padding-top--xxl, var(--get-padding-top)) var(--get-padding-left--xxl, var(--get-padding-left)) var(--get-padding-bottom--xxl, var(--get-padding-bottom)) var(--get-padding-right--xxl, var(--get-padding-right));
   }
   .lucency-grid .lucency-col {
     --get-grid-columns--xxl: var(
@@ -1919,7 +1919,7 @@
       --padding-left--xl,
       var(--get-padding-left--xxl)
     );
-    padding: var(--get-padding-top--xl, var(--get-padding-top--xxl)) var(--get-padding-right--xl, var(--get-padding-right--xxl)) var(--get-padding-bottom--xl, var(--get-padding-bottom--xxl)) var(--get-padding-left--xl, var(--get-padding-left--xxl));
+    padding: var(--get-padding-top--xl, var(--get-padding-top--xxl)) var(--get-padding-left--xl, var(--get-padding-left--xxl)) var(--get-padding-bottom--xl, var(--get-padding-bottom--xxl)) var(--get-padding-right--xl, var(--get-padding-right--xxl));
   }
   .lucency-grid .lucency-col {
     --get-grid-columns--xl: var(
@@ -2027,7 +2027,7 @@
       --padding-left--lg,
       var(--get-padding-left--xl)
     );
-    padding: var(--get-padding-top--lg, var(--get-padding-top--xl)) var(--get-padding-right--lg, var(--get-padding-right--xl)) var(--get-padding-bottom--lg, var(--get-padding-bottom--xl)) var(--get-padding-left--lg, var(--get-padding-left--xl));
+    padding: var(--get-padding-top--lg, var(--get-padding-top--xl)) var(--get-padding-left--lg, var(--get-padding-left--xl)) var(--get-padding-bottom--lg, var(--get-padding-bottom--xl)) var(--get-padding-right--lg, var(--get-padding-right--xl));
   }
   .lucency-grid .lucency-col {
     --get-grid-columns--lg: var(
@@ -2135,7 +2135,7 @@
       --padding-left--md,
       var(--get-padding-left--lg)
     );
-    padding: var(--get-padding-top--md, var(--get-padding-top--lg)) var(--get-padding-right--md, var(--get-padding-right--lg)) var(--get-padding-bottom--md, var(--get-padding-bottom--lg)) var(--get-padding-left--md, var(--get-padding-left--lg));
+    padding: var(--get-padding-top--md, var(--get-padding-top--lg)) var(--get-padding-left--md, var(--get-padding-left--lg)) var(--get-padding-bottom--md, var(--get-padding-bottom--lg)) var(--get-padding-right--md, var(--get-padding-right--lg));
   }
   .lucency-grid .lucency-col {
     --get-grid-columns--md: var(
@@ -2243,7 +2243,7 @@
       --padding-left--sm,
       var(--get-padding-left--md)
     );
-    padding: var(--get-padding-top--sm, var(--get-padding-top--md)) var(--get-padding-right--sm, var(--get-padding-right--md)) var(--get-padding-bottom--sm, var(--get-padding-bottom--md)) var(--get-padding-left--sm, var(--get-padding-left--md));
+    padding: var(--get-padding-top--sm, var(--get-padding-top--md)) var(--get-padding-left--sm, var(--get-padding-left--md)) var(--get-padding-bottom--sm, var(--get-padding-bottom--md)) var(--get-padding-right--sm, var(--get-padding-right--md));
   }
   .lucency-grid .lucency-col {
     --get-grid-columns--sm: var(
@@ -2351,7 +2351,7 @@
       --padding-left--xs,
       var(--get-padding-left--sm)
     );
-    padding: var(--get-padding-top--xs, var(--get-padding-top--sm)) var(--get-padding-right--xs, var(--get-padding-right--sm)) var(--get-padding-bottom--xs, var(--get-padding-bottom--sm)) var(--get-padding-left--xs, var(--get-padding-left--sm));
+    padding: var(--get-padding-top--xs, var(--get-padding-top--sm)) var(--get-padding-left--xs, var(--get-padding-left--sm)) var(--get-padding-bottom--xs, var(--get-padding-bottom--sm)) var(--get-padding-right--xs, var(--get-padding-right--sm));
   }
   .lucency-grid .lucency-col {
     --get-grid-columns--xs: var(
@@ -2441,26 +2441,26 @@
   }
 }
 .lucency-align-left {
-  text-align: left;
+  text-align: right;
 }
 .lucency-align-center {
   text-align: center;
 }
 .lucency-align-right {
-  text-align: right;
+  text-align: left;
 }
 .lucency-align-justify {
   text-align: justify;
 }
 @media (max-width: 1536px) {
   .lucency-align-left--xxl {
-    text-align: left;
+    text-align: right;
   }
   .lucency-align-center--xxl {
     text-align: center;
   }
   .lucency-align-right--xxl {
-    text-align: right;
+    text-align: left;
   }
   .lucency-align-justify--xxl {
     text-align: justify;
@@ -2468,13 +2468,13 @@
 }
 @media (max-width: 1280px) {
   .lucency-align-left--xl {
-    text-align: left;
+    text-align: right;
   }
   .lucency-align-center--xl {
     text-align: center;
   }
   .lucency-align-right--xl {
-    text-align: right;
+    text-align: left;
   }
   .lucency-align-justify--xl {
     text-align: justify;
@@ -2482,13 +2482,13 @@
 }
 @media (max-width: 1024px) {
   .lucency-align-left--lg {
-    text-align: left;
+    text-align: right;
   }
   .lucency-align-center--lg {
     text-align: center;
   }
   .lucency-align-right--lg {
-    text-align: right;
+    text-align: left;
   }
   .lucency-align-justify--lg {
     text-align: justify;
@@ -2496,13 +2496,13 @@
 }
 @media (max-width: 768px) {
   .lucency-align-left--md {
-    text-align: left;
+    text-align: right;
   }
   .lucency-align-center--md {
     text-align: center;
   }
   .lucency-align-right--md {
-    text-align: right;
+    text-align: left;
   }
   .lucency-align-justify--md {
     text-align: justify;
@@ -2510,13 +2510,13 @@
 }
 @media (max-width: 640px) {
   .lucency-align-left--sm {
-    text-align: left;
+    text-align: right;
   }
   .lucency-align-center--sm {
     text-align: center;
   }
   .lucency-align-right--sm {
-    text-align: right;
+    text-align: left;
   }
   .lucency-align-justify--sm {
     text-align: justify;
@@ -2524,17 +2524,15 @@
 }
 @media (max-width: 420px) {
   .lucency-align-left--xs {
-    text-align: left;
+    text-align: right;
   }
   .lucency-align-center--xs {
     text-align: center;
   }
   .lucency-align-right--xs {
-    text-align: right;
+    text-align: left;
   }
   .lucency-align-justify--xs {
     text-align: justify;
   }
 }
-
-/*# sourceMappingURL=style-index.css.map*/
