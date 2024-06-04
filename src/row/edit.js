@@ -44,12 +44,19 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const [rowsCount, setRowsCount] = useState(1);
 	const [displayProp, setDisplayProp] = useState("flex");
 
-	const style = updateStyles({ stylesClasses });
+	/*"display": "lucency-flex",
+	"flex-direction": "lucency-flex-row",
+	"flex-wrap": "lucency-flex-wrap" */
+
 	const isGrid = display === "grid";
 	const isFlex = display === "flex";
+	const style = updateStyles({ stylesClasses });
 
 	const blockProps = useBlockProps({
-		className: updateClasses({ stylesClasses }, classnames("lucency")),
+		className: updateClasses(
+			{ stylesClasses },
+			classnames("lucency", `lucency-${display}`),
+		),
 	});
 
 	const { hasInnerBlocks, innerBlocksCount } = useSelect(

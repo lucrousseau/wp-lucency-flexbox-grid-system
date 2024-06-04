@@ -868,15 +868,20 @@ function Edit({
   const [columnsCount, setColumnsCount] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(1);
   const [rowsCount, setRowsCount] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(1);
   const [displayProp, setDisplayProp] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)("flex");
+
+  /*"display": "lucency-flex",
+  "flex-direction": "lucency-flex-row",
+  "flex-wrap": "lucency-flex-wrap" */
+
+  const isGrid = display === "grid";
+  const isFlex = display === "flex";
   const style = (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_9__.updateStyles)({
     stylesClasses
   });
-  const isGrid = display === "grid";
-  const isFlex = display === "flex";
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.useBlockProps)({
     className: (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_9__.updateClasses)({
       stylesClasses
-    }, classnames__WEBPACK_IMPORTED_MODULE_2___default()("lucency"))
+    }, classnames__WEBPACK_IMPORTED_MODULE_2___default()("lucency", `lucency-${display}`))
   });
   const {
     hasInnerBlocks,
@@ -1095,7 +1100,8 @@ function save({
 }) {
   const {
     tag,
-    stylesClasses
+    stylesClasses,
+    display
   } = attributes;
   const Tag = tag;
   const style = (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_3__.updateStyles)({
@@ -1104,7 +1110,7 @@ function save({
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
     className: (0,_commons_ResponsivePanel__WEBPACK_IMPORTED_MODULE_3__.updateClasses)({
       stylesClasses
-    }, classnames__WEBPACK_IMPORTED_MODULE_1___default()("lucency"))
+    }, classnames__WEBPACK_IMPORTED_MODULE_1___default()("lucency", `lucency-${display}`))
   });
   const innerBlocksProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useInnerBlocksProps.save(blockProps);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Tag, {
@@ -1335,7 +1341,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"lucency-grid/row","version":"1.0.0","title":"Row","category":"design","description":"Create a flex row and columns with responsive sizes.","example":{},"supports":{"html":true},"textdomain":"lucency","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"tag":{"type":"string","default":"div"},"columns":{"type":"number","default":null},"cells":{"type":"number","default":null},"display":{"type":"string","default":"flex"},"stylesClasses":{"type":"object","default":{"full":{"classes":{"display":"lucency-flex","flex-direction":"lucency-flex-row","flex-wrap":"lucency-flex-wrap"},"variables":{"gap":"1"}}}}},"providesContext":{"display":"display"}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"lucency-grid/row","version":"1.0.0","title":"Row","category":"design","description":"Create a flex row and columns with responsive sizes.","example":{},"supports":{"html":true},"textdomain":"lucency","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"tag":{"type":"string","default":"div"},"columns":{"type":"number","default":null},"cells":{"type":"number","default":null},"display":{"type":"string","default":"flex"},"stylesClasses":{"type":"object","default":{"full":{"classes":{},"variables":{"gap":"1"}}}}},"providesContext":{"display":"display"}}');
 
 /***/ })
 

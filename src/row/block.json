@@ -36,11 +36,7 @@
 			"type": "object",
 			"default": {
 				"full": {
-					"classes": {
-						"display": "lucency-flex",
-						"flex-direction": "lucency-flex-row",
-						"flex-wrap": "lucency-flex-wrap"
-					},
+					"classes": {},
 					"variables": {
 						"gap": "1"
 					}
