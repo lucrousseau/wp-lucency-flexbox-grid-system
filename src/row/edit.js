@@ -89,7 +89,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	}, [columns, hasInnerBlocks, innerBlocksCount]);
 	*/
 
-	const setDisplayType = ({ labelPosition = "top", value, onChange } = {}) => (
+	const setDisplayPropValue = ({
+		labelPosition = "top",
+		value,
+		onChange,
+	} = {}) => (
 		<SelectControl
 			label={__("Display as", "lucency")}
 			labelPosition={labelPosition}
@@ -124,7 +128,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						</header>
 						<div className="lucency lucency-flex">
 							<div className="lucency-col lucency-col-3">
-								{setDisplayType({
+								{setDisplayPropValue({
 									onChange: (value) => setDisplayProp(value),
 									labelPosition: "side",
 									value: displayProp,
@@ -204,7 +208,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			{!noColumnsDefined && (
 				<InspectorControls>
 					<PanelBody title={__("Layout Settings", "lucency")}>
-						{setDisplayType({
+						{setDisplayPropValue({
 							onChange: (value) => setAttributes({ display: value }),
 							value: display,
 						})}

@@ -912,7 +912,7 @@ function Edit({
   }, [columns, hasInnerBlocks, innerBlocksCount]);
   */
 
-  const setDisplayType = ({
+  const setDisplayPropValue = ({
     labelPosition = "top",
     value,
     onChange
@@ -942,7 +942,7 @@ function Edit({
       className: "lucency lucency-flex"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "lucency-col lucency-col-3"
-    }, setDisplayType({
+    }, setDisplayPropValue({
       onChange: value => setDisplayProp(value),
       labelPosition: "side",
       value: displayProp
@@ -1005,7 +1005,7 @@ function Edit({
   };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, !noColumnsDefined && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)("Layout Settings", "lucency")
-  }, setDisplayType({
+  }, setDisplayPropValue({
     onChange: value => setAttributes({
       display: value
     }),
