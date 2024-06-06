@@ -1,11 +1,10 @@
-import { useState, useEffect } from "@wordpress/element";
+import { useState } from "@wordpress/element";
 import classnames from "classnames";
 import { useSelect, useDispatch } from "@wordpress/data";
 import { createBlock } from "@wordpress/blocks";
 import { columns as icon } from "@wordpress/icons";
 import { __ } from "@wordpress/i18n";
 import {
-	InnerBlocks,
 	useBlockProps,
 	useInnerBlocksProps,
 	InspectorControls,
@@ -34,7 +33,12 @@ import metadata from "./block.json";
 
 import "./editor.scss";
 
-export default function Edit({ attributes, setAttributes, clientId }) {
+export default function Edit({
+	attributes,
+	setAttributes,
+	clientId,
+	isSelected,
+}) {
 	const { tag, stylesClasses, columns, display } = attributes;
 	const Tag = tag;
 	const noColumnsDefined = !columns;
@@ -96,9 +100,10 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		};
 
 		return (
-			<Button isSecondary onClick={addNewColumn}>
-				{__("Add", "lucency")}
-			</Button>
+			<div className="lucency-admin-row-add-column" onClick={addNewColumn}>
+				<span>{__("Add a Column", "lucency")}</span>
+				<span></span>
+			</div>
 		);
 	};
 	/*
