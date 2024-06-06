@@ -5,6 +5,7 @@ import { createBlock } from "@wordpress/blocks";
 import { columns as icon } from "@wordpress/icons";
 import { __ } from "@wordpress/i18n";
 import {
+	InnerBlocks,
 	useBlockProps,
 	useInnerBlocksProps,
 	InspectorControls,
@@ -88,6 +89,18 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		insertBlocks(blocks, null, clientId);
 	};
 
+	const ColumnAppender = () => {
+		const addNewColumn = () => {
+			const block = createBlock("lucency-grid/column");
+			insertBlocks(block, innerBlocksCount, clientId);
+		};
+
+		return (
+			<Button isSecondary onClick={addNewColumn}>
+				{__("Add", "lucency")}
+			</Button>
+		);
+	};
 	/*
 	useEffect(() => {
 		if (columns !== innerBlocksCount && hasInnerBlocks) {
@@ -116,64 +129,65 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		allowedBlocks: ["lucency-grid/column"],
-		renderAppender: !hasInnerBlocks
-			? () => (
-					<div className="lucency-admin-row-appender">
-						<header className="lucency">
-							<div className="lucency-col">
-								<h3>
-									{icon}
-									{__("Please set the number of columns you want.", "lucency")}
-								</h3>
-								<p>
-									{__(
-										"You will be able to set column(s) width and other parameters after this step.",
-										"lucency",
-									)}
-								</p>
-							</div>
-						</header>
-						<div className="lucency lucency-flex">
-							<div className="lucency-col lucency-col-3">
-								{setDisplayPropValue({
-									onChange: (value) => setDisplayProp(value),
-									labelPosition: "side",
-									value: displayProp,
-								})}
-							</div>
+		renderAppender: () =>
+			!hasInnerBlocks ? (
+				<div className="lucency-admin-row-appender">
+					<header className="lucency">
+						<div className="lucency-col">
+							<h3>
+								{icon}
+								{__("Please set the number of columns you want.", "lucency")}
+							</h3>
+							<p>
+								{__(
+									"You will be able to set column(s) width and other parameters after this step.",
+									"lucency",
+								)}
+							</p>
+						</div>
+					</header>
+					<div className="lucency lucency-flex">
+						<div className="lucency-col lucency-col-3">
+							{setDisplayPropValue({
+								onChange: (value) => setDisplayProp(value),
+								labelPosition: "side",
+								value: displayProp,
+							})}
+						</div>
+						<div className="lucency-col lucency-col-3">
+							<NumberControl
+								label={
+									isFlex ? __("Columns", "lucency") : __("Cells", "lucency")
+								}
+								value={columnsCount}
+								onChange={(value) => setColumnsCount(parseInt(value))}
+								labelPosition="side"
+								min={1}
+								max={isFlex ? COLUMNS : COLUMNS * 4}
+							/>
+						</div>
+						{isGrid && (
 							<div className="lucency-col lucency-col-3">
 								<NumberControl
-									label={
-										isFlex ? __("Columns", "lucency") : __("Cells", "lucency")
-									}
-									value={columnsCount}
-									onChange={(value) => setColumnsCount(parseInt(value))}
+									label={__("Columns", "lucency")}
+									value={rowsCount}
+									onChange={(value) => setRowsCount(parseInt(value))}
 									labelPosition="side"
 									min={1}
-									max={isFlex ? COLUMNS : COLUMNS * 4}
+									max={COLUMNS}
 								/>
 							</div>
-							{isGrid && (
-								<div className="lucency-col lucency-col-3">
-									<NumberControl
-										label={__("Columns", "lucency")}
-										value={rowsCount}
-										onChange={(value) => setRowsCount(parseInt(value))}
-										labelPosition="side"
-										min={1}
-										max={COLUMNS}
-									/>
-								</div>
-							)}
-							<div className="lucency-col">
-								<Button isPrimary onClick={handleSetColumns}>
-									{__("Add", "lucency")}
-								</Button>
-							</div>
+						)}
+						<div className="lucency-col">
+							<Button isPrimary onClick={handleSetColumns}>
+								{__("Add", "lucency")}
+							</Button>
 						</div>
 					</div>
-			  )
-			: null,
+				</div>
+			) : (
+				<ColumnAppender />
+			),
 	});
 
 	const responsivePanelBefore = {
