@@ -73,22 +73,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		[clientId],
 	);
 
-	const { insertBlocks } = useDispatch("core/block-editor");
-
-	const handleSetColumns = () => {
-		setAttributes({
-			columns: columnsCount,
-			display: displayProp,
-		});
-
-		const blocks = [];
-		for (let i = 0; i < columnsCount * rowsCount; i++) {
-			const block = createBlock("lucency-grid/column");
-			blocks.push(block);
-		}
-
-		insertBlocks(blocks, null, clientId);
-	};
+	const { insertBlocks, removeBlock } = useDispatch("core/block-editor");
 
 	const setDisplayPropValue = ({
 		labelPosition = "top",
@@ -125,6 +110,25 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const ColumnAppenderPopUp = () => {
 		const rootContainer =
 			document.querySelector(".is-root-container") || document.body;
+
+		const handleAddColumns = () => {
+			setAttributes({
+				columns: columnsCount,
+				display: displayProp,
+			});
+
+			const blocks = [];
+			for (let i = 0; i < columnsCount * rowsCount; i++) {
+				const block = createBlock("lucency-grid/column");
+				blocks.push(block);
+			}
+
+			insertBlocks(blocks, null, clientId);
+		};
+
+		const handleCancel = () => {
+			removeBlock(clientId);
+		};
 
 		return createPortal(
 			<div className="lucency-admin-row-appender">
@@ -176,8 +180,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 							</div>
 						)}
 						<div className="lucency-col">
-							<Button isPrimary onClick={handleSetColumns}>
+							<Button isPrimary onClick={handleAddColumns}>
 								{__("Add", "lucency")}
+							</Button>
+							<Button isDestructive onClick={handleCancel}>
+								{__("Cancel", "lucency")}
 							</Button>
 						</div>
 					</div>
@@ -265,7 +272,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					)}
 				</Notice>
 			)}
-
 			<Tag {...innerBlocksProps} style={style}></Tag>
 		</>
 	);
