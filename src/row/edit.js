@@ -1,4 +1,4 @@
-import { useState } from "@wordpress/element";
+import { useState, createPortal } from "@wordpress/element";
 import classnames from "classnames";
 import { useSelect, useDispatch } from "@wordpress/data";
 import { createBlock } from "@wordpress/blocks";
@@ -33,12 +33,7 @@ import metadata from "./block.json";
 
 import "./editor.scss";
 
-export default function Edit({
-	attributes,
-	setAttributes,
-	clientId,
-	isSelected,
-}) {
+export default function Edit({ attributes, setAttributes, clientId }) {
 	const { tag, stylesClasses, columns, display } = attributes;
 	const Tag = tag;
 	const noColumnsDefined = !columns;
@@ -49,9 +44,11 @@ export default function Edit({
 	const [rowsCount, setRowsCount] = useState(1);
 	const [displayProp, setDisplayProp] = useState("flex");
 
-	/*"display": "lucency-flex",
+	/*
+	"display": "lucency-flex",
 	"flex-direction": "lucency-flex-row",
-	"flex-wrap": "lucency-flex-wrap" */
+	"flex-wrap": "lucency-flex-wrap"
+	*/
 
 	const isGrid = display === "grid";
 	const isFlex = display === "flex";
@@ -93,27 +90,6 @@ export default function Edit({
 		insertBlocks(blocks, null, clientId);
 	};
 
-	const ColumnAppender = () => {
-		const addNewColumn = () => {
-			const block = createBlock("lucency-grid/column");
-			insertBlocks(block, innerBlocksCount, clientId);
-		};
-
-		return (
-			<div className="lucency-admin-row-add-column" onClick={addNewColumn}>
-				<span>{__("Add a Column", "lucency")}</span>
-				<span></span>
-			</div>
-		);
-	};
-	/*
-	useEffect(() => {
-		if (columns !== innerBlocksCount && hasInnerBlocks) {
-			setAttributes({ columns: innerBlocksCount });
-		}
-	}, [columns, hasInnerBlocks, innerBlocksCount]);
-	*/
-
 	const setDisplayPropValue = ({
 		labelPosition = "top",
 		value,
@@ -132,11 +108,27 @@ export default function Edit({
 		/>
 	);
 
-	const innerBlocksProps = useInnerBlocksProps(blockProps, {
-		allowedBlocks: ["lucency-grid/column"],
-		renderAppender: () =>
-			!hasInnerBlocks ? (
-				<div className="lucency-admin-row-appender">
+	const ColumnAppender = () => {
+		const addNewColumn = () => {
+			const block = createBlock("lucency-grid/column");
+			insertBlocks(block, innerBlocksCount, clientId);
+		};
+
+		return (
+			<div className="lucency-admin-row-add-column" onClick={addNewColumn}>
+				<span>{__("Add a Column", "lucency")}</span>
+				<span></span>
+			</div>
+		);
+	};
+
+	const ColumnAppenderPopUp = () => {
+		const rootContainer =
+			document.querySelector(".is-root-container") || document.body;
+
+		return createPortal(
+			<div className="lucency-admin-row-appender">
+				<div className="lucency-admin-row-appender-inner">
 					<header className="lucency">
 						<div className="lucency-col">
 							<h3>
@@ -190,9 +182,15 @@ export default function Edit({
 						</div>
 					</div>
 				</div>
-			) : (
-				<ColumnAppender />
-			),
+			</div>,
+			rootContainer,
+		);
+	};
+
+	const innerBlocksProps = useInnerBlocksProps(blockProps, {
+		allowedBlocks: ["lucency-grid/column"],
+		renderAppender: () =>
+			!hasInnerBlocks ? <ColumnAppenderPopUp /> : <ColumnAppender />,
 	});
 
 	const responsivePanelBefore = {
@@ -267,6 +265,7 @@ export default function Edit({
 					)}
 				</Notice>
 			)}
+
 			<Tag {...innerBlocksProps} style={style}></Tag>
 		</>
 	);
