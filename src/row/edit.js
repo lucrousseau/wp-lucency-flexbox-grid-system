@@ -148,14 +148,14 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						</div>
 					</header>
 					<div className="lucency lucency-flex">
-						<div className="lucency-col lucency-col-3">
+						<div className="lucency-col">
 							{setDisplayPropValue({
 								onChange: (value) => setDisplayProp(value),
 								labelPosition: "side",
 								value: displayProp,
 							})}
 						</div>
-						<div className="lucency-col lucency-col-3">
+						<div className="lucency-col">
 							<NumberControl
 								label={
 									isFlex ? __("Columns", "lucency") : __("Cells", "lucency")
@@ -168,7 +168,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 							/>
 						</div>
 						{isGrid && (
-							<div className="lucency-col lucency-col-3">
+							<div className="lucency-col">
 								<NumberControl
 									label={__("Columns", "lucency")}
 									value={rowsCount}
