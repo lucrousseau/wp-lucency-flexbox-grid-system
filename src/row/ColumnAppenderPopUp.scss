@@ -1,0 +1,48 @@
+.lucency-admin-row-column-appender-popup {
+	inset: 0;
+	z-index: 9999;
+	display: flex;
+	position: fixed;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(#000, 0.3);
+	.lucency-admin-row-column-appender-popup-inner {
+		width: 80vw;
+		padding: 2em;
+		max-width: 600px;
+		border-radius: 0.5em;
+		box-sizing: border-box;
+		border: 1px solid #999;
+		background-color: #fff;
+		filter: drop-shadow(0 0 0.5em rgba(#000, 0.3));
+		header {
+			margin-bottom: 0.5em;
+			h3,
+			p {
+				margin: 0;
+				padding: 0;
+			}
+			h3 {
+				display: flex;
+				font-weight: normal;
+				align-items: center;
+				+ p {
+					margin-top: 0.1em;
+				}
+			}
+			p {
+				font-size: 0.8em;
+			}
+			svg {
+				width: auto;
+				height: 1.5em;
+				margin-right: 0.25em;
+				display: inline-block;
+				vertical-align: middle;
+			}
+		}
+		.components-button {
+			height: 32px;
+		}
+	}
+}

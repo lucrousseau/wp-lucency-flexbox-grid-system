@@ -1,0 +1,77 @@
+.wp-block-lucency-grid-row {
+	.lucency-admin-row-column-appender {
+		$bg: #fff;
+
+		gap: 1em;
+		cursor: pointer;
+		font-size: 12px;
+		line-height: 1em;
+		padding: 0.5em 1em;
+		padding-right: 0;
+		position: absolute;
+		align-items: center;
+		border-radius: 100rem;
+		background-color: $bg;
+		border: 0.2em solid $bg;
+		right: calc(var(--get-padding-right));
+		top: calc(100% - var(--get-padding-bottom) + 1em);
+		box-shadow: 0.05em 0.05em 0.5em rgba(#000, 0.3);
+
+		display: none;
+		span {
+			&:last-child {
+				width: 1em;
+				height: 1em;
+				font-size: 1.3em;
+				position: relative;
+				&:before,
+				&:after {
+					position: absolute;
+					filter: invert(100%);
+				}
+				&:before {
+					inset: 0;
+					z-index: 1;
+					content: "+";
+					line-height: 1em;
+					text-align: center;
+				}
+				&:after {
+					content: "";
+					inset: -0.25em;
+					border-radius: 100rem;
+					background-color: $bg;
+				}
+			}
+		}
+	}
+
+	&.is-selected {
+		.lucency-admin-row-column-appender {
+			display: flex;
+		}
+	}
+
+	&.is-selected,
+	&.has-child-selected {
+		.wp-block-lucency-grid-column {
+			&:after {
+				inset: 0;
+				content: "";
+				position: absolute;
+				pointer-events: none;
+				border: 1px dashed #999;
+			}
+		}
+	}
+}
+
+.wp-block-lucency-grid-column {
+	.block-list-appender:has(.block-editor-button-block-appender) {
+		height: 100%;
+		.block-editor-inserter,
+		.block-editor-button-block-appender {
+			height: 100%;
+		}
+	}
+}
