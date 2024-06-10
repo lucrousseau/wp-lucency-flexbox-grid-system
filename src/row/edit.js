@@ -36,7 +36,7 @@ import "./editor.scss";
 
 export default function Edit({ attributes, setAttributes, clientId }) {
 	const { tag, stylesClasses, columns, display } = attributes;
-	const { isGrid } = getDisplayPropValue({ display });
+	const { isFlex } = getDisplayPropValue({ display });
 
 	const Tag = tag;
 	const noColumnsDefined = !columns;
@@ -61,7 +61,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		clientId,
 	});
 
-	const showNotice = innerBlocksCount >= COLUMNS;
+	const showNotice = innerBlocksCount >= COLUMNS && isFlex;
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		allowedBlocks: ["lucency-grid/column"],
@@ -83,22 +83,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	const responsivePanelBefore = {
 		fn: ({ size }) => {
-			const controls = {
-				...(isGrid
-					? {
-							cols: {
-								min: 0,
-								max: COLUMNS,
-								col: COLUMNS,
-								setDefault: size === "full" ? Math.ceil(columns / 2) : 0,
-								label: __("Columns per Grid", "lucency"),
-								type: "range",
-								key: "variables",
-							},
-					  }
-					: {}),
-				...FLEX_CSS_PROPS({ display }),
-			};
+			const controls = FLEX_CSS_PROPS({ display, size });
 
 			return Object.entries(controls).map(([prop, props]) =>
 				responsivePanelControls({
