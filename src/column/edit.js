@@ -18,6 +18,8 @@ import ResponsivePanel, {
 	responsivePanelControls,
 } from "../commons/ResponsivePanel";
 
+import { getDisplayPropValue } from "../commons/displayPropValue";
+
 import responsiveColumnSizes from "./responsiveColumnSizes.js";
 
 import metadata from "./block.json";
@@ -25,8 +27,9 @@ import metadata from "./block.json";
 export default function Edit({ attributes, setAttributes, context, clientId }) {
 	const { stylesClasses, width, height } = attributes;
 	const { display } = context;
+	const { isGrid, isFlex } = getDisplayPropValue({ display });
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
-	const colOrCellLabel = display === "grid" ? "Cell" : "Column";
+	const colOrCellLabel = isGrid ? "Cell" : "Column";
 
 	const style = updateStyles({ stylesClasses });
 
@@ -63,7 +66,7 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 						key: "classes",
 					},
 				},
-				...(display === "flex"
+				...(isFlex
 					? {
 							"align-self": {
 								options: [
@@ -100,7 +103,7 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 							}
 							help={__("Leave at 0 for auto width", "lucency")}
 						/>
-						{display === "grid" && (
+						{isGrid && (
 							<RangeControl
 								label={__(`${colOrCellLabel} Height`, "lucency")}
 								min={0}

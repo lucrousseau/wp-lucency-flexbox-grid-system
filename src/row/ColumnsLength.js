@@ -5,6 +5,8 @@ import { __ } from "@wordpress/i18n";
 
 import { RangeControl } from "@wordpress/components";
 
+import { getDisplayPropValue } from "../commons/displayPropValue";
+
 import { COLUMNS } from "../abstracts/constants";
 
 export default function ColumnsLength({
@@ -80,8 +82,8 @@ export default function ColumnsLength({
 		setAttributes({ columns: setValue });
 	};
 	*/
-
-	const max = display === "flex" ? COLUMNS : COLUMNS * 4;
+	const { isFlex } = getDisplayPropValue({ display });
+	const max = isFlex ? COLUMNS : COLUMNS * 4;
 	const { replaceInnerBlocks } = useDispatch("core/block-editor");
 
 	const innerBlocks = useSelect(
@@ -97,7 +99,7 @@ export default function ColumnsLength({
 			replaceInnerBlocks(clientId, [initialBlock], false);
 		}
 
-		setShowNotice(innerBlocksCount > COLUMNS && display === "flex");
+		setShowNotice(innerBlocksCount > COLUMNS && isFlex);
 	}, [columns, hasInnerBlocks, innerBlocksCount]);
 
 	useEffect(
@@ -139,10 +141,7 @@ export default function ColumnsLength({
 	return (
 		<>
 			<RangeControl
-				label={__(
-					`Number of Cells per ${display === "flex" ? "Row" : "Grid"}`,
-					"lucency",
-				)}
+				label={__(`Number of Cells per ${isFlex ? "Row" : "Grid"}`, "lucency")}
 				min={1}
 				max={innerBlocksCount > max ? innerBlocksCount : max}
 				value={columns}

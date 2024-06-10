@@ -1,5 +1,7 @@
 import { __ } from "@wordpress/i18n";
 
+import { getDisplayPropValue } from "../commons/displayPropValue";
+
 export const COLUMNS = 12;
 
 export const BREAKPOINTS = {
@@ -13,6 +15,8 @@ export const BREAKPOINTS = {
 };
 
 export const FLEX_CSS_PROPS = ({ display = "flex" } = {}) => {
+	const { isFlex } = getDisplayPropValue({ display });
+
 	const controls = {
 		display: {
 			options: [
@@ -90,7 +94,7 @@ export const FLEX_CSS_PROPS = ({ display = "flex" } = {}) => {
 	};
 
 	return {
-		...(display === "flex" ? controls : {}),
+		...(isFlex ? controls : {}),
 		...{
 			"text-align": {
 				options: [

@@ -8,7 +8,12 @@ import {
 	InspectorControls,
 } from "@wordpress/block-editor";
 
-import { PanelBody, Notice, SelectControl } from "@wordpress/components";
+import { PanelBody, Notice } from "@wordpress/components";
+
+import {
+	setDisplayPropValue,
+	getDisplayPropValue,
+} from "../commons/displayPropValue";
 
 import ColumnsLength from "./ColumnsLength";
 import ColumnAppender from "./ColumnAppender";
@@ -29,6 +34,8 @@ import "./editor.scss";
 
 export default function Edit({ attributes, setAttributes, clientId }) {
 	const { tag, stylesClasses, columns, display } = attributes;
+	const { isGrid } = getDisplayPropValue({ display });
+
 	const Tag = tag;
 	const noColumnsDefined = !columns;
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
@@ -41,8 +48,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	"flex-wrap": "lucency-flex-wrap"
 	*/
 
-	const isGrid = display === "grid";
-	const isFlex = display === "flex";
 	const style = updateStyles({ stylesClasses });
 
 	const blockProps = useBlockProps({
@@ -64,24 +69,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		[clientId],
 	);
 
-	const setDisplayPropValue = ({
-		labelPosition = "top",
-		value,
-		onChange,
-	} = {}) => (
-		<SelectControl
-			label={__("Display as", "lucency")}
-			labelPosition={labelPosition}
-			value={value}
-			options={[
-				{ label: __("Flex", "lucency"), value: "flex" },
-				{ label: __("Gird", "lucency"), value: "grid" },
-			]}
-			onChange={onChange}
-			__nextHasNoMarginBottom
-		/>
-	);
-
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		allowedBlocks: ["lucency-grid/column"],
 		renderAppender: () =>
@@ -90,7 +77,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					attributes={attributes}
 					setAttributes={setAttributes}
 					clientId={clientId}
-					setDisplayPropValue={setDisplayPropValue}
 				/>
 			) : (
 				<ColumnAppender

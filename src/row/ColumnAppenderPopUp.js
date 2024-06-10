@@ -9,6 +9,11 @@ import {
 	__experimentalNumberControl as NumberControl,
 } from "@wordpress/components";
 
+import {
+	setDisplayPropValue,
+	getDisplayPropValue,
+} from "../commons/displayPropValue";
+
 import { COLUMNS } from "../abstracts/constants";
 
 import "./ColumnAppenderPopUp.scss";
@@ -17,17 +22,14 @@ export default function ColumnAppenderPopUp({
 	attributes,
 	setAttributes,
 	clientId,
-	setDisplayPropValue,
 }) {
 	const { display } = attributes;
+	const { isGrid, isFlex } = getDisplayPropValue({ display });
 
 	const [columnsCount, setColumnsCount] = useState(1);
 	const [rowsCount, setRowsCount] = useState(1);
 	const [displayProp, setDisplayProp] = useState("flex");
 	const { insertBlocks, removeBlock } = useDispatch("core/block-editor");
-
-	const isGrid = display === "grid";
-	const isFlex = display === "flex";
 
 	const rootContainer =
 		document.querySelector(".is-root-container") || document.body;
