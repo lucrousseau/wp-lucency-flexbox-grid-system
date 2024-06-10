@@ -82,6 +82,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 				<ColumnAppender
 					innerBlocksCount={innerBlocksCount}
 					clientId={clientId}
+					display={display}
 				/>
 			),
 	});
