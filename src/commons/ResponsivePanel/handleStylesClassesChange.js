@@ -3,6 +3,7 @@ export default function handleStylesClassesChange({
 	prop,
 	value,
 	key,
+	unit,
 	stylesClasses,
 	setAttributes,
 	defaultValue,
@@ -13,7 +14,7 @@ export default function handleStylesClassesChange({
 			...stylesClasses[size],
 			[key]: {
 				...stylesClasses[size]?.[key],
-				...(value !== null ? { [prop]: value } : {}),
+				...(value !== null ? { [prop]: value, unit } : {}),
 			},
 		},
 	};

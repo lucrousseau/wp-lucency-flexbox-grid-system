@@ -126,6 +126,7 @@ const FLEX_CSS_PROPS = ({ display = "flex", size = null } = {}) => {
 				label: __("Gap", "lucency"),
 				type: "number",
 				key: "variables",
+				unit: "rem",
 			},
 		},
 	};

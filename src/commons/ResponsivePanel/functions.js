@@ -4,11 +4,13 @@ function processStylesClasses({ key, stylesClasses, processEntry }) {
 	let result = {};
 
 	Object.entries(stylesClasses ?? {}).forEach(([size, props]) => {
+		const unit = props?.[key]?.unit ?? "";
+
 		Object.entries(props?.[key] ?? {}).forEach(([prop, value]) => {
 			if (value !== undefined && value !== null) {
-				const prefix = size === "full" ? "" : `--${size}`;
+				const prefix = size === "full" ? "" : `${size}-`;
 
-				processEntry(result, prefix, prop, value);
+				processEntry({ result, prefix, prop, value, unit });
 			}
 		});
 	});
@@ -22,8 +24,10 @@ export function updateStyles({ stylesClasses }, style = {}) {
 	let processed = processStylesClasses({
 		key,
 		stylesClasses,
-		processEntry: (result, prefix, prop, value) => {
-			result[`--${prefix}${prop}`] = `${value}rem`;
+		processEntry: ({ result, prefix, prop, value, unit }) => {
+			if (prop === "unit") return;
+
+			result[`--${prefix}${prop}`] = `${value}${unit}`;
 		},
 	});
 
@@ -36,7 +40,7 @@ export function updateClasses({ stylesClasses }, classes = null) {
 	let processed = processStylesClasses({
 		key,
 		stylesClasses,
-		processEntry: (result, prefix, prop, value) => {
+		processEntry: ({ result, prefix, value }) => {
 			result[`${value}${prefix}`] = true;
 		},
 	});
