@@ -15,15 +15,17 @@ import {
 	getDisplayPropValue,
 } from "../commons/displayPropValue";
 
-import ColumnsLength from "./ColumnsLength";
-import ColumnAppender from "./ColumnAppender";
-import ColumnAppenderPopUp from "./ColumnAppenderPopUp";
+import { getInnerBlocksCount } from "../commons/getInnerBlocksCount";
 
 import ResponsivePanel, {
 	updateStyles,
 	updateClasses,
 	responsivePanelControls,
 } from "../commons/ResponsivePanel";
+
+import ColumnsLength from "./ColumnsLength";
+import ColumnAppender from "./ColumnAppender";
+import ColumnAppenderPopUp from "./ColumnAppenderPopUp";
 
 import { COLUMNS } from "../abstracts/constants";
 import { FLEX_CSS_PROPS } from "../abstracts/constants";
@@ -55,17 +57,9 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		),
 	});
 
-	const { hasInnerBlocks, innerBlocksCount } = useSelect(
-		(select) => {
-			const count = select("core/block-editor").getBlockCount(clientId);
-
-			return {
-				hasInnerBlocks: count > 0,
-				innerBlocksCount: count,
-			};
-		},
-		[clientId],
-	);
+	const { hasInnerBlocks, innerBlocksCount } = getInnerBlocksCount({
+		clientId,
+	});
 
 	const showNotice = innerBlocksCount >= COLUMNS;
 

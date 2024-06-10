@@ -10,13 +10,15 @@ import {
 
 import { PanelBody, Notice, RangeControl } from "@wordpress/components";
 
-import { COLUMNS } from "../abstracts/constants";
-
 import ResponsivePanel, {
 	updateStyles,
 	updateClasses,
 	responsivePanelControls,
 } from "../commons/ResponsivePanel";
+
+import { getInnerBlocksCount } from "../commons/getInnerBlocksCount";
+
+import { COLUMNS } from "../abstracts/constants";
 
 import { getDisplayPropValue } from "../commons/displayPropValue";
 
@@ -40,9 +42,7 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 		),
 	});
 
-	const { hasInnerBlocks } = useSelect((select) => ({
-		hasInnerBlocks: select("core/block-editor").getBlockCount(clientId) > 0,
-	}));
+	const { hasInnerBlocks } = getInnerBlocksCount({ clientId });
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		renderAppender: !hasInnerBlocks

@@ -16,6 +16,8 @@ import ResponsivePanel, {
 	responsivePanelControls,
 } from "../commons/ResponsivePanel";
 
+import { getInnerBlocksCount } from "../commons/getInnerBlocksCount";
+
 import { FLEX_CSS_PROPS } from "../abstracts/constants";
 
 import metadata from "./block.json";
@@ -29,9 +31,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	const style = updateStyles({ stylesClasses });
 
-	const { hasInnerBlocks } = useSelect((select) => ({
-		hasInnerBlocks: select("core/block-editor").getBlockCount(clientId) > 0,
-	}));
+	const { hasInnerBlocks } = getInnerBlocksCount({ clientId });
 
 	const blockProps = useBlockProps({
 		className: updateClasses(
