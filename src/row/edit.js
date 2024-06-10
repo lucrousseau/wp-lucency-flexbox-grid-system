@@ -40,8 +40,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const noColumnsDefined = !columns;
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
-	const [showNotice, setShowNotice] = useState(false);
-
 	/*
 	"display": "lucency-flex",
 	"flex-direction": "lucency-flex-row",
@@ -68,6 +66,8 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		},
 		[clientId],
 	);
+
+	const showNotice = innerBlocksCount >= COLUMNS;
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		allowedBlocks: ["lucency-grid/column"],
@@ -130,6 +130,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 							onChange: (value) => setAttributes({ display: value }),
 							value: display,
 						})}
+						{/*
 						<ColumnsLength
 							columns={columns}
 							display={display}
@@ -139,6 +140,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 							hasInnerBlocks={hasInnerBlocks}
 							innerBlocksCount={innerBlocksCount}
 						/>
+						*/}
 					</PanelBody>
 					<PanelBody title={__("Responsive Settings", "lucency")}>
 						<ResponsivePanel
