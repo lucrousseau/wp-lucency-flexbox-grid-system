@@ -16,6 +16,7 @@ import {
 } from "../commons/displayPropValue";
 
 import { getInnerBlocksCount } from "../commons/getInnerBlocksCount";
+import { updateStylesCustomFn } from "./updateStylesCustomFn";
 
 import ResponsivePanel, {
 	updateStyles,
@@ -48,8 +49,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	"flex-wrap": "lucency-flex-wrap"
 	*/
 
-	const style = updateStyles({ stylesClasses });
-
 	const blockProps = useBlockProps({
 		className: updateClasses(
 			{ stylesClasses },
@@ -60,8 +59,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const { hasInnerBlocks, innerBlocksCount } = getInnerBlocksCount({
 		clientId,
 	});
-
-	const showNotice = innerBlocksCount >= COLUMNS && isFlex;
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		allowedBlocks: ["lucency-grid/column"],
@@ -76,9 +73,18 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 				<ColumnAppender
 					innerBlocksCount={innerBlocksCount}
 					clientId={clientId}
+					setAttributes={setAttributes}
 					display={display}
 				/>
 			),
+	});
+
+	const showNotice = innerBlocksCount >= COLUMNS + 1 && isFlex;
+
+	const style = updateStyles({
+		stylesClasses,
+		fn: updateStylesCustomFn,
+		params: { display, innerBlocksCount },
 	});
 
 	const responsivePanelBefore = {

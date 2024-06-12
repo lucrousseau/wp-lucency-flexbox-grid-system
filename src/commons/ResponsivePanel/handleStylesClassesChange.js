@@ -14,7 +14,7 @@ export default function handleStylesClassesChange({
 			...stylesClasses[size],
 			[key]: {
 				...stylesClasses[size]?.[key],
-				...(value !== null ? { [prop]: value, unit } : {}),
+				...(value !== null ? { [prop]: { value, unit } } : {}),
 			},
 		},
 	};

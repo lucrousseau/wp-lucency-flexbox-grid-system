@@ -25,8 +25,9 @@ const responsivePanelControls = ({
 	defaultStylesClasses = {},
 }) => {
 	const defaultValue =
-		setDefault ?? defaultStylesClasses?.[size]?.[key]?.[prop];
-	const setValues = stylesClasses?.[size]?.[key]?.[prop] ?? null;
+		setDefault ?? defaultStylesClasses?.[size]?.[key]?.[prop]?.value;
+	const setValues = stylesClasses?.[size]?.[key]?.[prop]?.value ?? null;
+
 	const setOnChange =
 		onChange ??
 		((value) =>
@@ -48,6 +49,7 @@ const responsivePanelControls = ({
 			const setOptions = !defaultValue
 				? [...[{ label: "", value: null }], ...options]
 				: options;
+
 			output = (
 				<SelectControl
 					label={label}

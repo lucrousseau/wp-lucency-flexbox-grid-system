@@ -3,30 +3,36 @@ import classnames from "classnames";
 function processStylesClasses({ key, stylesClasses, processEntry }) {
 	let result = {};
 
-	Object.entries(stylesClasses ?? {}).forEach(([size, props]) => {
-		const unit = props?.[key]?.unit ?? "";
+	Object.entries(stylesClasses ?? {}).forEach(([size, props]) =>
+		Object.entries(props?.[key] ?? {}).forEach(([prop, values]) => {
+			let value = values?.value ?? values ?? null;
+			let unit = values?.unit ?? "";
 
-		Object.entries(props?.[key] ?? {}).forEach(([prop, value]) => {
 			if (value !== undefined && value !== null) {
 				const prefix = size === "full" ? "" : `${size}-`;
 
-				processEntry({ result, prefix, prop, value, unit });
+				processEntry({ size, result, prefix, prop, value, unit });
 			}
-		});
-	});
+		}),
+	);
 
 	return result;
 }
 
-export function updateStyles({ stylesClasses }, style = {}) {
+export function updateStyles(
+	{ stylesClasses, fn = () => {}, params },
+	style = {},
+) {
 	const key = "variables";
 
 	let processed = processStylesClasses({
 		key,
 		stylesClasses,
-		processEntry: ({ result, prefix, prop, value, unit }) => {
-			if (prop === "unit") return;
+		processEntry: (props) => {
+			const { result, prefix, prop, value, unit } = props;
+			const skip = fn({ params, ...props });
 
+			if (["unit"].includes(prop) || skip === true) return;
 			result[`--${prefix}${prop}`] = `${value}${unit}`;
 		},
 	});

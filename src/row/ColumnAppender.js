@@ -8,6 +8,7 @@ import "./ColumnAppender.scss";
 
 export default function ColumnAppender({
 	innerBlocksCount,
+	setAttributes,
 	clientId,
 	display,
 }) {
@@ -18,6 +19,10 @@ export default function ColumnAppender({
 	const addNewColumn = () => {
 		const block = createBlock("lucency-grid/column");
 		insertBlocks(block, innerBlocksCount, clientId, false);
+
+		setAttributes({
+			columns: innerBlocksCount + 1,
+		});
 	};
 
 	return (
