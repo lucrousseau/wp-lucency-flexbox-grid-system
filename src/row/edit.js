@@ -1,6 +1,4 @@
-import { useState } from "@wordpress/element";
 import classnames from "classnames";
-import { useSelect } from "@wordpress/data";
 import { __ } from "@wordpress/i18n";
 import {
 	useBlockProps,
@@ -24,7 +22,6 @@ import ResponsivePanel, {
 	responsivePanelControls,
 } from "../commons/ResponsivePanel";
 
-import ColumnsLength from "./ColumnsLength";
 import ColumnAppender from "./ColumnAppender";
 import ColumnAppenderPopUp from "./ColumnAppenderPopUp";
 
@@ -42,12 +39,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const Tag = tag;
 	const noColumnsDefined = !columns;
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
-
-	/*
-	"display": "lucency-flex",
-	"flex-direction": "lucency-flex-row",
-	"flex-wrap": "lucency-flex-wrap"
-	*/
 
 	const blockProps = useBlockProps({
 		className: updateClasses(
@@ -115,21 +106,10 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 							onChange: (value) => setAttributes({ display: value }),
 							value: display,
 						})}
-						{/*
-						<ColumnsLength
-							columns={columns}
-							display={display}
-							setAttributes={setAttributes}
-							clientId={clientId}
-							setShowNotice={setShowNotice}
-							hasInnerBlocks={hasInnerBlocks}
-							innerBlocksCount={innerBlocksCount}
-						/>
-						*/}
 					</PanelBody>
 					<PanelBody title={__("Responsive Settings", "lucency")}>
 						<ResponsivePanel
-							enabled={{ margin: true }}
+							enabled={{ margin: true, padding: true }}
 							stylesClasses={stylesClasses}
 							setAttributes={setAttributes}
 							responsivePanelBefore={responsivePanelBefore}
