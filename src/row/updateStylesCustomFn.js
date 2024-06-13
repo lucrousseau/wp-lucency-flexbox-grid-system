@@ -1,3 +1,5 @@
+import { COLUMNS } from "../abstracts/constants";
+
 export function updateStylesCustomFn({
 	result,
 	prefix,
@@ -8,10 +10,12 @@ export function updateStylesCustomFn({
 }) {
 	const { display, innerBlocksCount } = params;
 
-	if (prop === "cols") {
+	if (prop === "grid-columns") {
 		if (display !== "grid") return true;
 
-		result[`--${prefix}rows`] = `${Math.ceil(innerBlocksCount / value)}${unit}`;
+		result[`--${prefix}grid-rows`] = `${Math.ceil(
+			COLUMNS / (innerBlocksCount / value),
+		)}${unit}`;
 	}
 
 	return;

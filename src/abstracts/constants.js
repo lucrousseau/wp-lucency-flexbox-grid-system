@@ -97,7 +97,7 @@ const FLEX_CSS_PROPS = ({ display = "flex", size = null } = {}) => {
 
 	if (isGrid)
 		controls = {
-			cols: {
+			"grid-columns": {
 				min: 0,
 				max: COLUMNS,
 				col: COLUMNS,
