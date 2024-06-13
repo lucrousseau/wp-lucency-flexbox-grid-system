@@ -1,1 +1,12 @@
 @import "lucency-flex-grid/src/main";
+
+.lucency-grid,
+.lucency-flex {
+	border-radius: 10px;
+	background-color: #ccc;
+	.lucency-col {
+		color: #fff;
+		border-radius: 10px;
+		background-color: #454c73;
+	}
+}
