@@ -1,6 +1,10 @@
 import classnames from "classnames";
 
-export default function responsiveColumnSizes({ width, height }) {
+import { getDisplayPropValue } from "../commons/displayPropValue";
+
+export default function responsiveColumnSizes({ display, width, height }) {
+	const { isGrid } = getDisplayPropValue({ display });
+
 	const createClasses = (sizes, type) =>
 		Object.entries(sizes).reduce((acc, [size, value]) => {
 			const prefix = size === "full" ? "" : `--${size}`;
@@ -9,7 +13,7 @@ export default function responsiveColumnSizes({ width, height }) {
 		}, {});
 
 	const widthClasses = createClasses(width, "lucency-col");
-	const heightClasses = createClasses(height, "lucency-row");
+	const heightClasses = isGrid ? createClasses(height, "lucency-row") : {};
 
 	return classnames({ ...widthClasses, ...heightClasses });
 }

@@ -9,7 +9,7 @@ function processStylesClasses({ key, stylesClasses, processEntry }) {
 			let unit = values?.unit ?? "";
 
 			if (value !== undefined && value !== null) {
-				const prefix = size === "full" ? "" : `${size}-`;
+				const prefix = size === "full" ? "" : `--${size}`;
 
 				processEntry({ size, result, prefix, prop, value, unit });
 			}
@@ -33,7 +33,7 @@ export function updateStyles(
 			const skip = fn({ params, ...props });
 
 			if (["unit"].includes(prop) || skip === true) return;
-			result[`--${prefix}${prop}`] = `${value}${unit}`;
+			result[`--${prop}${prefix}`] = `${value}${unit}`;
 		},
 	});
 

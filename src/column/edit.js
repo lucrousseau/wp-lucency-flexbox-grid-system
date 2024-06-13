@@ -38,7 +38,10 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 	const blockProps = useBlockProps({
 		className: updateClasses(
 			{ stylesClasses },
-			classnames("lucency-col", responsiveColumnSizes({ width, height })),
+			classnames(
+				"lucency-col",
+				responsiveColumnSizes({ display, width, height }),
+			),
 		),
 	});
 

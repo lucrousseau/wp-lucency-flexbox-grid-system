@@ -13,7 +13,7 @@ export function updateStylesCustomFn({
 	if (prop === "grid-columns") {
 		if (display !== "grid") return true;
 
-		result[`--${prefix}grid-rows`] = `${Math.ceil(
+		result[`--grid-rows${prefix}`] = `${Math.ceil(
 			COLUMNS / (innerBlocksCount / value),
 		)}${unit}`;
 	}
