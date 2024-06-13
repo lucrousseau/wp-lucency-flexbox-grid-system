@@ -10,12 +10,14 @@ export function updateStylesCustomFn({
 }) {
 	const { display, innerBlocksCount } = params;
 
-	if (prop === "grid-columns") {
+	console.log({ innerBlocksCount, COLUMNS, value });
+
+	if (prop === "grid-column") {
 		if (display !== "grid") return true;
 
-		result[`--grid-rows${prefix}`] = `${Math.ceil(
-			COLUMNS / (innerBlocksCount / value),
-		)}${unit}`;
+		result[`--grid-row${prefix}`] = `${
+			COLUMNS / Math.ceil(innerBlocksCount / value)
+		}${unit}`;
 	}
 
 	return;
