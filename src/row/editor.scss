@@ -1,3 +1,4 @@
+.lucency-grid,
 .lucency-flex,
 .lucency-inline-flex {
 	> .block-list-appender {
@@ -9,5 +10,11 @@
 			flex: 1;
 			width: 100%;
 		}
+	}
+}
+
+.lucency-grid {
+	> .lucency-col {
+		margin: 0;
 	}
 }
