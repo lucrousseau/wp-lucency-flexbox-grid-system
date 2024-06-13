@@ -27,11 +27,13 @@ import responsiveColumnSizes from "./responsiveColumnSizes.js";
 import metadata from "./block.json";
 
 export default function Edit({ attributes, setAttributes, context, clientId }) {
-	const { stylesClasses, width, height } = attributes;
-	const { display } = context;
-	const { isGrid, isFlex } = getDisplayPropValue({ display });
+	const { stylesClasses, width, height, display } = attributes;
+	const contextDisplay = context?.display;
+	const { isGrid, isFlex } = getDisplayPropValue({ display: contextDisplay });
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 	const colOrCellLabel = isGrid ? "Cell" : "Column";
+
+	setAttributes({ display: contextDisplay });
 
 	const style = updateStyles({ stylesClasses });
 
@@ -40,7 +42,7 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 			{ stylesClasses },
 			classnames(
 				"lucency-col",
-				responsiveColumnSizes({ display, width, height }),
+				responsiveColumnSizes({ display: contextDisplay, width, height }),
 			),
 		),
 	});

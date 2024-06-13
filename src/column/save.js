@@ -7,14 +7,17 @@ import { updateStyles, updateClasses } from "../commons/ResponsivePanel";
 import responsiveColumnSizes from "./responsiveColumnSizes.js";
 
 export default function save({ attributes }) {
-	const { width, height, stylesClasses } = attributes;
+	const { width, height, stylesClasses, display } = attributes;
 
 	const style = updateStyles({ stylesClasses });
 
 	const innerBlocksProps = useInnerBlocksProps.save({
 		className: updateClasses(
 			{ stylesClasses },
-			classnames("lucency-col", responsiveColumnSizes({ width, height })),
+			classnames(
+				"lucency-col",
+				responsiveColumnSizes({ display, width, height }),
+			),
 		),
 	});
 

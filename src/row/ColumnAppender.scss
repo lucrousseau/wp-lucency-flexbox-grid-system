@@ -2,7 +2,10 @@
 	.lucency-admin-row-column-appender {
 		$bg: #fff;
 
+		top: 0;
 		gap: 1em;
+		right: 0;
+		margin-top: 5px;
 		cursor: pointer;
 		font-size: 12px;
 		line-height: 1em;
@@ -10,11 +13,10 @@
 		padding-right: 0;
 		position: absolute;
 		align-items: center;
+		white-space: nowrap;
 		border-radius: 100rem;
 		background-color: $bg;
 		border: 0.2em solid $bg;
-		right: calc(var(--get-padding-right));
-		top: calc(100% - var(--get-padding-bottom) + 1em);
 		box-shadow: 0.05em 0.05em 0.5em rgba(#000, 0.3);
 
 		display: none;
@@ -63,6 +65,12 @@
 				border: 1px dashed #999;
 			}
 		}
+	}
+}
+
+.wp-block-lucency-grid-row {
+	.block-list-appender {
+		width: auto !important;
 	}
 }
 
