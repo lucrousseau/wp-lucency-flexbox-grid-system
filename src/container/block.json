@@ -59,11 +59,12 @@
 			"default": {
 				"full": {
 					"variables": {
-						"padding-top": 4,
-						"padding-right": 2,
-						"padding-bottom": 4,
-						"padding-left": 2,
-						"max-width": 1200
+						"padding-top": { "value": 4, "unit": "rem" },
+						"padding-right": { "value": 2, "unit": "rem" },
+						"padding-bottom": { "value": 4, "unit": "rem" },
+						"padding-left": { "value": 2, "unit": "rem" },
+						"max-width": { "value": 1200, "unit": "rem" },
+						"gap": { "value": 1, "unit": "rem" }
 					}
 				}
 			}

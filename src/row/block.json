@@ -38,7 +38,7 @@
 				"full": {
 					"classes": {},
 					"variables": {
-						"gap": { "value": "1", "unit": "rem" }
+						"gap": { "value": 1, "unit": "rem" }
 					}
 				}
 			}
