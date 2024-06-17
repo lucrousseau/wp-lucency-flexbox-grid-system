@@ -24,10 +24,12 @@ export function setDisplayPropValue({
 export function getDisplayPropValue({ display }) {
 	const isGrid = display === "grid";
 	const isFlex = display === "flex";
+	const isContainer = display === "container";
 
 	return {
 		isGrid,
 		isFlex,
+		isContainer,
 		display,
 	};
 }

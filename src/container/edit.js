@@ -48,11 +48,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	const responsivePanelBefore = {
 		fn: ({ size }) => {
-			const controls = FLEX_CSS_PROPS();
+			const controls = FLEX_CSS_PROPS({ display: "container" });
 
-			delete controls.display;
-			delete controls["flex-wrap"];
-			delete controls.gap;
+			//delete controls.display;
+			//delete controls["flex-wrap"];
+			//delete controls.gap;
 
 			return Object.entries(controls).map(([prop, props]) =>
 				responsivePanelControls({
