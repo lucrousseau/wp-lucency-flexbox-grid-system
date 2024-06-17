@@ -122,12 +122,12 @@ export default function responsivePanelItems({
 		},
 		{
 			condition: enabled?.margin,
-			title: "Margins",
+			title: "Margins (rem)",
 			fn: responsivePanelMargins,
 		},
 		{
 			condition: enabled?.padding,
-			title: "Paddings",
+			title: "Paddings (rem)",
 			fn: responsivePanelPaddings,
 		},
 		{
