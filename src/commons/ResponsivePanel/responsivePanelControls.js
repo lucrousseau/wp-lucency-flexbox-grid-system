@@ -22,6 +22,7 @@ const responsivePanelControls = ({
 	shiftStep = 10,
 	onChange = null,
 	setDefault = null,
+	hideUnitInLabel = false,
 	defaultStylesClasses = {},
 }) => {
 	const defaultValue =
@@ -64,7 +65,7 @@ const responsivePanelControls = ({
 		case "number":
 			output = (
 				<NumberControl
-					label={`${label} ${unit ? `(${unit})` : ""}`}
+					label={`${label} ${unit && !hideUnitInLabel ? `(${unit})` : ""}`}
 					value={setValues ?? defaultValue}
 					onChange={setOnChange}
 					step={0.1}
