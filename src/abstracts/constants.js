@@ -125,7 +125,7 @@ const FLEX_CSS_PROPS = ({ display = "flex", size = null } = {}) => {
 				key: "classes",
 			},
 			"max-width": {
-				label: __("Max Width (px)", "lucency"),
+				label: __("Max Width", "lucency"),
 				type: "number",
 				key: "variables",
 				unit: "px",

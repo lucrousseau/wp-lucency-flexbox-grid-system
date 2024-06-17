@@ -64,7 +64,7 @@ const responsivePanelControls = ({
 		case "number":
 			output = (
 				<NumberControl
-					label={label}
+					label={`${label} ${unit ? `(${unit})` : ""}`}
 					value={setValues ?? defaultValue}
 					onChange={setOnChange}
 					step={0.1}
