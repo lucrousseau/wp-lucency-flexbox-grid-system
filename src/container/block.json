@@ -58,14 +58,8 @@
 			"type": "object",
 			"default": {
 				"full": {
-					"variables": {
-						"padding-top": { "value": 4, "unit": "rem" },
-						"padding-right": { "value": 2, "unit": "rem" },
-						"padding-bottom": { "value": 4, "unit": "rem" },
-						"padding-left": { "value": 2, "unit": "rem" },
-						"max-width": { "value": 1200, "unit": "rem" },
-						"gap": { "value": 1, "unit": "rem" }
-					}
+					"classes": {},
+					"variables": {}
 				}
 			}
 		}

@@ -36,7 +36,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const blockProps = useBlockProps({
 		className: updateClasses(
 			{ stylesClasses },
-			classnames("container lucency lucency-flex"),
+			classnames("lucency lucency-container"),
 		),
 	});
 
@@ -49,10 +49,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const responsivePanelBefore = {
 		fn: ({ size }) => {
 			const controls = FLEX_CSS_PROPS({ display: "container" });
-
-			//delete controls.display;
-			//delete controls["flex-wrap"];
-			//delete controls.gap;
 
 			return Object.entries(controls).map(([prop, props]) =>
 				responsivePanelControls({
@@ -81,7 +77,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 				</PanelBody>
 			</InspectorControls>
 			<section {...blockProps} style={style}>
-				<div {...innerBlocksProps} className="lucency-col"></div>
+				<div {...innerBlocksProps} className="lucency-container__content"></div>
 			</section>
 		</>
 	);

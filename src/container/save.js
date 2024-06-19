@@ -12,7 +12,7 @@ export default function save({ attributes }) {
 	const blockProps = useBlockProps.save({
 		className: updateClasses(
 			{ stylesClasses },
-			classnames("container container lucency lucency-flex"),
+			classnames("lucency lucency-container"),
 		),
 	});
 
@@ -20,7 +20,7 @@ export default function save({ attributes }) {
 
 	return (
 		<section {...blockProps} style={style}>
-			<div {...innerBlocksProps} className="lucency-col"></div>
+			<div {...innerBlocksProps} className="lucency-container__content"></div>
 		</section>
 	);
 }

@@ -5,7 +5,7 @@ import { BREAKPOINTS } from "../../abstracts/constants";
 import responsivePanelControls from "./responsivePanelControls";
 
 export default function responsivePanelItems({
-	enabled = { margin: true, padding: true },
+	enabled = { margin: false, padding: false },
 	stylesClasses,
 	setAttributes,
 	defaultStylesClasses = {},
