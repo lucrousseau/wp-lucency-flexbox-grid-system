@@ -32,7 +32,7 @@ export function updateStyles(
 			const { result, prefix, prop, value, unit } = props;
 			const skip = fn({ params, ...props });
 
-			if (["unit"].includes(prop) || skip === true) return;
+			if (skip === true) return;
 			result[`--${prop}${prefix}`] = `${value}${unit}`;
 		},
 	});
