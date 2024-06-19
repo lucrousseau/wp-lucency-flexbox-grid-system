@@ -18,11 +18,12 @@
 		border-radius: 100rem;
 		background-color: $bg;
 		border: 0.2em solid $bg;
-		box-shadow: 0.05em 0.05em 0.5em rgba(#000, 0.3);
+		box-shadow: 0.05em 0.05em 0.5em rgba(darken($bg, 100%), 0.3);
 
 		&:hover,
 		&:active {
 			filter: invert(100%);
+			box-shadow: 0.05em 0.05em 0.5em rgba($bg, 0.3);
 		}
 
 		span {
