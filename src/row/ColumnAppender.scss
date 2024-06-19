@@ -20,6 +20,11 @@
 		border: 0.2em solid $bg;
 		box-shadow: 0.05em 0.05em 0.5em rgba(#000, 0.3);
 
+		&:hover,
+		&:active {
+			filter: invert(100%);
+		}
+
 		span {
 			&:last-child {
 				width: 1em;
