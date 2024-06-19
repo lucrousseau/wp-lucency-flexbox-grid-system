@@ -36,7 +36,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const blockProps = useBlockProps({
 		className: updateClasses(
 			{ stylesClasses },
-			classnames("lucency lucency-container"),
+			classnames("lucency lucency-container lucency-flex"),
 		),
 	});
 
@@ -77,7 +77,10 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 				</PanelBody>
 			</InspectorControls>
 			<section {...blockProps} style={style}>
-				<div {...innerBlocksProps} className="lucency-container__content"></div>
+				<div
+					{...innerBlocksProps}
+					className="lucency-col lucency-container__content"
+				></div>
 			</section>
 		</>
 	);

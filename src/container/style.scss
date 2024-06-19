@@ -1,8 +1,16 @@
 .lucency-container {
-	padding: 3rem 2rem;
-	&__content {
-		max-width: 1200px;
-		margin-left: auto;
-		margin-right: auto;
+	$this: &;
+	&.lucency-flex {
+		--padding-top: 2rem;
+		--padding-left: 2rem;
+		--padding-right: 2rem;
+		--padding-bottom: 3rem;
+
+		#{$this}__content.lucency-col {
+			flex: 1;
+			max-width: 1200px;
+			margin-left: auto;
+			margin-right: auto;
+		}
 	}
 }
