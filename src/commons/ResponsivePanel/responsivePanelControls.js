@@ -26,7 +26,7 @@ const responsivePanelControls = ({
 	defaultStylesClasses = {},
 }) => {
 	const defaultValue =
-		setDefault ?? defaultStylesClasses?.[size]?.[key]?.[prop]?.value;
+		setDefault || defaultStylesClasses?.[size]?.[key]?.[prop]?.value;
 	const setValues = stylesClasses?.[size]?.[key]?.[prop]?.value ?? null;
 
 	const setOnChange =

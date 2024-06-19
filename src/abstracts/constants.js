@@ -112,15 +112,13 @@ const FLEX_CSS_PROPS = ({ display = "flex", size = null } = {}) => {
 
 	if (isContainer) {
 		controls = {
-			"align-items": {
+			"justify-content": {
 				options: [
-					{ label: "flex-start", value: "lucency-items-start" },
-					{ label: "flex-end", value: "lucency-items-end" },
-					{ label: "center", value: "lucency-items-center" },
-					{ label: "baseline", value: "lucency-items-baseline" },
-					{ label: "stretch", value: "lucency-items-stretch" },
+					{ label: "Left", value: "lucency-justify-start" },
+					{ label: "Right", value: "lucency-justify-end" },
+					{ label: "center", value: "lucency-justify-center" },
 				],
-				label: __("Align Items", "lucency"),
+				label: __("Block(s) Align", "lucency"),
 				type: "select",
 				key: "classes",
 			},
