@@ -19,7 +19,7 @@ export default function handleStylesClassesChange({
 		},
 	};
 
-	if (!value || value === defaultValue?.toString()) {
+	if (!value || value?.toString() === defaultValue?.toString()) {
 		delete updatedStylesClasses[size][key][prop];
 	}
 
