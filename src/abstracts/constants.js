@@ -52,6 +52,7 @@ const FLEX_CSS_PROPS = ({ display = "flex", size = null } = {}) => {
 			},
 			"justify-content": {
 				options: [
+					{ label: "inherit", value: "lucency-justify-inherit" },
 					{ label: "normal", value: "lucency-justify-normal" },
 					{ label: "flex-start", value: "lucency-justify-start" },
 					{ label: "flex-end", value: "lucency-justify-end" },
@@ -64,6 +65,7 @@ const FLEX_CSS_PROPS = ({ display = "flex", size = null } = {}) => {
 				label: __("Justify Content", "lucency"),
 				type: "select",
 				key: "classes",
+				setDefault: "lucency-justify-inherit",
 			},
 			"align-items": {
 				options: [
