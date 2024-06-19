@@ -18,6 +18,7 @@
 		border-radius: 100rem;
 		background-color: $bg;
 		border: 0.2em solid $bg;
+		color: darken($bg, 100%);
 		box-shadow: 0.05em 0.05em 0.5em rgba(darken($bg, 100%), 0.3);
 
 		&:hover,
