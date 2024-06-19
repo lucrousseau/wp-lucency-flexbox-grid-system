@@ -5,6 +5,7 @@
 		top: 0;
 		gap: 1em;
 		right: 0;
+		display: flex;
 		margin-top: 5px;
 		cursor: pointer;
 		font-size: 12px;
@@ -19,7 +20,6 @@
 		border: 0.2em solid $bg;
 		box-shadow: 0.05em 0.05em 0.5em rgba(#000, 0.3);
 
-		display: none;
 		span {
 			&:last-child {
 				width: 1em;
@@ -45,12 +45,6 @@
 					background-color: $bg;
 				}
 			}
-		}
-	}
-
-	&.is-selected {
-		.lucency-admin-row-column-appender {
-			display: flex;
 		}
 	}
 

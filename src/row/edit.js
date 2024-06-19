@@ -6,13 +6,14 @@ import {
 	InspectorControls,
 } from "@wordpress/block-editor";
 
-import { PanelBody, Notice } from "@wordpress/components";
+import { PanelBody } from "@wordpress/components";
 
 import {
 	setDisplayPropValue,
 	getDisplayPropValue,
 } from "../commons/displayPropValue";
 
+import CustomNotice from "../commons/CustomNotice";
 import { getInnerBlocksCount } from "../commons/getInnerBlocksCount";
 import { updateStylesCustomFn } from "./updateStylesCustomFn";
 
@@ -32,7 +33,12 @@ import metadata from "./block.json";
 
 import "./editor.scss";
 
-export default function Edit({ attributes, setAttributes, clientId }) {
+export default function Edit({
+	attributes,
+	setAttributes,
+	clientId,
+	isSelected,
+}) {
 	const { tag, stylesClasses, columns, display } = attributes;
 	const { isFlex } = getDisplayPropValue({ display });
 
@@ -51,6 +57,8 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		clientId,
 	});
 
+	const showNotice = innerBlocksCount >= COLUMNS + 1 && isFlex;
+
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		allowedBlocks: ["lucency-grid/column"],
 		renderAppender: () =>
@@ -60,17 +68,15 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					setAttributes={setAttributes}
 					clientId={clientId}
 				/>
-			) : (
+			) : isSelected ? (
 				<ColumnAppender
 					innerBlocksCount={innerBlocksCount}
 					clientId={clientId}
 					setAttributes={setAttributes}
 					display={display}
 				/>
-			),
+			) : null,
 	});
-
-	const showNotice = innerBlocksCount >= COLUMNS + 1 && isFlex;
 
 	const style = updateStyles({
 		stylesClasses,
@@ -118,15 +124,18 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					</PanelBody>
 				</InspectorControls>
 			)}
-			{showNotice && (
-				<Notice status="error" isDismissible={false}>
-					{__(
-						`This block is intended to be used with ${COLUMNS} columns. Having more can lead to unexpected results.`,
-						"lucency",
-					)}
-				</Notice>
-			)}
-			<Tag {...innerBlocksProps} style={style}></Tag>
+
+			<Tag {...innerBlocksProps} style={style}>
+				{showNotice && isSelected && (
+					<CustomNotice status="error" isDismissible={false}>
+						{__(
+							`This block is intended to be used with ${COLUMNS} columns. Having more can lead to unexpected results.`,
+							"lucency",
+						)}
+					</CustomNotice>
+				)}
+				{innerBlocksProps.children}
+			</Tag>
 		</>
 	);
 }
