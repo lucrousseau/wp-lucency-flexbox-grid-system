@@ -153,7 +153,7 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 				</Notice>
 				<PanelBody title={__("Responsive Settings")}>
 					<ResponsivePanel
-						enabled={{ padding: true }}
+						enabled={{ margin: true, padding: true }}
 						stylesClasses={stylesClasses}
 						setAttributes={setAttributes}
 						responsivePanelBefore={responsivePanelBefore}
