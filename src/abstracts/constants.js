@@ -15,7 +15,11 @@ const BREAKPOINTS = {
 };
 
 const FLEX_CSS_PROPS = ({ display = "flex", size = null } = {}) => {
-	const { isGrid, isFlex, isContainer } = getDisplayPropValue({ display });
+	const { isGrid, isFlex, isColumn, isCell, isContainer } = getDisplayPropValue(
+		{
+			display,
+		},
+	);
 	let controls = {};
 
 	if (isFlex) {
@@ -119,6 +123,45 @@ const FLEX_CSS_PROPS = ({ display = "flex", size = null } = {}) => {
 		};
 	}
 
+	if (isColumn || isCell) {
+		controls = {
+			...{
+				"text-align": {
+					options: [
+						{ label: "Inherit", value: "lucency-align-inherit" },
+						{ label: "Left", value: "lucency-align-left" },
+						{ label: "Center", value: "lucency-align-center" },
+						{ label: "Right", value: "lucency-align-right" },
+						{ label: "Justify", value: "lucency-align-justify" },
+					],
+					label: __("Text Align", "lucency"),
+					type: "select",
+					key: "classes",
+					setDefault: "lucency-align-inherit",
+				},
+			},
+			...(isCell
+				? {
+						"align-self": {
+							options: [
+								{ label: "Inherit", value: "lucency-self-inherit" },
+								{ label: "Auto", value: "lucency-self-auto" },
+								{ label: "Flex-start", value: "lucency-self-start" },
+								{ label: "Flex-end", value: "lucency-self-end" },
+								{ label: "Center", value: "lucency-self-center" },
+								{ label: "Stretch", value: "lucency-self-stretch" },
+								{ label: "Baseline", value: "lucency-self-baseline" },
+							],
+							label: __("Align Self", "lucency"),
+							type: "select",
+							key: "classes",
+							setDefault: "lucency-self-inherit",
+						},
+				  }
+				: {}),
+		};
+	}
+
 	if (isContainer) {
 		controls = {
 			"justify-content": {
@@ -152,20 +195,23 @@ const FLEX_CSS_PROPS = ({ display = "flex", size = null } = {}) => {
 		},
 	};
 
-	const gapControl = {
-		gap: {
-			label: __("Gap", "lucency"),
-			type: "number",
-			key: "variables",
-			unit: "rem",
-			step: 1,
-			setDefault: 1,
-		},
-	};
+	const gapControl =
+		isGrid || isFlex
+			? {
+					gap: {
+						label: __("Gap", "lucency"),
+						type: "number",
+						key: "variables",
+						unit: "rem",
+						step: 1,
+						setDefault: 1,
+					},
+			  }
+			: {};
 
 	return {
 		...textAlignControl,
-		...(isContainer ? {} : gapControl),
+		...gapControl,
 		...controls,
 	};
 };
