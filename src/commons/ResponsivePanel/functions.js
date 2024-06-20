@@ -1,6 +1,7 @@
 import classnames from "classnames";
 
 import { FLEX_CSS_PROPS } from "../../abstracts/constants";
+import { getPrefix } from "../../commons/prefix";
 
 function processStylesClasses({
 	key,
@@ -16,7 +17,7 @@ function processStylesClasses({
 			let unit = values?.unit ?? "";
 
 			if (value !== undefined && value !== null) {
-				const prefix = size === "full" ? "" : `--${size}`;
+				const prefix = getPrefix({ size });
 				const defaultValue = defaultStylesClasses?.[size]?.[key]?.[prop]?.value;
 
 				processEntry({

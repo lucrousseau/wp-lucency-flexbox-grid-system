@@ -1,13 +1,15 @@
 import classnames from "classnames";
 
 import { getDisplayPropValue } from "../commons/displayPropValue";
+import { getPrefix } from "../commons/prefix";
 
 export default function responsiveColumnSizes({ display, width, height }) {
 	const { isGrid } = getDisplayPropValue({ display });
 
 	const createClasses = (sizes, type) =>
 		Object.entries(sizes).reduce((acc, [size, value]) => {
-			const prefix = size === "full" ? "" : `--${size}`;
+			const prefix = getPrefix({ size });
+
 			acc[`${type}-${value}${prefix}`] = !!value;
 			return acc;
 		}, {});
