@@ -2,8 +2,6 @@ import classnames from "classnames";
 
 import { FLEX_CSS_PROPS } from "../../abstracts/constants";
 
-import { getDisplayPropValue } from "../displayPropValue";
-
 function processStylesClasses({
 	key,
 	stylesClasses = {},
