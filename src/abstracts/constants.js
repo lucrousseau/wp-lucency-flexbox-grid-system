@@ -28,6 +28,7 @@ const FLEX_CSS_PROPS = ({ display = "flex", size = null } = {}) => {
 				label: __("Display", "lucency"),
 				type: "select",
 				key: "classes",
+				setDefault: "lucency-flex",
 			},
 			"flex-direction": {
 				options: [
@@ -39,6 +40,7 @@ const FLEX_CSS_PROPS = ({ display = "flex", size = null } = {}) => {
 				label: __("Flex Direction", "lucency"),
 				type: "select",
 				key: "classes",
+				setDefault: "lucency-flex-row",
 			},
 			"flex-wrap": {
 				options: [
@@ -49,6 +51,7 @@ const FLEX_CSS_PROPS = ({ display = "flex", size = null } = {}) => {
 				label: __("Flex Wrap", "lucency"),
 				type: "select",
 				key: "classes",
+				setDefault: "lucency-flex-wrap",
 			},
 			"justify-content": {
 				options: [
@@ -69,6 +72,7 @@ const FLEX_CSS_PROPS = ({ display = "flex", size = null } = {}) => {
 			},
 			"align-items": {
 				options: [
+					{ label: "inherit", value: "lucency-items-inherit" },
 					{ label: "flex-start", value: "lucency-items-start" },
 					{ label: "flex-end", value: "lucency-items-end" },
 					{ label: "center", value: "lucency-items-center" },
@@ -78,9 +82,11 @@ const FLEX_CSS_PROPS = ({ display = "flex", size = null } = {}) => {
 				label: __("Align Items", "lucency"),
 				type: "select",
 				key: "classes",
+				setDefault: "lucency-items-inherit",
 			},
 			"align-content": {
 				options: [
+					{ label: "inherit", value: "lucency-content-inherit" },
 					{ label: "normal", value: "lucency-content-normal" },
 					{ label: "center", value: "lucency-content-center" },
 					{ label: "flex-start", value: "lucency-content-start" },
@@ -94,6 +100,7 @@ const FLEX_CSS_PROPS = ({ display = "flex", size = null } = {}) => {
 				label: __("Align Content", "lucency"),
 				type: "select",
 				key: "classes",
+				setDefault: "lucency-content-inherit",
 			},
 		};
 	}
