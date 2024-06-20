@@ -66,7 +66,7 @@ export function updateStyles(
 }
 
 export function updateClasses(
-	{ stylesClasses = {}, defaultStylesClasses = {}, params = {} },
+	{ stylesClasses = {}, defaultStylesClasses = {}, fn = () => {}, params = {} },
 	classes = null,
 ) {
 	const key = "classes";
@@ -78,9 +78,14 @@ export function updateClasses(
 		processEntry: (props) => {
 			const { result, prefix, prop, value, defaultValue } = props;
 			const { display } = params;
+			const skip = fn({ params, ...props });
 			const controls = FLEX_CSS_PROPS({ display });
 
-			if (value?.toString() === defaultValue?.toString() || !controls?.[prop])
+			if (
+				skip === true ||
+				value?.toString() === defaultValue?.toString() ||
+				!controls?.[prop]
+			)
 				return;
 
 			result[`${value}${prefix}`] = true;
