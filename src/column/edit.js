@@ -61,30 +61,34 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 				...{
 					"text-align": {
 						options: [
-							{ label: "left", value: "lucency-align-left" },
-							{ label: "center", value: "lucency-align-center" },
-							{ label: "right", value: "lucency-align-right" },
-							{ label: "justify", value: "lucency-align-justify" },
+							{ label: "Inherit", value: "lucency-align-inherit" },
+							{ label: "Left", value: "lucency-align-left" },
+							{ label: "Center", value: "lucency-align-center" },
+							{ label: "Right", value: "lucency-align-right" },
+							{ label: "Justify", value: "lucency-align-justify" },
 						],
 						label: __("Text Align", "lucency"),
 						type: "select",
 						key: "classes",
+						setDefault: "lucency-align-inherit",
 					},
 				},
 				...(isFlex
 					? {
 							"align-self": {
 								options: [
-									{ label: "auto", value: "lucency-self-auto" },
-									{ label: "flex-start", value: "lucency-self-start" },
-									{ label: "flex-end", value: "lucency-self-end" },
-									{ label: "center", value: "lucency-self-center" },
-									{ label: "stretch", value: "lucency-self-stretch" },
-									{ label: "baseline", value: "lucency-self-baseline" },
+									{ label: "Inherit", value: "lucency-self-inherit" },
+									{ label: "Auto", value: "lucency-self-auto" },
+									{ label: "Flex-start", value: "lucency-self-start" },
+									{ label: "Flex-end", value: "lucency-self-end" },
+									{ label: "Center", value: "lucency-self-center" },
+									{ label: "Stretch", value: "lucency-self-stretch" },
+									{ label: "Baseline", value: "lucency-self-baseline" },
 								],
 								label: __("Align Self", "lucency"),
 								type: "select",
 								key: "classes",
+								setDefault: "lucency-self-inherit",
 							},
 					  }
 					: {}),
