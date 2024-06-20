@@ -154,6 +154,8 @@ const FLEX_CSS_PROPS = ({ display = "flex", size = null } = {}) => {
 			type: "number",
 			key: "variables",
 			unit: "rem",
+			step: 1,
+			setDefault: 1,
 		},
 	};
 

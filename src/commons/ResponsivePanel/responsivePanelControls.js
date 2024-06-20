@@ -19,6 +19,7 @@ const responsivePanelControls = ({
 	min,
 	max,
 	col = 6,
+	step = 0.1,
 	shiftStep = 10,
 	onChange = null,
 	setDefault = null,
@@ -68,7 +69,7 @@ const responsivePanelControls = ({
 					label={`${label} ${unit && !hideUnitInLabel ? `(${unit})` : ""}`}
 					value={setValues ?? defaultValue}
 					onChange={setOnChange}
-					step={0.1}
+					step={step}
 					isShiftStepEnabled={true}
 					shiftStep={shiftStep}
 					min={min}

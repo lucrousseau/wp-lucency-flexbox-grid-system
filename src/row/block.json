@@ -37,9 +37,7 @@
 			"default": {
 				"full": {
 					"classes": {},
-					"variables": {
-						"gap": { "value": 1, "unit": "rem" }
-					}
+					"variables": {}
 				}
 			}
 		}
