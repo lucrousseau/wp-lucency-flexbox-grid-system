@@ -1,6 +1,11 @@
 import classnames from "classnames";
 
-function processStylesClasses({ key, stylesClasses, processEntry }) {
+function processStylesClasses({
+	key,
+	stylesClasses = {},
+	defaultStylesClasses = {},
+	processEntry,
+}) {
 	let result = {};
 
 	Object.entries(stylesClasses ?? {}).forEach(([size, props]) =>
@@ -10,8 +15,9 @@ function processStylesClasses({ key, stylesClasses, processEntry }) {
 
 			if (value !== undefined && value !== null) {
 				const prefix = size === "full" ? "" : `--${size}`;
+				const defaultValue = defaultStylesClasses?.[size]?.[key]?.[prop]?.value;
 
-				processEntry({ size, result, prefix, prop, value, unit });
+				processEntry({ size, result, prefix, prop, value, unit, defaultValue });
 			}
 		}),
 	);
@@ -20,7 +26,7 @@ function processStylesClasses({ key, stylesClasses, processEntry }) {
 }
 
 export function updateStyles(
-	{ stylesClasses, fn = () => {}, params },
+	{ stylesClasses = {}, defaultStylesClasses = {}, fn = () => {}, params },
 	style = {},
 ) {
 	const key = "variables";
@@ -28,11 +34,13 @@ export function updateStyles(
 	let processed = processStylesClasses({
 		key,
 		stylesClasses,
+		defaultStylesClasses,
 		processEntry: (props) => {
-			const { result, prefix, prop, value, unit } = props;
+			const { result, prefix, prop, value, unit, defaultValue } = props;
 			const skip = fn({ params, ...props });
 
-			if (skip === true) return;
+			if (skip === true || value?.toString() === defaultValue?.toString())
+				return;
 			result[`--${prop}${prefix}`] = `${value}${unit}`;
 		},
 	});
@@ -40,13 +48,18 @@ export function updateStyles(
 	return { ...style, ...processed };
 }
 
-export function updateClasses({ stylesClasses }, classes = null) {
+export function updateClasses(
+	{ stylesClasses = {}, defaultStylesClasses = {} },
+	classes = null,
+) {
 	const key = "classes";
 
 	let processed = processStylesClasses({
 		key,
 		stylesClasses,
-		processEntry: ({ result, prefix, value }) => {
+		defaultStylesClasses,
+		processEntry: ({ result, prefix, value, defaultValue }) => {
+			if (value?.toString() === defaultValue?.toString()) return;
 			result[`${value}${prefix}`] = true;
 		},
 	});

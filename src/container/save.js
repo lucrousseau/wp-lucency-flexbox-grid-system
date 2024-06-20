@@ -4,14 +4,18 @@ import { useBlockProps, useInnerBlocksProps } from "@wordpress/block-editor";
 
 import { updateStyles, updateClasses } from "../commons/ResponsivePanel";
 
+import metadata from "./block.json";
+
 export default function save({ attributes }) {
 	const { stylesClasses } = attributes;
 
-	const style = updateStyles({ stylesClasses });
+	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
+
+	const style = updateStyles({ stylesClasses, defaultStylesClasses });
 
 	const blockProps = useBlockProps.save({
 		className: updateClasses(
-			{ stylesClasses },
+			{ stylesClasses, defaultStylesClasses },
 			classnames("lucency lucency-container lucency-flex"),
 		),
 	});

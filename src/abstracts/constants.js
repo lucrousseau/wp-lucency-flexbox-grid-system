@@ -123,6 +123,7 @@ const FLEX_CSS_PROPS = ({ display = "flex", size = null } = {}) => {
 		controls = {
 			"justify-content": {
 				options: [
+					{ label: "Inherit", value: "lucency-justify-inherit" },
 					{ label: "Left", value: "lucency-justify-start" },
 					{ label: "Center", value: "lucency-justify-center" },
 					{ label: "Right", value: "lucency-justify-end" },
@@ -130,6 +131,7 @@ const FLEX_CSS_PROPS = ({ display = "flex", size = null } = {}) => {
 				label: __("Block(s) Align", "lucency"),
 				type: "select",
 				key: "classes",
+				setDefault: "lucency-justify-inherit",
 			},
 		};
 	}
@@ -137,6 +139,7 @@ const FLEX_CSS_PROPS = ({ display = "flex", size = null } = {}) => {
 	const textAlignControl = {
 		"text-align": {
 			options: [
+				{ label: "Inherit", value: "lucency-align-inherit" },
 				{ label: "Left", value: "lucency-align-left" },
 				{ label: "Center", value: "lucency-align-center" },
 				{ label: "Right", value: "lucency-align-right" },
@@ -145,6 +148,7 @@ const FLEX_CSS_PROPS = ({ display = "flex", size = null } = {}) => {
 			label: __("Text Align", "lucency"),
 			type: "select",
 			key: "classes",
+			setDefault: "lucency-align-inherit",
 		},
 	};
 

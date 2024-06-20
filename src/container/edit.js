@@ -29,13 +29,13 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
-	const style = updateStyles({ stylesClasses });
+	const style = updateStyles({ stylesClasses, defaultStylesClasses });
 
 	const { hasInnerBlocks } = getInnerBlocksCount({ clientId });
 
 	const blockProps = useBlockProps({
 		className: updateClasses(
-			{ stylesClasses },
+			{ stylesClasses, defaultStylesClasses },
 			classnames("lucency lucency-container lucency-flex"),
 		),
 	});
@@ -69,6 +69,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			<InspectorControls>
 				<PanelBody title={__("Container Settings")}>
 					<ResponsivePanel
+						enabled={{ margin: true, padding: true }}
 						stylesClasses={stylesClasses}
 						setAttributes={setAttributes}
 						responsivePanelBefore={responsivePanelBefore}
