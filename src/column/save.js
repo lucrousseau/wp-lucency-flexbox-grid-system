@@ -12,11 +12,15 @@ export default function save({ attributes }) {
 	const { width, height, stylesClasses, display } = attributes;
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
-	const style = updateStyles({ stylesClasses, defaultStylesClasses });
+	const style = updateStyles({
+		stylesClasses,
+		defaultStylesClasses,
+		params: { display },
+	});
 
 	const innerBlocksProps = useInnerBlocksProps.save({
 		className: updateClasses(
-			{ stylesClasses, defaultStylesClasses },
+			{ stylesClasses, defaultStylesClasses, params: { display } },
 			classnames(
 				"lucency-col",
 				responsiveColumnSizes({ display, width, height }),

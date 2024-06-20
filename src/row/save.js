@@ -21,7 +21,7 @@ export default function save({ attributes }) {
 
 	const blockProps = useBlockProps.save({
 		className: updateClasses(
-			{ stylesClasses, defaultStylesClasses },
+			{ stylesClasses, defaultStylesClasses, params: { display } },
 			classnames("lucency", `lucency-${display}`),
 		),
 	});

@@ -1,5 +1,9 @@
 import classnames from "classnames";
 
+import { FLEX_CSS_PROPS } from "../../abstracts/constants";
+
+import { getDisplayPropValue } from "../displayPropValue";
+
 function processStylesClasses({
 	key,
 	stylesClasses = {},
@@ -17,7 +21,15 @@ function processStylesClasses({
 				const prefix = size === "full" ? "" : `--${size}`;
 				const defaultValue = defaultStylesClasses?.[size]?.[key]?.[prop]?.value;
 
-				processEntry({ size, result, prefix, prop, value, unit, defaultValue });
+				processEntry({
+					size,
+					result,
+					prefix,
+					prop,
+					value,
+					unit,
+					defaultValue,
+				});
 			}
 		}),
 	);
@@ -26,7 +38,7 @@ function processStylesClasses({
 }
 
 export function updateStyles(
-	{ stylesClasses = {}, defaultStylesClasses = {}, fn = () => {}, params },
+	{ stylesClasses = {}, defaultStylesClasses = {}, fn = () => {}, params = {} },
 	style = {},
 ) {
 	const key = "variables";
@@ -37,10 +49,17 @@ export function updateStyles(
 		defaultStylesClasses,
 		processEntry: (props) => {
 			const { result, prefix, prop, value, unit, defaultValue } = props;
+			const { display } = params;
 			const skip = fn({ params, ...props });
+			const controls = FLEX_CSS_PROPS({ display });
 
-			if (skip === true || value?.toString() === defaultValue?.toString())
+			if (
+				skip === true ||
+				value?.toString() === defaultValue?.toString() ||
+				!controls?.[prop]
+			)
 				return;
+
 			result[`--${prop}${prefix}`] = `${value}${unit}`;
 		},
 	});
@@ -49,7 +68,7 @@ export function updateStyles(
 }
 
 export function updateClasses(
-	{ stylesClasses = {}, defaultStylesClasses = {} },
+	{ stylesClasses = {}, defaultStylesClasses = {}, params = {} },
 	classes = null,
 ) {
 	const key = "classes";
@@ -58,8 +77,14 @@ export function updateClasses(
 		key,
 		stylesClasses,
 		defaultStylesClasses,
-		processEntry: ({ result, prefix, value, defaultValue }) => {
-			if (value?.toString() === defaultValue?.toString()) return;
+		processEntry: (props) => {
+			const { result, prefix, prop, value, defaultValue } = props;
+			const { display } = params;
+			const controls = FLEX_CSS_PROPS({ display });
+
+			if (value?.toString() === defaultValue?.toString() || !controls?.[prop])
+				return;
+
 			result[`${value}${prefix}`] = true;
 		},
 	});

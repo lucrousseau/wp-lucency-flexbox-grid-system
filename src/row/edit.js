@@ -48,7 +48,7 @@ export default function Edit({
 
 	const blockProps = useBlockProps({
 		className: updateClasses(
-			{ stylesClasses, defaultStylesClasses },
+			{ stylesClasses, defaultStylesClasses, params: { display } },
 			classnames("lucency", `lucency-${display}`),
 		),
 	});
