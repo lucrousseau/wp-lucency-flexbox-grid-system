@@ -17,24 +17,36 @@ import ResponsivePanel, {
 } from "../commons/ResponsivePanel";
 
 import { getInnerBlocksCount } from "../commons/getInnerBlocksCount";
-
+import { roundColumnWidth } from "../commons/roundColumnWidth";
 import { COLUMNS } from "../abstracts/constants";
 import { FLEX_CSS_PROPS } from "../abstracts/constants";
 
 import { getDisplayPropValue } from "../commons/displayPropValue";
+import { generateGridDimensions } from "../row/generateGridDimensions";
 
 import responsiveColumnSizes from "./responsiveColumnSizes.js";
 
 import metadata from "./block.json";
 
 export default function Edit({ attributes, setAttributes, context, clientId }) {
-	const { stylesClasses, width, height, display } = attributes;
-	const contextDisplay = context?.display;
-	const { isGrid, isFlex } = getDisplayPropValue({ display: contextDisplay });
+	const { stylesClasses, width, height, display, cells, parentStylesClasses } =
+		attributes;
+
+	const {
+		display: contextDisplay = display,
+		cells: contextCells = cells,
+		stylesClasses: contextParentStylesClasses = parentStylesClasses,
+	} = context || {};
+
+	const { isGrid } = getDisplayPropValue({ display: contextDisplay });
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 	const colOrCellLabel = isGrid ? "Cell" : "Column";
 
-	setAttributes({ display: contextDisplay });
+	setAttributes({
+		display: contextDisplay,
+		cells: contextCells,
+		parentStylesClasses: contextParentStylesClasses,
+	});
 
 	const style = updateStyles({
 		stylesClasses,
@@ -47,7 +59,13 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 			{ stylesClasses, defaultStylesClasses, params: { display } },
 			classnames(
 				"lucency-col",
-				responsiveColumnSizes({ display: contextDisplay, width, height }),
+				responsiveColumnSizes({
+					display: contextDisplay,
+					parentStylesClasses: contextParentStylesClasses,
+					cells: contextCells,
+					width,
+					height,
+				}),
 			),
 		),
 	});
@@ -66,14 +84,52 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 				display: colOrCellLabel.toLocaleLowerCase(),
 			});
 
+			const getGenerateGridDimensions = generateGridDimensions({
+				cells: contextCells,
+			});
+
+			const cells = getGenerateGridDimensions?.["--grid-template-columns"] ?? 0;
+			const widthValue = width?.[size] || 0;
+			const setWidhAuto = widthValue || cells;
+
+			const totalCols = isGrid
+				? parentStylesClasses?.[size]?.variables?.["grid-template-columns"]
+						?.value || cells
+				: COLUMNS;
+
+			const columnWidth = roundColumnWidth({
+				total: totalCols,
+				pourcentage: setWidhAuto,
+			});
+			const labelLabel = !!columnWidth
+				? `${columnWidth} ${colOrCellLabel}(s) Width on ${totalCols}`
+				: `Auto ${colOrCellLabel}(s) Width`;
+
+			const customTooltipContent = () =>
+				`${!columnWidth ? __("Auto", "lucency") : columnWidth}`;
+
+			const marks = [
+				{
+					value: 0,
+					label: __("Auto", "lucency"),
+				},
+				...Array.from({ length: totalCols }, (_, i) => ({
+					value: (i + 1) * (100 / totalCols),
+					label: (i + 1).toString(),
+				})),
+			];
+
 			return (
 				<>
 					<div className={`lucency-col lucency-col-12`}>
 						<RangeControl
-							label={__(`${colOrCellLabel} Width`, "lucency")}
+							label={__(labelLabel, "lucency")}
 							min={0}
-							max={COLUMNS}
-							value={width?.[size] ?? 0}
+							max={100}
+							value={widthValue}
+							marks={marks}
+							withInputField={false}
+							renderTooltipContent={customTooltipContent}
 							onChange={(value) =>
 								setAttributes({
 									width: {
@@ -82,7 +138,7 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 									},
 								})
 							}
-							help={__("Leave at 0 for auto width", "lucency")}
+							help={__("Leave at AUTO for auto width", "lucency")}
 						/>
 						{isGrid && (
 							<RangeControl

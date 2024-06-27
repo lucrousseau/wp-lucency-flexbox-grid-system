@@ -31,6 +31,14 @@
 			"type": "string",
 			"default": ""
 		},
+		"columns": {
+			"type": "number",
+			"default": null
+		},
+		"cells": {
+			"type": "number",
+			"default": null
+		},
 		"stylesClasses": {
 			"type": "object",
 			"default": {
@@ -39,7 +47,11 @@
 					"variables": {}
 				}
 			}
+		},
+		"parentStylesClasses": {
+			"type": "object",
+			"default": {}
 		}
 	},
-	"usesContext": ["display"]
+	"usesContext": ["display", "cells", "stylesClasses"]
 }

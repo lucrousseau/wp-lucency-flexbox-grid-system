@@ -43,6 +43,8 @@
 		}
 	},
 	"providesContext": {
-		"display": "display"
+		"display": "display",
+		"cells": "cells",
+		"stylesClasses": "stylesClasses"
 	}
 }

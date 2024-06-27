@@ -9,7 +9,8 @@ import responsiveColumnSizes from "./responsiveColumnSizes.js";
 import metadata from "./block.json";
 
 export default function save({ attributes }) {
-	const { width, height, stylesClasses, display } = attributes;
+	const { width, height, stylesClasses, display, cells, parentStylesClasses } =
+		attributes;
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
 	const style = updateStyles({
@@ -23,7 +24,13 @@ export default function save({ attributes }) {
 			{ stylesClasses, defaultStylesClasses, params: { display } },
 			classnames(
 				"lucency-col",
-				responsiveColumnSizes({ display, width, height }),
+				responsiveColumnSizes({
+					display,
+					cells,
+					parentStylesClasses,
+					width,
+					height,
+				}),
 			),
 		),
 	});

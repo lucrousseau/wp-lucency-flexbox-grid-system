@@ -111,11 +111,11 @@ const FLEX_CSS_PROPS = ({ display = "flex", size = null } = {}) => {
 
 	if (isGrid) {
 		controls = {
-			"grid-column": {
+			"grid-template-columns": {
 				min: 0,
 				max: COLUMNS,
 				col: COLUMNS,
-				setDefault: size === "full" ? COLUMNS / 2 : 0,
+				setDefault: 0,
 				label: __("Columns per Grid", "lucency"),
 				type: "range",
 				key: "variables",

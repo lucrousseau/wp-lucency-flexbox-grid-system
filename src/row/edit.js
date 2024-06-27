@@ -16,6 +16,7 @@ import {
 import CustomNotice from "../commons/CustomNotice";
 import { getInnerBlocksCount } from "../commons/getInnerBlocksCount";
 import { updateStylesCustomFn } from "./updateStylesCustomFn";
+import { generateGridDimensionsStyles } from "./generateGridDimensions";
 
 import ResponsivePanel, {
 	updateStyles,
@@ -57,6 +58,8 @@ export default function Edit({
 		clientId,
 	});
 
+	setAttributes({ cells: innerBlocksCount });
+
 	const showNotice = innerBlocksCount >= COLUMNS + 1 && isFlex;
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
@@ -83,6 +86,13 @@ export default function Edit({
 		defaultStylesClasses,
 		fn: updateStylesCustomFn,
 		params: { display, innerBlocksCount },
+	});
+
+	const styleAndIfDefaultGridDimensions = generateGridDimensionsStyles({
+		style,
+		display,
+		stylesClasses,
+		cells: innerBlocksCount,
 	});
 
 	const responsivePanelBefore = {
@@ -126,7 +136,7 @@ export default function Edit({
 				</InspectorControls>
 			)}
 
-			<Tag {...innerBlocksProps} style={style}>
+			<Tag {...innerBlocksProps} style={styleAndIfDefaultGridDimensions}>
 				{showNotice && isSelected && (
 					<CustomNotice status="error" isDismissible={false}>
 						{__(
