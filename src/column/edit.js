@@ -24,7 +24,7 @@ import CustomRangeControlForCells from "./CustomRangeControlForCells";
 import { getDisplayPropValue } from "../commons/displayPropValue";
 import { generateGridDimensions } from "../row/generateGridDimensions";
 
-import responsiveColumnSizes from "./responsiveColumnSizes.js";
+import responsiveColumnSizes from "./responsiveColumnSizes";
 
 import metadata from "./block.json";
 

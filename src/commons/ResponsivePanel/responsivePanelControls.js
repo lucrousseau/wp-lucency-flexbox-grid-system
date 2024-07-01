@@ -18,6 +18,9 @@ const responsivePanelControls = ({
 	unit,
 	min,
 	max,
+	marks,
+	withInputField,
+	renderTooltipContent,
 	col = 6,
 	step = 0.1,
 	shiftStep = 10,
@@ -86,6 +89,9 @@ const responsivePanelControls = ({
 					max={max}
 					value={setValues ?? defaultValue}
 					onChange={setOnChange}
+					marks={marks}
+					withInputField={withInputField}
+					renderTooltipContent={renderTooltipContent}
 				/>
 			);
 			break;

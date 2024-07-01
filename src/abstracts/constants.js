@@ -1,6 +1,8 @@
 import { __ } from "@wordpress/i18n";
 
 import { getDisplayPropValue } from "../commons/displayPropValue";
+import { generateMarksForRange } from "../commons/generateMarksForRange";
+import { customCellsRangeTooltipContent } from "../commons/customCellsRangeTooltipContent";
 
 const COLUMNS = 12;
 
