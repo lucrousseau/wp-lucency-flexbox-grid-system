@@ -17,7 +17,7 @@ import ResponsivePanel, {
 } from "../commons/ResponsivePanel";
 
 import { getInnerBlocksCount } from "../commons/getInnerBlocksCount";
-import { roundCellWidth } from "../commons/roundCellWidth";
+import { roundCellDimension } from "../commons/roundCellDimension";
 import { COLUMNS } from "../abstracts/constants";
 import { FLEX_CSS_PROPS } from "../abstracts/constants";
 
@@ -107,12 +107,12 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 						?.value || cellY
 				: COLUMNS;
 
-			const columnWidth = roundCellWidth({
+			const columnWidth = roundCellDimension({
 				total: totalCols,
 				pourcentage: setWidhAuto,
 			});
 
-			const columnHeight = roundCellWidth({
+			const columnHeight = roundCellDimension({
 				total: totalRows,
 				pourcentage: setHeightAuto,
 			});

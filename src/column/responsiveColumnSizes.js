@@ -2,7 +2,7 @@ import classnames from "classnames";
 
 import { getDisplayPropValue } from "../commons/displayPropValue";
 import { getPrefix } from "../commons/prefix";
-import { roundCellWidth } from "../commons/roundCellWidth";
+import { roundCellDimension } from "../commons/roundCellDimension";
 import { generateGridDimensions } from "../row/generateGridDimensions";
 import { COLUMNS } from "../abstracts/constants";
 
@@ -30,7 +30,7 @@ export default function responsiveColumnSizes({
 				  COLUMNS
 				: false;
 
-			const getColumnWidth = roundCellWidth({ total, pourcentage: value });
+			const getColumnWidth = roundCellDimension({ total, pourcentage: value });
 			console.log({ total, pourcentage: value, getColumnWidth });
 
 			acc[`${type}-${getColumnWidth}${prefix}`] = !!getColumnWidth;
