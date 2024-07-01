@@ -154,7 +154,7 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 									},
 								})
 							}
-							help={__("Leave at AUTO for auto width", "lucency")}
+							help={__("Leave at AUTO for auto Width", "lucency")}
 						/>
 						{isGrid && (
 							<RangeControl
@@ -178,7 +178,7 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 										},
 									})
 								}
-								help={__("Leave at 0 for auto height", "lucency")}
+								help={__("Leave at 0 for auto Height", "lucency")}
 							/>
 						)}
 					</div>
