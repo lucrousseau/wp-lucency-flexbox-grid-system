@@ -121,6 +121,9 @@ const FLEX_CSS_PROPS = ({ display = "flex", size = null } = {}) => {
 				label: __("Columns per Grid", "lucency"),
 				type: "range",
 				key: "variables",
+				marks: generateMarksForRange({ total: 100 }),
+				renderTooltipContent: customCellsRangeTooltipContent,
+				withInputField: false,
 			},
 		};
 	}
