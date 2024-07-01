@@ -17,7 +17,7 @@ import ResponsivePanel, {
 } from "../commons/ResponsivePanel";
 
 import { getInnerBlocksCount } from "../commons/getInnerBlocksCount";
-import { roundColumnWidth } from "../commons/roundColumnWidth";
+import { roundCellWidth } from "../commons/roundCellWidth";
 import { COLUMNS } from "../abstracts/constants";
 import { FLEX_CSS_PROPS } from "../abstracts/constants";
 
@@ -102,16 +102,27 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 						?.value || cellsX
 				: COLUMNS;
 
-			const columnWidth = roundColumnWidth({
+			const totalRows = isGrid
+				? parentStylesClasses?.[size]?.variables?.["grid-template-rows"]
+						?.value || cellY
+				: COLUMNS;
+
+			const columnWidth = roundCellWidth({
 				total: totalCols,
 				pourcentage: setWidhAuto,
 			});
+
+			const columnHeight = roundCellWidth({
+				total: totalRows,
+				pourcentage: setHeightAuto,
+			});
+
 			const labelLabel = !!columnWidth
 				? `${columnWidth} ${colOrCellLabel}(s) Width on ${totalCols}`
 				: `Auto ${colOrCellLabel}(s) Width`;
 
-			const customTooltipContent = () =>
-				`${!columnWidth ? __("Auto", "lucency") : columnWidth}`;
+			const customTooltipContent = ({ value }) =>
+				`${!value ? __("Auto", "lucency") : value}`;
 
 			const marks = [
 				{
@@ -134,7 +145,9 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 							value={widthValue}
 							marks={marks}
 							withInputField={false}
-							renderTooltipContent={customTooltipContent}
+							renderTooltipContent={() =>
+								customTooltipContent({ value: columnWidth })
+							}
 							onChange={(value) =>
 								setAttributes({
 									width: {
@@ -153,6 +166,9 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 								value={setHeightAuto}
 								marks={marks}
 								withInputField={false}
+								renderTooltipContent={() =>
+									customTooltipContent({ value: columnHeight })
+								}
 								onChange={(value) =>
 									setAttributes({
 										height: {
