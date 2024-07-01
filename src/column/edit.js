@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import { useSelect } from "@wordpress/data";
+import { useMemo } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
 import {
 	InnerBlocks,
@@ -130,19 +130,33 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 				})),
 			];
 
+			const CustomRangeControl = useMemo(
+				() =>
+					({ label, value, renderTooltipContent, onChange, help }) => (
+						<RangeControl
+							label={label}
+							min={0}
+							max={100}
+							value={value}
+							marks={marks}
+							withInputField={false}
+							renderTooltipContent={renderTooltipContent}
+							onChange={onChange}
+							help={help}
+						/>
+					),
+				[],
+			);
+
 			return (
 				<>
 					<div className={`lucency-col lucency-col-12`}>
-						<RangeControl
+						<CustomRangeControl
 							label={__(
 								generateLabels({ value: columnWidth, label: "Width" }),
 								"lucency",
 							)}
-							min={0}
-							max={100}
 							value={widthValue}
-							marks={marks}
-							withInputField={false}
 							renderTooltipContent={() =>
 								customTooltipContent({ value: columnWidth })
 							}
@@ -157,16 +171,12 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 							help={__("Leave at AUTO for auto Width", "lucency")}
 						/>
 						{isGrid && (
-							<RangeControl
+							<CustomRangeControl
 								label={__(
 									generateLabels({ value: columnHeight, label: "Height" }),
 									"lucency",
 								)}
-								min={0}
-								max={100}
 								value={heightValue}
-								marks={marks}
-								withInputField={false}
 								renderTooltipContent={() =>
 									customTooltipContent({ value: columnHeight })
 								}
