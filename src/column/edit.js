@@ -88,13 +88,18 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 				cells: contextCells,
 			});
 
-			const cells = getGenerateGridDimensions?.["--grid-template-columns"] ?? 0;
+			const cellsX =
+				getGenerateGridDimensions?.["--grid-template-columns"] ?? 0;
 			const widthValue = width?.[size] || 0;
-			const setWidhAuto = widthValue || cells;
+			const setWidhAuto = widthValue || cellsX;
+
+			const cellY = getGenerateGridDimensions?.["--grid-template-rows"] ?? 0;
+			const heightValue = height?.[size] || 0;
+			const setHeightAuto = heightValue || cellY;
 
 			const totalCols = isGrid
 				? parentStylesClasses?.[size]?.variables?.["grid-template-columns"]
-						?.value || cells
+						?.value || cellsX
 				: COLUMNS;
 
 			const columnWidth = roundColumnWidth({
@@ -144,8 +149,10 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 							<RangeControl
 								label={__(`${colOrCellLabel} Height`, "lucency")}
 								min={0}
-								max={COLUMNS}
-								value={height?.[size] ?? 0}
+								max={100}
+								value={setHeightAuto}
+								marks={marks}
+								withInputField={false}
 								onChange={(value) =>
 									setAttributes({
 										height: {
