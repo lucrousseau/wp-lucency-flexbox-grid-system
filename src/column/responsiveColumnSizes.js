@@ -3,14 +3,21 @@ import classnames from "classnames";
 import { getDisplayPropValue } from "../commons/displayPropValue";
 import { getPrefix } from "../commons/prefix";
 import { roundColumnWidth } from "../commons/roundColumnWidth";
+import { generateGridDimensions } from "../row/generateGridDimensions";
+import { COLUMNS } from "../abstracts/constants";
 
 export default function responsiveColumnSizes({
 	display,
 	parentStylesClasses,
+	cells,
 	width,
 	height,
 }) {
 	const { isGrid } = getDisplayPropValue({ display });
+
+	const getGenerateGridDimensions = generateGridDimensions({
+		cells,
+	});
 
 	const createClasses = (sizes, type) =>
 		Object.entries(sizes).reduce((acc, [size, value]) => {
@@ -18,10 +25,13 @@ export default function responsiveColumnSizes({
 
 			const total = isGrid
 				? parentStylesClasses?.[size]?.variables?.["grid-template-columns"]
-						?.value
+						?.value ??
+				  getGenerateGridDimensions?.["--grid-template-columns"] ??
+				  COLUMNS
 				: false;
 
 			const getColumnWidth = roundColumnWidth({ total, pourcentage: value });
+			console.log({ total, pourcentage: value, getColumnWidth });
 
 			acc[`${type}-${getColumnWidth}${prefix}`] = !!getColumnWidth;
 			return acc;
