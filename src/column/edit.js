@@ -1,5 +1,4 @@
 import classnames from "classnames";
-import { useMemo } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
 import {
 	InnerBlocks,
@@ -8,7 +7,7 @@ import {
 	InspectorControls,
 } from "@wordpress/block-editor";
 
-import { PanelBody, Notice, RangeControl } from "@wordpress/components";
+import { PanelBody, Notice } from "@wordpress/components";
 
 import ResponsivePanel, {
 	updateStyles,
@@ -20,6 +19,7 @@ import { getInnerBlocksCount } from "../commons/getInnerBlocksCount";
 import { roundCellDimension } from "../commons/roundCellDimension";
 import { COLUMNS } from "../abstracts/constants";
 import { FLEX_CSS_PROPS } from "../abstracts/constants";
+import CustomRangeControlForCells from "./CustomRangeControlForCells";
 
 import { getDisplayPropValue } from "../commons/displayPropValue";
 import { generateGridDimensions } from "../row/generateGridDimensions";
@@ -111,55 +111,15 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 				return { columnWidth, columnHeight };
 			})();
 
-			const generateLabels = ({ value, label }) =>
-				value && value !== 0
-					? `${value} ${colOrCellLabel}(s) ${label} on ${totalCells}`
-					: `Auto ${colOrCellLabel}(s) ${label}`;
-
-			const customTooltipContent = ({ value }) =>
-				`${!value ? __("Auto", "lucency") : value}`;
-
-			const marks = [
-				{
-					value: 0,
-					label: __("Auto", "lucency"),
-				},
-				...Array.from({ length: totalCells }, (_, i) => ({
-					value: (i + 1) * (100 / totalCells),
-					label: (i + 1).toString(),
-				})),
-			];
-
-			const CustomRangeControl = useMemo(
-				() =>
-					({ label, value, renderTooltipContent, onChange, help }) => (
-						<RangeControl
-							label={label}
-							min={0}
-							max={100}
-							value={value}
-							marks={marks}
-							withInputField={false}
-							renderTooltipContent={renderTooltipContent}
-							onChange={onChange}
-							help={help}
-						/>
-					),
-				[],
-			);
-
 			return (
 				<>
 					<div className={`lucency-col lucency-col-12`}>
-						<CustomRangeControl
-							label={__(
-								generateLabels({ value: columnWidth, label: "Width" }),
-								"lucency",
-							)}
+						<CustomRangeControlForCells
+							label={__("Width", "lucency")}
 							value={widthValue}
-							renderTooltipContent={() =>
-								customTooltipContent({ value: columnWidth })
-							}
+							columns={columnWidth}
+							totalCells={totalCells}
+							colOrCellLabel={colOrCellLabel}
 							onChange={(value) =>
 								setAttributes({
 									width: {
@@ -168,18 +128,14 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 									},
 								})
 							}
-							help={__("Leave at AUTO for auto Width", "lucency")}
 						/>
 						{isGrid && (
-							<CustomRangeControl
-								label={__(
-									generateLabels({ value: columnHeight, label: "Height" }),
-									"lucency",
-								)}
+							<CustomRangeControlForCells
+								label={__("Height", "lucency")}
 								value={heightValue}
-								renderTooltipContent={() =>
-									customTooltipContent({ value: columnHeight })
-								}
+								columns={columnHeight}
+								totalCells={totalCells}
+								colOrCellLabel={colOrCellLabel}
 								onChange={(value) =>
 									setAttributes({
 										height: {
@@ -188,7 +144,6 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 										},
 									})
 								}
-								help={__("Leave at 0 for auto Height", "lucency")}
 							/>
 						)}
 					</div>
