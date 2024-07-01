@@ -36,7 +36,5 @@ export default function save({ attributes }) {
 
 	const innerBlocksProps = useInnerBlocksProps.save(blockProps);
 
-	console.log({ style, styleAndIfDefaultGridDimensions, innerBlocksProps });
-
 	return <Tag {...innerBlocksProps} style={styleAndIfDefaultGridDimensions} />;
 }

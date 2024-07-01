@@ -31,7 +31,6 @@ export default function responsiveColumnSizes({
 				: false;
 
 			const getColumnWidth = roundCellDimension({ total, pourcentage: value });
-			console.log({ total, pourcentage: value, getColumnWidth });
 
 			acc[`${type}-${getColumnWidth}${prefix}`] = !!getColumnWidth;
 			return acc;
