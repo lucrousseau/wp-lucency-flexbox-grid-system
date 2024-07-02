@@ -5,11 +5,15 @@ export function getInnerBlocksCount({ clientId }) {
 
 	return useSelect(
 		(select) => {
-			const count = select("core/block-editor").getBlockCount(clientId);
+			const blockEditor = select("core/block-editor");
+			const innerBlocksCount = blockEditor.getBlockCount(clientId);
+			const hasInnerBlocks = innerBlocksCount > 0;
+			const innerBlocks = blockEditor.getBlocks(clientId);
 
 			return {
-				hasInnerBlocks: count > 0,
-				innerBlocksCount: count,
+				innerBlocks,
+				hasInnerBlocks,
+				innerBlocksCount,
 			};
 		},
 		[clientId],

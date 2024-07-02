@@ -27,6 +27,8 @@ import ResponsivePanel, {
 import ColumnAppender from "./ColumnAppender";
 import ColumnAppenderPopUp from "./ColumnAppenderPopUp";
 
+import { getCumulatedCellsWidth } from "../commons/getCumulatedCellsWidth";
+
 import { COLUMNS } from "../abstracts/constants";
 import { FLEX_CSS_PROPS } from "../abstracts/constants";
 
@@ -54,11 +56,22 @@ export default function Edit({
 		),
 	});
 
-	const { hasInnerBlocks, innerBlocksCount } = getInnerBlocksCount({
-		clientId,
+	const { hasInnerBlocks, innerBlocksCount, innerBlocks } = getInnerBlocksCount(
+		{
+			clientId,
+		},
+	);
+
+	const cumulatedCellsWidth = getCumulatedCellsWidth({
+		innerBlocks,
+		innerBlocksCount,
 	});
 
+	console.log(cumulatedCellsWidth);
+
 	setAttributes({ cells: innerBlocksCount });
+
+	//setAttributes({ cumulatedCellsWidth });
 
 	const showNotice = innerBlocksCount >= COLUMNS + 1 && isFlex;
 
@@ -93,6 +106,7 @@ export default function Edit({
 		display,
 		stylesClasses,
 		cells: innerBlocksCount,
+		cumulatedCellsWidth,
 	});
 
 	const responsivePanelBefore = {

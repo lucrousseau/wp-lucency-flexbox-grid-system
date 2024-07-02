@@ -1,8 +1,8 @@
 import { getDisplayPropValue } from "../commons/displayPropValue";
 
-export function generateGridDimensions({ cells }) {
+export function generateGridDimensions({ cells, cumulatedCellsWidth = {} }) {
 	const cols = Math.ceil(Math.sqrt(cells));
-	const rows = Math.ceil(cells / cols);
+	const rows = Math.ceil((cumulatedCellsWidth?.full || cells) / cols);
 
 	return {
 		"--grid-template-columns": cols.toString(),
@@ -15,11 +15,12 @@ export function generateGridDimensionsStyles({
 	cells,
 	style,
 	stylesClasses,
+	cumulatedCellsWidth = {},
 }) {
 	const { isGrid } = getDisplayPropValue({ display });
 	const hasColumns =
 		stylesClasses?.full?.variables?.["grid-template-columns"]?.value;
-	const dimensions = generateGridDimensions({ cells });
+	const dimensions = generateGridDimensions({ cells, cumulatedCellsWidth });
 
 	return isGrid && !hasColumns
 		? {
