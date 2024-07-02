@@ -1,5 +1,6 @@
 import classnames from "classnames";
 import { __ } from "@wordpress/i18n";
+import { useEffect } from "@wordpress/element";
 import {
 	useBlockProps,
 	useInnerBlocksProps,
@@ -69,7 +70,9 @@ export default function Edit({
 
 	console.log(cumulatedCellsWidth);
 
-	setAttributes({ cells: innerBlocksCount });
+	useEffect(() => {
+		setAttributes({ cells: innerBlocksCount });
+	}, [innerBlocksCount]);
 
 	//setAttributes({ cumulatedCellsWidth });
 

@@ -1,5 +1,6 @@
 import classnames from "classnames";
 import { __ } from "@wordpress/i18n";
+import { useEffect } from "@wordpress/element";
 import {
 	InnerBlocks,
 	useBlockProps,
@@ -41,11 +42,13 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 	const { isGrid } = getDisplayPropValue({ display: contextDisplay });
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
-	setAttributes({
-		display: contextDisplay,
-		cells: contextCells,
-		parentStylesClasses: contextParentStylesClasses,
-	});
+	useEffect(() => {
+		setAttributes({
+			display: contextDisplay,
+			cells: contextCells,
+			parentStylesClasses: contextParentStylesClasses,
+		});
+	}, [contextDisplay, contextCells, contextParentStylesClasses]);
 
 	const style = updateStyles({
 		stylesClasses,
