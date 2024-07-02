@@ -68,13 +68,9 @@ export default function Edit({
 		innerBlocksCount,
 	});
 
-	console.log(cumulatedCellsWidth);
-
 	useEffect(() => {
-		setAttributes({ cells: innerBlocksCount });
-	}, [innerBlocksCount]);
-
-	//setAttributes({ cumulatedCellsWidth });
+		setAttributes({ cells: innerBlocksCount, cumulatedCellsWidth });
+	}, [innerBlocks, innerBlocksCount]);
 
 	const showNotice = innerBlocksCount >= COLUMNS + 1 && isFlex;
 

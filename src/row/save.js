@@ -9,7 +9,8 @@ import { generateGridDimensionsStyles } from "./generateGridDimensions";
 import metadata from "./block.json";
 
 export default function save({ attributes }) {
-	const { columns, cells, tag, stylesClasses, display } = attributes;
+	const { columns, cells, tag, stylesClasses, display, cumulatedCellsWidth } =
+		attributes;
 	const Tag = tag;
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
@@ -25,6 +26,7 @@ export default function save({ attributes }) {
 		display,
 		stylesClasses,
 		cells,
+		cumulatedCellsWidth,
 	});
 
 	const blockProps = useBlockProps.save({

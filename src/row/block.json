@@ -40,6 +40,10 @@
 					"variables": {}
 				}
 			}
+		},
+		"cumulatedCellsWidth": {
+			"type": "object",
+			"default": {}
 		}
 	},
 	"providesContext": {
