@@ -47,7 +47,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			className,
 			style,
 		});
-	}, [contextDisplay, contextCells, contextParentStylesClasses]);
+	}, [contextDisplay, contextCells, contextParentStylesClasses, className]);
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		renderAppender: !hasInnerBlocks

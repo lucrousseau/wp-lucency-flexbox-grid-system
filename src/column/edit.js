@@ -74,7 +74,7 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 			className,
 			style,
 		});
-	}, [contextDisplay, contextCells, contextParentStylesClasses]);
+	}, [contextDisplay, contextCells, contextParentStylesClasses, className]);
 
 	const { hasInnerBlocks } = getInnerBlocksCount({ clientId });
 

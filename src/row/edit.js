@@ -129,7 +129,7 @@ export default function Edit({
 			style: styleAndIfDefaultGridDimensions,
 			className,
 		});
-	}, [innerBlocks, innerBlocksCount]);
+	}, [innerBlocks, innerBlocksCount, className]);
 
 	return (
 		<>
