@@ -63,7 +63,7 @@ export default function Edit({
 		},
 	);
 
-	const cumulatedCellsWidth = getCumulatedCellsWidth({
+	const cumulatedCellsDimensions = getCumulatedCellsWidth({
 		innerBlocks,
 		innerBlocksCount,
 	});
@@ -101,7 +101,7 @@ export default function Edit({
 		display,
 		stylesClasses,
 		cells: innerBlocksCount,
-		cumulatedCellsWidth,
+		cumulatedCellsDimensions,
 	});
 
 	const responsivePanelBefore = {
