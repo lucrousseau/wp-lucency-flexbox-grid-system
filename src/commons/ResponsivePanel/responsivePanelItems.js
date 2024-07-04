@@ -97,14 +97,14 @@ export default function responsivePanelItems({
 		);
 	};
 
-	const createResponsivePanelItemsContent = ({ title, size, fn }) => {
+	const createResponsivePanelItemsContent = ({ title, size, fn, index }) => {
 		if (!fn) {
 			console.error(`No function found for type: ${fn}`);
 			return null;
 		}
 
 		return (
-			<>
+			<div key={`createResponsivePanelItemsContent-${size}-${index}`}>
 				<h2>{title}</h2>
 				<div
 					className="lucency lucency-flex lucency-flex-wrap"
@@ -112,7 +112,7 @@ export default function responsivePanelItems({
 				>
 					{fn({ size })}
 				</div>
-			</>
+			</div>
 		);
 	};
 
@@ -145,10 +145,13 @@ export default function responsivePanelItems({
 		}`;
 
 		const content = (
-			<div className="responsiveResponsiveStylesClassesPanel">
-				{panelSettings.map(({ condition, title, fn }) =>
+			<div
+				key={`responsiveResponsiveStylesClassesPanel-${size}`}
+				className="responsiveResponsiveStylesClassesPanel"
+			>
+				{panelSettings.map(({ condition, title, fn }, index) =>
 					condition
-						? createResponsivePanelItemsContent({ title, fn, size })
+						? createResponsivePanelItemsContent({ title, fn, size, index })
 						: null,
 				)}
 			</div>

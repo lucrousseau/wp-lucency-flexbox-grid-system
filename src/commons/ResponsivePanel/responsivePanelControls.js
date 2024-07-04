@@ -97,7 +97,14 @@ const responsivePanelControls = ({
 			break;
 	}
 
-	return <div className={`lucency-col lucency-col-${col}`}>{output}</div>;
+	return (
+		<div
+			className={`lucency-col lucency-col-${col}`}
+			key={`responsivePanelControls-${label}-${size}`}
+		>
+			{output}
+		</div>
+	);
 };
 
 export default responsivePanelControls;
