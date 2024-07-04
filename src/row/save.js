@@ -1,42 +1,14 @@
-import classnames from "classnames";
-
 import { useBlockProps, useInnerBlocksProps } from "@wordpress/block-editor";
 
-import { updateStyles, updateClasses } from "../commons/ResponsivePanel";
-import { updateStylesCustomFn } from "./updateStylesCustomFn";
-import { generateGridDimensionsStyles } from "./generateGridDimensions";
-
-import metadata from "./block.json";
-
 export default function save({ attributes }) {
-	const { columns, cells, tag, stylesClasses, display, cumulatedCellsWidth } =
-		attributes;
+	const { tag, className, style } = attributes;
 	const Tag = tag;
-	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
-	const style = updateStyles({
-		stylesClasses,
-		defaultStylesClasses,
-		fn: updateStylesCustomFn,
-		params: { display, innerBlocksCount: columns },
-	});
+	const innerBlocksProps = useInnerBlocksProps.save(
+		useBlockProps.save({
+			className,
+		}),
+	);
 
-	const styleAndIfDefaultGridDimensions = generateGridDimensionsStyles({
-		style,
-		display,
-		stylesClasses,
-		cells,
-		cumulatedCellsWidth,
-	});
-
-	const blockProps = useBlockProps.save({
-		className: updateClasses(
-			{ stylesClasses, defaultStylesClasses, params: { display } },
-			classnames("lucency", `lucency-${display}`),
-		),
-	});
-
-	const innerBlocksProps = useInnerBlocksProps.save(blockProps);
-
-	return <Tag {...innerBlocksProps} style={styleAndIfDefaultGridDimensions} />;
+	return <Tag {...innerBlocksProps} style={style} />;
 }

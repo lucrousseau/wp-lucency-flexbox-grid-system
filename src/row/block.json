@@ -41,7 +41,11 @@
 				}
 			}
 		},
-		"cumulatedCellsWidth": {
+		"className": {
+			"type": "string",
+			"default": ""
+		},
+		"style": {
 			"type": "object",
 			"default": {}
 		}

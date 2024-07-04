@@ -50,12 +50,12 @@ export default function Edit({
 	const noColumnsDefined = !columns;
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
-	const blockProps = useBlockProps({
-		className: updateClasses(
-			{ stylesClasses, defaultStylesClasses, params: { display } },
-			classnames("lucency", `lucency-${display}`),
-		),
-	});
+	const className = updateClasses(
+		{ stylesClasses, defaultStylesClasses, params: { display } },
+		classnames("lucency", `lucency-${display}`),
+	);
+
+	const blockProps = useBlockProps({ className });
 
 	const { hasInnerBlocks, innerBlocksCount, innerBlocks } = getInnerBlocksCount(
 		{
@@ -67,10 +67,6 @@ export default function Edit({
 		innerBlocks,
 		innerBlocksCount,
 	});
-
-	useEffect(() => {
-		setAttributes({ cells: innerBlocksCount, cumulatedCellsWidth });
-	}, [innerBlocks, innerBlocksCount]);
 
 	const showNotice = innerBlocksCount >= COLUMNS + 1 && isFlex;
 
@@ -127,6 +123,14 @@ export default function Edit({
 		title: __("Alignment", "lucency"),
 	};
 
+	useEffect(() => {
+		setAttributes({
+			cells: innerBlocksCount,
+			style: styleAndIfDefaultGridDimensions,
+			className,
+		});
+	}, [innerBlocks, innerBlocksCount]);
+
 	return (
 		<>
 			{!noColumnsDefined && (
@@ -148,7 +152,6 @@ export default function Edit({
 					</PanelBody>
 				</InspectorControls>
 			)}
-
 			<Tag {...innerBlocksProps} style={styleAndIfDefaultGridDimensions}>
 				{showNotice && isSelected && (
 					<CustomNotice status="error" isDismissible={false}>
