@@ -16,13 +16,16 @@ export default function CustomRangeControlForCells({
 			? `${value} ${colOrCellLabel}(s) ${label} on ${totalCells}`
 			: `Auto ${colOrCellLabel}(s) ${label}`;
 
+	const calc = (100 / totalCells) * columns;
+	const setValue = calc !== value ? calc : value;
+
 	return (
 		<RangeControl
 			label={__(generateLabels({ value: columns, label }), "lucency")}
 			min={0}
 			max={100}
 			columns={columns}
-			value={value}
+			value={setValue}
 			marks={generateMarksForRange({ total: totalCells })}
 			withInputField={false}
 			renderTooltipContent={() => customCellsRangeTooltipContent({ columns })}
