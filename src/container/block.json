@@ -54,6 +54,14 @@
 	"style": "file:./style-index.css",
 	"viewScript": "file:./view.js",
 	"attributes": {
+		"className": {
+			"type": "string",
+			"default": ""
+		},
+		"style": {
+			"type": "object",
+			"default": {}
+		},
 		"stylesClasses": {
 			"type": "object",
 			"default": {

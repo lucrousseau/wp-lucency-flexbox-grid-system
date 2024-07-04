@@ -33,12 +33,21 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	const { hasInnerBlocks } = getInnerBlocksCount({ clientId });
 
+	const className = updateClasses(
+		{ stylesClasses, defaultStylesClasses },
+		classnames("lucency lucency-container lucency-flex"),
+	);
+
 	const blockProps = useBlockProps({
-		className: updateClasses(
-			{ stylesClasses, defaultStylesClasses },
-			classnames("lucency lucency-container lucency-flex"),
-		),
+		className,
 	});
+
+	useEffect(() => {
+		setAttributes({
+			className,
+			style,
+		});
+	}, [contextDisplay, contextCells, contextParentStylesClasses]);
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		renderAppender: !hasInnerBlocks
