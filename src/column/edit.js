@@ -42,35 +42,39 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 	const { isGrid } = getDisplayPropValue({ display: contextDisplay });
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
-	useEffect(() => {
-		setAttributes({
-			display: contextDisplay,
-			cells: contextCells,
-			parentStylesClasses: contextParentStylesClasses,
-		});
-	}, [contextDisplay, contextCells, contextParentStylesClasses]);
-
 	const style = updateStyles({
 		stylesClasses,
 		defaultStylesClasses,
 		params: { display },
 	});
 
-	const blockProps = useBlockProps({
-		className: updateClasses(
-			{ stylesClasses, defaultStylesClasses, params: { display } },
-			classnames(
-				"lucency-col",
-				responsiveColumnSizes({
-					display: contextDisplay,
-					parentStylesClasses: contextParentStylesClasses,
-					cells: contextCells,
-					width,
-					height,
-				}),
-			),
+	const className = updateClasses(
+		{ stylesClasses, defaultStylesClasses, params: { display } },
+		classnames(
+			"lucency-col",
+			responsiveColumnSizes({
+				display: contextDisplay,
+				parentStylesClasses: contextParentStylesClasses,
+				cells: contextCells,
+				width,
+				height,
+			}),
 		),
+	);
+
+	const blockProps = useBlockProps({
+		className,
 	});
+
+	useEffect(() => {
+		setAttributes({
+			display: contextDisplay,
+			cells: contextCells,
+			parentStylesClasses: contextParentStylesClasses,
+			className,
+			style,
+		});
+	}, [contextDisplay, contextCells, contextParentStylesClasses]);
 
 	const { hasInnerBlocks } = getInnerBlocksCount({ clientId });
 
