@@ -55,7 +55,7 @@ export default function Edit({
 
 	const blockProps = useBlockProps({ className });
 
-	const { hasChildren, innerBlocksCount, innerBlocks } = fetchBlockDetails({
+	const { hasChildren, innerBlocksCount } = fetchBlockDetails({
 		clientId,
 	});
 
@@ -120,7 +120,7 @@ export default function Edit({
 			style: styleAndIfDefaultGridDimensions,
 			className,
 		});
-	}, [innerBlocks, innerBlocksCount, className]);
+	}, [innerBlocksCount, className]);
 
 	return (
 		<>
