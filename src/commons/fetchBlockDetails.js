@@ -1,6 +1,6 @@
 import { useSelect } from "@wordpress/data";
 
-export function getInnerBlocksCount({ clientId }) {
+export function fetchBlockDetails({ clientId }) {
 	if (!clientId) return {};
 
 	return useSelect(

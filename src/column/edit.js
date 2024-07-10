@@ -16,7 +16,7 @@ import ResponsivePanel, {
 	responsivePanelControls,
 } from "../commons/ResponsivePanel";
 
-import { getInnerBlocksCount } from "../commons/getInnerBlocksCount";
+import { fetchBlockDetails } from "../commons/fetchBlockDetails";
 import { roundCellDimension } from "../commons/roundCellDimension";
 import { COLUMNS } from "../abstracts/constants";
 import { FLEX_CSS_PROPS } from "../abstracts/constants";
@@ -42,7 +42,7 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 	const { isGrid } = getDisplayPropValue({ display: contextDisplay });
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
-	const { hasInnerBlocks, parentClientId } = getInnerBlocksCount({ clientId });
+	const { hasInnerBlocks, parentClientId } = fetchBlockDetails({ clientId });
 
 	const style = updateStyles({
 		stylesClasses,
