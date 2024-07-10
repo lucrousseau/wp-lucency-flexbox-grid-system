@@ -1,5 +1,11 @@
-export function getCumulatedCellsWidth({ innerBlocks, innerBlocksCount }) {
+import { getInnerBlocksCount } from "../commons/getInnerBlocksCount";
+
+export function getCumulatedCellsWidth({ clientId }) {
 	const cumulatedCellsDimensions = {};
+
+	const { innerBlocksCount, innerBlocks } = getInnerBlocksCount({
+		clientId,
+	});
 
 	if (innerBlocksCount && Object.keys(innerBlocks).length) {
 		const cols = Math.ceil(Math.sqrt(innerBlocksCount));
@@ -11,7 +17,7 @@ export function getCumulatedCellsWidth({ innerBlocks, innerBlocksCount }) {
 			Object.entries(width).map(([key, value]) => {
 				const currentWidth = cumulatedCellsDimensions[key]?.width || 0;
 				const widthInColumns = (value * cols) / 100;
-				const newWidth = currentWidth + (widthInColumns || 1);
+				const newWidth = currentWidth + (widthInColumns ?? 1);
 
 				if (!cumulatedCellsDimensions[key]) cumulatedCellsDimensions[key] = {};
 				cumulatedCellsDimensions[key].width = newWidth;
@@ -20,7 +26,7 @@ export function getCumulatedCellsWidth({ innerBlocks, innerBlocksCount }) {
 			Object.entries(height).map(([key, value]) => {
 				const currentHeight = cumulatedCellsDimensions[key]?.height || 0;
 				const heightInRows = (value * rows) / 100;
-				const newHeight = currentHeight + (heightInRows || 1);
+				const newHeight = currentHeight + (heightInRows ?? 1);
 
 				if (!cumulatedCellsDimensions[key]) cumulatedCellsDimensions[key] = {};
 				cumulatedCellsDimensions[key].height = newHeight;
@@ -28,5 +34,5 @@ export function getCumulatedCellsWidth({ innerBlocks, innerBlocksCount }) {
 		});
 	}
 
-	return cumulatedCellsDimensions;
+	return cumulatedCellsDimensions || {};
 }

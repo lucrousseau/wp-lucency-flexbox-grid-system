@@ -42,6 +42,8 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 	const { isGrid } = getDisplayPropValue({ display: contextDisplay });
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
+	const { hasInnerBlocks, parentClientId } = getInnerBlocksCount({ clientId });
+
 	const style = updateStyles({
 		stylesClasses,
 		defaultStylesClasses,
@@ -58,6 +60,7 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 				cells: contextCells,
 				width,
 				height,
+				clientId: parentClientId,
 			}),
 		),
 	);
@@ -76,8 +79,6 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 		});
 	}, [contextDisplay, contextCells, contextParentStylesClasses, className]);
 
-	const { hasInnerBlocks } = getInnerBlocksCount({ clientId });
-
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		renderAppender: !hasInnerBlocks
 			? () => <InnerBlocks.ButtonBlockAppender />
@@ -93,7 +94,10 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 			});
 
 			const { "--grid-template-columns": gridLayout = 0 } =
-				generateGridDimensions({ cells: contextCells }) ?? {};
+				generateGridDimensions({
+					cells: contextCells,
+					clientId: parentClientId,
+				}) ?? {};
 
 			const widthValue = width?.[size] || 0;
 			const setWidhAuto = widthValue || gridLayout;

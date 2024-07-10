@@ -28,8 +28,6 @@ import ResponsivePanel, {
 import ColumnAppender from "./ColumnAppender";
 import ColumnAppenderPopUp from "./ColumnAppenderPopUp";
 
-import { getCumulatedCellsWidth } from "../commons/getCumulatedCellsWidth";
-
 import { COLUMNS } from "../abstracts/constants";
 import { FLEX_CSS_PROPS } from "../abstracts/constants";
 
@@ -58,15 +56,8 @@ export default function Edit({
 	const blockProps = useBlockProps({ className });
 
 	const { hasInnerBlocks, innerBlocksCount, innerBlocks } = getInnerBlocksCount(
-		{
-			clientId,
-		},
+		{ clientId },
 	);
-
-	const cumulatedCellsDimensions = getCumulatedCellsWidth({
-		innerBlocks,
-		innerBlocksCount,
-	});
 
 	const showNotice = innerBlocksCount >= COLUMNS + 1 && isFlex;
 
@@ -99,9 +90,9 @@ export default function Edit({
 	const styleAndIfDefaultGridDimensions = generateGridDimensionsStyles({
 		style,
 		display,
+		clientId,
 		stylesClasses,
 		cells: innerBlocksCount,
-		cumulatedCellsDimensions,
 	});
 
 	const responsivePanelBefore = {

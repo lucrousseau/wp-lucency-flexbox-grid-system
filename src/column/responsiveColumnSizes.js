@@ -12,11 +12,13 @@ export default function responsiveColumnSizes({
 	cells,
 	width,
 	height,
+	clientId,
 }) {
 	const { isGrid } = getDisplayPropValue({ display });
 
 	const getGenerateGridDimensions = generateGridDimensions({
 		cells,
+		clientId,
 	});
 
 	const createClasses = (sizes, type) =>
