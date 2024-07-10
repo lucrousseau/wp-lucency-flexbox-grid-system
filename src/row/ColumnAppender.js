@@ -7,7 +7,7 @@ import { getDisplayPropValue } from "../commons/displayPropValue";
 import "./ColumnAppender.scss";
 
 export default function ColumnAppender({
-	innerBlocksCount,
+	childrenCount,
 	setAttributes,
 	clientId,
 	display,
@@ -18,10 +18,10 @@ export default function ColumnAppender({
 
 	const addNewColumn = () => {
 		const block = createBlock("lucency-grid/column");
-		insertBlocks(block, innerBlocksCount, clientId, false);
+		insertBlocks(block, childrenCount, clientId, false);
 
 		setAttributes({
-			columns: innerBlocksCount + 1,
+			columns: childrenCount + 1,
 		});
 	};
 

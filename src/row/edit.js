@@ -55,11 +55,11 @@ export default function Edit({
 
 	const blockProps = useBlockProps({ className });
 
-	const { hasChildren, innerBlocksCount } = fetchBlockDetails({
+	const { hasChildren, childrenCount } = fetchBlockDetails({
 		clientId,
 	});
 
-	const showNotice = innerBlocksCount >= COLUMNS + 1 && isFlex;
+	const showNotice = childrenCount >= COLUMNS + 1 && isFlex;
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		allowedBlocks: ["lucency-grid/column"],
@@ -72,7 +72,7 @@ export default function Edit({
 				/>
 			) : isSelected ? (
 				<ColumnAppender
-					innerBlocksCount={innerBlocksCount}
+					childrenCount={childrenCount}
 					clientId={clientId}
 					setAttributes={setAttributes}
 					display={display}
@@ -84,7 +84,7 @@ export default function Edit({
 		stylesClasses,
 		defaultStylesClasses,
 		fn: updateStylesCustomFn,
-		params: { display, innerBlocksCount },
+		params: { display, childrenCount },
 	});
 
 	const styleAndIfDefaultGridDimensions = generateGridDimensionsStyles({
@@ -92,7 +92,7 @@ export default function Edit({
 		display,
 		clientId,
 		stylesClasses,
-		cells: innerBlocksCount,
+		cells: childrenCount,
 	});
 
 	const responsivePanelBefore = {
@@ -116,11 +116,11 @@ export default function Edit({
 
 	useEffect(() => {
 		setAttributes({
-			cells: innerBlocksCount,
+			cells: childrenCount,
 			style: styleAndIfDefaultGridDimensions,
 			className,
 		});
-	}, [innerBlocksCount, className]);
+	}, [childrenCount, className]);
 
 	return (
 		<>

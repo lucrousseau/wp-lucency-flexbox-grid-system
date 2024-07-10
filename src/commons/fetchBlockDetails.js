@@ -6,15 +6,15 @@ export function fetchBlockDetails({ clientId }) {
 	return useSelect(
 		(select) => {
 			const blockEditor = select("core/block-editor");
-			const innerBlocksCount = blockEditor.getBlockCount(clientId);
-			const hasChildren = innerBlocksCount > 0;
+			const childrenCount = blockEditor.getBlockCount(clientId);
+			const hasChildren = childrenCount > 0;
 			const innerBlocks = blockEditor.getBlocks(clientId);
 			const parentClientId = blockEditor.getBlockRootClientId(clientId);
 
 			return {
 				innerBlocks,
 				hasChildren,
-				innerBlocksCount,
+				childrenCount,
 				parentClientId,
 			};
 		},
