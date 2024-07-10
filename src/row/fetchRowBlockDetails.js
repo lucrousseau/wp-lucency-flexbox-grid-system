@@ -6,6 +6,7 @@ export function fetchRowBlockDetails({ clientId }) {
 	return useSelect(
 		(select) => {
 			const blockEditor = select("core/block-editor");
+			const block = blockEditor.getBlock(clientId);
 			const childrenCount = blockEditor.getBlockCount(clientId);
 			const hasChildren = childrenCount > 0;
 			const childrenBlocks = blockEditor.getBlocks(clientId);
@@ -13,13 +14,9 @@ export function fetchRowBlockDetails({ clientId }) {
 
 			const blockAttributes = {};
 
-			if (parentClientId) {
-				const block = blockEditor.getBlock(parentClientId);
-
-				if (block) {
-					const { styleClasses, display } = block.attributes;
-					Object.assign(blockAttributes, { styleClasses, display });
-				}
+			if (clientId !== parentClientId && block) {
+				const { styleClasses, display } = block.attributes;
+				Object.assign(blockAttributes, { styleClasses, display });
 			}
 
 			return {
