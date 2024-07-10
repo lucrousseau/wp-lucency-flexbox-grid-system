@@ -27,15 +27,7 @@
 			"type": "object",
 			"default": {}
 		},
-		"display": {
-			"type": "string",
-			"default": ""
-		},
 		"columns": {
-			"type": "number",
-			"default": null
-		},
-		"cells": {
 			"type": "number",
 			"default": null
 		},
@@ -55,11 +47,6 @@
 		"style": {
 			"type": "object",
 			"default": {}
-		},
-		"parentStylesClasses": {
-			"type": "object",
-			"default": {}
 		}
-	},
-	"usesContext": ["display", "cells", "stylesClasses"]
+	}
 }

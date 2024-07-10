@@ -49,10 +49,5 @@
 			"type": "object",
 			"default": {}
 		}
-	},
-	"providesContext": {
-		"display": "display",
-		"cells": "cells",
-		"stylesClasses": "stylesClasses"
 	}
 }
