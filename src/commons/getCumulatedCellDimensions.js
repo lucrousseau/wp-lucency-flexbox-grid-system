@@ -43,5 +43,5 @@ export function getCumulatedCellDimensions({ clientId }) {
 		});
 	}
 
-	return cumulatedCellsDimensions || {};
+	return { cumulatedCellsDimensions, childrenCount } || {};
 }
