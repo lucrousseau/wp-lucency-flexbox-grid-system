@@ -1,6 +1,6 @@
 import { useSelect } from "@wordpress/data";
 
-export function fetchBlockDetails({ clientId }) {
+export function fetchRowBlockDetails({ clientId }) {
 	if (!clientId) return {};
 
 	return useSelect(
@@ -11,11 +11,23 @@ export function fetchBlockDetails({ clientId }) {
 			const childrenBlocks = blockEditor.getBlocks(clientId);
 			const parentClientId = blockEditor.getBlockRootClientId(clientId);
 
+			const blockAttributes = {};
+
+			if (parentClientId) {
+				const block = blockEditor.getBlock(parentClientId);
+
+				if (block) {
+					const { styleClasses, display } = block.attributes;
+					Object.assign(blockAttributes, { styleClasses, display });
+				}
+			}
+
 			return {
 				childrenBlocks,
 				hasChildren,
 				childrenCount,
 				parentClientId,
+				blockAttributes,
 			};
 		},
 		[clientId],

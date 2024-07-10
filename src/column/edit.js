@@ -16,14 +16,14 @@ import ResponsivePanel, {
 	responsivePanelControls,
 } from "../commons/ResponsivePanel";
 
-import { fetchBlockDetails } from "../commons/fetchBlockDetails";
+import { fetchRowBlockDetails } from "../row/fetchRowBlockDetails";
 import { roundCellDimension } from "../commons/roundCellDimension";
 import { COLUMNS } from "../abstracts/constants";
 import { FLEX_CSS_PROPS } from "../abstracts/constants";
 import CustomRangeControlForCells from "./CustomRangeControlForCells";
 
 import { getDisplayPropValue } from "../commons/displayPropValue";
-import { computeGridLayout } from "../row/generateLayoutStyles";
+import { generateLayoutStyles } from "../row/generateLayoutStyles";
 
 import responsiveColumnSizes from "./responsiveColumnSizes";
 
@@ -42,7 +42,7 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 	const { isGrid } = getDisplayPropValue({ display: contextDisplay });
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
-	const { hasChildren, parentClientId } = fetchBlockDetails({ clientId });
+	const { hasChildren, parentClientId } = fetchRowBlockDetails({ clientId });
 
 	const style = updateStyles({
 		stylesClasses,
@@ -94,7 +94,7 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 			});
 
 			const { "--grid-template-columns": gridLayout = 0 } =
-				computeGridLayout({
+				generateLayoutStyles({
 					clientId: parentClientId,
 				}) ?? {};
 
