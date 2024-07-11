@@ -22,15 +22,16 @@ import { FLEX_CSS_PROPS } from "../abstracts/constants";
 
 import "./editor.scss";
 
-export default function Edit({ attributes, setAttributes, clientId }) {
+export default function Edit(props) {
+	const { attributes, setAttributes, clientId } = props;
 	const { stylesClasses } = attributes;
 
-	const style = updateStyles({ clientId });
+	const style = updateStyles({ props });
 
 	const { hasChildren } = fetchRowBlockDetails({ clientId });
 
 	const className = updateClasses(
-		{ clientId },
+		{ props },
 		classnames("lucency lucency-container lucency-flex"),
 	);
 
