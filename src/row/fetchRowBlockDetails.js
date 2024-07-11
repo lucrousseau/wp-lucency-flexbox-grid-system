@@ -1,4 +1,5 @@
 import { useSelect } from "@wordpress/data";
+import { getBlockType } from "@wordpress/blocks";
 
 export function fetchRowBlockDetails({ clientId }) {
 	if (!clientId) return {};
@@ -18,11 +19,19 @@ export function fetchRowBlockDetails({ clientId }) {
 			const hasChildren = childrenCount > 0;
 
 			const blockAttributes = {};
+			const blockDefaultStylesClasses = {};
 			const block = blockEditor.getBlock(getClientId);
 
 			if (block) {
+				const blockJson = getBlockType(block.name);
 				const { stylesClasses, display } = block.attributes;
 				Object.assign(blockAttributes, { stylesClasses, display });
+
+				if (blockJson)
+					Object.assign(
+						blockDefaultStylesClasses,
+						blockJson?.attributes?.stylesClasses?.default,
+					);
 			}
 
 			return {
@@ -31,6 +40,7 @@ export function fetchRowBlockDetails({ clientId }) {
 				childrenCount,
 				parentRowClientId,
 				blockAttributes,
+				blockDefaultStylesClasses,
 			};
 		},
 		[clientId],

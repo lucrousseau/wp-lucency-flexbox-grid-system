@@ -27,12 +27,8 @@ import { generateLayoutStyles } from "../row/generateLayoutStyles";
 
 import responsiveColumnSizes from "./responsiveColumnSizes";
 
-import metadata from "./block.json";
-
 export default function Edit({ attributes, setAttributes, clientId }) {
 	const { stylesClasses, width, height } = attributes;
-
-	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
 	const { hasChildren, parentRowClientId, childrenCount, blockAttributes } =
 		fetchRowBlockDetails({
@@ -43,13 +39,12 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const { isGrid } = getDisplayPropValue({ display });
 
 	const style = updateStyles({
-		stylesClasses,
-		defaultStylesClasses,
+		clientId,
 		params: { display },
 	});
 
 	const className = updateClasses(
-		{ stylesClasses, defaultStylesClasses, params: { display } },
+		{ clientId, params: { display } },
 		classnames(
 			"lucency-col",
 			responsiveColumnSizes({
@@ -154,7 +149,8 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					</div>
 					{Object.entries(controls).map(([prop, props]) =>
 						responsivePanelControls({
-							stylesClasses,
+							clientId,
+							attributes,
 							setAttributes,
 							size,
 							col: 6,
@@ -179,11 +175,10 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 				</Notice>
 				<PanelBody title={__("Responsive Settings")}>
 					<ResponsivePanel
+						clientId={clientId}
 						enabled={{ margin: true, padding: true }}
-						stylesClasses={stylesClasses}
 						setAttributes={setAttributes}
 						responsivePanelBefore={responsivePanelBefore}
-						defaultStylesClasses={defaultStylesClasses}
 					/>
 				</PanelBody>
 			</InspectorControls>

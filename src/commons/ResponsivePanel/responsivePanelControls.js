@@ -4,10 +4,10 @@ import {
 	__experimentalNumberControl as NumberControl,
 } from "@wordpress/components";
 
-import { handleStylesClassesChange } from ".";
+import { handleStylesClassesChange } from "./";
 
 const responsivePanelControls = ({
-	stylesClasses,
+	attributes = {},
 	setAttributes,
 	options,
 	label,
@@ -27,10 +27,12 @@ const responsivePanelControls = ({
 	onChange = null,
 	setDefault = null,
 	hideUnitInLabel = false,
-	defaultStylesClasses = {},
+	blockDefaultStylesClasses = {},
 }) => {
+	const { stylesClasses } = attributes;
+
 	const defaultValue =
-		defaultStylesClasses?.[size]?.[key]?.[prop]?.value ?? setDefault;
+		blockDefaultStylesClasses?.[size]?.[key]?.[prop]?.value ?? setDefault;
 	const setValues = stylesClasses?.[size]?.[key]?.[prop]?.value ?? null;
 
 	const setOnChange =

@@ -2,14 +2,16 @@ import classnames from "classnames";
 
 import { FLEX_CSS_PROPS } from "../../abstracts/constants";
 import { getPrefix } from "../../commons/prefix";
+import { fetchRowBlockDetails } from "../../row/fetchRowBlockDetails";
 
-function processStylesClasses({
-	key,
-	stylesClasses = {},
-	defaultStylesClasses = {},
-	processEntry,
-}) {
+function processStylesClasses({ key, clientId, processEntry }) {
 	let result = {};
+
+	const { blockAttributes, blockDefaultStylesClasses } = fetchRowBlockDetails({
+		clientId,
+	});
+
+	const { stylesClasses } = blockAttributes;
 
 	Object.entries(stylesClasses ?? {}).forEach(([size, props]) =>
 		Object.entries(props?.[key] ?? {}).forEach(([prop, values]) => {
@@ -18,7 +20,8 @@ function processStylesClasses({
 
 			if (value !== undefined && value !== null) {
 				const prefix = getPrefix({ size });
-				const defaultValue = defaultStylesClasses?.[size]?.[key]?.[prop]?.value;
+				const defaultValue =
+					blockDefaultStylesClasses?.[size]?.[key]?.[prop]?.value;
 
 				processEntry({
 					size,
@@ -37,15 +40,14 @@ function processStylesClasses({
 }
 
 export function updateStyles(
-	{ stylesClasses = {}, defaultStylesClasses = {}, fn = () => {}, params = {} },
+	{ clientId, fn = () => {}, params = {} },
 	style = {},
 ) {
 	const key = "variables";
 
 	let processed = processStylesClasses({
 		key,
-		stylesClasses,
-		defaultStylesClasses,
+		clientId,
 		processEntry: (props) => {
 			const { result, prefix, prop, value, unit, defaultValue } = props;
 			const { display } = params;
@@ -67,15 +69,14 @@ export function updateStyles(
 }
 
 export function updateClasses(
-	{ stylesClasses = {}, defaultStylesClasses = {}, fn = () => {}, params = {} },
+	{ clientId, fn = () => {}, params = {} },
 	classes = null,
 ) {
 	const key = "classes";
 
 	let processed = processStylesClasses({
 		key,
-		stylesClasses,
-		defaultStylesClasses,
+		clientId,
 		processEntry: (props) => {
 			const { result, prefix, prop, value, defaultValue } = props;
 			const { display } = params;

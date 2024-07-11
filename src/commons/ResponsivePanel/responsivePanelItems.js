@@ -5,10 +5,10 @@ import { BREAKPOINTS } from "../../abstracts/constants";
 import responsivePanelControls from "./responsivePanelControls";
 
 export default function responsivePanelItems({
-	enabled = { margin: false, padding: false },
-	stylesClasses,
+	clientId,
+	attributes,
 	setAttributes,
-	defaultStylesClasses = {},
+	enabled = { margin: false, padding: false },
 	responsivePanelBefore = { title: null, fn: null },
 	responsivePanelAfter = { title: null, fn: null },
 }) {
@@ -40,9 +40,9 @@ export default function responsivePanelItems({
 			<>
 				{controls.map((props) =>
 					responsivePanelControls({
-						stylesClasses,
+						clientId,
+						attributes,
 						setAttributes,
-						defaultStylesClasses,
 						size,
 						type: "number",
 						key: "variables",
@@ -80,9 +80,9 @@ export default function responsivePanelItems({
 			<>
 				{controls.map((props) =>
 					responsivePanelControls({
-						stylesClasses,
+						clientId,
+						attributes,
 						setAttributes,
-						defaultStylesClasses,
 						type: "number",
 						key: "variables",
 						unit: "rem",

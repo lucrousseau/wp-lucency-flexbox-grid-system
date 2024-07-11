@@ -15,6 +15,7 @@ import {
 } from "../commons/displayPropValue";
 
 import CustomNotice from "../commons/CustomNotice";
+
 import { fetchRowBlockDetails } from "./fetchRowBlockDetails";
 import { updateStylesCustomFn } from "./updateStylesCustomFn";
 import { generateLayoutStyles } from "./generateLayoutStyles";
@@ -31,60 +32,41 @@ import ColumnAppenderPopUp from "./ColumnAppenderPopUp";
 import { COLUMNS } from "../abstracts/constants";
 import { FLEX_CSS_PROPS } from "../abstracts/constants";
 
-import metadata from "./block.json";
-
 import "./editor.scss";
 
-export default function Edit({
-	attributes,
-	setAttributes,
-	clientId,
-	isSelected,
-}) {
-	const { tag, stylesClasses, columns, display } = attributes;
+export default function Edit(props) {
+	const { attributes, setAttributes, clientId, isSelected } = props;
+	const { display } = attributes;
 	const { isFlex } = getDisplayPropValue({ display });
-
-	const Tag = tag;
-	const noColumnsDefined = !columns;
-	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
+	const { hasChildren, childrenCount, blockDefaultStylesClasses } =
+		fetchRowBlockDetails({
+			clientId,
+		});
+	const updatedProps = { blockDefaultStylesClasses, ...props };
 
 	const className = updateClasses(
-		{ stylesClasses, defaultStylesClasses, params: { display } },
+		{ clientId, params: { display } },
 		classnames("lucency", `lucency-${display}`),
 	);
 
 	const blockProps = useBlockProps({ className });
 
-	const { hasChildren, childrenCount } = fetchRowBlockDetails({
-		clientId,
-	});
-
-	const showNotice = childrenCount >= COLUMNS + 1 && isFlex;
-
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		allowedBlocks: ["lucency-grid/column"],
-		renderAppender: () =>
-			!hasChildren ? (
-				<ColumnAppenderPopUp
-					attributes={attributes}
-					setAttributes={setAttributes}
-					clientId={clientId}
-				/>
-			) : isSelected ? (
-				<ColumnAppender
-					childrenCount={childrenCount}
-					clientId={clientId}
-					setAttributes={setAttributes}
-					display={display}
-				/>
-			) : null,
+		renderAppender: () => {
+			if (!hasChildren) return <ColumnAppenderPopUp {...updatedProps} />;
+			if (isSelected) return <ColumnAppender {...updatedProps} />;
+
+			return null;
+		},
 	});
 
+	const { children: innerBlocksPropsChildren } = innerBlocksProps;
+
 	const style = updateStyles({
-		stylesClasses,
-		defaultStylesClasses,
+		clientId,
 		fn: updateStylesCustomFn,
-		params: { display, childrenCount },
+		params: { display },
 	});
 
 	const styleAndIfDefaultGridDimensions = generateLayoutStyles({
@@ -96,15 +78,13 @@ export default function Edit({
 		fn: ({ size }) => {
 			const controls = FLEX_CSS_PROPS({ display, size });
 
-			return Object.entries(controls).map(([prop, props]) =>
+			return Object.entries(controls).map(([prop, itemProps]) =>
 				responsivePanelControls({
-					stylesClasses,
-					setAttributes,
 					size,
 					col: 6,
 					prop,
-					defaultStylesClasses,
-					...props,
+					...updatedProps,
+					...itemProps,
 				}),
 			);
 		},
@@ -113,15 +93,16 @@ export default function Edit({
 
 	useEffect(() => {
 		setAttributes({
-			cells: childrenCount,
 			style: styleAndIfDefaultGridDimensions,
 			className,
 		});
-	}, [childrenCount, className]);
+	}, [className]);
+
+	const showNotice = childrenCount >= COLUMNS + 1 && isFlex;
 
 	return (
 		<>
-			{!noColumnsDefined && (
+			{hasChildren && (
 				<InspectorControls>
 					<PanelBody title={__("Layout Settings", "lucency")}>
 						{setDisplayPropValue({
@@ -131,16 +112,16 @@ export default function Edit({
 					</PanelBody>
 					<PanelBody title={__("Responsive Settings", "lucency")}>
 						<ResponsivePanel
-							enabled={{ margin: true, padding: true }}
-							stylesClasses={stylesClasses}
-							setAttributes={setAttributes}
-							responsivePanelBefore={responsivePanelBefore}
-							defaultStylesClasses={defaultStylesClasses}
+							{...{
+								enabled: { margin: true, padding: true },
+								responsivePanelBefore,
+								...updatedProps,
+							}}
 						/>
 					</PanelBody>
 				</InspectorControls>
 			)}
-			<Tag {...innerBlocksProps} style={styleAndIfDefaultGridDimensions}>
+			<div {...innerBlocksProps} style={styleAndIfDefaultGridDimensions}>
 				{showNotice && isSelected && (
 					<CustomNotice status="error" isDismissible={false}>
 						{__(
@@ -149,8 +130,8 @@ export default function Edit({
 						)}
 					</CustomNotice>
 				)}
-				{innerBlocksProps.children}
-			</Tag>
+				{innerBlocksPropsChildren}
+			</div>
 		</>
 	);
 }
