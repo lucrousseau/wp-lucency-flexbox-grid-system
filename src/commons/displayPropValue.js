@@ -22,12 +22,18 @@ export function setDisplayPropValue({
 }
 
 export function getDisplayPropValue({ display }) {
+	const isGrid = display === "grid";
+	const isFlex = display === "flex";
+	const isCell = display === "cell";
+	const isColumn = display === "column";
+	const isContainer = display === "container";
+
 	return {
-		isGrid: display === "grid",
-		isFlex: display === "flex",
-		isCell: display === "cell",
-		isColumn: display === "column",
-		isContainer: display === "container",
+		isGrid,
+		isFlex,
+		isCell,
+		isColumn,
+		isContainer,
 		display,
 	};
 }
