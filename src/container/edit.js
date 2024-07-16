@@ -20,17 +20,21 @@ import { fetchRowBlockDetails } from "../row/fetchRowBlockDetails";
 
 import { FLEX_CSS_PROPS } from "../abstracts/constants";
 
+import metadata from "./block.json";
+
 import "./editor.scss";
 
 export default function Edit({ attributes, setAttributes, clientId }) {
 	const { stylesClasses } = attributes;
 
-	const style = updateStyles({ clientId });
+	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
+
+	const style = updateStyles({ stylesClasses, defaultStylesClasses });
 
 	const { hasChildren } = fetchRowBlockDetails({ clientId });
 
 	const className = updateClasses(
-		{ clientId },
+		{ stylesClasses, defaultStylesClasses },
 		classnames("lucency lucency-container lucency-flex"),
 	);
 
@@ -57,8 +61,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 			return Object.entries(controls).map(([prop, props]) =>
 				responsivePanelControls({
-					clientId,
-					attributes,
+					stylesClasses,
 					setAttributes,
 					size,
 					col: 6,
@@ -75,10 +78,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			<InspectorControls>
 				<PanelBody title={__("Container Settings")}>
 					<ResponsivePanel
-						clientId={clientId}
 						enabled={{ margin: true, padding: true }}
+						stylesClasses={stylesClasses}
 						setAttributes={setAttributes}
 						responsivePanelBefore={responsivePanelBefore}
+						defaultStylesClasses={defaultStylesClasses}
 					/>
 				</PanelBody>
 			</InspectorControls>

@@ -2,16 +2,14 @@ import classnames from "classnames";
 
 import { FLEX_CSS_PROPS } from "../../abstracts/constants";
 import { getPrefix } from "../../commons/prefix";
-import { fetchRowBlockDetails } from "../../row/fetchRowBlockDetails";
 
-function processStylesClasses({ key, clientId, processEntry }) {
+function processStylesClasses({
+	key,
+	stylesClasses = {},
+	defaultStylesClasses = {},
+	processEntry,
+}) {
 	let result = {};
-
-	const { blockAttributes, blockDefaultStylesClasses } = fetchRowBlockDetails({
-		clientId,
-	});
-
-	const { stylesClasses } = blockAttributes;
 
 	Object.entries(stylesClasses ?? {}).forEach(([size, props]) =>
 		Object.entries(props?.[key] ?? {}).forEach(([prop, values]) => {
@@ -20,8 +18,7 @@ function processStylesClasses({ key, clientId, processEntry }) {
 
 			if (value !== undefined && value !== null) {
 				const prefix = getPrefix({ size });
-				const defaultValue =
-					blockDefaultStylesClasses?.[size]?.[key]?.[prop]?.value;
+				const defaultValue = defaultStylesClasses?.[size]?.[key]?.[prop]?.value;
 
 				processEntry({
 					size,
@@ -40,14 +37,15 @@ function processStylesClasses({ key, clientId, processEntry }) {
 }
 
 export function updateStyles(
-	{ clientId, fn = () => {}, params = {} },
+	{ stylesClasses = {}, defaultStylesClasses = {}, fn = () => {}, params = {} },
 	style = {},
 ) {
 	const key = "variables";
 
 	let processed = processStylesClasses({
 		key,
-		clientId,
+		stylesClasses,
+		defaultStylesClasses,
 		processEntry: (props) => {
 			const { result, prefix, prop, value, unit, defaultValue } = props;
 			const { display } = params;
@@ -69,14 +67,15 @@ export function updateStyles(
 }
 
 export function updateClasses(
-	{ clientId, fn = () => {}, params = {} },
+	{ stylesClasses = {}, defaultStylesClasses = {}, fn = () => {}, params = {} },
 	classes = null,
 ) {
 	const key = "classes";
 
 	let processed = processStylesClasses({
 		key,
-		clientId,
+		stylesClasses,
+		defaultStylesClasses,
 		processEntry: (props) => {
 			const { result, prefix, prop, value, defaultValue } = props;
 			const { display } = params;

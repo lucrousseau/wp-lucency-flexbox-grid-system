@@ -20,6 +20,14 @@
 			"type": "string",
 			"default": "div"
 		},
+		"columns": {
+			"type": "number",
+			"default": null
+		},
+		"cells": {
+			"type": "number",
+			"default": null
+		},
 		"display": {
 			"type": "string",
 			"default": "flex"
