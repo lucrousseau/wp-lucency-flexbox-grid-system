@@ -3,12 +3,12 @@ import { fetchBlockDetails } from "./fetchBlockDetails";
 export function getCumulatedCellsWidth({ clientId }) {
 	const cumulatedCellsDimensions = {};
 
-	const { childrenCount, innerBlocks } = fetchBlockDetails({
+	const { innerBlocksCount, innerBlocks } = fetchBlockDetails({
 		clientId,
 	});
 
-	if (childrenCount && Object.keys(innerBlocks).length) {
-		const cols = Math.ceil(Math.sqrt(childrenCount));
+	if (innerBlocksCount && Object.keys(innerBlocks).length) {
+		const cols = Math.ceil(Math.sqrt(innerBlocksCount));
 		const rows = Math.ceil(innerBlocks / cols);
 
 		innerBlocks.forEach((block) => {

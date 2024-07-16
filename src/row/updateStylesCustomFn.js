@@ -8,13 +8,13 @@ export function updateStylesCustomFn({
 	unit,
 	params,
 }) {
-	const { display, childrenCount } = params;
+	const { display, innerBlocksCount } = params;
 
 	if (prop === "grid-template-columns") {
 		if (display !== "grid") return true;
 
 		result[`--grid-template-rows${prefix}`] = `${
-			COLUMNS / Math.ceil(childrenCount / value)
+			COLUMNS / Math.ceil(innerBlocksCount / value)
 		}${unit}`;
 	}
 
