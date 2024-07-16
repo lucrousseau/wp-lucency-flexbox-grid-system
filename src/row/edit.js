@@ -50,7 +50,9 @@ export default function Edit(props) {
 		classnames("lucency", `lucency-${display}`),
 	);
 
-	const innerBlocksProps = useInnerBlocksProps(useBlockProps({ className }), {
+	const blockProps = useBlockProps({ className });
+
+	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		allowedBlocks: ["lucency-grid/column"],
 		renderAppender: () => {
 			if (!hasChildren) return <ColumnAppenderPopUp {...updatedProps} />;
