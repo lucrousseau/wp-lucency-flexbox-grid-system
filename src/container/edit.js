@@ -31,7 +31,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	const style = updateStyles({ stylesClasses, defaultStylesClasses });
 
-	const { hasChildren } = fetchBlockDetails({ clientId });
+	const { hasInnerBlocks } = fetchBlockDetails({ clientId });
 
 	const className = updateClasses(
 		{ stylesClasses, defaultStylesClasses },
@@ -50,7 +50,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	}, [contextDisplay, contextCells, contextParentStylesClasses, className]);
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
-		renderAppender: !hasChildren
+		renderAppender: !hasInnerBlocks
 			? () => <InnerBlocks.ButtonBlockAppender />
 			: null,
 	});

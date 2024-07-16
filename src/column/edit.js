@@ -42,7 +42,7 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 	const { isGrid } = getDisplayPropValue({ display: contextDisplay });
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
-	const { hasChildren, parentClientId } = fetchBlockDetails({ clientId });
+	const { hasInnerBlocks, parentClientId } = fetchBlockDetails({ clientId });
 
 	const style = updateStyles({
 		stylesClasses,
@@ -80,7 +80,7 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 	}, [contextDisplay, contextCells, contextParentStylesClasses, className]);
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
-		renderAppender: !hasChildren
+		renderAppender: !hasInnerBlocks
 			? () => <InnerBlocks.ButtonBlockAppender />
 			: null,
 	});

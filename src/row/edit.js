@@ -55,7 +55,7 @@ export default function Edit({
 
 	const blockProps = useBlockProps({ className });
 
-	const { hasChildren, innerBlocksCount, innerBlocks } = fetchBlockDetails({
+	const { hasInnerBlocks, innerBlocksCount, innerBlocks } = fetchBlockDetails({
 		clientId,
 	});
 
@@ -64,7 +64,7 @@ export default function Edit({
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		allowedBlocks: ["lucency-grid/column"],
 		renderAppender: () =>
-			!hasChildren ? (
+			!hasInnerBlocks ? (
 				<ColumnAppenderPopUp
 					attributes={attributes}
 					setAttributes={setAttributes}
