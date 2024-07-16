@@ -9,6 +9,8 @@ export function generateLayoutStyles({ clientId, style = {} }) {
 	});
 	const { stylesClasses, display } = blockAttributes;
 
+	console.log(blockAttributes);
+
 	let { isGrid } = getDisplayPropValue({ display });
 	const hasGridTemplateColumns =
 		stylesClasses?.full?.variables?.["grid-template-columns"]?.value;
@@ -24,6 +26,8 @@ export function generateLayoutStyles({ clientId, style = {} }) {
 		"--grid-template-columns": cols.toString(),
 		"--grid-template-rows": rows.toString(),
 	};
+
+	console.log({ style: !style, display, isGrid });
 
 	if (!style) return dimensions;
 
