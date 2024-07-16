@@ -16,7 +16,7 @@ import ResponsivePanel, {
 	responsivePanelControls,
 } from "../commons/ResponsivePanel";
 
-import { fetchRowBlockDetails } from "../row/fetchRowBlockDetails";
+import { fetchBlockDetails } from "../commons/fetchBlockDetails";
 
 import { FLEX_CSS_PROPS } from "../abstracts/constants";
 
@@ -31,7 +31,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	const style = updateStyles({ stylesClasses, defaultStylesClasses });
 
-	const { hasChildren } = fetchRowBlockDetails({ clientId });
+	const { hasChildren } = fetchBlockDetails({ clientId });
 
 	const className = updateClasses(
 		{ stylesClasses, defaultStylesClasses },

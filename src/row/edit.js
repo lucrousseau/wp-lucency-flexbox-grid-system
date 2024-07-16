@@ -15,7 +15,7 @@ import {
 } from "../commons/displayPropValue";
 
 import CustomNotice from "../commons/CustomNotice";
-import { fetchRowBlockDetails } from "./fetchRowBlockDetails";
+import { fetchBlockDetails } from "../commons/fetchBlockDetails";
 import { updateStylesCustomFn } from "./updateStylesCustomFn";
 import { generateLayoutStyles } from "./generateLayoutStyles";
 
@@ -55,7 +55,7 @@ export default function Edit({
 
 	const blockProps = useBlockProps({ className });
 
-	const { hasChildren, childrenCount } = fetchRowBlockDetails({
+	const { hasChildren, childrenCount } = fetchBlockDetails({
 		clientId,
 	});
 
@@ -89,7 +89,9 @@ export default function Edit({
 
 	const styleAndIfDefaultGridDimensions = generateLayoutStyles({
 		style,
+		display,
 		clientId,
+		stylesClasses,
 	});
 
 	const responsivePanelBefore = {

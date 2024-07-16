@@ -1,4 +1,4 @@
-import { fetchRowBlockDetails } from "../row/fetchRowBlockDetails";
+import { fetchBlockDetails } from "./fetchBlockDetails";
 
 function accumulateDimensions({
 	blocks,
@@ -23,7 +23,7 @@ function accumulateDimensions({
 export function getCumulatedCellDimensions({ clientId }) {
 	const cumulatedCellsDimensions = {};
 
-	const { childrenCount, childrenBlocks } = fetchRowBlockDetails({ clientId });
+	const { childrenCount, childrenBlocks } = fetchBlockDetails({ clientId });
 
 	if (childrenCount && Object.keys(childrenBlocks).length) {
 		const cols = Math.ceil(Math.sqrt(childrenCount));
