@@ -8,11 +8,11 @@ export function fetchBlockDetails({ clientId }) {
 			const blockEditor = select("core/block-editor");
 			const childrenCount = blockEditor.getBlockCount(clientId);
 			const hasChildren = childrenCount > 0;
-			const childrenBlocks = blockEditor.getBlocks(clientId);
+			const innerBlocks = blockEditor.getBlocks(clientId);
 			const parentClientId = blockEditor.getBlockRootClientId(clientId);
 
 			return {
-				childrenBlocks,
+				innerBlocks,
 				hasChildren,
 				childrenCount,
 				parentClientId,
