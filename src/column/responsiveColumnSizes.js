@@ -9,6 +9,7 @@ import { COLUMNS } from "../abstracts/constants";
 export default function responsiveColumnSizes({
 	display,
 	parentStylesClasses,
+	cells,
 	width,
 	height,
 	clientId,

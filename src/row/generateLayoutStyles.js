@@ -1,17 +1,11 @@
 import { getDisplayPropValue } from "../commons/displayPropValue";
 import { getCumulatedCellDimensions } from "../commons/getCumulatedCellDimensions";
-import { fetchRowBlockDetails } from "./fetchRowBlockDetails";
 
 export function generateLayoutStyles({ clientId, style = {} }) {
-	const { cumulatedCellsDimensions } = getCumulatedCellDimensions({ clientId });
-	const { childrenCount, blockAttributes } = fetchRowBlockDetails({
-		clientId,
-	});
-	const { stylesClasses, display } = blockAttributes;
+	const { cumulatedCellsDimensions, childrenCount, stylesClasses, display } =
+		getCumulatedCellDimensions({ clientId });
 
-	console.log(blockAttributes);
-
-	let { isGrid } = getDisplayPropValue({ display });
+	const { isGrid } = getDisplayPropValue({ display });
 	const hasGridTemplateColumns =
 		stylesClasses?.full?.variables?.["grid-template-columns"]?.value;
 
@@ -21,13 +15,10 @@ export function generateLayoutStyles({ clientId, style = {} }) {
 
 	const cols = Math.ceil(Math.sqrt(childrenCount));
 	const rows = Math.ceil((totalDimensions || childrenCount) / cols);
-
 	const dimensions = {
 		"--grid-template-columns": cols.toString(),
 		"--grid-template-rows": rows.toString(),
 	};
-
-	console.log({ style: !style, display, isGrid });
 
 	if (!style) return dimensions;
 
