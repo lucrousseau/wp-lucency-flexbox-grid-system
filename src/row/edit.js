@@ -42,11 +42,10 @@ export default function Edit(props) {
 		fetchRowBlockDetails({
 			clientId,
 		});
-
 	const updatedProps = { blockDefaultStylesClasses, ...props };
 
 	const className = updateClasses(
-		{ props: updatedProps, params: { display } },
+		{ clientId, params: { display } },
 		classnames("lucency", `lucency-${display}`),
 	);
 
@@ -65,7 +64,7 @@ export default function Edit(props) {
 	const { children: innerBlocksPropsChildren } = innerBlocksProps;
 
 	const style = updateStyles({
-		props: updatedProps,
+		clientId,
 		fn: updateStylesCustomFn,
 		params: { display },
 	});

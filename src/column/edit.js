@@ -27,8 +27,7 @@ import { generateLayoutStyles } from "../row/generateLayoutStyles";
 
 import responsiveColumnSizes from "./responsiveColumnSizes";
 
-export default function Edit(props) {
-	const { attributes, setAttributes, clientId } = props;
+export default function Edit({ attributes, setAttributes, clientId }) {
 	const { stylesClasses, width, height } = attributes;
 
 	const { hasChildren, parentRowClientId, childrenCount, blockAttributes } =
@@ -40,12 +39,12 @@ export default function Edit(props) {
 	const { isGrid } = getDisplayPropValue({ display });
 
 	const style = updateStyles({
-		props,
+		clientId,
 		params: { display },
 	});
 
 	const className = updateClasses(
-		{ props, params: { display } },
+		{ clientId, params: { display } },
 		classnames(
 			"lucency-col",
 			responsiveColumnSizes({

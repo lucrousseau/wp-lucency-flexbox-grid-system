@@ -2,12 +2,16 @@ import classnames from "classnames";
 
 import { FLEX_CSS_PROPS } from "../../abstracts/constants";
 import { getPrefix } from "../../commons/prefix";
+import { fetchRowBlockDetails } from "../../row/fetchRowBlockDetails";
 
-function processStylesClasses({ key, props, processEntry }) {
+function processStylesClasses({ key, clientId, processEntry }) {
 	let result = {};
 
-	const { attributes, blockDefaultStylesClasses } = props;
-	const { stylesClasses } = attributes;
+	const { blockAttributes, blockDefaultStylesClasses } = fetchRowBlockDetails({
+		clientId,
+	});
+
+	const { stylesClasses } = blockAttributes;
 
 	Object.entries(stylesClasses ?? {}).forEach(([size, props]) =>
 		Object.entries(props?.[key] ?? {}).forEach(([prop, values]) => {
@@ -36,14 +40,14 @@ function processStylesClasses({ key, props, processEntry }) {
 }
 
 export function updateStyles(
-	{ props, fn = () => {}, params = {} },
+	{ clientId, fn = () => {}, params = {} },
 	style = {},
 ) {
 	const key = "variables";
 
 	let processed = processStylesClasses({
 		key,
-		props,
+		clientId,
 		processEntry: (props) => {
 			const { result, prefix, prop, value, unit, defaultValue } = props;
 			const { display } = params;
@@ -65,14 +69,14 @@ export function updateStyles(
 }
 
 export function updateClasses(
-	{ props, fn = () => {}, params = {} },
+	{ clientId, fn = () => {}, params = {} },
 	classes = null,
 ) {
 	const key = "classes";
 
 	let processed = processStylesClasses({
 		key,
-		props,
+		clientId,
 		processEntry: (props) => {
 			const { result, prefix, prop, value, defaultValue } = props;
 			const { display } = params;
