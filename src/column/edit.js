@@ -23,7 +23,7 @@ import { FLEX_CSS_PROPS } from "../abstracts/constants";
 import CustomRangeControlForCells from "./CustomRangeControlForCells";
 
 import { getDisplayPropValue } from "../commons/displayPropValue";
-import { computeGridLayout } from "../row/generateLayoutStyles";
+import { generateGridDimensions } from "../row/generateGridDimensions";
 
 import responsiveColumnSizes from "./responsiveColumnSizes";
 
@@ -94,7 +94,8 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 			});
 
 			const { "--grid-template-columns": gridLayout = 0 } =
-				computeGridLayout({
+				generateGridDimensions({
+					cells: contextCells,
 					clientId: parentClientId,
 				}) ?? {};
 

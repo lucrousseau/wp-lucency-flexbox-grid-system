@@ -1,16 +1,15 @@
 import { getDisplayPropValue } from "../commons/displayPropValue";
 import { getCumulatedCellDimensions } from "../commons/getCumulatedCellDimensions";
 
-export function computeGridLayout({ clientId }) {
-	const { cumulatedCellsDimensions, childrenCount } =
-		getCumulatedCellDimensions({ clientId });
+export function generateGridDimensions({ cells, clientId }) {
+	const cumulatedCellsDimensions = getCumulatedCellDimensions({ clientId });
 
 	const getCumulatedCellsDimensions =
 		cumulatedCellsDimensions?.full?.width +
 		cumulatedCellsDimensions?.full?.height;
 
-	const cols = Math.ceil(Math.sqrt(childrenCount));
-	const rows = Math.ceil((getCumulatedCellsDimensions || childrenCount) / cols);
+	const cols = Math.ceil(Math.sqrt(cells));
+	const rows = Math.ceil((getCumulatedCellsDimensions || cells) / cols);
 
 	return {
 		"--grid-template-columns": cols.toString(),
@@ -18,8 +17,9 @@ export function computeGridLayout({ clientId }) {
 	};
 }
 
-export function generateLayoutStyles({
+export function generateGridDimensionsStyles({
 	display,
+	cells,
 	clientId,
 	style,
 	stylesClasses,
@@ -28,7 +28,8 @@ export function generateLayoutStyles({
 	const hasColumns =
 		stylesClasses?.full?.variables?.["grid-template-columns"]?.value;
 
-	const dimensions = computeGridLayout({
+	const dimensions = generateGridDimensions({
+		cells,
 		clientId,
 	});
 

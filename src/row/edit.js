@@ -17,7 +17,7 @@ import {
 import CustomNotice from "../commons/CustomNotice";
 import { fetchBlockDetails } from "../commons/fetchBlockDetails";
 import { updateStylesCustomFn } from "./updateStylesCustomFn";
-import { generateLayoutStyles } from "./generateLayoutStyles";
+import { generateGridDimensionsStyles } from "./generateGridDimensions";
 
 import ResponsivePanel, {
 	updateStyles,
@@ -87,11 +87,12 @@ export default function Edit({
 		params: { display, childrenCount },
 	});
 
-	const styleAndIfDefaultGridDimensions = generateLayoutStyles({
+	const styleAndIfDefaultGridDimensions = generateGridDimensionsStyles({
 		style,
 		display,
 		clientId,
 		stylesClasses,
+		cells: childrenCount,
 	});
 
 	const responsivePanelBefore = {
