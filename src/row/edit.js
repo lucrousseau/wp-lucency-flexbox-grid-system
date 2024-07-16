@@ -15,7 +15,7 @@ import {
 } from "../commons/displayPropValue";
 
 import CustomNotice from "../commons/CustomNotice";
-import { fetchBlockDetails } from "../commons/fetchBlockDetails";
+import { getInnerBlocksCount } from "../commons/getInnerBlocksCount";
 import { updateStylesCustomFn } from "./updateStylesCustomFn";
 import { generateGridDimensionsStyles } from "./generateGridDimensions";
 
@@ -55,9 +55,9 @@ export default function Edit({
 
 	const blockProps = useBlockProps({ className });
 
-	const { hasInnerBlocks, innerBlocksCount, innerBlocks } = fetchBlockDetails({
-		clientId,
-	});
+	const { hasInnerBlocks, innerBlocksCount, innerBlocks } = getInnerBlocksCount(
+		{ clientId },
+	);
 
 	const showNotice = innerBlocksCount >= COLUMNS + 1 && isFlex;
 
