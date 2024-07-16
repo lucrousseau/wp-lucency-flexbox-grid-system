@@ -29,18 +29,20 @@ import responsiveColumnSizes from "./responsiveColumnSizes";
 
 import metadata from "./block.json";
 
-export default function Edit({ attributes, setAttributes, clientId }) {
-	const { stylesClasses, width, height } = attributes;
+export default function Edit({ attributes, setAttributes, context, clientId }) {
+	const { stylesClasses, width, height, display, cells, parentStylesClasses } =
+		attributes;
 
+	const {
+		display: contextDisplay = display,
+		cells: contextCells = cells,
+		stylesClasses: contextParentStylesClasses = parentStylesClasses,
+	} = context || {};
+
+	const { isGrid } = getDisplayPropValue({ display: contextDisplay });
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
-	const { hasChildren, parentRowClientId, childrenCount, blockAttributes } =
-		fetchRowBlockDetails({
-			clientId,
-		});
-
-	const { display, stylesClasses: parentStylesClasses } = blockAttributes;
-	const { isGrid } = getDisplayPropValue({ display });
+	const { hasChildren, parentClientId } = fetchRowBlockDetails({ clientId });
 
 	const style = updateStyles({
 		stylesClasses,
@@ -53,12 +55,12 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		classnames(
 			"lucency-col",
 			responsiveColumnSizes({
-				display,
-				parentStylesClasses,
-				cells: childrenCount,
+				display: contextDisplay,
+				parentStylesClasses: contextParentStylesClasses,
+				cells: contextCells,
 				width,
 				height,
-				clientId: parentRowClientId,
+				clientId: parentClientId,
 			}),
 		),
 	);
@@ -69,10 +71,13 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	useEffect(() => {
 		setAttributes({
+			display: contextDisplay,
+			cells: contextCells,
+			parentStylesClasses: contextParentStylesClasses,
 			className,
 			style,
 		});
-	}, [className]);
+	}, [contextDisplay, contextCells, contextParentStylesClasses, className]);
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		renderAppender: !hasChildren
@@ -90,7 +95,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 			const { "--grid-template-columns": gridLayout = 0 } =
 				generateLayoutStyles({
-					clientId: parentRowClientId,
+					clientId: parentClientId,
 				}) ?? {};
 
 			const widthValue = width?.[size] || 0;

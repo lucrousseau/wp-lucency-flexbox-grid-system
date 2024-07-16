@@ -5,31 +5,25 @@ export function fetchRowBlockDetails({ clientId }) {
 
 	return useSelect(
 		(select) => {
-			let getClientId = clientId;
 			const blockEditor = select("core/block-editor");
-			const blockName = blockEditor.getBlockName(getClientId);
-			const parentRowClientId = blockEditor.getBlockRootClientId(getClientId);
-
-			const isColumn = blockName === "lucency-grid/column";
-			if (isColumn) getClientId = parentRowClientId;
-
-			const childrenCount = blockEditor.getBlockCount(getClientId);
-			const childrenBlocks = blockEditor.getBlocks(getClientId);
+			const block = blockEditor.getBlock(clientId);
+			const childrenCount = blockEditor.getBlockCount(clientId);
 			const hasChildren = childrenCount > 0;
+			const childrenBlocks = blockEditor.getBlocks(clientId);
+			const parentClientId = blockEditor.getBlockRootClientId(clientId);
 
 			const blockAttributes = {};
-			const block = blockEditor.getBlock(getClientId);
 
-			if (block) {
-				const { stylesClasses, display } = block.attributes;
-				Object.assign(blockAttributes, { stylesClasses, display });
+			if (clientId !== parentClientId && block) {
+				const { styleClasses, display } = block.attributes;
+				Object.assign(blockAttributes, { styleClasses, display });
 			}
 
 			return {
 				childrenBlocks,
 				hasChildren,
 				childrenCount,
-				parentRowClientId,
+				parentClientId,
 				blockAttributes,
 			};
 		},
