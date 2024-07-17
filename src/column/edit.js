@@ -53,13 +53,10 @@ export default function Edit(props) {
 		...props,
 	};
 
-	const style = updateStyles({
-		params: { display },
-		...setProps,
-	});
+	const style = updateStyles(setProps);
 
 	const className = updateClasses(
-		{ params: { display }, ...setProps },
+		setProps,
 		classnames(
 			"lucency-col",
 			responsiveColumnSizes({

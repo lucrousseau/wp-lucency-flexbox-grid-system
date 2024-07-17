@@ -36,20 +36,26 @@ function processStylesClasses({
 	return result;
 }
 
-export function updateStyles(
-	{ stylesClasses = {}, defaultStylesClasses = {}, fn = () => {}, params = {} },
-	style = {},
-) {
+export function updateStyles(props, style) {
+	const {
+		stylesClasses = {},
+		defaultStylesClasses = {},
+		fn = () => {},
+		display,
+	} = props;
+
 	const key = "variables";
 
 	let processed = processStylesClasses({
 		key,
 		stylesClasses,
 		defaultStylesClasses,
-		processEntry: (props) => {
-			const { result, prefix, prop, value, unit, defaultValue } = props;
-			const { display } = params;
-			const skip = fn({ params, ...props });
+		processEntry: (entryProps) => {
+			const { result, prefix, prop, value, unit, defaultValue } = entryProps;
+
+			console.log(props, "!!!!!");
+
+			const skip = fn({ ...props, ...entryProps });
 			const controls = PANEL_ALL_PROPS({ display });
 
 			if (
@@ -66,20 +72,23 @@ export function updateStyles(
 	return { ...style, ...processed };
 }
 
-export function updateClasses(
-	{ stylesClasses = {}, defaultStylesClasses = {}, fn = () => {}, params = {} },
-	classes = null,
-) {
+export function updateClasses(props, classes = null) {
+	const {
+		stylesClasses = {},
+		defaultStylesClasses = {},
+		fn = () => {},
+		display,
+	} = props;
+
 	const key = "classes";
 
 	let processed = processStylesClasses({
 		key,
 		stylesClasses,
 		defaultStylesClasses,
-		processEntry: (props) => {
-			const { result, prefix, prop, value, defaultValue } = props;
-			const { display } = params;
-			const skip = fn({ params, ...props });
+		processEntry: (entryProps) => {
+			const { result, prefix, prop, value, defaultValue } = entryProps;
+			const skip = fn({ ...props, ...entryProps });
 			const controls = PANEL_ALL_PROPS({ display });
 
 			if (

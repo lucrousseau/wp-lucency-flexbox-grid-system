@@ -55,7 +55,7 @@ export default function Edit(props) {
 	};
 
 	const className = updateClasses(
-		{ params: { display }, ...setProps },
+		setProps,
 		classnames("lucency", `lucency-${display}`),
 	);
 
@@ -71,7 +71,6 @@ export default function Edit(props) {
 
 	const style = updateStyles({
 		fn: updateStylesCustomFn,
-		params: { display, innerBlocksCount },
 		...setProps,
 	});
 

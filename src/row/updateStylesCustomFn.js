@@ -6,9 +6,10 @@ export function updateStylesCustomFn({
 	prop,
 	value,
 	unit,
-	params,
+	display,
+	innerBlocksCount,
 }) {
-	const { display, innerBlocksCount } = params;
+	console.log({ display, innerBlocksCount }, "%?&*()_");
 
 	if (prop === "grid-template-columns") {
 		if (display !== "grid") return true;
