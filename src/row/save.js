@@ -1,8 +1,7 @@
 import { useBlockProps, useInnerBlocksProps } from "@wordpress/block-editor";
 
 export default function save({ attributes }) {
-	const { tag, className, style } = attributes;
-	const Tag = tag;
+	const { className, style } = attributes;
 
 	const innerBlocksProps = useInnerBlocksProps.save(
 		useBlockProps.save({
@@ -10,5 +9,5 @@ export default function save({ attributes }) {
 		}),
 	);
 
-	return <Tag {...innerBlocksProps} style={style} />;
+	return <div {...innerBlocksProps} style={style} />;
 }

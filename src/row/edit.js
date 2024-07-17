@@ -34,18 +34,14 @@ import metadata from "./block.json";
 
 import "./editor.scss";
 
-export default function Edit({
-	attributes,
-	setAttributes,
-	clientId,
-	isSelected,
-}) {
-	const { tag, stylesClasses, columns, display } = attributes;
-	const { isFlex } = getDisplayPropValue({ display });
+export default function Edit(props) {
+	const { attributes, setAttributes, clientId, isSelected } = props;
+	const { stylesClasses, columns, display } = attributes;
 
-	const Tag = tag;
 	const noColumnsDefined = !columns;
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
+
+	const { isFlex } = getDisplayPropValue({ display });
 
 	const className = updateClasses(
 		{ stylesClasses, defaultStylesClasses, params: { display } },
@@ -137,7 +133,7 @@ export default function Edit({
 					</PanelBody>
 				</InspectorControls>
 			)}
-			<Tag {...innerBlocksProps} style={styleAndIfDefaultGridDimensions}>
+			<div {...innerBlocksProps} style={styleAndIfDefaultGridDimensions}>
 				{showNotice && isSelected && (
 					<CustomNotice status="error" isDismissible={false}>
 						{__(
@@ -147,7 +143,7 @@ export default function Edit({
 					</CustomNotice>
 				)}
 				{innerBlocksProps.children}
-			</Tag>
+			</div>
 		</>
 	);
 }

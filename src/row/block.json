@@ -16,10 +16,6 @@
 	"style": "file:./style-index.css",
 	"viewScript": "file:./view.js",
 	"attributes": {
-		"tag": {
-			"type": "string",
-			"default": "div"
-		},
 		"columns": {
 			"type": "number",
 			"default": null
