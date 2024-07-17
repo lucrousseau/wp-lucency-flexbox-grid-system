@@ -20,7 +20,7 @@
 			"type": "number",
 			"default": null
 		},
-		"cells": {
+		"innerBlocksCount": {
 			"type": "number",
 			"default": null
 		},
@@ -48,7 +48,7 @@
 	},
 	"providesContext": {
 		"display": "display",
-		"cells": "cells",
+		"innerBlocksCount": "innerBlocksCount",
 		"stylesClasses": "stylesClasses"
 	}
 }

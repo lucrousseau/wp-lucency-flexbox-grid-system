@@ -77,7 +77,6 @@ export default function Edit(props) {
 
 	const styleAndIfDefaultGridDimensions = generateGridDimensionsStyles({
 		style,
-		cells: innerBlocksCount,
 		...setProps,
 	});
 
@@ -95,7 +94,7 @@ export default function Edit(props) {
 
 	useEffect(() => {
 		setAttributes({
-			cells: innerBlocksCount,
+			innerBlocksCount: innerBlocksCount,
 			style: styleAndIfDefaultGridDimensions,
 			className,
 		});

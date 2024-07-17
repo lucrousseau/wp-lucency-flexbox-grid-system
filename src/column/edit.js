@@ -30,12 +30,18 @@ import responsiveColumnSizes from "./responsiveColumnSizes";
 import metadata from "./block.json";
 
 export default function Edit({ attributes, setAttributes, context, clientId }) {
-	const { stylesClasses, width, height, display, cells, parentStylesClasses } =
-		attributes;
+	const {
+		stylesClasses,
+		width,
+		height,
+		display,
+		innerBlocksCount,
+		parentStylesClasses,
+	} = attributes;
 
 	const {
 		display: contextDisplay = display,
-		cells: contextCells = cells,
+		innerBlocksCount: contextInnerBlocksCount = innerBlocksCount,
 		stylesClasses: contextParentStylesClasses = parentStylesClasses,
 	} = context || {};
 
@@ -57,7 +63,7 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 			responsiveColumnSizes({
 				display: contextDisplay,
 				parentStylesClasses: contextParentStylesClasses,
-				cells: contextCells,
+				innerBlocksCount: contextInnerBlocksCount,
 				width,
 				height,
 				clientId: parentClientId,
@@ -72,12 +78,17 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 	useEffect(() => {
 		setAttributes({
 			display: contextDisplay,
-			cells: contextCells,
+			innerBlocksCount: contextInnerBlocksCount,
 			parentStylesClasses: contextParentStylesClasses,
 			className,
 			style,
 		});
-	}, [contextDisplay, contextCells, contextParentStylesClasses, className]);
+	}, [
+		contextDisplay,
+		contextInnerBlocksCount,
+		contextParentStylesClasses,
+		className,
+	]);
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		renderAppender: !hasInnerBlocks
@@ -90,7 +101,7 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 
 		const { "--grid-template-columns": gridLayout = 0 } =
 			generateGridDimensions({
-				cells: contextCells,
+				innerBlocksCount: contextInnerBlocksCount,
 				clientId: parentClientId,
 			}) ?? {};
 

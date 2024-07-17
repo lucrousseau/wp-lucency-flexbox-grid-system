@@ -9,7 +9,7 @@ import { COLUMNS } from "../abstracts/constants";
 export default function responsiveColumnSizes({
 	display,
 	parentStylesClasses,
-	cells,
+	innerBlocksCount,
 	width,
 	height,
 	clientId,
@@ -17,7 +17,7 @@ export default function responsiveColumnSizes({
 	const { isGrid } = getDisplayPropValue({ display });
 
 	const getGenerateGridDimensions = generateGridDimensions({
-		cells,
+		innerBlocksCount,
 		clientId,
 	});
 
