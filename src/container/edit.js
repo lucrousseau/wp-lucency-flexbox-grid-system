@@ -24,30 +24,31 @@ import metadata from "./block.json";
 
 import "./editor.scss";
 
-export default function Edit({ attributes, setAttributes, clientId }) {
+export default function Edit(props) {
+	const { attributes, setAttributes, clientId } = props;
 	const { stylesClasses } = attributes;
 
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
-	const style = updateStyles({ stylesClasses, defaultStylesClasses });
-
 	const { hasInnerBlocks } = getInnerBlocksCount({ clientId });
 
+	const setProps = {
+		stylesClasses,
+		setAttributes,
+		defaultStylesClasses,
+		...props,
+	};
+
+	const style = updateStyles(setProps);
+
 	const className = updateClasses(
-		{ stylesClasses, defaultStylesClasses },
+		setProps,
 		classnames("lucency lucency-container lucency-flex"),
 	);
 
 	const blockProps = useBlockProps({
 		className,
 	});
-
-	useEffect(() => {
-		setAttributes({
-			className,
-			style,
-		});
-	}, [className]);
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		renderAppender: !hasInnerBlocks
@@ -61,24 +62,24 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 				responsivePanelItemsProps({
 					controls: PANEL_CSS_PROPS,
 					size,
-					stylesClasses,
-					setAttributes,
-					defaultStylesClasses,
+					...setProps,
 				}),
 			title: __("Alignment (rem)", "lucency"),
 		},
 	];
 
+	useEffect(() => {
+		setAttributes({
+			className,
+			style,
+		});
+	}, [className]);
+
 	return (
 		<>
 			<InspectorControls>
 				<PanelBody title={__("Container Settings")}>
-					<ResponsivePanel
-						stylesClasses={stylesClasses}
-						setAttributes={setAttributes}
-						defaultStylesClasses={defaultStylesClasses}
-						responsivePanel={responsivePanel}
-					/>
+					<ResponsivePanel {...{ responsivePanel, ...setProps }} />
 				</PanelBody>
 			</InspectorControls>
 			<section {...blockProps} style={style}>
