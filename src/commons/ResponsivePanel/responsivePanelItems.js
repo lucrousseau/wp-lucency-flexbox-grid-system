@@ -1,8 +1,17 @@
 import { __ } from "@wordpress/i18n";
 
-import { BREAKPOINTS } from "../../abstracts/constants";
+import {
+	BREAKPOINTS,
+	PANEL_MARGINS_PROPS,
+	PANEL_PADDINGS_PROPS,
+} from "../../abstracts/constants";
+
+import responsivePanelItemsProps from "./responsivePanelItemsProps";
 
 export default function responsivePanelItems({
+	stylesClasses,
+	setAttributes,
+	defaultStylesClasses,
 	responsivePanel = { title: null, fn: null },
 }) {
 	const stylesClassesObject = Object.fromEntries(
@@ -28,10 +37,35 @@ export default function responsivePanelItems({
 		);
 	};
 
-	let panelSettings = [];
+	const panelSettings = [
+		{
+			show: true,
+			title: __("Margins (rem)", "lucency"),
+			fn: ({ size }) =>
+				responsivePanelItemsProps({
+					panelProps: PANEL_MARGINS_PROPS,
+					size,
+					stylesClasses,
+					setAttributes,
+					defaultStylesClasses,
+				}),
+		},
+		{
+			show: true,
+			title: __("Padding (rem)", "lucency"),
+			fn: ({ size }) =>
+				responsivePanelItemsProps({
+					panelProps: PANEL_PADDINGS_PROPS,
+					size,
+					stylesClasses,
+					setAttributes,
+					defaultStylesClasses,
+				}),
+		},
+	];
 
 	responsivePanel.map(({ title, fn }) =>
-		panelSettings.push({
+		panelSettings.unshift({
 			show: fn,
 			title: title || null,
 			fn,

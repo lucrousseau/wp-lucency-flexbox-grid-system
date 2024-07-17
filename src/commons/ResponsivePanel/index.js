@@ -6,6 +6,7 @@ import { updateStyles, updateClasses } from "./functions";
 import handleStylesClassesChange from "./handleStylesClassesChange";
 import responsivePanelControls from "./responsivePanelControls";
 import responsivePanelItems from "./responsivePanelItems";
+import responsivePanelItemsProps from "./responsivePanelItemsProps";
 
 import "./editor.scss";
 
@@ -49,5 +50,6 @@ export {
 	updateStyles,
 	updateClasses,
 	responsivePanelControls,
+	responsivePanelItemsProps,
 	handleStylesClassesChange,
 };

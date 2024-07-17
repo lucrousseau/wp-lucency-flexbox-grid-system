@@ -13,17 +13,13 @@ import { PanelBody, Notice } from "@wordpress/components";
 import ResponsivePanel, {
 	updateStyles,
 	updateClasses,
-	responsivePanelControls,
+	responsivePanelItemsProps,
 } from "../commons/ResponsivePanel";
 
 import { getInnerBlocksCount } from "../commons/getInnerBlocksCount";
 import { roundCellDimension } from "../commons/roundCellDimension";
 import { COLUMNS } from "../abstracts/constants";
-import {
-	PANEL_CSS_PROPS,
-	PANEL_MARGINS_PROPS,
-	PANEL_PADDINGS_PROPS,
-} from "../abstracts/constants";
+import { PANEL_CSS_PROPS } from "../abstracts/constants";
 import CustomRangeControlForCells from "./CustomRangeControlForCells";
 
 import { getDisplayPropValue } from "../commons/displayPropValue";
@@ -89,113 +85,90 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 			: null,
 	});
 
-	const mapControls = ({ controls, size }) =>
-		Object.entries(controls).map(([prop, props]) =>
-			responsivePanelControls({
-				stylesClasses,
-				setAttributes,
-				size,
-				col: 6,
-				prop,
-				defaultStylesClasses,
-				...props,
-			}),
-		);
+	const alignmentFn = ({ size }) => {
+		const colOrCellLabel = isGrid ? "Cell" : "Column";
 
-	const createpControlsFn =
-		(controlsFn) =>
-		({ size }) => {
-			const controls = controlsFn({ display, size });
-			return mapControls({ controls, size });
-		};
+		const { "--grid-template-columns": gridLayout = 0 } =
+			generateGridDimensions({
+				cells: contextCells,
+				clientId: parentClientId,
+			}) ?? {};
+
+		const widthValue = width?.[size] || 0;
+		const setWidhAuto = widthValue || gridLayout;
+
+		const heightValue = height?.[size] || 0;
+		const setHeightAuto = heightValue || gridLayout;
+
+		const totalCells = isGrid
+			? parentStylesClasses?.[size]?.variables?.["grid-template-columns"]
+					?.value || gridLayout
+			: COLUMNS;
+
+		const { columnWidth, columnHeight } = (() => {
+			const [columnWidth, columnHeight] = [setWidhAuto, setHeightAuto].map(
+				(value) =>
+					roundCellDimension({
+						total: totalCells,
+						pourcentage: value,
+					}),
+			);
+
+			return { columnWidth, columnHeight };
+		})();
+
+		return (
+			<>
+				<div className={`lucency-col lucency-col-12`}>
+					<CustomRangeControlForCells
+						label={__("Width", "lucency")}
+						value={widthValue}
+						columns={columnWidth}
+						totalCells={totalCells}
+						colOrCellLabel={colOrCellLabel}
+						onChange={(value) =>
+							setAttributes({
+								width: {
+									...width,
+									[size]: value,
+								},
+							})
+						}
+					/>
+					{isGrid && (
+						<CustomRangeControlForCells
+							label={__("Height", "lucency")}
+							value={heightValue}
+							columns={columnHeight}
+							totalCells={totalCells}
+							colOrCellLabel={colOrCellLabel}
+							onChange={(value) =>
+								setAttributes({
+									height: {
+										...height,
+										[size]: value,
+									},
+								})
+							}
+						/>
+					)}
+				</div>
+				{responsivePanelItemsProps({
+					panelProps: PANEL_CSS_PROPS,
+					display,
+					size,
+					stylesClasses,
+					setAttributes,
+					defaultStylesClasses,
+				})}
+			</>
+		);
+	};
 
 	const responsivePanel = [
 		{
-			fn: ({ size }) => {
-				const colOrCellLabel = isGrid ? "Cell" : "Column";
-
-				const controls = PANEL_CSS_PROPS({
-					display: colOrCellLabel.toLocaleLowerCase(),
-				});
-
-				const { "--grid-template-columns": gridLayout = 0 } =
-					generateGridDimensions({
-						cells: contextCells,
-						clientId: parentClientId,
-					}) ?? {};
-
-				const widthValue = width?.[size] || 0;
-				const setWidhAuto = widthValue || gridLayout;
-
-				const heightValue = height?.[size] || 0;
-				const setHeightAuto = heightValue || gridLayout;
-
-				const totalCells = isGrid
-					? parentStylesClasses?.[size]?.variables?.["grid-template-columns"]
-							?.value || gridLayout
-					: COLUMNS;
-
-				const { columnWidth, columnHeight } = (() => {
-					const [columnWidth, columnHeight] = [setWidhAuto, setHeightAuto].map(
-						(value) =>
-							roundCellDimension({
-								total: totalCells,
-								pourcentage: value,
-							}),
-					);
-
-					return { columnWidth, columnHeight };
-				})();
-
-				return (
-					<>
-						<div className={`lucency-col lucency-col-12`}>
-							<CustomRangeControlForCells
-								label={__("Width", "lucency")}
-								value={widthValue}
-								columns={columnWidth}
-								totalCells={totalCells}
-								colOrCellLabel={colOrCellLabel}
-								onChange={(value) =>
-									setAttributes({
-										width: {
-											...width,
-											[size]: value,
-										},
-									})
-								}
-							/>
-							{isGrid && (
-								<CustomRangeControlForCells
-									label={__("Height", "lucency")}
-									value={heightValue}
-									columns={columnHeight}
-									totalCells={totalCells}
-									colOrCellLabel={colOrCellLabel}
-									onChange={(value) =>
-										setAttributes({
-											height: {
-												...height,
-												[size]: value,
-											},
-										})
-									}
-								/>
-							)}
-						</div>
-						{mapControls({ controls, size })}
-					</>
-				);
-			},
+			fn: alignmentFn,
 			title: __("Alignment", "lucency"),
-		},
-		{
-			fn: createpControlsFn(PANEL_MARGINS_PROPS),
-			title: __("Margins (rem)", "lucency"),
-		},
-		{
-			fn: createpControlsFn(PANEL_PADDINGS_PROPS),
-			title: __("Padding (rem)", "lucency"),
 		},
 	];
 
@@ -212,8 +185,8 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 					<ResponsivePanel
 						stylesClasses={stylesClasses}
 						setAttributes={setAttributes}
-						responsivePanel={responsivePanel}
 						defaultStylesClasses={defaultStylesClasses}
+						responsivePanel={responsivePanel}
 					/>
 				</PanelBody>
 			</InspectorControls>

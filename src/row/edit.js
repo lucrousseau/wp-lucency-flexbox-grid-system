@@ -22,18 +22,13 @@ import { generateGridDimensionsStyles } from "./generateGridDimensions";
 import ResponsivePanel, {
 	updateStyles,
 	updateClasses,
-	responsivePanelControls,
+	responsivePanelItemsProps,
 } from "../commons/ResponsivePanel";
 
 import ColumnAppender from "./ColumnAppender";
 import ColumnAppenderPopUp from "./ColumnAppenderPopUp";
 
-import {
-	COLUMNS,
-	PANEL_CSS_PROPS,
-	PANEL_MARGINS_PROPS,
-	PANEL_PADDINGS_PROPS,
-} from "../abstracts/constants";
+import { COLUMNS, PANEL_CSS_PROPS } from "../abstracts/constants";
 
 import metadata from "./block.json";
 
@@ -99,38 +94,18 @@ export default function Edit({
 		cells: innerBlocksCount,
 	});
 
-	const mapControls = ({ controls, size }) =>
-		Object.entries(controls).map(([prop, props]) =>
-			responsivePanelControls({
-				stylesClasses,
-				setAttributes,
-				size,
-				col: 6,
-				prop,
-				defaultStylesClasses,
-				...props,
-			}),
-		);
-
-	const createpControlsFn =
-		(controlsFn) =>
-		({ size }) => {
-			const controls = controlsFn({ display, size });
-			return mapControls({ controls, size });
-		};
-
 	const responsivePanel = [
 		{
-			fn: createpControlsFn(PANEL_CSS_PROPS),
+			fn: ({ size }) =>
+				responsivePanelItemsProps({
+					panelProps: PANEL_CSS_PROPS,
+					display,
+					size,
+					stylesClasses,
+					setAttributes,
+					defaultStylesClasses,
+				}),
 			title: __("Alignment", "lucency"),
-		},
-		{
-			fn: createpControlsFn(PANEL_MARGINS_PROPS),
-			title: __("Margins (rem)", "lucency"),
-		},
-		{
-			fn: createpControlsFn(PANEL_PADDINGS_PROPS),
-			title: __("Padding (rem)", "lucency"),
 		},
 	];
 
@@ -156,8 +131,8 @@ export default function Edit({
 						<ResponsivePanel
 							stylesClasses={stylesClasses}
 							setAttributes={setAttributes}
-							responsivePanel={responsivePanel}
 							defaultStylesClasses={defaultStylesClasses}
+							responsivePanel={responsivePanel}
 						/>
 					</PanelBody>
 				</InspectorControls>
