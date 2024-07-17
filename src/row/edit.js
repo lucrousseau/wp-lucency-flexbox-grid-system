@@ -46,7 +46,13 @@ export default function Edit(props) {
 		{ clientId },
 	);
 
-	const setProps = { stylesClasses, defaultStylesClasses, ...props };
+	const setProps = {
+		display,
+		innerBlocksCount,
+		stylesClasses,
+		defaultStylesClasses,
+		...props,
+	};
 
 	const className = updateClasses(
 		{ params: { display }, ...setProps },
@@ -59,7 +65,7 @@ export default function Edit(props) {
 			!hasInnerBlocks ? (
 				<ColumnAppenderPopUp {...setProps} />
 			) : isSelected ? (
-				<ColumnAppender {...{ display, innerBlocksCount, ...setProps }} />
+				<ColumnAppender {...setProps} />
 			) : null,
 	});
 
@@ -71,7 +77,6 @@ export default function Edit(props) {
 
 	const styleAndIfDefaultGridDimensions = generateGridDimensionsStyles({
 		style,
-		display,
 		cells: innerBlocksCount,
 		...setProps,
 	});
@@ -81,7 +86,6 @@ export default function Edit(props) {
 			fn: ({ size }) =>
 				responsivePanelItemsProps({
 					panelProps: PANEL_CSS_PROPS,
-					display,
 					size,
 					...setProps,
 				}),
