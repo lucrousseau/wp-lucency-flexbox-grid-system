@@ -15,8 +15,8 @@ export default function ResponsivePanel(props) {
 
 	return (
 		<div className={classnames("lucency__responsivepanel")}>
-			{Object.entries(responsivePanelItems(props)).map(([item, props]) => {
-				const { title, content } = props;
+			{Object.entries(responsivePanelItems(props)).map(([item, itemProps]) => {
+				const { title, content } = itemProps;
 
 				return (
 					<div key={item}>
