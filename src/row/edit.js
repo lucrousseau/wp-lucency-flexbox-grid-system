@@ -39,12 +39,13 @@ export default function Edit(props) {
 	const { stylesClasses, columns, display } = attributes;
 
 	const noColumnsDefined = !columns;
+	const { isFlex } = getDisplayPropValue({ display });
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
-	const { isFlex } = getDisplayPropValue({ display });
+	const setProps = { stylesClasses, defaultStylesClasses, ...props };
 
 	const className = updateClasses(
-		{ stylesClasses, defaultStylesClasses, params: { display } },
+		{ params: { display }, ...setProps },
 		classnames("lucency", `lucency-${display}`),
 	);
 
@@ -54,40 +55,27 @@ export default function Edit(props) {
 		{ clientId },
 	);
 
-	const showNotice = innerBlocksCount >= COLUMNS + 1 && isFlex;
-
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		allowedBlocks: ["lucency-grid/column"],
 		renderAppender: () =>
 			!hasInnerBlocks ? (
-				<ColumnAppenderPopUp
-					attributes={attributes}
-					setAttributes={setAttributes}
-					clientId={clientId}
-				/>
+				<ColumnAppenderPopUp {...setProps} />
 			) : isSelected ? (
-				<ColumnAppender
-					innerBlocksCount={innerBlocksCount}
-					clientId={clientId}
-					setAttributes={setAttributes}
-					display={display}
-				/>
+				<ColumnAppender {...{ display, innerBlocksCount, ...setProps }} />
 			) : null,
 	});
 
 	const style = updateStyles({
-		stylesClasses,
-		defaultStylesClasses,
 		fn: updateStylesCustomFn,
 		params: { display, innerBlocksCount },
+		...setProps,
 	});
 
 	const styleAndIfDefaultGridDimensions = generateGridDimensionsStyles({
 		style,
 		display,
-		clientId,
-		stylesClasses,
 		cells: innerBlocksCount,
+		...setProps,
 	});
 
 	const responsivePanel = [
@@ -97,9 +85,7 @@ export default function Edit(props) {
 					panelProps: PANEL_CSS_PROPS,
 					display,
 					size,
-					stylesClasses,
-					setAttributes,
-					defaultStylesClasses,
+					...setProps,
 				}),
 			title: __("Alignment", "lucency"),
 		},
@@ -113,6 +99,8 @@ export default function Edit(props) {
 		});
 	}, [innerBlocks, innerBlocksCount, className]);
 
+	const showNotice = innerBlocksCount >= COLUMNS + 1 && isFlex;
+
 	return (
 		<>
 			{!noColumnsDefined && (
@@ -124,12 +112,7 @@ export default function Edit(props) {
 						})}
 					</PanelBody>
 					<PanelBody title={__("Responsive Settings", "lucency")}>
-						<ResponsivePanel
-							stylesClasses={stylesClasses}
-							setAttributes={setAttributes}
-							defaultStylesClasses={defaultStylesClasses}
-							responsivePanel={responsivePanel}
-						/>
+						<ResponsivePanel {...{ responsivePanel, ...setProps }} />
 					</PanelBody>
 				</InspectorControls>
 			)}
