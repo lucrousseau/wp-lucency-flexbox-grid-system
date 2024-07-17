@@ -19,7 +19,7 @@ import ResponsivePanel, {
 import { getInnerBlocksCount } from "../commons/getInnerBlocksCount";
 import { roundCellDimension } from "../commons/roundCellDimension";
 import { COLUMNS } from "../abstracts/constants";
-import { FLEX_CSS_PROPS } from "../abstracts/constants";
+import { PANEL_CSS_PROPS } from "../abstracts/constants";
 import CustomRangeControlForCells from "./CustomRangeControlForCells";
 
 import { getDisplayPropValue } from "../commons/displayPropValue";
@@ -89,7 +89,7 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 		fn: ({ size }) => {
 			const colOrCellLabel = isGrid ? "Cell" : "Column";
 
-			const controls = FLEX_CSS_PROPS({
+			const controls = PANEL_CSS_PROPS({
 				display: colOrCellLabel.toLocaleLowerCase(),
 			});
 

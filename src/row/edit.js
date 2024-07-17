@@ -28,8 +28,7 @@ import ResponsivePanel, {
 import ColumnAppender from "./ColumnAppender";
 import ColumnAppenderPopUp from "./ColumnAppenderPopUp";
 
-import { COLUMNS } from "../abstracts/constants";
-import { FLEX_CSS_PROPS } from "../abstracts/constants";
+import { COLUMNS, PANEL_CSS_PROPS } from "../abstracts/constants";
 
 import metadata from "./block.json";
 
@@ -97,7 +96,7 @@ export default function Edit({
 
 	const responsivePanelBefore = {
 		fn: ({ size }) => {
-			const controls = FLEX_CSS_PROPS({ display, size });
+			const controls = PANEL_CSS_PROPS({ display, size });
 
 			return Object.entries(controls).map(([prop, props]) =>
 				responsivePanelControls({

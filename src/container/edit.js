@@ -18,7 +18,7 @@ import ResponsivePanel, {
 
 import { getInnerBlocksCount } from "../commons/getInnerBlocksCount";
 
-import { FLEX_CSS_PROPS } from "../abstracts/constants";
+import { PANEL_CSS_PROPS } from "../abstracts/constants";
 
 import metadata from "./block.json";
 
@@ -57,7 +57,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	const responsivePanelBefore = {
 		fn: ({ size }) => {
-			const controls = FLEX_CSS_PROPS({ display: "container" });
+			const controls = PANEL_CSS_PROPS({ display: "container" });
 
 			return Object.entries(controls).map(([prop, props]) =>
 				responsivePanelControls({

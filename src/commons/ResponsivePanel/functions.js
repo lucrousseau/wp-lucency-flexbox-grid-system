@@ -1,6 +1,6 @@
 import classnames from "classnames";
 
-import { FLEX_CSS_PROPS } from "../../abstracts/constants";
+import { PANEL_CSS_PROPS } from "../../abstracts/constants";
 import { getPrefix } from "../../commons/prefix";
 
 function processStylesClasses({
@@ -50,7 +50,7 @@ export function updateStyles(
 			const { result, prefix, prop, value, unit, defaultValue } = props;
 			const { display } = params;
 			const skip = fn({ params, ...props });
-			const controls = FLEX_CSS_PROPS({ display });
+			const controls = PANEL_CSS_PROPS({ display });
 
 			if (
 				skip === true ||
@@ -80,7 +80,7 @@ export function updateClasses(
 			const { result, prefix, prop, value, defaultValue } = props;
 			const { display } = params;
 			const skip = fn({ params, ...props });
-			const controls = FLEX_CSS_PROPS({ display });
+			const controls = PANEL_CSS_PROPS({ display });
 
 			if (
 				skip === true ||
