@@ -52,9 +52,6 @@ export function updateStyles(props, style) {
 		defaultStylesClasses,
 		processEntry: (entryProps) => {
 			const { result, prefix, prop, value, unit, defaultValue } = entryProps;
-
-			console.log(props, "!!!!!");
-
 			const skip = fn({ ...props, ...entryProps });
 			const controls = PANEL_ALL_PROPS({ display });
 
