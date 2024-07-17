@@ -42,6 +42,10 @@ export default function Edit(props) {
 	const { isFlex } = getDisplayPropValue({ display });
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
+	const { hasInnerBlocks, innerBlocksCount, innerBlocks } = getInnerBlocksCount(
+		{ clientId },
+	);
+
 	const setProps = { stylesClasses, defaultStylesClasses, ...props };
 
 	const className = updateClasses(
@@ -49,13 +53,7 @@ export default function Edit(props) {
 		classnames("lucency", `lucency-${display}`),
 	);
 
-	const blockProps = useBlockProps({ className });
-
-	const { hasInnerBlocks, innerBlocksCount, innerBlocks } = getInnerBlocksCount(
-		{ clientId },
-	);
-
-	const innerBlocksProps = useInnerBlocksProps(blockProps, {
+	const innerBlocksProps = useInnerBlocksProps(useBlockProps({ className }), {
 		allowedBlocks: ["lucency-grid/column"],
 		renderAppender: () =>
 			!hasInnerBlocks ? (
@@ -125,7 +123,7 @@ export default function Edit(props) {
 						)}
 					</CustomNotice>
 				)}
-				{innerBlocksProps.children}
+				{innerBlocksProps?.children}
 			</div>
 		</>
 	);
