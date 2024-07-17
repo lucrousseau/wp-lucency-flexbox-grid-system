@@ -286,11 +286,13 @@ const PANEL_CSS_PROPS = ({ display = "flex" } = {}) => {
 
 	if (isFlex)
 		props = {
+			...GAP_PROPS,
 			...FLEX_PROP,
 		};
 
 	if (isGrid)
 		props = {
+			...GAP_PROPS,
 			...GRID_PROP,
 		};
 
@@ -302,7 +304,6 @@ const PANEL_CSS_PROPS = ({ display = "flex" } = {}) => {
 
 	return {
 		...TEXT_PROPS,
-		...GAP_PROPS,
 		...props,
 	};
 };

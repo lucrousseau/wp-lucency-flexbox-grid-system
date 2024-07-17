@@ -18,8 +18,7 @@ import ResponsivePanel, {
 
 import { getInnerBlocksCount } from "../commons/getInnerBlocksCount";
 import { roundCellDimension } from "../commons/roundCellDimension";
-import { COLUMNS } from "../abstracts/constants";
-import { PANEL_CSS_PROPS } from "../abstracts/constants";
+import { COLUMNS, PANEL_CSS_PROPS } from "../abstracts/constants";
 import CustomRangeControlForCells from "./CustomRangeControlForCells";
 
 import { getDisplayPropValue } from "../commons/displayPropValue";
@@ -29,79 +28,64 @@ import responsiveColumnSizes from "./responsiveColumnSizes";
 
 import metadata from "./block.json";
 
-export default function Edit({ attributes, setAttributes, context, clientId }) {
+export default function Edit(props) {
+	const { attributes, setAttributes, context, clientId } = props;
+	const { stylesClasses, width, height } = attributes;
+
 	const {
-		stylesClasses,
-		width,
-		height,
 		display,
 		innerBlocksCount,
-		parentStylesClasses,
-	} = attributes;
-
-	const {
-		display: contextDisplay = display,
-		innerBlocksCount: contextInnerBlocksCount = innerBlocksCount,
-		stylesClasses: contextParentStylesClasses = parentStylesClasses,
+		stylesClasses: parentStylesClasses = context?.stylesClasses,
 	} = context || {};
 
-	const { isGrid } = getDisplayPropValue({ display: contextDisplay });
+	const { isGrid } = getDisplayPropValue({ display });
+	const colOrCellLabel = isGrid ? "Cell" : "Column";
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
 	const { hasInnerBlocks, parentClientId } = getInnerBlocksCount({ clientId });
 
-	const style = updateStyles({
+	const setProps = {
+		display,
+		innerBlocksCount,
 		stylesClasses,
+		parentStylesClasses,
 		defaultStylesClasses,
+		...props,
+	};
+
+	const style = updateStyles({
 		params: { display },
+		...setProps,
 	});
 
 	const className = updateClasses(
-		{ stylesClasses, defaultStylesClasses, params: { display } },
+		{ params: { display }, ...setProps },
 		classnames(
 			"lucency-col",
 			responsiveColumnSizes({
-				display: contextDisplay,
-				parentStylesClasses: contextParentStylesClasses,
-				innerBlocksCount: contextInnerBlocksCount,
 				width,
 				height,
+				...setProps,
 				clientId: parentClientId,
 			}),
 		),
 	);
 
-	const blockProps = useBlockProps({
-		className,
-	});
-
-	useEffect(() => {
-		setAttributes({
-			display: contextDisplay,
-			innerBlocksCount: contextInnerBlocksCount,
-			parentStylesClasses: contextParentStylesClasses,
+	const innerBlocksProps = useInnerBlocksProps(
+		useBlockProps({
 			className,
-			style,
-		});
-	}, [
-		contextDisplay,
-		contextInnerBlocksCount,
-		contextParentStylesClasses,
-		className,
-	]);
-
-	const innerBlocksProps = useInnerBlocksProps(blockProps, {
-		renderAppender: !hasInnerBlocks
-			? () => <InnerBlocks.ButtonBlockAppender />
-			: null,
-	});
+		}),
+		{
+			renderAppender: !hasInnerBlocks
+				? () => <InnerBlocks.ButtonBlockAppender />
+				: null,
+		},
+	);
 
 	const alignmentFn = ({ size }) => {
-		const colOrCellLabel = isGrid ? "Cell" : "Column";
-
 		const { "--grid-template-columns": gridLayout = 0 } =
 			generateGridDimensions({
-				innerBlocksCount: contextInnerBlocksCount,
+				...setProps,
 				clientId: parentClientId,
 			}) ?? {};
 
@@ -165,12 +149,10 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 					)}
 				</div>
 				{responsivePanelItemsProps({
-					panelProps: PANEL_CSS_PROPS,
-					display,
+					controls: PANEL_CSS_PROPS,
 					size,
-					stylesClasses,
-					setAttributes,
-					defaultStylesClasses,
+					...setProps,
+					display: colOrCellLabel.toLocaleLowerCase(),
 				})}
 			</>
 		);
@@ -183,22 +165,25 @@ export default function Edit({ attributes, setAttributes, context, clientId }) {
 		},
 	];
 
+	useEffect(() => {
+		setAttributes({
+			className,
+			style,
+			...setProps,
+		});
+	}, [display, innerBlocksCount, parentStylesClasses, className]);
+
 	return (
 		<>
 			<InspectorControls>
 				<Notice status="warning" isDismissible={false}>
 					{__(
-						"Comulative column width for sleected breakpoints should not exceed 12 or row will break in another line",
+						`Comulative column width for sleected breakpoints should not exceed ${COLUMNS} or row will break in another line`,
 						"lucency",
 					)}
 				</Notice>
 				<PanelBody title={__("Responsive Settings")}>
-					<ResponsivePanel
-						stylesClasses={stylesClasses}
-						setAttributes={setAttributes}
-						defaultStylesClasses={defaultStylesClasses}
-						responsivePanel={responsivePanel}
-					/>
+					<ResponsivePanel {...{ responsivePanel, ...setProps }} />
 				</PanelBody>
 			</InspectorControls>
 			<div {...innerBlocksProps} style={style}></div>

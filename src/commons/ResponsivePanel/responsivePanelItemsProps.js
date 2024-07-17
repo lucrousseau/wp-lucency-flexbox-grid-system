@@ -1,19 +1,14 @@
 import { responsivePanelControls } from "./";
 
 const responsivePanelItemsProps = ({
-	display,
+	controls,
 	size,
-	panelProps,
+	display,
 	stylesClasses,
 	setAttributes,
 	defaultStylesClasses,
-}) => {
-	const controls = panelProps({
-		display,
-		size,
-	});
-
-	return Object.entries(controls).map(([prop, props]) =>
+}) =>
+	Object.entries(controls({ display, size })).map(([prop, props]) =>
 		responsivePanelControls({
 			size,
 			col: 6,
@@ -24,6 +19,4 @@ const responsivePanelItemsProps = ({
 			...props,
 		}),
 	);
-};
-
 export default responsivePanelItemsProps;

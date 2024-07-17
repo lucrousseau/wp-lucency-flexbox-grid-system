@@ -43,7 +43,7 @@ export default function responsivePanelItems({
 			title: __("Margins (rem)", "lucency"),
 			fn: ({ size }) =>
 				responsivePanelItemsProps({
-					panelProps: PANEL_MARGINS_PROPS,
+					controls: PANEL_MARGINS_PROPS,
 					size,
 					stylesClasses,
 					setAttributes,
@@ -55,7 +55,7 @@ export default function responsivePanelItems({
 			title: __("Padding (rem)", "lucency"),
 			fn: ({ size }) =>
 				responsivePanelItemsProps({
-					panelProps: PANEL_PADDINGS_PROPS,
+					controls: PANEL_PADDINGS_PROPS,
 					size,
 					stylesClasses,
 					setAttributes,

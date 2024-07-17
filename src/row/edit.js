@@ -84,7 +84,7 @@ export default function Edit(props) {
 		{
 			fn: ({ size }) =>
 				responsivePanelItemsProps({
-					panelProps: PANEL_CSS_PROPS,
+					controls: PANEL_CSS_PROPS,
 					size,
 					...setProps,
 				}),

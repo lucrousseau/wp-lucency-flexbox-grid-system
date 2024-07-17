@@ -59,7 +59,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		{
 			fn: ({ size }) =>
 				responsivePanelItemsProps({
-					panelProps: PANEL_CSS_PROPS,
+					controls: PANEL_CSS_PROPS,
 					size,
 					stylesClasses,
 					setAttributes,
