@@ -94,7 +94,7 @@ export default function Edit(props) {
 
 	useEffect(() => {
 		setAttributes({
-			innerBlocksCount: innerBlocksCount,
+			innerBlocksCount,
 			style: styleAndIfDefaultGridDimensions,
 			className,
 		});
