@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import { useSelect } from "@wordpress/data";
+import { useEffect } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
 import {
 	InnerBlocks,
@@ -47,7 +47,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			className,
 			style,
 		});
-	}, [contextDisplay, contextCells, contextParentStylesClasses, className]);
+	}, [className]);
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
 		renderAppender: !hasInnerBlocks
