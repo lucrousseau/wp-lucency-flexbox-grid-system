@@ -2,100 +2,12 @@ import { __ } from "@wordpress/i18n";
 
 import { BREAKPOINTS } from "../../abstracts/constants";
 
-import responsivePanelControls from "./responsivePanelControls";
-
 export default function responsivePanelItems({
-	enabled = { margin: false, padding: false },
-	stylesClasses,
-	setAttributes,
-	defaultStylesClasses = {},
-	responsivePanelBefore = { title: null, fn: null },
-	responsivePanelAfter = { title: null, fn: null },
+	responsivePanel = { title: null, fn: null },
 }) {
 	const stylesClassesObject = Object.fromEntries(
 		Object.keys(BREAKPOINTS).map((size) => [size, {}]),
 	);
-
-	const responsivePanelMargins = ({ size }) => {
-		const controls = [
-			{
-				label: __("Top", "lucency"),
-				prop: "margin-top",
-			},
-			{
-				label: __("Bottom", "lucency"),
-				prop: "margin-bottom",
-			},
-			{
-				label: __("Left", "lucency"),
-				prop: "margin-left",
-			},
-			{
-				label: __("Right", "lucency"),
-				prop: "margin-right",
-			},
-		];
-
-		return (
-			<>
-				{controls.map((props) =>
-					responsivePanelControls({
-						stylesClasses,
-						setAttributes,
-						defaultStylesClasses,
-						size,
-						type: "number",
-						key: "variables",
-						unit: "rem",
-						hideUnitInLabel: true,
-						col: 3,
-						...props,
-					}),
-				)}
-			</>
-		);
-	};
-
-	const responsivePanelPaddings = ({ size }) => {
-		const controls = [
-			{
-				label: __("Top", "lucency"),
-				prop: "padding-top",
-			},
-			{
-				label: __("Bottom", "lucency"),
-				prop: "padding-bottom",
-			},
-			{
-				label: __("Left", "lucency"),
-				prop: "padding-left",
-			},
-			{
-				label: __("Right", "lucency"),
-				prop: "padding-right",
-			},
-		];
-
-		return (
-			<>
-				{controls.map((props) =>
-					responsivePanelControls({
-						stylesClasses,
-						setAttributes,
-						defaultStylesClasses,
-						type: "number",
-						key: "variables",
-						unit: "rem",
-						hideUnitInLabel: true,
-						col: 3,
-						min: 0,
-						size,
-						...props,
-					}),
-				)}
-			</>
-		);
-	};
 
 	const createResponsivePanelItemsContent = ({ title, size, fn, index }) => {
 		if (!fn) {
@@ -116,28 +28,15 @@ export default function responsivePanelItems({
 		);
 	};
 
-	const panelSettings = [
-		{
-			condition: responsivePanelBefore?.fn,
-			title: responsivePanelBefore.title || null,
-			fn: responsivePanelBefore.fn,
-		},
-		{
-			condition: enabled?.margin,
-			title: "Margins (rem)",
-			fn: responsivePanelMargins,
-		},
-		{
-			condition: enabled?.padding,
-			title: "Paddings (rem)",
-			fn: responsivePanelPaddings,
-		},
-		{
-			condition: responsivePanelAfter?.fn,
-			title: responsivePanelAfter?.title || null,
-			fn: responsivePanelAfter.fn,
-		},
-	];
+	let panelSettings = [];
+
+	responsivePanel.map(({ title, fn }) =>
+		panelSettings.push({
+			show: fn,
+			title: title || null,
+			fn,
+		}),
+	);
 
 	return Object.keys(stylesClassesObject).reduce((collapsibleItems, size) => {
 		const title = `${__(size.toUpperCase(), "lucency")}${
@@ -149,8 +48,8 @@ export default function responsivePanelItems({
 				key={`responsiveResponsiveStylesClassesPanel-${size}`}
 				className="responsiveResponsiveStylesClassesPanel"
 			>
-				{panelSettings.map(({ condition, title, fn }, index) =>
-					condition
+				{panelSettings.map(({ show, title, fn }, index) =>
+					show
 						? createResponsivePanelItemsContent({ title, fn, size, index })
 						: null,
 				)}

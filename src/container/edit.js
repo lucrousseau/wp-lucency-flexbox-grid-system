@@ -18,7 +18,11 @@ import ResponsivePanel, {
 
 import { getInnerBlocksCount } from "../commons/getInnerBlocksCount";
 
-import { PANEL_CSS_PROPS } from "../abstracts/constants";
+import {
+	PANEL_CSS_PROPS,
+	PANEL_MARGINS_PROPS,
+	PANEL_PADDINGS_PROPS,
+} from "../abstracts/constants";
 
 import metadata from "./block.json";
 
@@ -55,33 +59,49 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			: null,
 	});
 
-	const responsivePanelBefore = {
-		fn: ({ size }) => {
-			const controls = PANEL_CSS_PROPS({ display: "container" });
+	const mapControls = ({ controls, size }) =>
+		Object.entries(controls).map(([prop, props]) =>
+			responsivePanelControls({
+				stylesClasses,
+				setAttributes,
+				size,
+				col: 6,
+				prop,
+				defaultStylesClasses,
+				...props,
+			}),
+		);
 
-			return Object.entries(controls).map(([prop, props]) =>
-				responsivePanelControls({
-					stylesClasses,
-					setAttributes,
-					size,
-					col: 6,
-					prop,
-					...props,
-				}),
-			);
+	const createpControlsFn =
+		(controlsFn) =>
+		({ size }) => {
+			const controls = controlsFn({ display, size });
+			return mapControls({ controls, size });
+		};
+
+	const responsivePanel = [
+		{
+			fn: createpControlsFn(PANEL_CSS_PROPS),
+			title: __("Alignment (rem)", "lucency"),
 		},
-		title: __("Alignment", "lucency"),
-	};
+		{
+			fn: createpControlsFn(PANEL_MARGINS_PROPS),
+			title: __("Margins (rem)", "lucency"),
+		},
+		{
+			fn: createpControlsFn(PANEL_PADDINGS_PROPS),
+			title: __("Padding (rem)", "lucency"),
+		},
+	];
 
 	return (
 		<>
 			<InspectorControls>
 				<PanelBody title={__("Container Settings")}>
 					<ResponsivePanel
-						enabled={{ margin: true, padding: true }}
 						stylesClasses={stylesClasses}
 						setAttributes={setAttributes}
-						responsivePanelBefore={responsivePanelBefore}
+						responsivePanel={responsivePanel}
 						defaultStylesClasses={defaultStylesClasses}
 					/>
 				</PanelBody>

@@ -28,7 +28,12 @@ import ResponsivePanel, {
 import ColumnAppender from "./ColumnAppender";
 import ColumnAppenderPopUp from "./ColumnAppenderPopUp";
 
-import { COLUMNS, PANEL_CSS_PROPS } from "../abstracts/constants";
+import {
+	COLUMNS,
+	PANEL_CSS_PROPS,
+	PANEL_MARGINS_PROPS,
+	PANEL_PADDINGS_PROPS,
+} from "../abstracts/constants";
 
 import metadata from "./block.json";
 
@@ -94,24 +99,40 @@ export default function Edit({
 		cells: innerBlocksCount,
 	});
 
-	const responsivePanelBefore = {
-		fn: ({ size }) => {
-			const controls = PANEL_CSS_PROPS({ display, size });
+	const mapControls = ({ controls, size }) =>
+		Object.entries(controls).map(([prop, props]) =>
+			responsivePanelControls({
+				stylesClasses,
+				setAttributes,
+				size,
+				col: 6,
+				prop,
+				defaultStylesClasses,
+				...props,
+			}),
+		);
 
-			return Object.entries(controls).map(([prop, props]) =>
-				responsivePanelControls({
-					stylesClasses,
-					setAttributes,
-					size,
-					col: 6,
-					prop,
-					defaultStylesClasses,
-					...props,
-				}),
-			);
+	const createpControlsFn =
+		(controlsFn) =>
+		({ size }) => {
+			const controls = controlsFn({ display, size });
+			return mapControls({ controls, size });
+		};
+
+	const responsivePanel = [
+		{
+			fn: createpControlsFn(PANEL_CSS_PROPS),
+			title: __("Alignment", "lucency"),
 		},
-		title: __("Alignment", "lucency"),
-	};
+		{
+			fn: createpControlsFn(PANEL_MARGINS_PROPS),
+			title: __("Margins (rem)", "lucency"),
+		},
+		{
+			fn: createpControlsFn(PANEL_PADDINGS_PROPS),
+			title: __("Padding (rem)", "lucency"),
+		},
+	];
 
 	useEffect(() => {
 		setAttributes({
@@ -133,10 +154,9 @@ export default function Edit({
 					</PanelBody>
 					<PanelBody title={__("Responsive Settings", "lucency")}>
 						<ResponsivePanel
-							enabled={{ margin: true, padding: true }}
 							stylesClasses={stylesClasses}
 							setAttributes={setAttributes}
-							responsivePanelBefore={responsivePanelBefore}
+							responsivePanel={responsivePanel}
 							defaultStylesClasses={defaultStylesClasses}
 						/>
 					</PanelBody>

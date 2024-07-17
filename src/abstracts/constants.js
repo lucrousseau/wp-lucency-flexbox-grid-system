@@ -192,6 +192,84 @@ const GAP_PROPS = {
 	},
 };
 
+const MARGINS_PROPS = {
+	"margin-top": {
+		label: __("Top", "lucency"),
+		type: "number",
+		key: "variables",
+		unit: "rem",
+		col: 3,
+		min: 0,
+		hideUnitInLabel: true,
+	},
+	"margin-bottom": {
+		label: __("Bottom", "lucency"),
+		type: "number",
+		key: "variables",
+		unit: "rem",
+		col: 3,
+		min: 0,
+		hideUnitInLabel: true,
+	},
+	"margin-left": {
+		label: __("Left", "lucency"),
+		type: "number",
+		key: "variables",
+		unit: "rem",
+		col: 3,
+		min: 0,
+		hideUnitInLabel: true,
+	},
+	"margin-right": {
+		label: __("Right", "lucency"),
+		type: "number",
+		key: "variables",
+		unit: "rem",
+		col: 3,
+		min: 0,
+		hideUnitInLabel: true,
+	},
+};
+
+const PADDING_PROPS = {
+	"padding-top": {
+		label: __("Top", "lucency"),
+		type: "number",
+		key: "variables",
+		unit: "rem",
+		col: 3,
+		min: 0,
+		hideUnitInLabel: true,
+	},
+	"padding-bottom": {
+		label: __("Bottom", "lucency"),
+		type: "number",
+		key: "variables",
+		unit: "rem",
+		col: 3,
+		min: 0,
+		hideUnitInLabel: true,
+	},
+	"padding-left": {
+		label: __("Left", "lucency"),
+		type: "number",
+		key: "variables",
+		unit: "rem",
+		col: 3,
+		min: 0,
+		hideUnitInLabel: true,
+	},
+	"padding-right": {
+		label: __("Right", "lucency"),
+		type: "number",
+		key: "variables",
+		unit: "rem",
+		col: 3,
+		min: 0,
+		hideUnitInLabel: true,
+	},
+};
+
 const PANEL_CSS_PROPS = ({ display = "flex" } = {}) => {
 	const { isContainer, isFlex, isGrid, isColumn, isCell } = getDisplayPropValue(
 		{
@@ -229,4 +307,27 @@ const PANEL_CSS_PROPS = ({ display = "flex" } = {}) => {
 	};
 };
 
-export { COLUMNS, BREAKPOINTS, PANEL_CSS_PROPS };
+const PANEL_MARGINS_PROPS = () => {
+	return MARGINS_PROPS;
+};
+
+const PANEL_PADDINGS_PROPS = () => {
+	return PADDING_PROPS;
+};
+
+const PANEL_ALL_PROPS = (props = {}) => {
+	return {
+		...PANEL_CSS_PROPS(props),
+		...PANEL_MARGINS_PROPS(),
+		...PANEL_PADDINGS_PROPS(),
+	};
+};
+
+export {
+	COLUMNS,
+	BREAKPOINTS,
+	PANEL_CSS_PROPS,
+	PANEL_MARGINS_PROPS,
+	PANEL_PADDINGS_PROPS,
+	PANEL_ALL_PROPS,
+};

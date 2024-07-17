@@ -100,7 +100,7 @@ const responsivePanelControls = ({
 	return (
 		<div
 			className={`lucency-col lucency-col-${col}`}
-			key={`responsivePanelControls-${label}-${size}`}
+			key={`responsivePanelControls-${label}-${size}-${prop}`}
 		>
 			{output}
 		</div>
