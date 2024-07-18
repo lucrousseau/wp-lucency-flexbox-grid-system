@@ -66,7 +66,7 @@ export default function Edit(props) {
 				}${unit}`;
 			}
 		},
-		[],
+		[COLUMNS],
 	);
 
 	const style = useMemo(
@@ -106,9 +106,12 @@ export default function Edit(props) {
 		[setProps],
 	);
 
-	const handGridOrFlexSelectorChange = useCallback((value) => {
-		setAttributes({ display: value });
-	}, []);
+	const handGridOrFlexSelectorChange = useCallback(
+		(value) => {
+			setAttributes({ display: value });
+		},
+		[setAttributes],
+	);
 
 	useEffect(() => {
 		setAttributes({
