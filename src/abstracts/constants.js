@@ -2,7 +2,7 @@ import { __ } from "@wordpress/i18n";
 
 import { getDisplayPropValue } from "../commons/displayPropValue";
 import { generateMarksForRange } from "../commons/generateMarksForRange";
-import { rangeTooltipContent } from "../commons/rangeTooltipContent";
+import { rangeControlForColsCellsTooltipContent } from "../commons/RangeControlForColsCells";
 
 const COLUMNS = 12;
 
@@ -126,7 +126,7 @@ const GRID_PROP = {
 		type: "range",
 		key: "variables",
 		marks: generateMarksForRange({ total: 100 }),
-		renderTooltipContent: rangeTooltipContent,
+		renderTooltipContent: rangeControlForColsCellsTooltipContent,
 		withInputField: false,
 	},
 };

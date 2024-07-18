@@ -19,7 +19,7 @@ import ResponsivePanel, {
 import { fetchBlockDetails } from "../commons/fetchBlockDetails";
 import { roundCellDimension } from "../commons/roundCellDimension";
 import { COLUMNS, PANEL_CSS_PROPS } from "../abstracts/constants";
-import CustomRangeControlForCells from "./CustomRangeControlForCells";
+import RangeControlForColsCells from "../commons/RangeControlForColsCells";
 
 import { getDisplayPropValue } from "../commons/displayPropValue";
 import { generateGridDimensions } from "../row/generateGridDimensions";
@@ -112,7 +112,7 @@ export default function Edit(props) {
 		return (
 			<>
 				<div className={`lucency-col lucency-col-12`}>
-					<CustomRangeControlForCells
+					<RangeControlForColsCells
 						label={__("Width", "lucency")}
 						value={widthValue}
 						columns={columnWidth}
@@ -128,7 +128,7 @@ export default function Edit(props) {
 						}
 					/>
 					{isGrid && (
-						<CustomRangeControlForCells
+						<RangeControlForColsCells
 							label={__("Height", "lucency")}
 							value={heightValue}
 							columns={columnHeight}
