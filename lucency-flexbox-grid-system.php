@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; 
 }
 
-function LucencyGridIinit() {
+function LucencyFlexboxGridSystemInit() {
     $blocks_dir = __DIR__ . '/build/';
     $block_folders = array_filter(glob($blocks_dir . '*'), 'is_dir');
 
@@ -25,4 +25,4 @@ function LucencyGridIinit() {
     }
 }
 
-add_action( 'init', 'LucencyGridIinit' );
+add_action( 'init', 'LucencyFlexboxGridSystemInit' );
