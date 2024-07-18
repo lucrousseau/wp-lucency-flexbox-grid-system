@@ -8,7 +8,6 @@
 	"description": "",
 	"example": {},
 	"supports": {
-		"html": false,
 		"inserter": false,
 		"deleate": false
 	},

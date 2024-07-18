@@ -7,9 +7,7 @@
 	"category": "design",
 	"description": "Create a flex row and columns with responsive sizes.",
 	"example": {},
-	"supports": {
-		"html": true
-	},
+	"supports": {},
 	"textdomain": "lucency",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",

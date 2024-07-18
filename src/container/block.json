@@ -44,9 +44,7 @@
 			}
 		]
 	},
-	"supports": {
-		"html": false
-	},
+	"supports": {},
 	"parent": [null],
 	"textdomain": "lucency",
 	"editorScript": "file:./index.js",
