@@ -13,7 +13,6 @@ import renderGridFlexSelector from "../commons/renderGridFlexSelector";
 import getDisplayTypeFlags from "../commons/getDisplayTypeFlags";
 import CustomNotice from "../commons/CustomNotice";
 import { fetchBlockDetails } from "../commons/fetchBlockDetails";
-import updateStylesCustomFn from "./updateStylesCustomFn";
 import applyGridDimensionsStyles from "../commons/applyGridDimensionsStyles";
 
 import ResponsivePanel, {
@@ -65,6 +64,24 @@ export default function Edit(props) {
 				<ColumnAppender {...setProps} />
 			) : null,
 	});
+
+	const updateStylesCustomFn = ({
+		result,
+		prefix,
+		prop,
+		value,
+		unit,
+		display,
+		innerBlocksCount,
+	}) => {
+		if (prop === "grid-template-columns") {
+			if (display !== "grid") return true;
+
+			result[`--grid-template-rows${prefix}`] = `${
+				COLUMNS / Math.ceil(innerBlocksCount / value)
+			}${unit}`;
+		}
+	};
 
 	const style = updateStyles({
 		fn: updateStylesCustomFn,
