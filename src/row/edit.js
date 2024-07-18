@@ -12,7 +12,7 @@ import { PanelBody } from "@wordpress/components";
 import renderGridFlexSelector from "../commons/renderGridFlexSelector";
 import getDisplayTypeFlags from "../commons/getDisplayTypeFlags";
 import CustomNotice from "../commons/CustomNotice";
-import { fetchBlockDetails } from "../commons/fetchBlockDetails";
+import fetchBlockDetails from "../commons/fetchBlockDetails";
 import applyGridDimensionsStyles from "../commons/applyGridDimensionsStyles";
 
 import ResponsivePanel, {

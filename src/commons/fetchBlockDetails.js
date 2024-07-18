@@ -1,6 +1,6 @@
 import { useSelect } from "@wordpress/data";
 
-export function fetchBlockDetails({ clientId }) {
+export default function fetchBlockDetails({ clientId }) {
 	if (!clientId) return {};
 
 	return useSelect(

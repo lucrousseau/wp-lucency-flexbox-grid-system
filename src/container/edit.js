@@ -16,7 +16,7 @@ import ResponsivePanel, {
 	responsivePanelItemsProps,
 } from "../commons/ResponsivePanel";
 
-import { fetchBlockDetails } from "../commons/fetchBlockDetails";
+import fetchBlockDetails from "../commons/fetchBlockDetails";
 
 import { PANEL_CSS_PROPS } from "../abstracts/constants";
 
