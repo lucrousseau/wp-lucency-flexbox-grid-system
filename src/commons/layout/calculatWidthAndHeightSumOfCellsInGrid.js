@@ -1,6 +1,6 @@
-import fetchBlockDetails from "./fetchBlockDetails";
+import fetchBlockDetails from "../fetchBlockDetails";
 
-export default function getCumulatedCellsWidth({ clientId }) {
+export default function calculatWidthAndHeightSumOfCellsInGrid({ clientId }) {
 	const cumulatedCellsDimensions = {};
 
 	const { innerBlocksCount, innerBlocks } = fetchBlockDetails({ clientId });

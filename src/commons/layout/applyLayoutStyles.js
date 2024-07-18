@@ -1,7 +1,7 @@
-import getDisplayTypeFlags from "./getDisplayTypeFlags";
-import calculateGridLayout from "./calculateGridLayout";
+import getDisplayTypeFlags from "../getDisplayTypeFlags";
+import calculateGridLayoutStylesDimension from "./calculateGridLayoutStylesDimension";
 
-export default function applyGridDimensionsStyles({
+export default function applyLayoutStyles({
 	display,
 	innerBlocksCount,
 	clientId,
@@ -12,7 +12,7 @@ export default function applyGridDimensionsStyles({
 	const hasColumns =
 		stylesClasses?.full?.variables?.["grid-template-columns"]?.value;
 
-	const dimensions = calculateGridLayout({
+	const dimensions = calculateGridLayoutStylesDimension({
 		innerBlocksCount,
 		clientId,
 	});

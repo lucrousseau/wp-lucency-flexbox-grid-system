@@ -20,10 +20,14 @@ import {
 } from "../commons/processStylesClassesChange";
 
 import fetchBlockDetails from "../commons/fetchBlockDetails";
-import roundCellDimension from "../commons/roundCellDimension";
+
 import { COLUMNS, PANEL_CSS_PROPS } from "../abstracts/constants";
 import RangeControlForColsCells from "../commons/RangeControlForColsCells";
-import calculateGridLayout from "../commons/calculateGridLayout";
+
+import {
+	roundColOrCellDimension,
+	calculateGridLayoutStylesDimension,
+} from "../commons/layout";
 
 import getDisplayTypeFlags from "../commons/getDisplayTypeFlags";
 
@@ -84,7 +88,7 @@ export default function Edit(props) {
 
 	const alignmentFn = ({ size }) => {
 		const { "--grid-template-columns": gridLayout = 0 } =
-			calculateGridLayout({
+			calculateGridLayoutStylesDimension({
 				...setProps,
 				clientId: parentClientId,
 			}) ?? {};
@@ -103,7 +107,7 @@ export default function Edit(props) {
 		const { columnWidth, columnHeight } = (() => {
 			const [columnWidth, columnHeight] = [setWidhAuto, setHeightAuto].map(
 				(value) =>
-					roundCellDimension({
+					roundColOrCellDimension({
 						total: totalCells,
 						pourcentage: value,
 					}),

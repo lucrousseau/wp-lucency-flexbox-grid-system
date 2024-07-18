@@ -1,7 +1,12 @@
-import getCumulatedCellsWidth from "./getCumulatedCellsWidth";
+import calculatWidthAndHeightSumOfCellsInGrid from "./calculatWidthAndHeightSumOfCellsInGrid";
 
-export default function calculateGridLayout({ innerBlocksCount, clientId }) {
-	const cumulatedCellsDimensions = getCumulatedCellsWidth({ clientId });
+export default function calculateGridLayoutStylesDimension({
+	innerBlocksCount,
+	clientId,
+}) {
+	const cumulatedCellsDimensions = calculatWidthAndHeightSumOfCellsInGrid({
+		clientId,
+	});
 
 	const getCumulatedCellsDimensions =
 		cumulatedCellsDimensions?.full?.width +

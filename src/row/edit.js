@@ -9,11 +9,11 @@ import {
 
 import { PanelBody } from "@wordpress/components";
 
-import renderGridFlexSelector from "../commons/renderGridFlexSelector";
+import GridOrFlexSelector from "../commons/GridOrFlexSelector";
 import getDisplayTypeFlags from "../commons/getDisplayTypeFlags";
 import CustomNotice from "../commons/CustomNotice";
 import fetchBlockDetails from "../commons/fetchBlockDetails";
-import applyGridDimensionsStyles from "../commons/applyGridDimensionsStyles";
+import { applyLayoutStyles } from "../commons/layout";
 
 import ResponsivePanel, {
 	responsivePanelItemsProps,
@@ -91,7 +91,7 @@ export default function Edit(props) {
 		...setProps,
 	});
 
-	const styleAndIfDefaultGridDimensions = applyGridDimensionsStyles({
+	const styleAndIfDefaultGridDimensions = applyLayoutStyles({
 		style,
 		...setProps,
 	});
@@ -123,7 +123,7 @@ export default function Edit(props) {
 			{!noColumnsDefined && (
 				<InspectorControls>
 					<PanelBody title={__("Layout Settings", "lucency")}>
-						{renderGridFlexSelector({
+						{GridOrFlexSelector({
 							onChange: (value) => setAttributes({ display: value }),
 							value: display,
 						})}

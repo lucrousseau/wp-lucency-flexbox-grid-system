@@ -2,8 +2,11 @@ import classnames from "classnames";
 
 import getDisplayTypeFlags from "../commons/getDisplayTypeFlags";
 import getBreakpointPrefix from "../commons/getBreakpointPrefix";
-import roundCellDimension from "../commons/roundCellDimension";
-import calculateGridLayout from "../commons/calculateGridLayout";
+import {
+	roundColOrCellDimension,
+	calculateGridLayoutStylesDimension,
+} from "../commons/layout";
+
 import { COLUMNS } from "../abstracts/constants";
 
 export default function responsiveColumnSizes({
@@ -16,7 +19,7 @@ export default function responsiveColumnSizes({
 }) {
 	const { isGrid } = getDisplayTypeFlags({ display });
 
-	const getGenerateGridDimensions = calculateGridLayout({
+	const getGenerateGridDimensions = calculateGridLayoutStylesDimension({
 		innerBlocksCount,
 		clientId,
 	});
@@ -32,7 +35,10 @@ export default function responsiveColumnSizes({
 				  COLUMNS
 				: false;
 
-			const getColumnWidth = roundCellDimension({ total, pourcentage: value });
+			const getColumnWidth = roundColOrCellDimension({
+				total,
+				pourcentage: value,
+			});
 
 			acc[`${type}-${getColumnWidth}${prefix}`] = !!getColumnWidth;
 			return acc;

@@ -6,7 +6,7 @@ import {
 
 import handleStylesClassesChange from "../handleStylesClassesChange";
 
-const responsivePanelControls = ({
+export default function responsivePanelControls({
 	stylesClasses,
 	setAttributes,
 	options,
@@ -28,7 +28,7 @@ const responsivePanelControls = ({
 	setDefault = null,
 	hideUnitInLabel = false,
 	defaultStylesClasses = {},
-}) => {
+}) {
 	const defaultValue =
 		defaultStylesClasses?.[size]?.[key]?.[prop]?.value ?? setDefault;
 	const setValues = stylesClasses?.[size]?.[key]?.[prop]?.value ?? null;
@@ -105,6 +105,4 @@ const responsivePanelControls = ({
 			{output}
 		</div>
 	);
-};
-
-export default responsivePanelControls;
+}

@@ -1,7 +1,7 @@
 import { __ } from "@wordpress/i18n";
 import { SelectControl } from "@wordpress/components";
 
-export default function renderGridFlexSelector({
+export default function RenderGridFlexSelector({
 	labelPosition = "top",
 	value,
 	onChange,
