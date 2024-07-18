@@ -3,7 +3,7 @@ import classnames from "classnames";
 import getDisplayTypeFlags from "../commons/getDisplayTypeFlags";
 import { getPrefix } from "../commons/prefix";
 import { roundCellDimension } from "../commons/roundCellDimension";
-import { generateGridDimensions } from "../row/generateGridDimensions";
+import calculateGridLayout from "../commons/calculateGridLayout";
 import { COLUMNS } from "../abstracts/constants";
 
 export default function responsiveColumnSizes({
@@ -16,7 +16,7 @@ export default function responsiveColumnSizes({
 }) {
 	const { isGrid } = getDisplayTypeFlags({ display });
 
-	const getGenerateGridDimensions = generateGridDimensions({
+	const getGenerateGridDimensions = calculateGridLayout({
 		innerBlocksCount,
 		clientId,
 	});

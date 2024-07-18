@@ -20,9 +20,9 @@ import { fetchBlockDetails } from "../commons/fetchBlockDetails";
 import { roundCellDimension } from "../commons/roundCellDimension";
 import { COLUMNS, PANEL_CSS_PROPS } from "../abstracts/constants";
 import RangeControlForColsCells from "../commons/RangeControlForColsCells";
+import calculateGridLayout from "../commons/calculateGridLayout";
 
 import getDisplayTypeFlags from "../commons/getDisplayTypeFlags";
-import { generateGridDimensions } from "../row/generateGridDimensions";
 
 import responsiveColumnSizes from "./responsiveColumnSizes";
 
@@ -81,7 +81,7 @@ export default function Edit(props) {
 
 	const alignmentFn = ({ size }) => {
 		const { "--grid-template-columns": gridLayout = 0 } =
-			generateGridDimensions({
+			calculateGridLayout({
 				...setProps,
 				clientId: parentClientId,
 			}) ?? {};

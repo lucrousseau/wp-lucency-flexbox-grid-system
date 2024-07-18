@@ -1,6 +1,6 @@
 import { COLUMNS } from "../abstracts/constants";
 
-export function updateStylesCustomFn({
+export default function updateStylesCustomFn({
 	result,
 	prefix,
 	prop,

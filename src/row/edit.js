@@ -13,8 +13,8 @@ import renderGridFlexSelector from "../commons/renderGridFlexSelector";
 import getDisplayTypeFlags from "../commons/getDisplayTypeFlags";
 import CustomNotice from "../commons/CustomNotice";
 import { fetchBlockDetails } from "../commons/fetchBlockDetails";
-import { updateStylesCustomFn } from "./updateStylesCustomFn";
-import { generateGridDimensionsStyles } from "./generateGridDimensions";
+import updateStylesCustomFn from "./updateStylesCustomFn";
+import applyGridDimensionsStyles from "../commons/applyGridDimensionsStyles";
 
 import ResponsivePanel, {
 	updateStyles,
@@ -71,7 +71,7 @@ export default function Edit(props) {
 		...setProps,
 	});
 
-	const styleAndIfDefaultGridDimensions = generateGridDimensionsStyles({
+	const styleAndIfDefaultGridDimensions = applyGridDimensionsStyles({
 		style,
 		...setProps,
 	});
