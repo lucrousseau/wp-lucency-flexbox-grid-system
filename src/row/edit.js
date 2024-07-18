@@ -106,12 +106,9 @@ export default function Edit(props) {
 		[setProps],
 	);
 
-	const handGridOrFlexSelectorChange = useCallback(
-		(value) => {
-			setAttributes({ display: value });
-		},
-		[setAttributes],
-	);
+	const handGridOrFlexSelectorChange = useCallback((value) => {
+		setAttributes({ display: value });
+	}, []);
 
 	useEffect(() => {
 		setAttributes({
