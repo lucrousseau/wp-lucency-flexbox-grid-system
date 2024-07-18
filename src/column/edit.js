@@ -17,7 +17,7 @@ import ResponsivePanel, {
 } from "../commons/ResponsivePanel";
 
 import fetchBlockDetails from "../commons/fetchBlockDetails";
-import { roundCellDimension } from "../commons/roundCellDimension";
+import roundCellDimension from "../commons/roundCellDimension";
 import { COLUMNS, PANEL_CSS_PROPS } from "../abstracts/constants";
 import RangeControlForColsCells from "../commons/RangeControlForColsCells";
 import calculateGridLayout from "../commons/calculateGridLayout";

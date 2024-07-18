@@ -2,7 +2,7 @@ import classnames from "classnames";
 
 import getDisplayTypeFlags from "../commons/getDisplayTypeFlags";
 import { getPrefix } from "../commons/prefix";
-import { roundCellDimension } from "../commons/roundCellDimension";
+import roundCellDimension from "../commons/roundCellDimension";
 import calculateGridLayout from "../commons/calculateGridLayout";
 import { COLUMNS } from "../abstracts/constants";
 
