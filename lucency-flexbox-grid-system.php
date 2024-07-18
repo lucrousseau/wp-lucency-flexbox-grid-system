@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; 
 }
 
-function LucencyFlexboxGridSystemInit() {
+function lucencyFlexboxGridSystemInit() {
     $blocks_dir = __DIR__ . '/build/';
     $block_folders = array_filter(glob($blocks_dir . '*'), 'is_dir');
 
@@ -25,4 +25,17 @@ function LucencyFlexboxGridSystemInit() {
     }
 }
 
-add_action( 'init', 'LucencyFlexboxGridSystemInit' );
+add_action( 'init', 'lucencyFlexboxGridSystemInit' );
+
+function lucencyFlexboxGridSystemBlockCategory($categories) {
+    $custom_category = [
+        'slug'  => 'lucency',
+        'title' => __('Lucency Flexbox Grid System', 'lucency'),
+        'icon'  => null,
+    ];
+
+    array_unshift($categories, $custom_category);
+    return $categories;
+}
+
+add_filter('block_categories_all', 'lucencyFlexboxGridSystemBlockCategory', 10, 2);

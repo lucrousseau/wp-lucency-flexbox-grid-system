@@ -3,8 +3,8 @@
 	"apiVersion": 3,
 	"name": "lucency-flexbox-grid-system/container",
 	"version": "0.1.0",
-	"title": "Lucency Container",
-	"category": "design",
+	"title": "Container (lucency)",
+	"category": "lucency",
 	"description": "Create a container to add all other components.",
 	"example": {
 		"innerBlocks": [
