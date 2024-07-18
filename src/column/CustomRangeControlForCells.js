@@ -1,6 +1,6 @@
 import { __ } from "@wordpress/i18n";
 import { RangeControl } from "@wordpress/components";
-import { customCellsRangeTooltipContent } from "../commons/customCellsRangeTooltipContent";
+import { cellsRangeTooltipContent } from "../commons/cellsRangeTooltipContent";
 import { generateMarksForRange } from "../commons/generateMarksForRange";
 
 export default function CustomRangeControlForCells({
@@ -25,7 +25,7 @@ export default function CustomRangeControlForCells({
 			value={value}
 			marks={generateMarksForRange({ total: totalCells })}
 			withInputField={false}
-			renderTooltipContent={() => customCellsRangeTooltipContent({ columns })}
+			renderTooltipContent={() => cellsRangeTooltipContent({ columns })}
 			onChange={onChange}
 			help={__(`Leave at AUTO for auto ${label}`, "lucency")}
 		/>
