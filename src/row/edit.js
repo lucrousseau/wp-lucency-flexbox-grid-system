@@ -9,11 +9,8 @@ import {
 
 import { PanelBody } from "@wordpress/components";
 
-import {
-	setDisplayPropValue,
-	getDisplayPropValue,
-} from "../commons/displayPropValue";
-
+import renderGridFlexSelector from "../commons/renderGridFlexSelector";
+import getDisplayTypeFlags from "../commons/getDisplayTypeFlags";
 import CustomNotice from "../commons/CustomNotice";
 import { fetchBlockDetails } from "../commons/fetchBlockDetails";
 import { updateStylesCustomFn } from "./updateStylesCustomFn";
@@ -39,7 +36,7 @@ export default function Edit(props) {
 	const { stylesClasses, columns, display } = attributes;
 
 	const noColumnsDefined = !columns;
-	const { isFlex } = getDisplayPropValue({ display });
+	const { isFlex } = getDisplayTypeFlags({ display });
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
 	const { hasInnerBlocks, innerBlocksCount, innerBlocks } = fetchBlockDetails({
@@ -106,7 +103,7 @@ export default function Edit(props) {
 			{!noColumnsDefined && (
 				<InspectorControls>
 					<PanelBody title={__("Layout Settings", "lucency")}>
-						{setDisplayPropValue({
+						{renderGridFlexSelector({
 							onChange: (value) => setAttributes({ display: value }),
 							value: display,
 						})}

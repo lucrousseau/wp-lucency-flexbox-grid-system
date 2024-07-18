@@ -1,7 +1,7 @@
 import { __ } from "@wordpress/i18n";
 import { SelectControl } from "@wordpress/components";
 
-export function setDisplayPropValue({
+export default function renderGridFlexSelector({
 	labelPosition = "top",
 	value,
 	onChange,
@@ -21,7 +21,7 @@ export function setDisplayPropValue({
 	);
 }
 
-export function getDisplayPropValue({ display }) {
+export function getDisplayTypeFlags({ display }) {
 	const isGrid = display === "grid";
 	const isFlex = display === "flex";
 	const isCell = display === "cell";

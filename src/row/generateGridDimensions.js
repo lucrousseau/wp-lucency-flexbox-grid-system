@@ -1,4 +1,4 @@
-import { getDisplayPropValue } from "../commons/displayPropValue";
+import getDisplayTypeFlags from "../commons/getDisplayTypeFlags";
 import { getCumulatedCellsWidth } from "./getCumulatedCellsWidth";
 
 export function generateGridDimensions({ innerBlocksCount, clientId }) {
@@ -26,7 +26,7 @@ export function generateGridDimensionsStyles({
 	style,
 	stylesClasses,
 }) {
-	const { isGrid } = getDisplayPropValue({ display });
+	const { isGrid } = getDisplayTypeFlags({ display });
 	const hasColumns =
 		stylesClasses?.full?.variables?.["grid-template-columns"]?.value;
 

@@ -1,6 +1,6 @@
 import classnames from "classnames";
 
-import { getDisplayPropValue } from "../commons/displayPropValue";
+import getDisplayTypeFlags from "../commons/getDisplayTypeFlags";
 import { getPrefix } from "../commons/prefix";
 import { roundCellDimension } from "../commons/roundCellDimension";
 import { generateGridDimensions } from "../row/generateGridDimensions";
@@ -14,7 +14,7 @@ export default function responsiveColumnSizes({
 	height,
 	clientId,
 }) {
-	const { isGrid } = getDisplayPropValue({ display });
+	const { isGrid } = getDisplayTypeFlags({ display });
 
 	const getGenerateGridDimensions = generateGridDimensions({
 		innerBlocksCount,

@@ -1,6 +1,7 @@
 import { __ } from "@wordpress/i18n";
 
-import { getDisplayPropValue } from "../commons/displayPropValue";
+import getDisplayTypeFlags from "../commons/getDisplayTypeFlags";
+
 import { generateMarksForRange } from "../commons/generateMarksForRange";
 import { rangeControlForColsCellsTooltipContent } from "../commons/RangeControlForColsCells";
 
@@ -271,7 +272,7 @@ const PADDING_PROPS = {
 };
 
 const PANEL_CSS_PROPS = ({ display = "flex" } = {}) => {
-	const { isContainer, isFlex, isGrid, isColumn, isCell } = getDisplayPropValue(
+	const { isContainer, isFlex, isGrid, isColumn, isCell } = getDisplayTypeFlags(
 		{
 			display,
 		},

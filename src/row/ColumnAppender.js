@@ -2,7 +2,7 @@ import { useDispatch } from "@wordpress/data";
 import { createBlock } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
 
-import { getDisplayPropValue } from "../commons/displayPropValue";
+import getDisplayTypeFlags from "../commons/getDisplayTypeFlags";
 
 import "./ColumnAppender.scss";
 
@@ -12,7 +12,7 @@ export default function ColumnAppender({
 	clientId,
 	display,
 }) {
-	const { isFlex } = getDisplayPropValue({ display });
+	const { isFlex } = getDisplayTypeFlags({ display });
 	const { insertBlocks } = useDispatch("core/block-editor");
 	const label = isFlex ? "Column" : "Cell";
 

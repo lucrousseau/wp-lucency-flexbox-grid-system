@@ -9,10 +9,8 @@ import {
 	__experimentalNumberControl as NumberControl,
 } from "@wordpress/components";
 
-import {
-	setDisplayPropValue,
-	getDisplayPropValue,
-} from "../commons/displayPropValue";
+import renderGridFlexSelector from "../commons/renderGridFlexSelector";
+import getDisplayTypeFlags from "../commons/getDisplayTypeFlags";
 
 import { COLUMNS } from "../abstracts/constants";
 
@@ -24,7 +22,7 @@ export default function ColumnAppenderPopUp({
 	clientId,
 }) {
 	const { display } = attributes;
-	const { isGrid, isFlex } = getDisplayPropValue({ display });
+	const { isGrid, isFlex } = getDisplayTypeFlags({ display });
 
 	const [columnsCount, setColumnsCount] = useState(1);
 	const [rowsCount, setRowsCount] = useState(1);
@@ -72,7 +70,7 @@ export default function ColumnAppenderPopUp({
 				</header>
 				<div className="lucency lucency-flex">
 					<div className="lucency-col">
-						{setDisplayPropValue({
+						{renderGridFlexSelector({
 							onChange: (value) => setDisplayProp(value),
 							labelPosition: "side",
 							value: displayProp,

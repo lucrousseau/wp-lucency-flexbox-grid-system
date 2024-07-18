@@ -21,7 +21,7 @@ import { roundCellDimension } from "../commons/roundCellDimension";
 import { COLUMNS, PANEL_CSS_PROPS } from "../abstracts/constants";
 import RangeControlForColsCells from "../commons/RangeControlForColsCells";
 
-import { getDisplayPropValue } from "../commons/displayPropValue";
+import getDisplayTypeFlags from "../commons/getDisplayTypeFlags";
 import { generateGridDimensions } from "../row/generateGridDimensions";
 
 import responsiveColumnSizes from "./responsiveColumnSizes";
@@ -38,7 +38,7 @@ export default function Edit(props) {
 		stylesClasses: parentStylesClasses = context?.stylesClasses,
 	} = context || {};
 
-	const { isGrid } = getDisplayPropValue({ display });
+	const { isGrid } = getDisplayTypeFlags({ display });
 	const colOrCellLabel = isGrid ? "Cell" : "Column";
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
