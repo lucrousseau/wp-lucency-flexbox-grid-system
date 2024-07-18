@@ -9,12 +9,12 @@ import {
 	__experimentalNumberControl as NumberControl,
 } from "@wordpress/components";
 
-import renderGridFlexSelector from "../commons/renderGridFlexSelector";
-import getDisplayTypeFlags from "../commons/getDisplayTypeFlags";
+import renderGridFlexSelector from "../../commons/renderGridFlexSelector";
+import getDisplayTypeFlags from "../../commons/getDisplayTypeFlags";
 
-import { COLUMNS } from "../abstracts/constants";
+import { COLUMNS } from "../../abstracts/constants";
 
-import "./ColumnAppenderPopUp.scss";
+import "./style.scss";
 
 export default function ColumnAppenderPopUp({
 	attributes,

@@ -2,9 +2,9 @@ import { useDispatch } from "@wordpress/data";
 import { createBlock } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
 
-import getDisplayTypeFlags from "../commons/getDisplayTypeFlags";
+import getDisplayTypeFlags from "../../commons/getDisplayTypeFlags";
 
-import "./ColumnAppender.scss";
+import "./style.scss";
 
 export default function ColumnAppender({
 	innerBlocksCount,
