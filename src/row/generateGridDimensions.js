@@ -1,5 +1,5 @@
 import { getDisplayPropValue } from "../commons/displayPropValue";
-import { getCumulatedCellsWidth } from "../commons/getCumulatedCellsWidth";
+import { getCumulatedCellsWidth } from "./getCumulatedCellsWidth";
 
 export function generateGridDimensions({ innerBlocksCount, clientId }) {
 	const cumulatedCellsDimensions = getCumulatedCellsWidth({ clientId });
