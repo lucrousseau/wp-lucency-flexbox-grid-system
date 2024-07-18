@@ -16,7 +16,7 @@ import ResponsivePanel, {
 	responsivePanelItemsProps,
 } from "../commons/ResponsivePanel";
 
-import { getInnerBlocksCount } from "../commons/getInnerBlocksCount";
+import { fetchBlockDetails } from "../commons/fetchBlockDetails";
 
 import { PANEL_CSS_PROPS } from "../abstracts/constants";
 
@@ -30,7 +30,7 @@ export default function Edit(props) {
 
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
-	const { hasInnerBlocks } = getInnerBlocksCount({ clientId });
+	const { hasInnerBlocks } = fetchBlockDetails({ clientId });
 
 	const setProps = {
 		stylesClasses,

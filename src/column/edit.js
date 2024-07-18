@@ -16,7 +16,7 @@ import ResponsivePanel, {
 	responsivePanelItemsProps,
 } from "../commons/ResponsivePanel";
 
-import { getInnerBlocksCount } from "../commons/getInnerBlocksCount";
+import { fetchBlockDetails } from "../commons/fetchBlockDetails";
 import { roundCellDimension } from "../commons/roundCellDimension";
 import { COLUMNS, PANEL_CSS_PROPS } from "../abstracts/constants";
 import CustomRangeControlForCells from "./CustomRangeControlForCells";
@@ -42,7 +42,7 @@ export default function Edit(props) {
 	const colOrCellLabel = isGrid ? "Cell" : "Column";
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
-	const { hasInnerBlocks, parentClientId } = getInnerBlocksCount({ clientId });
+	const { hasInnerBlocks, parentClientId } = fetchBlockDetails({ clientId });
 
 	const setProps = {
 		display,

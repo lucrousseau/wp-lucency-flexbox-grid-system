@@ -1,9 +1,9 @@
-import { getInnerBlocksCount } from "../commons/getInnerBlocksCount";
+import { fetchBlockDetails } from "../commons/fetchBlockDetails";
 
 export function getCumulatedCellsWidth({ clientId }) {
 	const cumulatedCellsDimensions = {};
 
-	const { innerBlocksCount, innerBlocks } = getInnerBlocksCount({ clientId });
+	const { innerBlocksCount, innerBlocks } = fetchBlockDetails({ clientId });
 
 	if (innerBlocksCount && Object.keys(innerBlocks).length) {
 		const cols = Math.ceil(Math.sqrt(innerBlocksCount));
