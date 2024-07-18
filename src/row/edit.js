@@ -1,6 +1,6 @@
 import classnames from "classnames";
 import { __ } from "@wordpress/i18n";
-import { useEffect } from "@wordpress/element";
+import { useEffect, useMemo, useCallback } from "@wordpress/element";
 import {
 	useBlockProps,
 	useInnerBlocksProps,
@@ -51,9 +51,34 @@ export default function Edit(props) {
 		...props,
 	};
 
-	const className = updateClasses(
-		setProps,
-		classnames("lucency", `lucency-${display}`),
+	const className = useMemo(
+		() => updateClasses(setProps, classnames("lucency", `lucency-${display}`)),
+		[setProps, display],
+	);
+
+	const updateStylesCustomFn = useCallback(
+		({ result, prefix, prop, value, unit, display, innerBlocksCount }) => {
+			if (prop === "grid-template-columns") {
+				if (display !== "grid") return true;
+
+				result[`--grid-template-rows${prefix}`] = `${
+					COLUMNS / Math.ceil(innerBlocksCount / value)
+				}${unit}`;
+			}
+		},
+		[],
+	);
+
+	const style = useMemo(
+		() =>
+			applyLayoutStyles({
+				style: updateStyles({
+					fn: updateStylesCustomFn,
+					...setProps,
+				}),
+				...setProps,
+			}),
+		[updateStylesCustomFn, setProps],
 	);
 
 	const innerBlocksProps = useInnerBlocksProps(useBlockProps({ className }), {
@@ -66,53 +91,35 @@ export default function Edit(props) {
 			) : null,
 	});
 
-	const updateStylesCustomFn = ({
-		result,
-		prefix,
-		prop,
-		value,
-		unit,
-		display,
-		innerBlocksCount,
-	}) => {
-		if (prop === "grid-template-columns") {
-			if (display !== "grid") return true;
+	const responsivePanel = useMemo(
+		() => [
+			{
+				fn: ({ size }) =>
+					responsivePanelItemsProps({
+						controls: PANEL_CSS_PROPS,
+						size,
+						...setProps,
+					}),
+				title: __("Alignment", "lucency"),
+			},
+		],
+		[setProps],
+	);
 
-			result[`--grid-template-rows${prefix}`] = `${
-				COLUMNS / Math.ceil(innerBlocksCount / value)
-			}${unit}`;
-		}
-	};
-
-	const style = updateStyles({
-		fn: updateStylesCustomFn,
-		...setProps,
-	});
-
-	const styleAndIfDefaultGridDimensions = applyLayoutStyles({
-		style,
-		...setProps,
-	});
-
-	const responsivePanel = [
-		{
-			fn: ({ size }) =>
-				responsivePanelItemsProps({
-					controls: PANEL_CSS_PROPS,
-					size,
-					...setProps,
-				}),
-			title: __("Alignment", "lucency"),
+	const handGridOrFlexSelectorChange = useCallback(
+		(value) => {
+			setAttributes({ display: value });
 		},
-	];
+		[setAttributes],
+	);
 
 	useEffect(() => {
 		setAttributes({
 			innerBlocksCount,
-			style: styleAndIfDefaultGridDimensions,
+			style,
 			className,
 		});
-	}, [innerBlocks, innerBlocksCount, className]);
+	}, [innerBlocks, innerBlocksCount, className, setAttributes]);
 
 	const showNotice = innerBlocksCount >= COLUMNS + 1 && isFlex;
 
@@ -122,7 +129,7 @@ export default function Edit(props) {
 				<InspectorControls>
 					<PanelBody title={__("Layout Settings", "lucency")}>
 						{GridOrFlexSelector({
-							onChange: (value) => setAttributes({ display: value }),
+							onChange: handGridOrFlexSelectorChange,
 							value: display,
 						})}
 					</PanelBody>
@@ -131,7 +138,7 @@ export default function Edit(props) {
 					</PanelBody>
 				</InspectorControls>
 			)}
-			<div {...innerBlocksProps} style={styleAndIfDefaultGridDimensions}>
+			<div {...innerBlocksProps} style={style}>
 				{showNotice && isSelected && (
 					<CustomNotice status="error" isDismissible={false}>
 						{__(
