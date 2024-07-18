@@ -18,7 +18,7 @@ const setResponsivePanelAttribute = (settings, name) => {
 
 addFilter(
 	"blocks.registerBlockType",
-	"lucency-grid/setResponsivePanelAttribute",
+	"lucency-flexbox-grid-system/setResponsivePanelAttribute",
 	setResponsivePanelAttribute,
 );
 
@@ -54,7 +54,7 @@ const addResponsivePanelInspectorControls = createHigherOrderComponent(
 
 addFilter(
 	"editor.BlockEdit",
-	"lucency-grid/addResponsivePanelInspectorControls",
+	"lucency-flexbox-grid-system/addResponsivePanelInspectorControls",
 	addResponsivePanelInspectorControls,
 );
 

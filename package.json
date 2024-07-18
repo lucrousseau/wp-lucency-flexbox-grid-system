@@ -1,9 +1,10 @@
 {
-	"name": "lucency",
+	"name": "lucency-flexbox-grid-system",
 	"version": "0.1.0",
-	"description": "Example block scaffolded with Create Block tool.",
-	"author": "The WordPress Contributors",
-	"license": "GPL-2.0-or-later",
+	"description": "A WordPress plugin that provides responsive functionality for Gutenberg blocks with flexbox and grid system layouts.",
+	"author": "Luc Rousseau",
+	"authorURL": "https://lucrousseau.com",
+	"license": "GPL v2 or later",
 	"main": "build/index.js",
 	"scripts": {
 		"build": "wp-scripts build",
@@ -15,19 +16,6 @@
 		"start": "wp-scripts start"
 	},
 	"devDependencies": {
-		"@fortawesome/fontawesome-free": "^6.5.2",
-		"@fortawesome/fontawesome-svg-core": "^6.5.2",
-		"@fortawesome/free-brands-svg-icons": "^6.5.2",
-		"@fortawesome/free-regular-svg-icons": "^6.5.2",
-		"@fortawesome/free-solid-svg-icons": "^6.5.2",
-		"@fortawesome/pro-duotone-svg-icons": "^6.5.2",
-		"@fortawesome/pro-light-svg-icons": "^6.5.2",
-		"@fortawesome/pro-regular-svg-icons": "^6.5.2",
-		"@fortawesome/pro-solid-svg-icons": "^6.5.2",
-		"@fortawesome/pro-thin-svg-icons": "^6.5.2",
-		"@fortawesome/react-fontawesome": "^0.2.2",
-		"@fortawesome/sharp-regular-svg-icons": "^6.5.2",
-		"@fortawesome/sharp-solid-svg-icons": "^6.5.2",
 		"@wordpress/icons": "^9.49.0",
 		"@wordpress/scripts": "^27.9.0",
 		"classnames": "^2.5.1"

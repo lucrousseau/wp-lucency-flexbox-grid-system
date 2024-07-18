@@ -1,9 +1,9 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "lucency-grid/container",
-	"version": "1.0.0",
-	"title": "Container",
+	"name": "lucency-flexbox-grid-system/container",
+	"version": "0.1.0",
+	"title": "Lucency Container",
 	"category": "design",
 	"description": "Create a container to add all other components.",
 	"example": {
@@ -16,10 +16,10 @@
 				}
 			},
 			{
-				"name": "lucency-grid/row",
+				"name": "lucency-flexbox-grid-system/row",
 				"innerBlocks": [
 					{
-						"name": "lucency-grid/column",
+						"name": "lucency-flexbox-grid-system/column",
 						"innerBlocks": [
 							{
 								"name": "core/paragraph",
@@ -30,7 +30,7 @@
 						]
 					},
 					{
-						"name": "lucency-grid/column",
+						"name": "lucency-flexbox-grid-system/column",
 						"innerBlocks": [
 							{
 								"name": "core/paragraph",
@@ -47,10 +47,27 @@
 	"supports": {},
 	"parent": [null],
 	"textdomain": "lucency",
+	"author": "Luc Rousseau",
+	"authorURI": "https://lucrousseau.com",
+	"license": "GPL v2 or later",
+	"licenseURI": "https://www.gnu.org/licenses/gpl-2.0.html",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
 	"viewScript": "file:./view.js",
+	"keywords": [
+		"column",
+		"col",
+		"cols",
+		"flex",
+		"flexbox",
+		"grid",
+		"row",
+		"container",
+		"lucency",
+		"responsive",
+		"layout"
+	],
 	"attributes": {
 		"className": {
 			"type": "string",

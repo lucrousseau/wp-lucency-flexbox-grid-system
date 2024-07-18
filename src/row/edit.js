@@ -83,7 +83,7 @@ export default function Edit(props) {
 	);
 
 	const innerBlocksProps = useInnerBlocksProps(useBlockProps({ className }), {
-		allowedBlocks: ["lucency-grid/column"],
+		allowedBlocks: ["lucency-flexbox-grid-system/column"],
 		renderAppender: () =>
 			!hasInnerBlocks ? (
 				<ColumnAppenderPopUp {...setProps} />

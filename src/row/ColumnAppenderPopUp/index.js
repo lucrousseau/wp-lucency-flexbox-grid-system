@@ -39,7 +39,7 @@ export default function ColumnAppenderPopUp({
 
 		const blocks = [];
 		for (let i = 0; i < columnsCount * rowsCount; i++) {
-			const block = createBlock("lucency-grid/column");
+			const block = createBlock("lucency-flexbox-grid-system/column");
 			blocks.push(block);
 		}
 
