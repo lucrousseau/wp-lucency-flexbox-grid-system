@@ -1,6 +1,6 @@
 import classnames from "classnames";
 import { __ } from "@wordpress/i18n";
-import { useEffect } from "@wordpress/element";
+import { useEffect, useMemo, useCallback } from "@wordpress/element";
 import {
 	InnerBlocks,
 	useBlockProps,
@@ -63,22 +63,33 @@ export default function Edit(props) {
 		...props,
 	};
 
-	const style = updateStyles(setProps);
-
-	const className = updateClasses(
-		setProps,
-		classnames(
-			"lucency-col",
-			responsiveColumnSizes({
-				width,
-				height,
-				...setProps,
-				clientId: parentClientId,
-				innerBlocks: parentInnerBlocks,
-				innerBlocksCount: parentInnerBlocksCount,
-			}),
-		),
+	const className = useMemo(
+		() =>
+			updateClasses(
+				setProps,
+				classnames(
+					"lucency-col",
+					responsiveColumnSizes({
+						width,
+						height,
+						...setProps,
+						clientId: parentClientId,
+						innerBlocks: parentInnerBlocks,
+						innerBlocksCount: parentInnerBlocksCount,
+					}),
+				),
+			),
+		[
+			width,
+			height,
+			setProps,
+			parentClientId,
+			parentInnerBlocks,
+			parentInnerBlocksCount,
+		],
 	);
+
+	const style = useMemo(() => updateStyles(setProps), [setProps]);
 
 	const innerBlocksProps = useInnerBlocksProps(
 		useBlockProps({
@@ -91,90 +102,107 @@ export default function Edit(props) {
 		},
 	);
 
-	const alignmentFn = ({ size }) => {
-		const { "--grid-template-columns": gridLayout = 0 } =
-			calculateGridLayoutStylesDimension({
-				...setProps,
-				clientId: parentClientId,
-				innerBlocks: parentInnerBlocks,
-				innerBlocksCount: parentInnerBlocksCount,
-			}) ?? {};
+	const alignmentFn = useCallback(
+		({ size }) => {
+			const { "--grid-template-columns": gridLayout = 0 } =
+				calculateGridLayoutStylesDimension({
+					...setProps,
+					clientId: parentClientId,
+					innerBlocks: parentInnerBlocks,
+					innerBlocksCount: parentInnerBlocksCount,
+				}) ?? {};
 
-		const widthValue = width?.[size] || 0;
-		const setWidhAuto = widthValue || gridLayout;
+			const widthValue = width?.[size] || 0;
+			const setWidhAuto = widthValue || gridLayout;
 
-		const heightValue = height?.[size] || 0;
-		const setHeightAuto = heightValue || gridLayout;
+			const heightValue = height?.[size] || 0;
+			const setHeightAuto = heightValue || gridLayout;
 
-		const totalCells = isGrid
-			? parentStylesClasses?.[size]?.variables?.["grid-template-columns"]
-					?.value || gridLayout
-			: COLUMNS;
+			const totalCells = isGrid
+				? parentStylesClasses?.[size]?.variables?.["grid-template-columns"]
+						?.value || gridLayout
+				: COLUMNS;
 
-		const { columnWidth, columnHeight } = (() => {
-			const [columnWidth, columnHeight] = [setWidhAuto, setHeightAuto].map(
-				(value) =>
-					roundColOrCellDimension({
-						total: totalCells,
-						pourcentage: value,
-					}),
-			);
+			const { columnWidth, columnHeight } = (() => {
+				const [columnWidth, columnHeight] = [setWidhAuto, setHeightAuto].map(
+					(value) =>
+						roundColOrCellDimension({
+							total: totalCells,
+							pourcentage: value,
+						}),
+				);
 
-			return { columnWidth, columnHeight };
-		})();
+				return { columnWidth, columnHeight };
+			})();
 
-		return (
-			<>
-				<div className={`lucency-col lucency-col-12`}>
-					<RangeControlForColsCells
-						label={__("Width", "lucency")}
-						value={widthValue}
-						columns={columnWidth}
-						totalCells={totalCells}
-						colOrCellLabel={colOrCellLabel}
-						onChange={(value) =>
-							setAttributes({
-								width: {
-									...width,
-									[size]: value,
-								},
-							})
-						}
-					/>
-					{isGrid && (
+			return (
+				<>
+					<div className={`lucency-col lucency-col-12`}>
 						<RangeControlForColsCells
-							label={__("Height", "lucency")}
-							value={heightValue}
-							columns={columnHeight}
+							label={__("Width", "lucency")}
+							value={widthValue}
+							columns={columnWidth}
 							totalCells={totalCells}
 							colOrCellLabel={colOrCellLabel}
 							onChange={(value) =>
 								setAttributes({
-									height: {
-										...height,
+									width: {
+										...width,
 										[size]: value,
 									},
 								})
 							}
 						/>
-					)}
-				</div>
-				{responsivePanelItemsProps({
-					controls: PANEL_CSS_PROPS,
-					size,
-					...setProps,
-					display: colOrCellLabel.toLocaleLowerCase(),
-				})}
-			</>
-		);
-	};
-
-	const responsivePanel = [
-		{
-			fn: alignmentFn,
-			title: __("Alignment", "lucency"),
+						{isGrid && (
+							<RangeControlForColsCells
+								label={__("Height", "lucency")}
+								value={heightValue}
+								columns={columnHeight}
+								totalCells={totalCells}
+								colOrCellLabel={colOrCellLabel}
+								onChange={(value) =>
+									setAttributes({
+										height: {
+											...height,
+											[size]: value,
+										},
+									})
+								}
+							/>
+						)}
+					</div>
+					{responsivePanelItemsProps({
+						controls: PANEL_CSS_PROPS,
+						size,
+						...setProps,
+						display: colOrCellLabel.toLocaleLowerCase(),
+					})}
+				</>
+			);
 		},
-	];
+		[
+			width,
+			height,
+			isGrid,
+			parentStylesClasses,
+			setAttributes,
+			setProps,
+			parentClientId,
+			parentInnerBlocks,
+			parentInnerBlocksCount,
+			colOrCellLabel,
+		],
+	);
+
+	const responsivePanel = useMemo(
+		() => [
+			{
+				fn: alignmentFn,
+				title: __("Alignment", "lucency"),
+			},
+		],
+		[alignmentFn],
+	);
 
 	useEffect(() => {
 		setAttributes({
@@ -182,7 +210,7 @@ export default function Edit(props) {
 			style,
 			...setProps,
 		});
-	}, [display, innerBlocksCount, parentStylesClasses, className]);
+	}, [innerBlocks, className]);
 
 	return (
 		<>
