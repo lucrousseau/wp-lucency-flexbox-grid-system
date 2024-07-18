@@ -7,18 +7,15 @@ import {
 	useInnerBlocksProps,
 	InspectorControls,
 } from "@wordpress/block-editor";
-
 import { PanelBody } from "@wordpress/components";
 
 import ResponsivePanel, {
 	responsivePanelItemsProps,
 } from "../commons/ResponsivePanel";
-
 import {
 	updateStyles,
 	updateClasses,
 } from "../commons/processStylesClassesChange";
-
 import fetchBlockDetails from "../commons/fetchBlockDetails";
 
 import { PANEL_CSS_PROPS } from "../abstracts/constants";

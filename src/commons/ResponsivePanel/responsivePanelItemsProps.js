@@ -1,4 +1,4 @@
-import { responsivePanelControls } from "./";
+import responsivePanelControls from "./responsivePanelControls";
 
 const responsivePanelItemsProps = ({
 	controls,

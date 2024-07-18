@@ -13,25 +13,21 @@ import { PanelBody, Notice } from "@wordpress/components";
 import ResponsivePanel, {
 	responsivePanelItemsProps,
 } from "../commons/ResponsivePanel";
-
 import {
 	updateStyles,
 	updateClasses,
 } from "../commons/processStylesClassesChange";
-
 import fetchBlockDetails from "../commons/fetchBlockDetails";
-
-import { COLUMNS, PANEL_CSS_PROPS } from "../abstracts/constants";
 import RangeControlForColsCells from "../commons/RangeControlForColsCells";
-
 import {
 	roundColOrCellDimension,
 	calculateGridLayoutStylesDimension,
 } from "../commons/layout";
-
 import getDisplayTypeFlags from "../commons/getDisplayTypeFlags";
 
 import responsiveColumnSizes from "./responsiveColumnSizes";
+
+import { COLUMNS, PANEL_CSS_PROPS } from "../abstracts/constants";
 
 import metadata from "./block.json";
 

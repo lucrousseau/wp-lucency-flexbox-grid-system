@@ -3,7 +3,6 @@ import { useDispatch } from "@wordpress/data";
 import { createBlock } from "@wordpress/blocks";
 import { columns as icon } from "@wordpress/icons";
 import { __ } from "@wordpress/i18n";
-
 import {
 	Button,
 	__experimentalNumberControl as NumberControl,

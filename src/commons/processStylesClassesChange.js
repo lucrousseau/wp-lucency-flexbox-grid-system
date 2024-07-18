@@ -1,7 +1,8 @@
 import classnames from "classnames";
 
-import { PANEL_ALL_PROPS } from "../abstracts/constants";
 import getBreakpointPrefix from "./getBreakpointPrefix";
+
+import { PANEL_ALL_PROPS } from "../abstracts/constants";
 
 function processStylesClassesChange({
 	key,

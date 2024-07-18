@@ -1,12 +1,12 @@
 import { __ } from "@wordpress/i18n";
 
+import responsivePanelItemsProps from "./responsivePanelItemsProps";
+
 import {
 	BREAKPOINTS,
 	PANEL_MARGINS_PROPS,
 	PANEL_PADDINGS_PROPS,
 } from "../../abstracts/constants";
-
-import responsivePanelItemsProps from "./responsivePanelItemsProps";
 
 export default function responsivePanelItems({
 	stylesClasses,

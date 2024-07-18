@@ -1,7 +1,6 @@
 import { __ } from "@wordpress/i18n";
 
 import getDisplayTypeFlags from "../commons/getDisplayTypeFlags";
-
 import {
 	rangeControlForColsCellsMarks,
 	rangeControlForColsCellsTooltipContent,
