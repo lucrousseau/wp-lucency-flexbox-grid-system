@@ -22,8 +22,6 @@ import { PANEL_CSS_PROPS } from "../abstracts/constants";
 
 import metadata from "./block.json";
 
-import "./editor.scss";
-
 export default function Edit(props) {
 	const { attributes, setAttributes, clientId } = props;
 	const { stylesClasses } = attributes;
