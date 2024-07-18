@@ -11,10 +11,13 @@ import {
 import { PanelBody, Notice } from "@wordpress/components";
 
 import ResponsivePanel, {
-	updateStyles,
-	updateClasses,
 	responsivePanelItemsProps,
 } from "../commons/ResponsivePanel";
+
+import {
+	updateStyles,
+	updateClasses,
+} from "../commons/processStylesClassesChange";
 
 import fetchBlockDetails from "../commons/fetchBlockDetails";
 import roundCellDimension from "../commons/roundCellDimension";

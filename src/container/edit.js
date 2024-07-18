@@ -11,10 +11,13 @@ import {
 import { PanelBody } from "@wordpress/components";
 
 import ResponsivePanel, {
-	updateStyles,
-	updateClasses,
 	responsivePanelItemsProps,
 } from "../commons/ResponsivePanel";
+
+import {
+	updateStyles,
+	updateClasses,
+} from "../commons/processStylesClassesChange";
 
 import fetchBlockDetails from "../commons/fetchBlockDetails";
 

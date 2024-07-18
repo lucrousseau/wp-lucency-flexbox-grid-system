@@ -16,10 +16,13 @@ import fetchBlockDetails from "../commons/fetchBlockDetails";
 import applyGridDimensionsStyles from "../commons/applyGridDimensionsStyles";
 
 import ResponsivePanel, {
-	updateStyles,
-	updateClasses,
 	responsivePanelItemsProps,
 } from "../commons/ResponsivePanel";
+
+import {
+	updateStyles,
+	updateClasses,
+} from "../commons/processStylesClassesChange";
 
 import ColumnAppender from "./ColumnAppender";
 import ColumnAppenderPopUp from "./ColumnAppenderPopUp";
