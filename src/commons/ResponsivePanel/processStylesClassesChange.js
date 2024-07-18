@@ -1,9 +1,9 @@
 import classnames from "classnames";
 
 import { PANEL_ALL_PROPS } from "../../abstracts/constants";
-import { getPrefix } from "../../commons/prefix";
+import { getPrefix } from "../prefix";
 
-function processStylesClasses({
+function processStylesClassesChange({
 	key,
 	stylesClasses = {},
 	defaultStylesClasses = {},
@@ -13,8 +13,8 @@ function processStylesClasses({
 
 	Object.entries(stylesClasses ?? {}).forEach(([size, props]) =>
 		Object.entries(props?.[key] ?? {}).forEach(([prop, values]) => {
-			let value = values?.value ?? values ?? null;
-			let unit = values?.unit ?? "";
+			const value = values?.value ?? values ?? null;
+			const unit = values?.unit ?? "";
 
 			if (value !== undefined && value !== null) {
 				const prefix = getPrefix({ size });
@@ -36,7 +36,7 @@ function processStylesClasses({
 	return result;
 }
 
-export function updateStyles(props, style) {
+function handleEntry({ key, props, applyEntry = () => {} }) {
 	const {
 		stylesClasses = {},
 		defaultStylesClasses = {},
@@ -44,14 +44,12 @@ export function updateStyles(props, style) {
 		display,
 	} = props;
 
-	const key = "variables";
-
-	let processed = processStylesClasses({
+	const processed = processStylesClassesChange({
 		key,
 		stylesClasses,
 		defaultStylesClasses,
 		processEntry: (entryProps) => {
-			const { result, prefix, prop, value, unit, defaultValue } = entryProps;
+			const { prop, value, defaultValue } = entryProps;
 			const skip = fn({ ...props, ...entryProps });
 			const controls = PANEL_ALL_PROPS({ display });
 
@@ -62,42 +60,33 @@ export function updateStyles(props, style) {
 			)
 				return;
 
-			result[`--${prop}${prefix}`] = `${value}${unit}`;
+			applyEntry(entryProps);
 		},
 	});
+
+	return processed;
+}
+
+export function updateStyles(props, style) {
+	const key = "variables";
+
+	const applyEntry = ({ result, prefix, prop, value, unit }) => {
+		result[`--${prop}${prefix}`] = `${value}${unit}`;
+	};
+
+	const processed = handleEntry({ key, props, applyEntry });
 
 	return { ...style, ...processed };
 }
 
 export function updateClasses(props, classes = null) {
-	const {
-		stylesClasses = {},
-		defaultStylesClasses = {},
-		fn = () => {},
-		display,
-	} = props;
-
 	const key = "classes";
 
-	let processed = processStylesClasses({
-		key,
-		stylesClasses,
-		defaultStylesClasses,
-		processEntry: (entryProps) => {
-			const { result, prefix, prop, value, defaultValue } = entryProps;
-			const skip = fn({ ...props, ...entryProps });
-			const controls = PANEL_ALL_PROPS({ display });
+	const applyEntry = ({ result, prefix, value }) => {
+		result[`${value}${prefix}`] = true;
+	};
 
-			if (
-				skip === true ||
-				value?.toString() === defaultValue?.toString() ||
-				!controls?.[prop]
-			)
-				return;
-
-			result[`${value}${prefix}`] = true;
-		},
-	});
+	const processed = handleEntry({ key, props, applyEntry });
 
 	return classnames(classes, { ...processed });
 }
