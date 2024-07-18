@@ -16,17 +16,21 @@
 	"style": "file:./style-index.css",
 	"viewScript": "file:./view.js",
 	"attributes": {
-		"columns": {
-			"type": "number",
-			"default": null
+		"display": {
+			"type": "string",
+			"default": "flex"
 		},
 		"innerBlocksCount": {
 			"type": "number",
 			"default": null
 		},
-		"display": {
+		"className": {
 			"type": "string",
-			"default": "flex"
+			"default": ""
+		},
+		"style": {
+			"type": "object",
+			"default": {}
 		},
 		"stylesClasses": {
 			"type": "object",
@@ -36,14 +40,6 @@
 					"variables": {}
 				}
 			}
-		},
-		"className": {
-			"type": "string",
-			"default": ""
-		},
-		"style": {
-			"type": "object",
-			"default": {}
 		}
 	},
 	"providesContext": {

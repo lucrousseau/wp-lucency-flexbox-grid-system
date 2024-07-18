@@ -27,17 +27,13 @@
 			"type": "object",
 			"default": {}
 		},
-		"display": {
+		"className": {
 			"type": "string",
 			"default": ""
 		},
-		"columns": {
-			"type": "number",
-			"default": null
-		},
-		"innerBlocksCount": {
-			"type": "number",
-			"default": null
+		"style": {
+			"type": "object",
+			"default": {}
 		},
 		"stylesClasses": {
 			"type": "object",
@@ -47,18 +43,6 @@
 					"variables": {}
 				}
 			}
-		},
-		"className": {
-			"type": "string",
-			"default": ""
-		},
-		"style": {
-			"type": "object",
-			"default": {}
-		},
-		"parentStylesClasses": {
-			"type": "object",
-			"default": {}
 		}
 	},
 	"usesContext": ["display", "innerBlocksCount", "stylesClasses"]

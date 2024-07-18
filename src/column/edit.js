@@ -102,6 +102,21 @@ export default function Edit(props) {
 		},
 	);
 
+	const calculateColumnDimensions = useCallback(
+		({ setWidhAuto, setHeightAuto, totalCells }) => {
+			const [columnWidth, columnHeight] = [setWidhAuto, setHeightAuto].map(
+				(value) =>
+					roundColOrCellDimension({
+						total: totalCells,
+						pourcentage: value,
+					}),
+			);
+
+			return { columnWidth, columnHeight };
+		},
+		[],
+	);
+
 	const alignmentFn = useCallback(
 		({ size }) => {
 			const { "--grid-template-columns": gridLayout = 0 } =
@@ -113,9 +128,8 @@ export default function Edit(props) {
 				}) ?? {};
 
 			const widthValue = width?.[size] || 0;
-			const setWidhAuto = widthValue || gridLayout;
-
 			const heightValue = height?.[size] || 0;
+			const setWidhAuto = widthValue || gridLayout;
 			const setHeightAuto = heightValue || gridLayout;
 
 			const totalCells = isGrid
@@ -123,17 +137,11 @@ export default function Edit(props) {
 						?.value || gridLayout
 				: COLUMNS;
 
-			const { columnWidth, columnHeight } = (() => {
-				const [columnWidth, columnHeight] = [setWidhAuto, setHeightAuto].map(
-					(value) =>
-						roundColOrCellDimension({
-							total: totalCells,
-							pourcentage: value,
-						}),
-				);
-
-				return { columnWidth, columnHeight };
-			})();
+			const { columnWidth, columnHeight } = calculateColumnDimensions({
+				setWidhAuto,
+				setHeightAuto,
+				totalCells,
+			});
 
 			return (
 				<>
@@ -208,7 +216,6 @@ export default function Edit(props) {
 		setAttributes({
 			className,
 			style,
-			...setProps,
 		});
 	}, [innerBlocks, className]);
 
