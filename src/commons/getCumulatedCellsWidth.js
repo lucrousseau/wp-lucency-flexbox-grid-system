@@ -3,36 +3,31 @@ import { getInnerBlocksCount } from "../commons/getInnerBlocksCount";
 export function getCumulatedCellsWidth({ clientId }) {
 	const cumulatedCellsDimensions = {};
 
-	const { innerBlocksCount, innerBlocks } = getInnerBlocksCount({
-		clientId,
-	});
+	const { innerBlocksCount, innerBlocks } = getInnerBlocksCount({ clientId });
 
 	if (innerBlocksCount && Object.keys(innerBlocks).length) {
 		const cols = Math.ceil(Math.sqrt(innerBlocksCount));
-		const rows = Math.ceil(innerBlocks / cols);
+		const rows = Math.ceil(innerBlocksCount / cols);
+
+		const updateCumulatedDimensions = (dimensionType, value, factor) => {
+			Object.entries(value).forEach(([key, val]) => {
+				const currentDimension =
+					cumulatedCellsDimensions[key]?.[dimensionType] || 0;
+				const newDimension = currentDimension + ((val * factor) / 100 || 1);
+
+				if (!cumulatedCellsDimensions[key]) cumulatedCellsDimensions[key] = {};
+				cumulatedCellsDimensions[key][dimensionType] = newDimension;
+			});
+		};
 
 		innerBlocks.forEach((block) => {
-			const { width, height } = block?.attributes || {};
+			const { attributes } = block;
+			const { width, height } = attributes || {};
 
-			Object.entries(width).map(([key, value]) => {
-				const currentWidth = cumulatedCellsDimensions[key]?.width || 0;
-				const widthInColumns = (value * cols) / 100;
-				const newWidth = currentWidth + (widthInColumns ?? 1);
-
-				if (!cumulatedCellsDimensions[key]) cumulatedCellsDimensions[key] = {};
-				cumulatedCellsDimensions[key].width = newWidth;
-			});
-
-			Object.entries(height).map(([key, value]) => {
-				const currentHeight = cumulatedCellsDimensions[key]?.height || 0;
-				const heightInRows = (value * rows) / 100;
-				const newHeight = currentHeight + (heightInRows ?? 1);
-
-				if (!cumulatedCellsDimensions[key]) cumulatedCellsDimensions[key] = {};
-				cumulatedCellsDimensions[key].height = newHeight;
-			});
+			updateCumulatedDimensions("width", width, cols);
+			updateCumulatedDimensions("height", height, rows);
 		});
 	}
 
-	return cumulatedCellsDimensions || {};
+	return cumulatedCellsDimensions;
 }
