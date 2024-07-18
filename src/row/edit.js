@@ -6,7 +6,6 @@ import {
 	useInnerBlocksProps,
 	InspectorControls,
 } from "@wordpress/block-editor";
-
 import { PanelBody } from "@wordpress/components";
 
 import GridOrFlexSelector from "../commons/GridOrFlexSelector";
@@ -14,11 +13,9 @@ import getDisplayTypeFlags from "../commons/getDisplayTypeFlags";
 import CustomNotice from "../commons/CustomNotice";
 import fetchBlockDetails from "../commons/fetchBlockDetails";
 import { applyLayoutStyles } from "../commons/layout";
-
 import ResponsivePanel, {
 	responsivePanelItemsProps,
 } from "../commons/ResponsivePanel";
-
 import {
 	updateStyles,
 	updateClasses,
