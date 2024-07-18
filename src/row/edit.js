@@ -32,15 +32,16 @@ import "./editor.scss";
 
 export default function Edit(props) {
 	const { attributes, setAttributes, clientId, isSelected } = props;
-	const { stylesClasses, columns, display } = attributes;
+	const { stylesClasses, display } = attributes;
 
-	const noColumnsDefined = !columns;
 	const { isFlex } = getDisplayTypeFlags({ display });
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
 	const { hasInnerBlocks, innerBlocksCount, innerBlocks } = fetchBlockDetails({
 		clientId,
 	});
+
+	const noColumnsDefined = !innerBlocksCount;
 
 	const setProps = {
 		display,
@@ -66,7 +67,7 @@ export default function Edit(props) {
 				}${unit}`;
 			}
 		},
-		[COLUMNS],
+		[],
 	);
 
 	const style = useMemo(
@@ -103,7 +104,7 @@ export default function Edit(props) {
 				title: __("Alignment", "lucency"),
 			},
 		],
-		[setProps, PANEL_CSS_PROPS],
+		[setProps],
 	);
 
 	const handGridOrFlexSelectorChange = useCallback(

@@ -72,7 +72,7 @@ export default function Edit(props) {
 				title: __("Alignment (rem)", "lucency"),
 			},
 		],
-		[setProps, PANEL_CSS_PROPS],
+		[setProps],
 	);
 
 	useEffect(() => {

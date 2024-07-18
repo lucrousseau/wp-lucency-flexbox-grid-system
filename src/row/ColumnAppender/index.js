@@ -21,7 +21,7 @@ export default function ColumnAppender({
 		insertBlocks(block, innerBlocksCount, clientId, false);
 
 		setAttributes({
-			columns: innerBlocksCount + 1,
+			innerBlocksCount: innerBlocksCount + 1,
 		});
 	};
 

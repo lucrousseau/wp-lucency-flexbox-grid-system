@@ -33,7 +33,7 @@ export default function ColumnAppenderPopUp({
 
 	const handleAddColumns = () => {
 		setAttributes({
-			columns: columnsCount,
+			innerBlocksCount: columnsCount,
 			display: displayProp,
 		});
 

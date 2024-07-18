@@ -191,7 +191,6 @@ export default function Edit(props) {
 			parentInnerBlocks,
 			parentInnerBlocksCount,
 			colOrCellLabel,
-			PANEL_CSS_PROPS,
 		],
 	);
 
