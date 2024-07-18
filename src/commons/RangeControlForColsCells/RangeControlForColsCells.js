@@ -3,7 +3,7 @@ import { RangeControl } from "@wordpress/components";
 import { rangeControlForColsCellsTooltipContent } from "../RangeControlForColsCells";
 import { generateMarksForRange } from "../generateMarksForRange";
 
-export default function CustomRangeControlForCells({
+export default function RangeControlForColsCells({
 	label,
 	value,
 	columns,
