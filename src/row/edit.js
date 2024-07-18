@@ -103,7 +103,7 @@ export default function Edit(props) {
 				title: __("Alignment", "lucency"),
 			},
 		],
-		[setProps],
+		[setProps, PANEL_CSS_PROPS],
 	);
 
 	const handGridOrFlexSelectorChange = useCallback(
