@@ -1,6 +1,6 @@
 import { __ } from "@wordpress/i18n";
 
-export function generateMarksForRange({ total }) {
+export default function rangeControlForColsCellsMarks({ total }) {
 	return [
 		{
 			value: 0,

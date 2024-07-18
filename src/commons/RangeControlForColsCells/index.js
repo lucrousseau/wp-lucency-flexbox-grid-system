@@ -1,5 +1,9 @@
 import RangeControlForColsCells from "./RangeControlForColsCells";
+import rangeControlForColsCellsMarks from "./rangeControlForColsCellsMarks";
 import rangeControlForColsCellsTooltipContent from "./rangeControlForColsCellsTooltipContent";
 
 export default RangeControlForColsCells;
-export { rangeControlForColsCellsTooltipContent };
+export {
+	rangeControlForColsCellsMarks,
+	rangeControlForColsCellsTooltipContent,
+};

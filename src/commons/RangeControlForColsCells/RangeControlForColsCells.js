@@ -1,7 +1,10 @@
 import { __ } from "@wordpress/i18n";
 import { RangeControl } from "@wordpress/components";
-import { rangeControlForColsCellsTooltipContent } from "../RangeControlForColsCells";
-import { generateMarksForRange } from "../generateMarksForRange";
+
+import {
+	rangeControlForColsCellsMarks,
+	rangeControlForColsCellsTooltipContent,
+} from "../RangeControlForColsCells";
 
 export default function RangeControlForColsCells({
 	label,
@@ -23,7 +26,7 @@ export default function RangeControlForColsCells({
 			max={100}
 			columns={columns}
 			value={value}
-			marks={generateMarksForRange({ total: totalCells })}
+			marks={rangeControlForColsCellsMarks({ total: totalCells })}
 			withInputField={false}
 			renderTooltipContent={() =>
 				rangeControlForColsCellsTooltipContent({ columns })

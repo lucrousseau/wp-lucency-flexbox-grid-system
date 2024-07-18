@@ -2,8 +2,10 @@ import { __ } from "@wordpress/i18n";
 
 import getDisplayTypeFlags from "../commons/getDisplayTypeFlags";
 
-import { generateMarksForRange } from "../commons/generateMarksForRange";
-import { rangeControlForColsCellsTooltipContent } from "../commons/RangeControlForColsCells";
+import {
+	rangeControlForColsCellsMarks,
+	rangeControlForColsCellsTooltipContent,
+} from "../commons/RangeControlForColsCells";
 
 const COLUMNS = 12;
 
@@ -126,7 +128,7 @@ const GRID_PROP = {
 		label: __("Columns per Grid", "lucency"),
 		type: "range",
 		key: "variables",
-		marks: generateMarksForRange({ total: 100 }),
+		marks: rangeControlForColsCellsMarks({ total: 100 }),
 		renderTooltipContent: rangeControlForColsCellsTooltipContent,
 		withInputField: false,
 	},
