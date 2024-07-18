@@ -1,18 +1,19 @@
 <?php
 /**
  * Plugin Name: Lucency Grid
- * Description: Example block scaffolded with Create Block tool.
- * Requires at least: 6.4
+ * Description: A WordPress plugin that provides responsive functionality for Gutenberg blocks with flexbox and grid system layouts.
+ * Requires at least: 7.4
  * Requires PHP: 8.2
- * Version: 1.0.0
+ * Version: 0.1.0
  * Author: Luc Rousseau
- * License: GPL-2.0-or-later
+ * Author URI: https://lucrousseau.com
+ * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: lucency
 */
 
 if ( ! defined( 'ABSPATH' ) ) {
-    exit;
+    exit; 
 }
 
 function LucencyGridIinit() {
