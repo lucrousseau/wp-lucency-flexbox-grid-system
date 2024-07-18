@@ -2,10 +2,11 @@ import calculatWidthAndHeightSumOfCellsInGrid from "./calculatWidthAndHeightSumO
 
 export default function calculateGridLayoutStylesDimension({
 	innerBlocksCount,
-	clientId,
+	innerBlocks,
 }) {
 	const cumulatedCellsDimensions = calculatWidthAndHeightSumOfCellsInGrid({
-		clientId,
+		innerBlocksCount,
+		innerBlocks,
 	});
 
 	const getCumulatedCellsDimensions =

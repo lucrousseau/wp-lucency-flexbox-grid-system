@@ -13,15 +13,15 @@ export default function responsiveColumnSizes({
 	display,
 	parentStylesClasses,
 	innerBlocksCount,
+	innerBlocks,
 	width,
 	height,
-	clientId,
 }) {
 	const { isGrid } = getDisplayTypeFlags({ display });
 
 	const getGenerateGridDimensions = calculateGridLayoutStylesDimension({
 		innerBlocksCount,
-		clientId,
+		innerBlocks,
 	});
 
 	const createClasses = (sizes, type) =>

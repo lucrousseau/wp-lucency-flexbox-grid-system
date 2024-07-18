@@ -1,9 +1,8 @@
-import fetchBlockDetails from "../fetchBlockDetails";
-
-export default function calculatWidthAndHeightSumOfCellsInGrid({ clientId }) {
+export default function calculatWidthAndHeightSumOfCellsInGrid({
+	innerBlocksCount,
+	innerBlocks,
+}) {
 	const cumulatedCellsDimensions = {};
-
-	const { innerBlocksCount, innerBlocks } = fetchBlockDetails({ clientId });
 
 	if (innerBlocksCount && Object.keys(innerBlocks).length) {
 		const cols = Math.ceil(Math.sqrt(innerBlocksCount));

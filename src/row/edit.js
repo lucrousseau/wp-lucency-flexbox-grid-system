@@ -44,6 +44,7 @@ export default function Edit(props) {
 
 	const setProps = {
 		display,
+		innerBlocks,
 		innerBlocksCount,
 		stylesClasses,
 		defaultStylesClasses,

@@ -5,7 +5,7 @@ import calculateGridLayoutStylesDimension from "./calculateGridLayoutStylesDimen
 export default function applyLayoutStyles({
 	display,
 	innerBlocksCount,
-	clientId,
+	innerBlocks,
 	style,
 	stylesClasses,
 }) {
@@ -15,7 +15,7 @@ export default function applyLayoutStyles({
 
 	const dimensions = calculateGridLayoutStylesDimension({
 		innerBlocksCount,
-		clientId,
+		innerBlocks,
 	});
 
 	return isGrid && !hasColumns

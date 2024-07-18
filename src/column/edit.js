@@ -45,11 +45,18 @@ export default function Edit(props) {
 	const colOrCellLabel = isGrid ? "Cell" : "Column";
 	const defaultStylesClasses = metadata?.attributes?.stylesClasses?.default;
 
-	const { hasInnerBlocks, parentClientId } = fetchBlockDetails({ clientId });
+	const { hasInnerBlocks, innerBlocks, parentClientId } = fetchBlockDetails({
+		clientId,
+	});
+	const {
+		innerBlocksCount: parentInnerBlocksCount,
+		innerBlocks: parentInnerBlocks,
+	} = fetchBlockDetails({ clientId: parentClientId });
 
 	const setProps = {
 		display,
 		innerBlocksCount,
+		innerBlocks,
 		stylesClasses,
 		parentStylesClasses,
 		defaultStylesClasses,
@@ -67,6 +74,8 @@ export default function Edit(props) {
 				height,
 				...setProps,
 				clientId: parentClientId,
+				innerBlocks: parentInnerBlocks,
+				innerBlocksCount: parentInnerBlocksCount,
 			}),
 		),
 	);
@@ -87,6 +96,8 @@ export default function Edit(props) {
 			calculateGridLayoutStylesDimension({
 				...setProps,
 				clientId: parentClientId,
+				innerBlocks: parentInnerBlocks,
+				innerBlocksCount: parentInnerBlocksCount,
 			}) ?? {};
 
 		const widthValue = width?.[size] || 0;
