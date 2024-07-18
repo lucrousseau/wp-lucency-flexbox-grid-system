@@ -2,8 +2,8 @@ import { __ } from "@wordpress/i18n";
 import classnames from "classnames";
 import { useState } from "@wordpress/element";
 
-import { updateStyles, updateClasses } from "./processStylesClassesChange";
-import handleStylesClassesChange from "./handleStylesClassesChange";
+import { updateStyles, updateClasses } from "../processStylesClassesChange";
+import handleStylesClassesChange from "../handleStylesClassesChange";
 import responsivePanelControls from "./responsivePanelControls";
 import responsivePanelItems from "./responsivePanelItems";
 import responsivePanelItemsProps from "./responsivePanelItemsProps";

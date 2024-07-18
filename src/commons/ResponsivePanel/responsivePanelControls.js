@@ -4,7 +4,7 @@ import {
 	__experimentalNumberControl as NumberControl,
 } from "@wordpress/components";
 
-import { handleStylesClassesChange } from ".";
+import handleStylesClassesChange from "../handleStylesClassesChange";
 
 const responsivePanelControls = ({
 	stylesClasses,

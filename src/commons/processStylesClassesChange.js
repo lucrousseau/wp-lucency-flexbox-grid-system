@@ -1,7 +1,7 @@
 import classnames from "classnames";
 
-import { PANEL_ALL_PROPS } from "../../abstracts/constants";
-import { getPrefix } from "../prefix";
+import { PANEL_ALL_PROPS } from "../abstracts/constants";
+import { getPrefix } from "./prefix";
 
 function processStylesClassesChange({
 	key,
