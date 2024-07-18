@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import { useEffect } from "@wordpress/element";
+import { useEffect, useMemo, useCallback } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
 import {
 	InnerBlocks,
@@ -39,12 +39,16 @@ export default function Edit(props) {
 		...props,
 	};
 
-	const style = updateStyles(setProps);
-
-	const className = updateClasses(
-		setProps,
-		classnames("lucency lucency-container lucency-flex"),
+	const className = useMemo(
+		() =>
+			updateClasses(
+				setProps,
+				classnames("lucency lucency-container lucency-flex"),
+			),
+		[setProps],
 	);
+
+	const style = useMemo(() => updateStyles(setProps), [setProps]);
 
 	const blockProps = useBlockProps({
 		className,
@@ -56,17 +60,20 @@ export default function Edit(props) {
 			: null,
 	});
 
-	const responsivePanel = [
-		{
-			fn: ({ size }) =>
-				responsivePanelItemsProps({
-					controls: PANEL_CSS_PROPS,
-					size,
-					...setProps,
-				}),
-			title: __("Alignment (rem)", "lucency"),
-		},
-	];
+	const responsivePanel = useMemo(
+		() => [
+			{
+				fn: ({ size }) =>
+					responsivePanelItemsProps({
+						controls: PANEL_CSS_PROPS,
+						size,
+						...setProps,
+					}),
+				title: __("Alignment (rem)", "lucency"),
+			},
+		],
+		[setProps, PANEL_CSS_PROPS],
+	);
 
 	useEffect(() => {
 		setAttributes({
