@@ -1,7 +1,7 @@
 import classnames from "classnames";
 
 import getDisplayTypeFlags from "../commons/getDisplayTypeFlags";
-import getPrefix from "../commons/getPrefix";
+import getBreakpointPrefix from "../commons/getBreakpointPrefix";
 import roundCellDimension from "../commons/roundCellDimension";
 import calculateGridLayout from "../commons/calculateGridLayout";
 import { COLUMNS } from "../abstracts/constants";
@@ -23,7 +23,7 @@ export default function responsiveColumnSizes({
 
 	const createClasses = (sizes, type) =>
 		Object.entries(sizes).reduce((acc, [size, value]) => {
-			const prefix = getPrefix({ size });
+			const prefix = getBreakpointPrefix({ size });
 
 			const total = isGrid
 				? parentStylesClasses?.[size]?.variables?.["grid-template-columns"]

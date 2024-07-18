@@ -1,7 +1,7 @@
 import classnames from "classnames";
 
 import { PANEL_ALL_PROPS } from "../abstracts/constants";
-import getPrefix from "./getPrefix";
+import getBreakpointPrefix from "./getBreakpointPrefix";
 
 function processStylesClassesChange({
 	key,
@@ -17,7 +17,7 @@ function processStylesClassesChange({
 			const unit = values?.unit ?? "";
 
 			if (value !== undefined && value !== null) {
-				const prefix = getPrefix({ size });
+				const prefix = getBreakpointPrefix({ size });
 				const defaultValue = defaultStylesClasses?.[size]?.[key]?.[prop]?.value;
 
 				processEntry({
