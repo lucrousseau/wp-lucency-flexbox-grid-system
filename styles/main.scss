@@ -1,1 +1,12 @@
-@import "lucency-flex-grid/src/main";
+@import "lucency-flex-grid/src/lucency-flex-grid.scss";
+
+@include lucencyFlexGrid(
+	$breakpoints: (
+		xxl: $xxl,
+		xl: $xl,
+		lg: $lg,
+		md: $md,
+		sm: $sm,
+		xs: $xs,
+	)
+);

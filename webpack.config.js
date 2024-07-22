@@ -1,12 +1,22 @@
 const path = require("path");
+const fs = require("fs");
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const WebpackNotifierPlugin = require("webpack-notifier");
 const WebpackAssetsManifest = require("webpack-assets-manifest");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const { DefinePlugin } = require("webpack");
 
 const wpConfig = require("@wordpress/scripts/config/webpack.config");
+
+const breakpoints = JSON.parse(
+	fs.readFileSync(path.resolve(__dirname, "breakpoints.json")),
+);
+
+const breakpointVariables = Object.entries(breakpoints)
+	.map(([key, value]) => `$${key}: ${value};`)
+	.join("\n");
 
 const createPlugins = () => [
 	new CleanWebpackPlugin({
@@ -28,7 +38,7 @@ const createOptimization = () => ({
 	],
 });
 
-const createCssRule = () => ({
+const createCssRule = ({ breakpointVariables }) => ({
 	test: /\.(sa|sc|c)ss$/,
 	use: [
 		MiniCssExtractPlugin.loader,
@@ -45,7 +55,7 @@ const createCssRule = () => ({
 		{
 			loader: "sass-loader",
 			options: {
-				additionalData: `@use "sass:math";`,
+				additionalData: `@use "sass:math";\n${breakpointVariables}`,
 			},
 		},
 	],
@@ -70,7 +80,7 @@ module.exports = (_, args) => {
 				publicPath: `/build/assets/`,
 			},
 			module: {
-				rules: [createCssRule()],
+				rules: [createCssRule({ breakpointVariables })],
 			},
 			plugins: createPlugins(),
 			optimization: createOptimization(),
