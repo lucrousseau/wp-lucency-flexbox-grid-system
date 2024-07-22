@@ -1,11 +1,16 @@
-const path = require("path");
-const wpConfig = require("@wordpress/scripts/config/webpack.config");
+import path from "path";
+import { fileURLToPath } from "url";
 
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const WebpackNotifierPlugin = require("webpack-notifier");
-const WebpackAssetsManifest = require("webpack-assets-manifest");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
+import WebpackNotifierPlugin from "webpack-notifier";
+import WebpackAssetsManifest from "webpack-assets-manifest";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
+
+import wpConfig from "@wordpress/scripts/config/webpack.config.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const createPlugins = () => [
 	new CleanWebpackPlugin(),
@@ -48,7 +53,7 @@ const createCssRule = () => ({
 	],
 });
 
-module.exports = (_, args) => {
+export default (_, args) => {
 	const { mode } = args;
 	const development = mode === "development";
 
