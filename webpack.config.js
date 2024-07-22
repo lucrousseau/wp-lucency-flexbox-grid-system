@@ -5,8 +5,10 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const WebpackNotifierPlugin = require("webpack-notifier");
 const WebpackAssetsManifest = require("webpack-assets-manifest");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const createPlugins = () => [
+	new CleanWebpackPlugin(),
 	new MiniCssExtractPlugin({
 		filename: "[name]-[contenthash].css",
 		chunkFilename: "[name]-[chunkhash].css",
