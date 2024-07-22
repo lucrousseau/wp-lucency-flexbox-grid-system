@@ -8,7 +8,9 @@ const WebpackAssetsManifest = require("webpack-assets-manifest");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const createPlugins = () => [
-	new CleanWebpackPlugin(),
+	new CleanWebpackPlugin({
+		cleanOnceBeforeBuildPatterns: ["**/*"],
+	}),
 	new MiniCssExtractPlugin({
 		filename: "[name]-[contenthash].css",
 		chunkFilename: "[name]-[chunkhash].css",
@@ -63,8 +65,8 @@ module.exports = (_, args) => {
 				main: ["./index.js"],
 			},
 			output: {
-				path: path.resolve(__dirname, "build"),
-				publicPath: `/build/`,
+				path: path.resolve(__dirname, "build/assets"),
+				publicPath: `/build/assets/`,
 			},
 			module: {
 				rules: [createCssRule()],
