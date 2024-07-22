@@ -7,15 +7,25 @@
 	"license": "GPL v2 or later",
 	"main": "build/index.js",
 	"scripts": {
-		"build": "wp-scripts build",
+		"start": "wp-scripts start --webpack-src-dir='./blocks' --mode development --progress --watch",
+		"build": "wp-scripts build --webpack-src-dir='./blocks' --mode production",
 		"packages-update": "wp-scripts packages-update",
-		"plugin-zip": "wp-scripts plugin-zip",
-		"start": "wp-scripts start"
+		"plugin-zip": "wp-scripts plugin-zip"
 	},
 	"devDependencies": {
 		"@wordpress/icons": "^10.3.0",
 		"@wordpress/scripts": "^28.3.0",
-		"classnames": "^2.5.1"
+		"classnames": "^2.5.1",
+		"css-loader": "^7.1.2",
+		"css-minimizer-webpack-plugin": "^7.0.0",
+		"mini-css-extract-plugin": "^2.9.0",
+		"postcss": "^8.4.39",
+		"postcss-loader": "^8.1.1",
+		"postcss-preset-env": "^9.6.0",
+		"sass": "^1.77.8",
+		"sass-loader": "^14.2.1",
+		"webpack-assets-manifest": "^5.2.1",
+		"webpack-notifier": "^1.15.0"
 	},
 	"dependencies": {
 		"lucency-flex-grid": "github:lucrousseau/lucency-flex-grid"
