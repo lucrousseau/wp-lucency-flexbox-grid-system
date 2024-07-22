@@ -6,16 +6,22 @@ import {
 	rangeControlForColsCellsTooltipContent,
 } from "../commons/RangeControlForColsCells";
 
+import breakpoints from "../../breakpoints.json";
+
+const removePxFromBreakpoints = ({ breakpoints }) => {
+	return Object.fromEntries(
+		Object.entries(breakpoints).map(([key, value]) => [
+			key,
+			value.replace("px", ""),
+		]),
+	);
+};
+
 const COLUMNS = 12;
 
 const BREAKPOINTS = {
 	full: 999999,
-	xxl: 1400,
-	xl: 1200,
-	lg: 992,
-	md: 768,
-	sm: 576,
-	xs: 480,
+	...removePxFromBreakpoints({ breakpoints }),
 };
 
 const CONTAINER_PROPS = {
