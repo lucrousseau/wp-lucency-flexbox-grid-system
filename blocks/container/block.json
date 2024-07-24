@@ -1,9 +1,9 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "lucency-flexbox-grid-system/container",
+	"name": "wp-lucency-flexbox-grid-system/container",
 	"version": "0.1.0",
-	"title": "Container (lucency)",
+	"title": "Container",
 	"category": "lucency",
 	"description": "Create a container to add all other components.",
 	"example": {
@@ -16,10 +16,10 @@
 				}
 			},
 			{
-				"name": "lucency-flexbox-grid-system/row",
+				"name": "wp-lucency-flexbox-grid-system/row",
 				"innerBlocks": [
 					{
-						"name": "lucency-flexbox-grid-system/column",
+						"name": "wp-lucency-flexbox-grid-system/column",
 						"innerBlocks": [
 							{
 								"name": "core/paragraph",
@@ -30,7 +30,7 @@
 						]
 					},
 					{
-						"name": "lucency-flexbox-grid-system/column",
+						"name": "wp-lucency-flexbox-grid-system/column",
 						"innerBlocks": [
 							{
 								"name": "core/paragraph",

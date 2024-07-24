@@ -39,7 +39,7 @@ export default function ColumnAppenderPopUp({
 
 		const blocks = [];
 		for (let i = 0; i < columnsCount * rowsCount; i++) {
-			const block = createBlock("lucency-flexbox-grid-system/column");
+			const block = createBlock("wp-lucency-flexbox-grid-system/column");
 			blocks.push(block);
 		}
 
@@ -62,7 +62,7 @@ export default function ColumnAppenderPopUp({
 						<p>
 							{__(
 								"You will be able to set column(s) width and other parameters after this step.",
-								"lucency",
+								"lucency"
 							)}
 						</p>
 					</div>
@@ -108,6 +108,6 @@ export default function ColumnAppenderPopUp({
 				</div>
 			</div>
 		</div>,
-		rootContainer,
+		rootContainer
 	);
 }

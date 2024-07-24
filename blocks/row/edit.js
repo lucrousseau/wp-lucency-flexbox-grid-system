@@ -54,7 +54,7 @@ export default function Edit(props) {
 
 	const className = useMemo(
 		() => updateClasses(setProps, classnames("lucency", `lucency-${display}`)),
-		[setProps, display],
+		[setProps, display]
 	);
 
 	const updateStylesCustomFn = useCallback(
@@ -67,7 +67,7 @@ export default function Edit(props) {
 				}${unit}`;
 			}
 		},
-		[],
+		[]
 	);
 
 	const style = useMemo(
@@ -79,11 +79,11 @@ export default function Edit(props) {
 				}),
 				...setProps,
 			}),
-		[updateStylesCustomFn, setProps],
+		[updateStylesCustomFn, setProps]
 	);
 
 	const innerBlocksProps = useInnerBlocksProps(useBlockProps({ className }), {
-		allowedBlocks: ["lucency-flexbox-grid-system/column"],
+		allowedBlocks: ["wp-lucency-flexbox-grid-system/column"],
 		renderAppender: () =>
 			!hasInnerBlocks ? (
 				<ColumnAppenderPopUp {...setProps} />
@@ -104,14 +104,14 @@ export default function Edit(props) {
 				title: __("Alignment", "lucency"),
 			},
 		],
-		[setProps],
+		[setProps]
 	);
 
 	const handGridOrFlexSelectorChange = useCallback(
 		(value) => {
 			setAttributes({ display: value });
 		},
-		[setAttributes],
+		[setAttributes]
 	);
 
 	useEffect(() => {
@@ -144,7 +144,7 @@ export default function Edit(props) {
 					<CustomNotice status="error" isDismissible={false}>
 						{__(
 							`This block is intended to be used with ${COLUMNS} columns. Having more can lead to unexpected results.`,
-							"lucency",
+							"lucency"
 						)}
 					</CustomNotice>
 				)}

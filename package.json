@@ -1,5 +1,5 @@
 {
-	"name": "lucency-flexbox-grid-system",
+	"name": "wp-lucency-flexbox-grid-system",
 	"version": "0.1.0",
 	"description": "A WordPress plugin that provides responsive functionality for Gutenberg blocks with flexbox and grid system layouts.",
 	"author": "Luc Rousseau",

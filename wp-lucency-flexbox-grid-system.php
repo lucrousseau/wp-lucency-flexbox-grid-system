@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Lucency Flexbox Grid System
+ * Plugin Name: WP Lucency Flexbox Grid System
  * Description: A WordPress plugin that provides responsive functionality for Gutenberg blocks with flexbox and grid system layouts.
  * Requires at least: 6.5
  * Requires PHP: 8.2
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; 
 }
 
-class Lucency_Flexbox_Grid_System {
+class WP_Lucency_Flexbox_Grid_System {
     const VERSION = '0.1.0';
     const TEXT_DOMAIN = 'lucency';
     const BUILD_PATH = 'build/';
@@ -33,7 +33,7 @@ class Lucency_Flexbox_Grid_System {
     /**
      * Gets the singleton instance of the class.
      *
-     * @return Lucency_Flexbox_Grid_System
+     * @return WP_Lucency_Flexbox_Grid_System
      */
     public static function get_instance() {
         if (self::$instance === null) {
@@ -106,18 +106,18 @@ class Lucency_Flexbox_Grid_System {
         $resolver = new Lucency_AssetsResolver();
         $css_file = $resolver->get('main.css');
 
-        wp_enqueue_style('lucency-flexbox-grid-system-styles', LUCENCY_ASSETS_URL . $css_file, [], self::VERSION);
+        wp_enqueue_style('wp-lucency-flexbox-grid-system-styles', LUCENCY_ASSETS_URL . $css_file, [], self::VERSION);
     }
 }
 
 /**
- * Returns the singleton instance of the Lucency_Flexbox_Grid_System class.
+ * Returns the singleton instance of the WP_Lucency_Flexbox_Grid_System class.
  *
- * @return Lucency_Flexbox_Grid_System
+ * @return WP_Lucency_Flexbox_Grid_System
  */
-function lucency_flexbox_grid_system() {
-    return Lucency_Flexbox_Grid_System::get_instance();
+function wp_lucency_flexbox_grid_system() {
+    return WP_Lucency_Flexbox_Grid_System::get_instance();
 }
 
 // Initialize the plugin
-lucency_flexbox_grid_system();
+wp_lucency_flexbox_grid_system();

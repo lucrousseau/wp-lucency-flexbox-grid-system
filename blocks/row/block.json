@@ -1,9 +1,9 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "lucency-flexbox-grid-system/row",
+	"name": "wp-lucency-flexbox-grid-system/row",
 	"version": "0.1.0",
-	"title": "Row (lucency)",
+	"title": "Row",
 	"category": "lucency",
 	"description": "Create a flex row and columns with responsive sizes.",
 	"example": {},

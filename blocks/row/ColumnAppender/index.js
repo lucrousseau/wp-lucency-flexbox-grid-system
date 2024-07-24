@@ -17,7 +17,7 @@ export default function ColumnAppender({
 	const label = isFlex ? "Column" : "Cell";
 
 	const addNewColumn = () => {
-		const block = createBlock("lucency-flexbox-grid-system/column");
+		const block = createBlock("wp-lucency-flexbox-grid-system/column");
 		insertBlocks(block, innerBlocksCount, clientId, false);
 
 		setAttributes({

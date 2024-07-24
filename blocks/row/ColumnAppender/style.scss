@@ -1,4 +1,4 @@
-.wp-block-lucency-flexbox-grid-system-row {
+.wp-block-wp-lucency-flexbox-grid-system-row {
 	.lucency-admin-row-column-appender {
 		$bg: #fff;
 
@@ -57,7 +57,7 @@
 
 	&.is-selected,
 	&.has-child-selected {
-		.wp-block-lucency-flexbox-grid-system-column {
+		.wp-block-wp-lucency-flexbox-grid-system-column {
 			&:after {
 				inset: 0;
 				content: "";
@@ -69,13 +69,13 @@
 	}
 }
 
-.wp-block-lucency-flexbox-grid-system-row {
+.wp-block-wp-lucency-flexbox-grid-system-row {
 	.block-list-appender {
 		width: auto !important;
 	}
 }
 
-.wp-block-lucency-flexbox-grid-system-column {
+.wp-block-wp-lucency-flexbox-grid-system-column {
 	.block-list-appender:has(.block-editor-button-block-appender) {
 		height: 100%;
 		.block-editor-inserter,
