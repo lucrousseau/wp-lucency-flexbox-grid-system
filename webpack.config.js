@@ -6,7 +6,6 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const WebpackNotifierPlugin = require("webpack-notifier");
 const WebpackAssetsManifest = require("webpack-assets-manifest");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const { DefinePlugin } = require("webpack");
 
 const wpConfig = require("@wordpress/scripts/config/webpack.config");
 
