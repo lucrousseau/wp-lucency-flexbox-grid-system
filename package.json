@@ -29,6 +29,6 @@
 		"webpack-notifier": "^1.15.0"
 	},
 	"dependencies": {
-		"lucency-flex-grid": "github:lucrousseau/lucency-flex-grid"
+		"lucency-flexbox-grid-system": "github:lucrousseau/lucency-flexbox-grid-system"
 	}
 }

@@ -1,6 +1,6 @@
-@import "lucency-flex-grid/src/lucency-flex-grid.scss";
+@import "lucency-flexbox-grid-system/src/lucency-flexbox-grid-system.scss";
 
-@include lucencyFlexGrid(
+@include lucencyFlexboxGridSystem(
 	$breakpoints: (
 		xxl: $xxl,
 		xl: $xl,
