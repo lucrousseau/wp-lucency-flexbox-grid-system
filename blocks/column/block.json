@@ -5,8 +5,7 @@
 	"version": "0.1.0",
 	"title": "Column",
 	"category": "lucency",
-	"description": "",
-	"example": {},
+	"description": "Create a flex row and columns with responsive sizes.",
 	"supports": {},
 	"parent": ["wp-lucency-flexbox-grid-system/row"],
 	"textdomain": "lucency",
@@ -58,5 +57,36 @@
 			}
 		}
 	},
-	"usesContext": ["display", "innerBlocksCount", "stylesClasses"]
+	"usesContext": ["display", "innerBlocksCount", "stylesClasses"],
+	"example": {
+		"innerBlocks": [
+			{
+				"name": "wp-lucency-flexbox-grid-system/row",
+				"innerBlocks": [
+					{
+						"name": "wp-lucency-flexbox-grid-system/column",
+						"innerBlocks": [
+							{
+								"name": "core/paragraph",
+								"attributes": {
+									"content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac semper tellus. Mauris volutpat pretium purus, ac ornare ante faucibus a. Quisque ut metus congue, blandit ante venenatis, suscipit sapien. Fusce ut elit accumsan, vulputate enim egestas, elementum mi. Nulla gravida finibus metus, at pretium elit."
+								}
+							}
+						]
+					},
+					{
+						"name": "wp-lucency-flexbox-grid-system/column",
+						"innerBlocks": [
+							{
+								"name": "core/paragraph",
+								"attributes": {
+									"content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac semper tellus. Mauris volutpat pretium purus, ac ornare ante faucibus a. Quisque ut metus congue, blandit ante venenatis, suscipit sapien. Fusce ut elit accumsan, vulputate enim egestas, elementum mi. Nulla gravida finibus metus, at pretium elit."
+								}
+							}
+						]
+					}
+				]
+			}
+		]
+	}
 }
