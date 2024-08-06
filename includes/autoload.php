@@ -38,8 +38,6 @@ spl_autoload_register(
 		$relative_class = substr( $classname, strlen( $prefix ) );
 		$file           = LUCENCY_CLASSES_PATH . 'class-' . strtolower( str_replace( array( '\\', '_' ), '-', $relative_class ) ) . '.php';
 
-		error_log( 'Autoloading class: ' . $classname . ' from ' . $file );
-
 		// Require the file if it exists.
 		if ( file_exists( $file ) ) {
 			require $file;
