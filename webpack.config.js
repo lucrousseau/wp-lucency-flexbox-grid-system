@@ -3,8 +3,11 @@ const path = require('path');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
+const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const pkg = require('./package.json');
@@ -49,6 +52,10 @@ const createPlugins = () => [
 	new CleanWebpackPlugin({
 		cleanOnceBeforeBuildPatterns: ['**/*'],
 	}),
+	new RemoveEmptyScriptsPlugin(),
+	new NodePolyfillPlugin({
+		excludeAliases: ['console'],
+	}),
 	new MiniCssExtractPlugin({
 		filename: '[name]-[contenthash].css',
 		chunkFilename: '[name]-[chunkhash].css',
@@ -60,10 +67,32 @@ const createPlugins = () => [
 
 const createOptimization = () => ({
 	minimizer: [
+		new TerserPlugin(),
 		new CssMinimizerPlugin({
 			minify: CssMinimizerPlugin.cssnanoMinify,
 		}),
 	],
+});
+
+const createJsRule = ({ babelPlugins }) => ({
+	test: /\.js$/,
+	exclude: /node_modules/,
+	use: {
+		loader: 'babel-loader',
+		options: {
+			presets: [
+				[
+					'@babel/preset-env',
+					{
+						useBuiltIns: 'entry',
+						corejs: 3.22,
+						debug: false,
+					},
+				],
+			],
+			plugins: babelPlugins,
+		},
+	},
 });
 
 const createCssRule = () => ({
@@ -94,6 +123,16 @@ module.exports = (_, args) => {
 	const development = mode === 'development';
 
 	const createThemeConfig = () => {
+		const babelPlugins = [
+			'@babel/plugin-transform-runtime',
+			'@babel/plugin-syntax-dynamic-import',
+			'@babel/plugin-proposal-class-properties',
+			!development && [
+				'transform-remove-console',
+				{ exclude: ['error', 'warn', 'info'] },
+			],
+		].filter(Boolean);
+
 		return {
 			mode,
 			devtool: development ? 'source-map' : false,
@@ -108,7 +147,7 @@ module.exports = (_, args) => {
 				publicPath: `/build/assets/`,
 			},
 			module: {
-				rules: [createCssRule()],
+				rules: [createJsRule({ babelPlugins }), createCssRule()],
 			},
 			plugins: createPlugins(),
 			optimization: createOptimization(),
