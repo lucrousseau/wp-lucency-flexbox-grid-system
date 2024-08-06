@@ -1,2 +1,6 @@
 <?php
-new \Lucency\Init();
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+	new \Lucency\Init();

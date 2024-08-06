@@ -1,6 +1,10 @@
 <?php
 namespace Lucency\Blocks;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Class BlocksManager
  *

@@ -1,6 +1,10 @@
 <?php
 namespace Lucency\Assets;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Class AssetsLoader
  *
