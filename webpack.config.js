@@ -1,29 +1,29 @@
-const path = require("path");
-const fs = require("fs");
+const path = require('path');
+const fs = require('fs');
 
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const WebpackNotifierPlugin = require("webpack-notifier");
-const WebpackAssetsManifest = require("webpack-assets-manifest");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const WebpackNotifierPlugin = require('webpack-notifier');
+const WebpackAssetsManifest = require('webpack-assets-manifest');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const wpConfig = require("@wordpress/scripts/config/webpack.config");
+const wpConfig = require('@wordpress/scripts/config/webpack.config');
 
 const breakpoints = JSON.parse(
-	fs.readFileSync(path.resolve(__dirname, "breakpoints.json")),
+	fs.readFileSync(path.resolve(__dirname, 'breakpoints.json'))
 );
 
 const breakpointVariables = Object.entries(breakpoints)
 	.map(([key, value]) => `$${key}: ${value};`)
-	.join("\n");
+	.join('\n');
 
 const createPlugins = () => [
 	new CleanWebpackPlugin({
-		cleanOnceBeforeBuildPatterns: ["**/*"],
+		cleanOnceBeforeBuildPatterns: ['**/*'],
 	}),
 	new MiniCssExtractPlugin({
-		filename: "[name]-[contenthash].css",
-		chunkFilename: "[name]-[chunkhash].css",
+		filename: '[name]-[contenthash].css',
+		chunkFilename: '[name]-[chunkhash].css',
 	}),
 	new WebpackAssetsManifest(),
 	new WebpackNotifierPlugin(),
@@ -37,22 +37,22 @@ const createOptimization = () => ({
 	],
 });
 
-const createCssRule = ({ breakpointVariables }) => ({
+const createCssRule = () => ({
 	test: /\.(sa|sc|c)ss$/,
 	use: [
 		MiniCssExtractPlugin.loader,
-		"css-loader",
+		'css-loader',
 		{
-			loader: "postcss-loader",
+			loader: 'postcss-loader',
 			options: {
 				postcssOptions: {
-					plugins: [["postcss-preset-env"]],
+					plugins: ['postcss-preset-env', 'autoprefixer'],
 				},
 			},
 		},
-		"postcss-loader",
+		'postcss-loader',
 		{
-			loader: "sass-loader",
+			loader: 'sass-loader',
 			options: {
 				additionalData: `@use "sass:math";\n${breakpointVariables}`,
 			},
@@ -62,24 +62,24 @@ const createCssRule = ({ breakpointVariables }) => ({
 
 module.exports = (_, args) => {
 	const { mode } = args;
-	const development = mode === "development";
+	const development = mode === 'development';
 
 	const createThemeConfig = () => {
 		return {
-			mode: mode,
-			devtool: development ? "source-map" : false,
+			mode,
+			devtool: development ? 'source-map' : false,
 			performance: {
-				hints: development ? false : "warning",
+				hints: development ? false : 'warning',
 			},
 			entry: {
-				main: ["./index.js"],
+				main: ['./index.js'],
 			},
 			output: {
-				path: path.resolve(__dirname, "build/assets"),
+				path: path.resolve(__dirname, 'build/assets'),
 				publicPath: `/build/assets/`,
 			},
 			module: {
-				rules: [createCssRule({ breakpointVariables })],
+				rules: [createCssRule()],
 			},
 			plugins: createPlugins(),
 			optimization: createOptimization(),
