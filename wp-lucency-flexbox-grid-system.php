@@ -19,17 +19,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Define plugin constant.
-define( 'WLFGS_VERSION', '0.1.0' );
-define( 'WLFGS_URL', plugin_dir_url( __FILE__ ) );
-define( 'WLFGS_PATH', plugin_dir_path( __FILE__ ) );
-define( 'WLFGS_BASENAME', plugin_basename( __FILE__ ) );
-define( 'WLFGS_ASSETS_URL', WLFGS_URL . 'build/assets/' );
-define( 'WLFGS_ASSETS_PATH', WLFGS_PATH . 'build/assets/' );
-define( 'WLFGS_BLOCKS_PATH', WLFGS_PATH . 'build/' );
-define( 'WLFGS_CLASSES_PATH', WLFGS_PATH . 'includes/classes/' );
+define( 'LUCENCY_VERSION', '0.1.0' );
+define( 'LUCENCY_URL', plugin_dir_url( __FILE__ ) );
+define( 'LUCENCY_PATH', plugin_dir_path( __FILE__ ) );
+define( 'LUCENCY_BASENAME', plugin_basename( __FILE__ ) );
+define( 'LUCENCY_ASSETS_URL', LUCENCY_URL . 'build/assets/' );
+define( 'LUCENCY_ASSETS_PATH', LUCENCY_PATH . 'build/assets/' );
+define( 'LUCENCY_BLOCKS_PATH', LUCENCY_PATH . 'build/' );
+define( 'LUCENCY_CLASSES_PATH', LUCENCY_PATH . 'includes/classes/' );
 
 // Include the autoloader.
-require_once WLFGS_PATH . 'includes/autoload.php';
+require_once LUCENCY_PATH . 'includes/autoload.php';
 
 // Include the initialization file.
-require_once WLFGS_PATH . 'includes/init.php';
+require_once LUCENCY_PATH . 'includes/init.php';

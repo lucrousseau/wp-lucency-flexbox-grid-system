@@ -20,14 +20,14 @@ class Loader {
 	 * Enqueues the plugin's styles.
 	 */
 	public function enqueue_styles() {
-		$resolver = new \Lucency\Assets\Resolver();
+		$resolver = new Resolver();
 		$css_file = $resolver->get( 'main.css' );
 
 		wp_enqueue_style(
 			'wp-lucency-flexbox-grid-system-styles',
-			WLFGS_ASSETS_URL . $css_file,
+			LUCENCY_ASSETS_URL . $css_file,
 			array(),
-			WLFGS_VERSION
+			LUCENCY_VERSION
 		);
 	}
 }

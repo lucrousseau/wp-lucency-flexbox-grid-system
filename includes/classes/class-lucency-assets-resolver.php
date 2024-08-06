@@ -16,7 +16,7 @@ class Resolver {
 	 * @param bool $child Set to true if using a child theme.
 	 */
 	public function __construct() {
-		$manifest = WLFGS_ASSETS_PATH . 'assets-manifest.json';
+		$manifest = LUCENCY_ASSETS_PATH . 'assets-manifest.json';
 
 		$this->hash = file_exists( $manifest )
 			? json_decode( file_get_contents( $manifest ), true )
