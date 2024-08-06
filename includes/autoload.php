@@ -25,22 +25,32 @@ if ( ! defined( 'ABSPATH' ) ) {
  * and located in the directory specified by the `LUCENCY_CLASSES_PATH` constant.
  */
 spl_autoload_register(
-	function ( $classname ) {
+	function ( string $classname ) {
 		// Define the namespace prefix and base directory.
-		$prefix = 'Lucency\\';
+		$prefix   = 'Lucency\\';
+		$base_dir = LUCENCY_CLASSES_PATH;
 
 		// Check if the class uses the namespace prefix.
-		if ( strpos( $classname, $prefix ) !== 0 ) {
+		if ( ! str_starts_with( $classname, $prefix ) ) {
 			return; // Skip loading if the class does not use the expected prefix.
 		}
 
 		// Remove the namespace prefix and convert the class name to a file path.
 		$relative_class = substr( $classname, strlen( $prefix ) );
-		$file           = LUCENCY_CLASSES_PATH . 'class-' . strtolower( str_replace( array( '\\', '_' ), '-', $relative_class ) ) . '.php';
+		$file_path      = $base_dir . strtolower(
+			str_replace( array( '\\', '_' ), array( '/', '-' ), $relative_class )
+		) . '.php';
+
+		// Generate the final file path by extracting the last segment and appending it.
+		$file_path = preg_replace(
+			'/\/[^\/]+$/',
+			'/class-' . basename( $file_path ),
+			$file_path
+		);
 
 		// Require the file if it exists.
-		if ( file_exists( $file ) ) {
-			require $file;
+		if ( file_exists( $file_path ) ) {
+			require $file_path;
 		}
 	}
 );
