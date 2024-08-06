@@ -33,5 +33,3 @@ require_once LUCENCY_PATH . 'includes/autoload.php';
 
 // Include the initialization file for the plugin.
 require_once LUCENCY_PATH . 'includes/init.php';
-
-// test.
