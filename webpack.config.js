@@ -1,5 +1,5 @@
-const path = require('path');
 const fs = require('fs');
+const path = require('path');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
@@ -7,6 +7,7 @@ const WebpackNotifierPlugin = require('webpack-notifier');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
+const pkg = require('./package.json');
 const wpConfig = require('@wordpress/scripts/config/webpack.config');
 
 const breakpoints = JSON.parse(
@@ -16,6 +17,33 @@ const breakpoints = JSON.parse(
 const breakpointVariables = Object.entries(breakpoints)
 	.map(([key, value]) => `$${key}: ${value};`)
 	.join('\n');
+
+class VersionSyncPlugin {
+	apply(compiler) {
+		compiler.hooks.done.tap('VersionSyncPlugin', () => {
+			const filePath = path.resolve(
+				__dirname,
+				'wp-lucency-flexbox-grid-system.php'
+			);
+			const versionRegex = /Version:\s*\d+\.\d+\.\d+/;
+			const constantRegex =
+				/define\(\s*'LUCENCY_VERSION',\s*'\d+\.\d+\.\d+'\s*\)/;
+
+			try {
+				let content = fs.readFileSync(filePath, 'utf8');
+				content = content.replace(versionRegex, `Version: ${pkg.version}`);
+				content = content.replace(
+					constantRegex,
+					`define( 'LUCENCY_VERSION', '${pkg.version}' )`
+				);
+				fs.writeFileSync(filePath, content, 'utf8');
+				console.log('Version updated in PHP file.');
+			} catch (error) {
+				console.error('Error occurred while updating the version:', error);
+			}
+		});
+	}
+}
 
 const createPlugins = () => [
 	new CleanWebpackPlugin({
@@ -27,6 +55,7 @@ const createPlugins = () => [
 	}),
 	new WebpackAssetsManifest(),
 	new WebpackNotifierPlugin(),
+	new VersionSyncPlugin(),
 ];
 
 const createOptimization = () => ({
