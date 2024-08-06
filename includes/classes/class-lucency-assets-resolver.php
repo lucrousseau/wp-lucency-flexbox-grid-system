@@ -1,40 +1,39 @@
 <?php
+namespace Lucency\Assets;
+
 /**
- * Class Lucency_AssetsResolver
- * 
+ * Class AssetsResolver
+ *
  * Resolves asset paths based on a manifest file for the Lucency Flexbox Grid System plugin.
  */
-class Lucency_AssetsResolver
-{
-    public $hash = null;
+class Resolver {
 
-    /**
-     * Constructor to initialize asset paths.
-     *
-     * @param bool $child Set to true if using a child theme.
-     */
-    public function __construct()
-    {
-        $manifest = LUCENCY_ASSETS_PATH  . 'assets-manifest.json';
+	public $hash = null;
 
-        $this->hash = file_exists($manifest)
-            ? json_decode(file_get_contents($manifest), true)
-            : [];
-        
-    }
+	/**
+	 * Constructor to initialize asset paths.
+	 *
+	 * @param bool $child Set to true if using a child theme.
+	 */
+	public function __construct() {
+		$manifest = WLFGS_ASSETS_PATH . 'assets-manifest.json';
 
-    /**
-     * Get the resolved path for an asset.
-     *
-     * @param string $asset The asset file name.
-     * @return string The resolved asset path.
-     */
-    public function get($asset)
-    {
-        if (array_key_exists($asset, $this->hash)) {
-            return $this->hash[$asset];
-        }
+		$this->hash = file_exists( $manifest )
+			? json_decode( file_get_contents( $manifest ), true )
+			: array();
+	}
 
-        return $asset;
-    }
+	/**
+	 * Get the resolved path for an asset.
+	 *
+	 * @param string $asset The asset file name.
+	 * @return string The resolved asset path.
+	 */
+	public function get( $asset ) {
+		if ( array_key_exists( $asset, $this->hash ) ) {
+			return $this->hash[ $asset ];
+		}
+
+		return $asset;
+	}
 }
