@@ -69,15 +69,6 @@ They do not boot WordPress. Editor integration is left to a real site (or e2e la
 npm test
 ```
 
-## Security notes
-
-- No REST routes, Ajax actions, or settings screens. No direct use of `$_GET` / `$_POST`.
-- PHP files bail if `ABSPATH` is undefined.
-- Asset URLs come from a local webpack manifest; resolved filenames are constrained to a single path segment.
-- Editor-generated class names are drawn from a fixed control schema in `blocks/abstracts/constants.js`. Inline styles are CSS custom properties (`--gap`, `--padding-top`, …), not arbitrary CSS from PHP.
-
-Users who can edit posts can still change block markup, as with any Gutenberg block. That is an editor capability issue, not an additional plugin API.
-
 ## License
 
 GPL-2.0-or-later. See [LICENSE](LICENSE).
