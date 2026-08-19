@@ -9,6 +9,7 @@
 	"scripts": {
 		"start": "wp-scripts start --webpack-src-dir='./blocks' --mode development",
 		"build": "wp-scripts build --webpack-src-dir='./blocks' --mode production",
+		"test": "wp-scripts test-unit-js --watchAll=false",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip"
 	},
@@ -50,6 +51,6 @@
 		"webpack-remove-empty-scripts": "^1.0.4"
 	},
 	"dependencies": {
-		"lucency-flexbox-grid-system": "github:lucrousseau/lucency-flexbox-grid-system"
+		"lucency-flexbox-grid-system": "github:lucrousseau/lucency-flexbox-grid-system#29b7f07aa9ecf1c641f63c83ea59d58ad9a78a52"
 	}
 }

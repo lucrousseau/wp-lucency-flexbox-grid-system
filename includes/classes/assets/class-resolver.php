@@ -41,10 +41,14 @@ class Resolver {
 	 */
 	public function __construct() {
 		$manifest = LUCENCY_ASSETS_PATH . 'assets-manifest.json';
+		$decoded  = array();
 
-		$this->hash = file_exists( $manifest )
-			? json_decode( file_get_contents( $manifest ), true )
-			: array();
+		if ( is_readable( $manifest ) ) {
+			$json    = file_get_contents( $manifest );
+			$decoded = is_string( $json ) ? json_decode( $json, true ) : array();
+		}
+
+		$this->hash = is_array( $decoded ) ? $decoded : array();
 	}
 
 	/**
@@ -52,15 +56,24 @@ class Resolver {
 	 *
 	 * Looks up the asset path in the loaded manifest file. If the asset is found,
 	 * its path is returned. If not found, the original asset name is returned.
+	 * Only a single filename segment is accepted (no path traversal).
 	 *
 	 * @param string $asset The asset file name to resolve.
 	 * @return string The resolved asset path if found, otherwise the original asset name.
 	 */
 	public function get( $asset ) {
-		if ( array_key_exists( $asset, $this->hash ) ) {
-			return $this->hash[ $asset ];
+		$asset = basename( (string) $asset );
+
+		if ( ! isset( $this->hash[ $asset ] ) || ! is_string( $this->hash[ $asset ] ) ) {
+			return $asset;
 		}
 
-		return $asset;
+		$resolved = $this->hash[ $asset ];
+
+		if ( false !== strpos( $resolved, '..' ) || basename( $resolved ) !== $resolved ) {
+			return $asset;
+		}
+
+		return $resolved;
 	}
 }

@@ -1,10 +1,8 @@
 import { __ } from "@wordpress/i18n";
 
 import getDisplayTypeFlags from "../commons/getDisplayTypeFlags";
-import {
-	rangeControlForColsCellsMarks,
-	rangeControlForColsCellsTooltipContent,
-} from "../commons/RangeControlForColsCells";
+import rangeControlForColsCellsMarks from "../commons/RangeControlForColsCells/rangeControlForColsCellsMarks";
+import rangeControlForColsCellsTooltipContent from "../commons/RangeControlForColsCells/rangeControlForColsCellsTooltipContent";
 
 import breakpoints from "../../breakpoints.json";
 

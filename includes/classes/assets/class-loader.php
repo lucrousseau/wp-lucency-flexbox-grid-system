@@ -52,6 +52,11 @@ class Loader {
 	public function enqueue_styles() {
 		$resolver = new Resolver();
 		$css_file = $resolver->get( 'main.css' );
+		$css_path = LUCENCY_ASSETS_PATH . $css_file;
+
+		if ( ! file_exists( $css_path ) ) {
+			return;
+		}
 
 		wp_enqueue_style(
 			'wp-lucency-flexbox-grid-system-styles',

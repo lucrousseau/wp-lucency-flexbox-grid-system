@@ -1,10 +1,12 @@
 import { useSelect } from "@wordpress/data";
 
 export default function fetchBlockDetails({ clientId }) {
-	if (!clientId) return {};
-
 	return useSelect(
 		(select) => {
+			if (!clientId) {
+				return {};
+			}
+
 			const blockEditor = select("core/block-editor");
 			const innerBlocksCount = blockEditor.getBlockCount(clientId);
 			const hasInnerBlocks = innerBlocksCount > 0;

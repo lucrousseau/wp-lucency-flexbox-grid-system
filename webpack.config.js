@@ -108,7 +108,6 @@ const createCssRule = () => ({
 				},
 			},
 		},
-		'postcss-loader',
 		{
 			loader: 'sass-loader',
 			options: {
