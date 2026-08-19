@@ -14,7 +14,7 @@ The CSS grid/flex utilities come from a separate Sass package, `lucency-flexbox-
 
 | Block | Role |
 | --- | --- |
-| **Container** | Top-level wrapper (`<section>`) with inner content area |
+| **Container** | Top-level wrapper (`<section>`). Direct child of post content only (`parent: core/post-content`) |
 | **Row** | Flex or grid parent; provides `display` and layout context to children |
 | **Column** | Child of Row; responsive width (flex) or cell size (grid) |
 

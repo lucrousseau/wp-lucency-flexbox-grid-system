@@ -5,9 +5,9 @@
 	"version": "0.1.0",
 	"title": "Container",
 	"category": "lucency",
-	"description": "Create a container to add all other components.",
+	"description": "Top-level layout wrapper. Insert at the root of the post or page, then add rows and columns inside.",
 	"supports": {},
-	"parent": [null],
+	"parent": ["core/post-content"],
 	"textdomain": "lucency",
 	"author": "Luc Rousseau",
 	"authorURI": "https://lucrousseau.com",
@@ -56,39 +56,34 @@
 	"example": {
 		"innerBlocks": [
 			{
-				"name": "wp-lucency-flexbox-grid-system/container",
+				"name": "core/heading",
+				"attributes": {
+					"level": 1,
+					"content": "Title"
+				}
+			},
+			{
+				"name": "wp-lucency-flexbox-grid-system/row",
 				"innerBlocks": [
 					{
-						"name": "core/heading",
-						"attributes": {
-							"level": 1,
-							"content": "Title"
-						}
-					},
-					{
-						"name": "wp-lucency-flexbox-grid-system/row",
+						"name": "wp-lucency-flexbox-grid-system/column",
 						"innerBlocks": [
 							{
-								"name": "wp-lucency-flexbox-grid-system/column",
-								"innerBlocks": [
-									{
-										"name": "core/paragraph",
-										"attributes": {
-											"content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac semper tellus. Mauris volutpat pretium purus, ac ornare ante faucibus a. Quisque ut metus congue, blandit ante venenatis, suscipit sapien. Fusce ut elit accumsan, vulputate enim egestas, elementum mi. Nulla gravida finibus metus, at pretium elit."
-										}
-									}
-								]
-							},
+								"name": "core/paragraph",
+								"attributes": {
+									"content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac semper tellus. Mauris volutpat pretium purus, ac ornare ante faucibus a. Quisque ut metus congue, blandit ante venenatis, suscipit sapien. Fusce ut elit accumsan, vulputate enim egestas, elementum mi. Nulla gravida finibus metus, at pretium elit."
+								}
+							}
+						]
+					},
+					{
+						"name": "wp-lucency-flexbox-grid-system/column",
+						"innerBlocks": [
 							{
-								"name": "wp-lucency-flexbox-grid-system/column",
-								"innerBlocks": [
-									{
-										"name": "core/paragraph",
-										"attributes": {
-											"content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac semper tellus. Mauris volutpat pretium purus, ac ornare ante faucibus a. Quisque ut metus congue, blandit ante venenatis, suscipit sapien. Fusce ut elit accumsan, vulputate enim egestas, elementum mi. Nulla gravida finibus metus, at pretium elit."
-										}
-									}
-								]
+								"name": "core/paragraph",
+								"attributes": {
+									"content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac semper tellus. Mauris volutpat pretium purus, ac ornare ante faucibus a. Quisque ut metus congue, blandit ante venenatis, suscipit sapien. Fusce ut elit accumsan, vulputate enim egestas, elementum mi. Nulla gravida finibus metus, at pretium elit."
+								}
 							}
 						]
 					}
